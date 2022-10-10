@@ -3,6 +3,7 @@ import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {appActions} from '../features/application';
 import {useAppSelector} from '../common/hooks/useAppSelector';
 import {getIsInitialized} from '../features/application/selectors';
+import {SignIn} from '../features/auth/signIn/SignIn';
 
 const {initializeApp} = appActions
 
@@ -20,7 +21,7 @@ export const App = () => {
 
     return (
         <div>
-            hi
+            <SignIn/>
         </div>
     );
 }
