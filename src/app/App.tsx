@@ -18,7 +18,6 @@ export const App = () => {
         return <h1>loading</h1>
     }
 
-
     return (
         <div>
             hi

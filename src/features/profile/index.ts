@@ -5,11 +5,11 @@ const profileReducer = slice.reducer
 
 const profileActions = {
     ...asyncActions,
-    ...slice.actions
+    ...slice.actions,
 }
 
 export {
     profileReducer,
     profileSelectors,
-    profileActions
+    profileActions,
 }
