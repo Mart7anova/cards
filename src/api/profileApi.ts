@@ -18,7 +18,6 @@ export const profileApi = {
 }
 
 
-
 type ResponseUpdateUser = {
     updatedUser: ProfileResponseType,
     token: string,

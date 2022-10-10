@@ -35,7 +35,8 @@ export const cardsApi = {
     },
 
 }
-//types
+
+
 export type CardType = {
     answer: string
     question: string

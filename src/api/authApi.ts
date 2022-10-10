@@ -27,14 +27,12 @@ export const authApi = {
     }
 }
 
-//types
+
 type forgotPasswordDataType = {
     email: string
     from: string
     message: string
 }
-
-
 
 type ResponseSignUp = {
     error: string

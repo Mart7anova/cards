@@ -27,7 +27,8 @@ export const packApi = {
         })
     },
 }
-//types
+
+
 export type PackType = {
     cardsCount: number
     created: Date
