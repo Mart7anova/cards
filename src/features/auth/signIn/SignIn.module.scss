@@ -1,0 +1,13 @@
+.formContainer{
+  display: flex;
+  justify-content: center;
+
+  .title{
+    text-align: center;
+  }
+
+  .textInfo{
+    text-align: center;
+    opacity: 0.5;
+  }
+}

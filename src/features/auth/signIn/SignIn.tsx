@@ -9,14 +9,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
+import {Button, Paper, TextField} from '@mui/material';
+import s from './SignIn.module.scss'
+
 
 const {signIn} = authActions
-
-type FormikErrorsType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-}
 
 export const SignIn = () => {
     const dispatch = useAppDispatch()
@@ -27,47 +25,56 @@ export const SignIn = () => {
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
         },
         validate: values => {
-            const errors: FormikErrorsType = {}
-            if (!values.email) {
-                errors.email = 'email required'
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address'
-            }
-            if (!values.password) {
-                errors.password = 'password required';
-            } else if (values.password.length < 3) {
-                errors.password = 'The password is too short'
-            } else if (values.password.length < 8) {
-                errors.password = 'Put more then 8 symbols, please.'
-            }
-            return errors
+            return validateValuesForForm(values)
         },
-        onSubmit: (values) => {
+        onSubmit: values => {
             dispatch(signIn(values))
         },
     });
+
+    const emailError = formik.errors.email && formik.touched.email
+    const passError = formik.errors.password && formik.touched.password
+
     return (
-        <FormControl sx={{m: 1, width: '25ch'}} variant="standard">
-            <InputLabel
-                color={formik.errors.password ? 'error' : 'primary'}>{formik.errors.password || 'Password'}</InputLabel>
-            <Input type={showPass ? 'text' : 'password'}
-                   aria-label={'gfhfg'}
-                   error={!!formik.errors.password}
-                   {...formik.getFieldProps('password')}
-                   endAdornment={
-                       <InputAdornment position="end">
-                           <IconButton
-                               aria-label="toggle password visibility"
-                               onClick={() => setShowPass(!showPass)}
-                           >
-                               {showPass ? <VisibilityOff/> : <Visibility/>}
-                           </IconButton>
-                       </InputAdornment>
-                   }
-            />
-        </FormControl>
+        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
+            <Paper sx={{m: 10, width: '50ch'}}>
+                <FormControl sx={{p: 2, display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+
+                    <h1 className={s.title}>Sing In</h1>
+
+                     <TextField variant={'standard'}
+                               sx={{m:2, mt: 5}}
+                               color={emailError ? 'error': 'primary'}
+                               label={emailError ? formik.errors.email : 'Email'}
+                               error={!!emailError}
+                                {...formik.getFieldProps('email')}
+                    />
+
+                    <FormControl variant="standard" sx={{m: 2}}>
+                        <InputLabel color={passError ? 'error' : 'primary'}>
+                            {passError ? formik.errors.password : 'Password'}
+                        </InputLabel>
+                        <Input type={showPass ? 'text' : 'password'}
+                               error={!!passError}
+                               {...formik.getFieldProps('password')}
+                               endAdornment={
+                                   <InputAdornment position={'end'}>
+                                       <IconButton onClick={() => setShowPass(!showPass)}>
+                                           {showPass ? <VisibilityOff/> : <Visibility/>}
+                                       </IconButton>
+                                   </InputAdornment>
+                               }
+                        />
+                    </FormControl>
+
+                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>sent</Button>
+
+                    <p className={s.textInfo}>Do not have account?</p>
+                </FormControl>
+            </Paper>
+        </form>
     );
 };
