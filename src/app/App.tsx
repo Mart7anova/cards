@@ -5,6 +5,7 @@ import {useAppSelector} from '../common/hooks/useAppSelector';
 import {getIsInitialized} from '../features/application/selectors';
 import {AppRoute} from '../features/route/AppRoute';
 import {Main} from '../features/route/Main';
+import {Bar} from '../common/components/AppBar/AppBar';
 
 const {initializeApp} = appActions
 
@@ -22,6 +23,7 @@ export const App = () => {
 
     return (
         <div>
+            <Bar/>
             <AppRoute/>
             <Main/>
         </div>
