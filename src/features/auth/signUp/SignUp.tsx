@@ -5,8 +5,8 @@ import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import s from '../../../common/styles/Form.module.scss'
 import {Button, Paper, TextField} from '@mui/material';
-import {Password} from '../../../common/components/Password';
 import {authActions} from '../index';
+import { Password } from '../../../common/components/Password/Password';
 
 const {signUp} = authActions
 

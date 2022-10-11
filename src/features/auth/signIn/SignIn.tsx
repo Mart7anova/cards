@@ -6,7 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {Button, Paper, TextField} from '@mui/material';
 import s from '../../../common/styles/Form.module.scss'
-import {Password} from '../../../common/components/Password';
+import {Password} from '../../../common/components/Password/Password';
+
 
 
 const {signIn} = authActions
