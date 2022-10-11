@@ -37,7 +37,7 @@ export const SignUp = () => {
             <Paper sx={{m: 10, width: '50ch'}}>
                 <FormControl sx={{p: 2, display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
 
-                    <h1 className={s.title}>Sing In</h1>
+                    <h1 className={s.title}>Sing Up</h1>
 
                     <TextField variant={'standard'}
                                sx={{m: 2, mt: 5}}
