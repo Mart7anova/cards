@@ -27,8 +27,8 @@ export const CheckEmail = () => {
 
                     <h1 className={s.title}>Sing In</h1>
 
-                    <div style={{display:'flex', justifyContent: 'center'}}>
-                        <Avatar alt="check email" src={checkEmail} sx={{width: 100, height: 100, m:3}}/>
+                    <div className={s.flexContainer}>
+                        <Avatar alt="check email" src={checkEmail} className={s.img}/>
                     </div>
 
                     <p className={s.helpText} style={{textAlign: 'center'}}> We’ve sent an Email with instructions to {email} </p>

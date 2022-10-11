@@ -9,12 +9,12 @@ import {Bar} from '../common/components/AppBar/AppBar';
 const {initializeApp} = appActions
 
 export const App = () => {
-    const isInitialized = useAppSelector(getIsInitialized)
     const dispatch = useAppDispatch()
+    const isInitialized = useAppSelector(getIsInitialized)
 
     useEffect(() => {
         dispatch(initializeApp())
-    }, [dispatch])
+    }, [])
 
     if (!isInitialized) {
         return <h1>loading</h1>

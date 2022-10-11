@@ -2,12 +2,19 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {profileApi} from '../../api/profileApi';
 import {ErrorType} from '../../common/types/errorType';
 import {appActions} from './index';
+import {profileActions} from '../profile';
+import {authActions} from '../auth';
 
-const initializeApp = createAsyncThunk('application/initializeApp', async (param, thunkAPI) => {
+const {setProfile} = profileActions
+const {setIsLoggedIn} = authActions
+
+const initializeApp = createAsyncThunk('application/initializeApp', async (param, {dispatch,rejectWithValue}) => {
     try {
-        await profileApi.me()
+        const {data} = await profileApi.me()
+        dispatch(setProfile(data))
+        dispatch(setIsLoggedIn(true))
     } catch (e) {
-        return thunkAPI.rejectWithValue({})
+        return rejectWithValue(null)
     }
 })
 

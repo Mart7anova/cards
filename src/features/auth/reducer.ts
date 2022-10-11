@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {profileActions} from '../profile';
 import {authApi} from '../../api/authApi';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
@@ -80,7 +80,11 @@ export const slice = createSlice({
         email: '',
         status: 'idle' as StatusType,
     },
-    reducers: {},
+    reducers: {
+        setIsLoggedIn: (state, action: PayloadAction<boolean>)=>{
+            state.isLoggedIn = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(signUp.pending, (state) => {
