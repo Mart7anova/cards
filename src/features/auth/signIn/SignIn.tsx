@@ -11,7 +11,6 @@ import {PATH} from '../../../common/enums/path';
 import {Link, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getIsLoggedIn} from '../selectors';
-import {getProfile} from '../../profile/selectors';
 
 
 const {signIn} = authActions
@@ -21,7 +20,6 @@ export const SignIn = () => {
     const navigate = useNavigate()
 
     const isLoggedIn = useAppSelector(getIsLoggedIn)
-    const profile = useAppSelector(getProfile)
 
     const formik = useFormik({
         initialValues: {
@@ -42,7 +40,7 @@ export const SignIn = () => {
 
     useEffect(() => {
         if (isLoggedIn) navigate(PATH.PACKS)
-    }, [isLoggedIn, profile])
+    }, [isLoggedIn])
 
     return (
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>

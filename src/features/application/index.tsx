@@ -10,7 +10,7 @@ const setAppError = createAction<ErrorType>('appActions/setAppError')
 const appActions = {
     ...asyncActions,
     ...slice.actions,
-    setAppError
+    setAppError,
 }
 
 export {
