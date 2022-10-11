@@ -38,7 +38,7 @@ export const CreateNewPassword = () => {
     });
 
     const passError = formik.errors.password && formik.touched.password
-    const ConfirmPassError = formik.errors.confirmPassword && formik.touched.confirmPassword
+    const confirmPassError = formik.errors.confirmPassword && formik.touched.confirmPassword
 
     useEffect(() => {
         if (isLoggedIn) navigate(PATH.PACKS)
@@ -57,7 +57,7 @@ export const CreateNewPassword = () => {
                               formikErrorPass={formik.errors.password}
                               {...formik.getFieldProps('password')}/>
                     <Password label={'Confirm password'}
-                              passError={ConfirmPassError}
+                              passError={confirmPassError}
                               formikErrorPass={formik.errors.confirmPassword}
                               {...formik.getFieldProps('confirmPassword')}/>
 
