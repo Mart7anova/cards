@@ -15,12 +15,14 @@ export const validateValuesForForm = (values: FormValuesType) => {
         }
     }
 
-    if (!values.password) {
-        errors.password = 'password required';
-    } else if (values.password.length < 3) {
-        errors.password = 'The password is too short'
-    } else if (values.password.length < 8) {
-        errors.password = 'Put more then 8 symbols, please.'
+    if (values.password !== undefined) {
+        if (!values.password) {
+            errors.password = 'password required';
+        } else if (values.password.length < 3) {
+            errors.password = 'The password is too short'
+        } else if (values.password.length < 8) {
+            errors.password = 'Put more then 8 symbols, please.'
+        }
     }
 
     if (values.confirmPassword !== undefined) {
@@ -30,7 +32,7 @@ export const validateValuesForForm = (values: FormValuesType) => {
             errors.confirmPassword = 'The password is too short'
         } else if (values.confirmPassword.length < 8) {
             errors.confirmPassword = 'Put more then 8 symbols, please.'
-        }else if (values.password !== values.confirmPassword) {
+        } else if (values.password !== values.confirmPassword) {
             errors.confirmPassword = 'Password not matched'
         }
     }
