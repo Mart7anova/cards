@@ -54,9 +54,9 @@ const forgotPassword = createAsyncThunk('auth/forgotPass',
     })
 
 const updatePassword = createAsyncThunk('auth/updatePass',
-    async (param:{password: string, resetPasswordToken: string}, thunkAPI) => {
+    async (param: {password: string, token: string}, thunkAPI) => {
         try {
-            await authApi.setNewPass(param.password, param.resetPasswordToken)
+            await authApi.setNewPass(param.password, param.token)
         } catch (e) {
             handleNetworkError(e, thunkAPI.dispatch)
             return thunkAPI.rejectWithValue(null)

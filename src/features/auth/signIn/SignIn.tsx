@@ -56,7 +56,8 @@ export const SignIn = () => {
                                {...formik.getFieldProps('email')}
                     />
 
-                    <Password passError={passError}
+                    <Password label={'Password'}
+                              passError={passError}
                               formikErrorPass={formik.errors.password} {...formik.getFieldProps('password')}/>
 
                     <FormControlLabel label={'Remember me'}

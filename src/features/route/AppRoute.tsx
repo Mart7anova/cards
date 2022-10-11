@@ -6,6 +6,7 @@ import {SignUp} from '../auth/signUp/SignUp';
 import {SignIn} from '../auth/signIn/SignIn';
 import { ForgotPassword } from '../auth/forgotPassword/ForgotPassword';
 import {CheckEmail} from '../auth/checkEmail/CheckEmail';
+import {CreateNewPassword} from '../auth/createNewPassword/CreateNewPassword';
 
 export const AppRoute = () => {
 
@@ -14,7 +15,7 @@ export const AppRoute = () => {
             <Route path={PATH.SIGN_IN} element={<SignIn/>}/>
             <Route path={PATH.SIGN_UP} element={<SignUp/>}/>
             <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
-            {/*<Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>*/}
+            <Route path={PATH.NEW_PASSWORD} element={<CreateNewPassword/>}/>
             <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
             <Route path={PATH.PAGE_NOT_FOUND} element={<PageNotFound/>}/>
             <Route path={PATH.OTHER_ROUTS} element={<Navigate to={PATH.PAGE_NOT_FOUND}/>}/>

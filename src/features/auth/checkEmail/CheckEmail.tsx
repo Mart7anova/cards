@@ -1,19 +1,24 @@
 import {Avatar, Button, FormControl, Paper} from '@mui/material';
-import React from 'react';
+import React, {useEffect} from 'react';
 import checkEmail from '../../../assets/images/check-email.png'
 import s from '../../../assets/styles/Form.module.scss';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {getEmail} from '../selectors';
+import {getEmail, getIsLoggedIn} from '../selectors';
 import {useNavigate} from 'react-router-dom';
 import { PATH } from '../../../common/enums/path';
 
 export const CheckEmail = () => {
+    const isLoggedIn = useAppSelector(getIsLoggedIn)
     const navigate = useNavigate()
     const email = useAppSelector(getEmail)
 
     const onClickHandler = () => {
       navigate(PATH.SIGN_IN)
     }
+
+    useEffect(()=>{
+        if(isLoggedIn) navigate(PATH.PACKS)
+    }, [isLoggedIn])
 
     return (
         <div className={s.formContainer}>

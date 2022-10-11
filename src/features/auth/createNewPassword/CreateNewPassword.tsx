@@ -1,61 +1,56 @@
 import React, {useEffect} from 'react';
-import FormControl from '@mui/material/FormControl';
-import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {getIsLoggedIn, getIsSignedUp} from '../selectors';
+import {PATH} from '../../../common/enums/path';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
-import s from '../../../assets/styles/Form.module.scss'
-import {Button, Paper, TextField} from '@mui/material';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {authActions} from '../index';
+import s from '../../../assets/styles/Form.module.scss';
+import {Button, Paper} from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 import {Password} from '../../../common/components/Password/Password';
-import {Link, useNavigate} from 'react-router-dom';
-import {PATH} from '../../../common/enums/path';
-import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {getIsLoggedIn} from '../selectors';
 
-const {signUp} = authActions
+const {updatePassword} = authActions
 
-export const SignUp = () => {
+export const CreateNewPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const {token} = useParams()
+
     const isLoggedIn = useAppSelector(getIsLoggedIn)
+    const isSignedUp = useAppSelector(getIsSignedUp)
 
     const formik = useFormik({
         initialValues: {
-            email: '',
             password: '',
-            rememberMe: false,
             confirmPassword: ''
         },
         validate: values => {
             return validateValuesForForm(values)
         },
         onSubmit: values => {
-            dispatch(signUp(values))
+            if (token) {
+                dispatch(updatePassword({password: values.password, token}))
+            }
         },
     });
 
-    const emailError = formik.errors.email && formik.touched.email
     const passError = formik.errors.password && formik.touched.password
     const ConfirmPassError = formik.errors.confirmPassword && formik.touched.confirmPassword
 
     useEffect(() => {
         if (isLoggedIn) navigate(PATH.PACKS)
-    }, [isLoggedIn])
+        if (isSignedUp) navigate(PATH.SIGN_IN)
+    }, [isLoggedIn, isSignedUp])
 
     return (
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
             <Paper className={s.paper}>
                 <FormControl className={s.formItems}>
 
-                    <h1 className={s.title}>Sing Up</h1>
-
-                    <TextField variant={'standard'}
-                               sx={{m: 2, mt: 5}}
-                               color={emailError ? 'error' : 'primary'}
-                               label={emailError ? formik.errors.email : 'Email'}
-                               error={!!emailError}
-                               {...formik.getFieldProps('email')}
-                    />
+                    <h1 className={s.title}>Create new password</h1>
 
                     <Password label={'Password'}
                               passError={passError}
@@ -66,13 +61,12 @@ export const SignUp = () => {
                               formikErrorPass={formik.errors.confirmPassword}
                               {...formik.getFieldProps('confirmPassword')}/>
 
-                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sing Up</Button>
 
-                    <p className={s.infoText}>Already have an account?</p>
+                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Create new password</Button>
 
-                    <Link to={PATH.SIGN_IN} className={s.link}>Sign In</Link>
                 </FormControl>
             </Paper>
         </form>
     );
 };
+
