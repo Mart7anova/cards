@@ -25,18 +25,3 @@ export const AppRoute = () => {
         </Routes>
     );
 };
-// <Route path={PATH.PACKS_LIST} element={<Main/>}>
-//     <Route path={PATH.OTHER_ROUTS} element={<Navigate to={PATH.PAGE_NOT_FOUND}/>}/>
-//     <Route path={PATH.PAGE_NOT_FOUND} element={<PageNotFound/>}/>
-//
-//     <Route path={PATH.LOGIN} element={<SignIn/>}/>
-//     <Route path={PATH.REGISTRATION} element={<Registration/>}/>
-//     <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
-//     <Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>
-//     <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
-//
-//     <Route index element={<PacksPage/>}/>
-//     <Route path={PATH.PROFILE} element={<Profile/>}/>
-//     <Route path={PATH.CARD} element={<CardsPage/>}/>
-//     <Route path={PATH.LEARN_CARD} element={<LearnPage/>}/>
-// </Route>
