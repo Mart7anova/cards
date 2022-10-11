@@ -1,25 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useFormik} from 'formik';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {authActions} from '../index';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {Button, Paper, TextField} from '@mui/material';
 import s from './SignIn.module.scss'
+import {Password} from '../../../common/components/Password';
 
 
 const {signIn} = authActions
 
 export const SignIn = () => {
     const dispatch = useAppDispatch()
-
-    const [showPass, setShowPass] = useState(false)
 
     const formik = useFormik({
         initialValues: {
@@ -53,22 +46,7 @@ export const SignIn = () => {
                                 {...formik.getFieldProps('email')}
                     />
 
-                    <FormControl variant="standard" sx={{m: 2}}>
-                        <InputLabel color={passError ? 'error' : 'primary'}>
-                            {passError ? formik.errors.password : 'Password'}
-                        </InputLabel>
-                        <Input type={showPass ? 'text' : 'password'}
-                               error={!!passError}
-                               {...formik.getFieldProps('password')}
-                               endAdornment={
-                                   <InputAdornment position={'end'}>
-                                       <IconButton onClick={() => setShowPass(!showPass)}>
-                                           {showPass ? <VisibilityOff/> : <Visibility/>}
-                                       </IconButton>
-                                   </InputAdornment>
-                               }
-                        />
-                    </FormControl>
+                    <Password passError={passError} formikErrorPass={formik.errors.password} {...formik.getFieldProps('password')}/>
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>sent</Button>
 
