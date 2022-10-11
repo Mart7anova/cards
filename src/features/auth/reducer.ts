@@ -46,6 +46,7 @@ const forgotPassword = createAsyncThunk('auth/forgotPass',
                 from: 'test-front-admin <1@gmail.com>',
                 message: `<div>Перейдите по ссылке, чтобы продолжить востановление пароля <a href='http://localhost:3000/#/set-new-password/$token$'>link</a></div>`
             })
+            return email
         } catch (e) {
             handleNetworkError(e, thunkAPI.dispatch)
             return thunkAPI.rejectWithValue(null)
@@ -76,6 +77,7 @@ export const slice = createSlice({
         isLoggedIn: false,
         isSignedUp: false,
         passwordIsChanging: false,
+        email: '',
         status: 'idle' as StatusType,
     },
     reducers: {},
@@ -109,8 +111,9 @@ export const slice = createSlice({
             .addCase(forgotPassword.pending, (state)=>{
                 state.status = 'loading'
             })
-            .addCase(forgotPassword.fulfilled, (state)=>{
+            .addCase(forgotPassword.fulfilled, (state, action)=>{
                 state.passwordIsChanging = true
+                state.email = action.payload
                 state.status = 'idle'
             })
 
@@ -120,6 +123,7 @@ export const slice = createSlice({
             .addCase(updatePassword.fulfilled, (state)=>{
                 state.passwordIsChanging = false
                 state.isSignedUp = true
+                state.email = ''
                 state.status = 'idle'
             })
     }

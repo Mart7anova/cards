@@ -12,7 +12,7 @@ export enum PATH {
     SIGN_UP = '/sign-up',
     FORGOT_PASSWORD = '/forgot-password',
     NEW_PASSWORD = '/set-new-password/:token',
-    CHECK_EMAIL = '/check-Email',
+    CHECK_EMAIL = '/check-email',
 
     PROFILE = '/profile',
 }

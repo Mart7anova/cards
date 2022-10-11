@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import s from '../../../common/styles/Form.module.scss';
+import s from '../../../assets/styles/Form.module.scss';
 import {Button, FormControl, Paper, TextField} from '@mui/material';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Link, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {getIsLoggedIn} from '../selectors';
+import {getIsLoggedIn, getPasswordIsChanging} from '../selectors';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {PATH} from '../../../common/enums/path';
@@ -16,6 +16,7 @@ export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const isLoggedIn = useAppSelector(getIsLoggedIn)
+    const passwordIsChanging = useAppSelector(getPasswordIsChanging)
 
     const formik = useFormik({
         initialValues: {
@@ -33,7 +34,8 @@ export const ForgotPassword = () => {
 
     useEffect(() => {
         if (isLoggedIn) navigate(PATH.PACKS)
-    }, [isLoggedIn])
+        if(passwordIsChanging) navigate(PATH.CHECK_EMAIL)
+    }, [isLoggedIn, passwordIsChanging])
 
     return (
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
