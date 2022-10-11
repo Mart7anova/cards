@@ -1,21 +1,18 @@
 import React, {useEffect} from 'react';
-import {useFormik} from 'formik';
+import s from '../../../common/styles/Form.module.scss';
+import {Button, FormControl, Paper, TextField} from '@mui/material';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {authActions} from '../index';
-import FormControl from '@mui/material/FormControl';
-import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
-import {Button, Checkbox, FormControlLabel, Paper, TextField} from '@mui/material';
-import s from '../../../common/styles/Form.module.scss'
-import {Password} from '../../../common/components/Password/Password';
-import {PATH} from '../../../common/enums/path';
 import {Link, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getIsLoggedIn} from '../selectors';
+import {useFormik} from 'formik';
+import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
+import {PATH} from '../../../common/enums/path';
+import {authActions} from '../index';
 
+const {forgotPassword} = authActions
 
-const {signIn} = authActions
-
-export const SignIn = () => {
+export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const isLoggedIn = useAppSelector(getIsLoggedIn)
@@ -23,19 +20,16 @@ export const SignIn = () => {
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: '',
-            rememberMe: false,
         },
         validate: values => {
             return validateValuesForForm(values)
         },
         onSubmit: values => {
-            dispatch(signIn(values))
+            dispatch(forgotPassword(values))
         },
     });
 
     const emailError = formik.errors.email && formik.touched.email
-    const passError = formik.errors.password && formik.touched.password
 
     useEffect(() => {
         if (isLoggedIn) navigate(PATH.PACKS)
@@ -55,22 +49,13 @@ export const SignIn = () => {
                                error={!!emailError}
                                {...formik.getFieldProps('email')}
                     />
+                    <p className={s.helpText}>Enter your email address and we will send you further instructions </p>
 
-                    <Password passError={passError}
-                              formikErrorPass={formik.errors.password} {...formik.getFieldProps('password')}/>
+                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Send Instructions</Button>
 
-                    <FormControlLabel label={'Remember me'}
-                                      sx={{m: 1}}
-                                      control={<Checkbox{...formik.getFieldProps('rememberMe')}/>}
-                    />
+                    <p className={s.infoText}>Did you remember your password?</p>
 
-                    <Link to={PATH.FORGOT_PASSWORD} className={`${s.link} ${s.rightLink}`}>Forgot Password?</Link>
-
-                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sign In</Button>
-
-                    <p className={s.infoText}>Do not have account?</p>
-
-                    <Link to={PATH.SIGN_UP} className={s.link}>Sign Up</Link>
+                    <Link to={PATH.SIGN_IN} className={s.link}>Try logging in</Link>
                 </FormControl>
             </Paper>
         </form>

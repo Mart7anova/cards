@@ -16,11 +16,18 @@
         text-align: center;
       }
 
-      .textInfo {
+      .infoText {
         margin-top: 10px;
         font-weight: bold;
         text-align: center;
         opacity: 0.5;
+      }
+
+      .helpText{
+        opacity: 0.5;
+        text-align: left;
+        margin: 10px 0 25px 15px;
+        font-size: 18px;
       }
 
       .link {
@@ -30,6 +37,12 @@
         font-size: 20px;
         color: #1976d2;
         text-decoration-color: #1976d2;
+      }
+
+      .rightLink{
+        text-align: right;
+        margin-right: 15px;
+        font-size: 18px;
       }
     }
   }

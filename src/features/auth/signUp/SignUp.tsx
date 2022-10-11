@@ -62,9 +62,9 @@ export const SignUp = () => {
                     <Password passError={ConfirmPassError}
                               formikErrorPass={formik.errors.confirmPassword} {...formik.getFieldProps('confirmPassword')}/>
 
-                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sent</Button>
+                    <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sing Up</Button>
 
-                    <p className={s.textInfo}>Already have an account?</p>
+                    <p className={s.infoText}>Already have an account?</p>
 
                     <Link to={PATH.SIGN_IN} className={s.link}>Sign In</Link>
                 </FormControl>

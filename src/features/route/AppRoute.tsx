@@ -4,6 +4,7 @@ import {ProtectedRoutes} from './ProtectedRoutes';
 import {PageNotFound} from '../../common/components/PageNotFound/PageNotFound';
 import {SignUp} from '../auth/signUp/SignUp';
 import {SignIn} from '../auth/signIn/SignIn';
+import { ForgotPassword } from '../auth/forgotPassword/ForgotPassword';
 
 export const AppRoute = () => {
 
@@ -11,7 +12,7 @@ export const AppRoute = () => {
         <Routes>
             <Route path={PATH.SIGN_IN} element={<SignIn/>}/>
             <Route path={PATH.SIGN_UP} element={<SignUp/>}/>
-            {/*<Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>*/}
+            <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
             {/*<Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>*/}
             {/*<Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>*/}
             <Route path={PATH.PAGE_NOT_FOUND} element={<PageNotFound/>}/>

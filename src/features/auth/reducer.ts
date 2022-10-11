@@ -38,8 +38,9 @@ const signOut = createAsyncThunk('auth/signOut',
     })
 
 const forgotPassword = createAsyncThunk('auth/forgotPass',
-    async (email: string, thunkAPI) => {
+    async (param: {email: string}, thunkAPI) => {
         try {
+            const email = param.email
             await authApi.forgotPass({
                 email,
                 from: 'test-front-admin <1@gmail.com>',
