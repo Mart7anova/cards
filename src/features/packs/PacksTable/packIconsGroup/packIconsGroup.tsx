@@ -9,6 +9,7 @@ import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {DeleteModal} from '../../../../common/components/DeleteModel/DeleteModal';
 import {PackModal} from '../../PackModal/PackModal';
 import {packActions} from '../../index';
+import {IconButton, Tooltip} from '@mui/material';
 
 const {fetchPacks, deletePack, updatePack} = packActions
 
@@ -39,16 +40,27 @@ export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
 
     return (
         <>
-            <SchoolIcon sx={{cursor: 'pointer'}}/>
+            <Tooltip title="learn">
+                <IconButton><SchoolIcon/></IconButton>
+            </Tooltip>
+
             {
                 packUserId === _id
                     ? <>
-                        <BorderColorIcon sx={{ml: 2, mr: 2, cursor: 'pointer'}} onClick={openModal}/>
-                        <DeleteForeverIcon sx={{cursor: 'pointer'}} onClick={openEditModal}/>
+                        <Tooltip title="edit">
+                            <IconButton onClick={openModal}><BorderColorIcon/></IconButton>
+                        </Tooltip>
+                        <Tooltip title="delete">
+                            <IconButton onClick={openEditModal}><DeleteForeverIcon/></IconButton>
+                        </Tooltip>
                     </>
                     : <>
-                        <BorderColorIcon sx={{ml: 2, mr: 2}} color={'disabled'}/>
-                        <DeleteForeverIcon color={'disabled'}/>
+                        <IconButton disabled>
+                            <BorderColorIcon color={'disabled'}/>
+                        </IconButton>
+                        <IconButton disabled>
+                            <DeleteForeverIcon color={'disabled'}/>
+                        </IconButton>
                     </>
             }
             <PackModal title={'Edit pack'}
