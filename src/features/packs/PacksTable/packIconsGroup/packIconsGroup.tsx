@@ -54,6 +54,7 @@ export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
             <PackModal title={'Edit pack'}
                        open={open}
                        closeModal={closeModal}
+                       packName={packName}
                        sentChanges={updatePackHandle}
             />
             <DeleteModal title={'Delete card'}

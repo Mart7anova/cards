@@ -1,18 +1,19 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './PackModal.module.scss'
 import {Button, Checkbox, FormControlLabel, TextField} from '@mui/material';
-import { BasicModal } from '../../../common/components/BasicModal/BasicModal';
+import {BasicModal} from '../../../common/components/BasicModal/BasicModal';
 
 
 type PropsType = {
     title: string
+    packName?: string
     open: boolean
     closeModal: () => void
     sentChanges: (packName: string, isPrivate: boolean) => void
 }
 
-export const PackModal = ({title, open, closeModal, sentChanges}: PropsType) => {
-    const [name, setName] = useState('')
+export const PackModal = ({title, packName, open, closeModal, sentChanges}: PropsType) => {
+    const [name, setName] = useState(packName ? packName : '')
     const [isPrivate, setIsPrivate] = useState(false)
     const [error, setError] = useState('')
 
