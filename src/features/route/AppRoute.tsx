@@ -8,6 +8,7 @@ import { ForgotPassword } from '../auth/forgotPassword/ForgotPassword';
 import {CheckEmail} from '../auth/checkEmail/CheckEmail';
 import {CreateNewPassword} from '../auth/createNewPassword/CreateNewPassword';
 import {Profile} from '../profile/Profile';
+import {Packs} from '../packs/Packs';
 
 export const AppRoute = () => {
 
@@ -21,7 +22,7 @@ export const AppRoute = () => {
             <Route path={PATH.PAGE_NOT_FOUND} element={<PageNotFound/>}/>
             <Route path={PATH.OTHER_ROUTS} element={<Navigate to={PATH.PAGE_NOT_FOUND}/>}/>
             <Route element={<ProtectedRoutes />}>
-                <Route path={PATH.PACKS} element={<div>Packs</div>}/>
+                <Route path={PATH.PACKS} element={<Packs/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
                 {/*<Route path={PATH.CARD} element={<CardsPage/>}/>*/}
                 {/*<Route path={PATH.LEARN_CARD} element={<LearnPage/>}/>*/}

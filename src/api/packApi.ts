@@ -3,8 +3,8 @@ import {AxiosResponse} from 'axios';
 
 
 export const packApi = {
-    getPacks(params: RequestPackSearchParamsType) {
-        return instance.get<RequestPackSearchParamsType, AxiosResponse<ResponseCardPacksType>>(`/cards/pack`, {params})
+    getPacks(params: PackSearchParamsType) {
+        return instance.get<PackSearchParamsType, AxiosResponse<ResponseCardPacksType>>(`/cards/pack`, {params})
     },
     createPack(name: string, isPrivate: boolean) {
         return instance.post(`cards/pack`, {
@@ -54,7 +54,7 @@ export type ResponseCardPacksType = {
     page: number
     pageCount: number
 }
-export type RequestPackSearchParamsType = {
+export type PackSearchParamsType = {
     page?: number
     pageCount?: number
     sortPacks?: string

@@ -1,10 +1,12 @@
 import React from 'react';
-import {AppBar, Box, Button, Toolbar, Typography} from '@mui/material';
-import {useNavigate} from 'react-router-dom';
+import {AppBar, Box, Button, Container} from '@mui/material';
+import {Link, useNavigate} from 'react-router-dom';
 import {PATH} from '../../enums/path';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getIsLoggedIn} from '../../../features/auth/selectors';
 import {ProfileLink} from '../ProfileLink/ProfileLink';
+import s from '../ProfileLink/ProfileLink.module.scss';
+import c from './AppBar.module.scss';
 
 export const Bar = () => {
     const navigate = useNavigate()
@@ -15,12 +17,13 @@ export const Bar = () => {
     }
 
     return (
-        <Box sx={{flexGrow: 1}}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography component="div" sx={{flexGrow: 1}}>
-                        <h1>Cards App</h1>
-                    </Typography>
+        <Box>
+            <AppBar position="static" className={c.bar}>
+                <Container fixed className={c.container}>
+                    <Link to={PATH.PACKS} className={s.userContainer}>
+                        <h1 className={s.name}>Cards App</h1>
+                    </Link>
+
                     {
                         isLoggedIn
                             ? <ProfileLink/>
@@ -29,7 +32,7 @@ export const Bar = () => {
                                 <h2>Sign in</h2>
                             </Button>
                     }
-                </Toolbar>
+                </Container>
             </AppBar>
         </Box>
     );

@@ -87,7 +87,7 @@ export const slice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(signUp.pending, (state) => {
+            .addCase(signUp.pending,  (state) => {
                 state.status = 'loading'
             })
             .addCase(signUp.fulfilled, (state) => {
