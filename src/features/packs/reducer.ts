@@ -78,7 +78,7 @@ export const slice = createSlice({
             state.searchParams.min = state.packs.minCardsCount
             state.searchParams.max = state.packs.maxCardsCount
         },
-        setIsMyPacksLifter: (state, action: PayloadAction<string>) => {
+        setIsMyPacksFilter: (state, action: PayloadAction<string>) => {
             state.searchParams.user_id = action.payload
             state.searchParams.page = 1
         },
