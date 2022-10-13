@@ -16,6 +16,7 @@ import {cardActions} from '../index';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import { CardType } from '../../../api/cardsApi';
 import dayjs from 'dayjs';
+import {CardIconsGroup} from './CardIconsGroup/CardIconsGroup';
 
 const {setSearchParams} = cardActions
 
@@ -91,7 +92,7 @@ export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) 
                                 <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>
                                     {card.answer}
                                 </TableCell>
-                                <TableCell sx={{width: '18%'}}>
+                                <TableCell sx={{width: '20%'}}>
                                     {dayjs(card.updated).format(`DD.MM.YYYY`)}
                                 </TableCell>
                                 <TableCell sx={{ width: '10%'}}>
@@ -101,8 +102,13 @@ export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) 
                                     {card.grade}
                                 </TableCell>
                                 {
-                                    isOwner && <TableCell sx={{ width: '16%'}}>
-                                        jjj
+                                    isOwner && <TableCell sx={{ width: '10%'}}>
+                                    <CardIconsGroup packId={card.cardsPack_id}
+                                                    cardId={card._id}
+                                                    cardName={card.question}
+                                                    question={card.question}
+                                                    answer={card.answer}
+                                    />
                                     </TableCell>
                                 }
                             </TableRow>

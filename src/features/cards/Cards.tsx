@@ -46,7 +46,7 @@ export const Cards = () => {
 
     useEffect(() => {
         dispatch(fetchCards({packId}))
-    }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max])
+    }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId])
 
 
     return (
@@ -66,7 +66,11 @@ export const Cards = () => {
                             <Button variant={'contained'} onClick={openModal}>
                                 Add new card
                             </Button>
-                            <CardModal title={'Add new card'} sentChanges={addNewCard} open={open} closeModal={closeModal}/>
+                            <CardModal title={'Add new card'}
+                                       sentChanges={addNewCard}
+                                       open={open}
+                                       closeModal={closeModal}
+                            />
                         </>
                     }
                 </div>

@@ -1,6 +1,6 @@
 import {Button, FormControl, MenuItem, Select, SelectChangeEvent, TextField} from '@mui/material';
 import React, {ChangeEvent, useState} from 'react';
-import { BasicModal } from '../../../common/components/BasicModal/BasicModal';
+import {BasicModal} from '../../../common/components/BasicModal/BasicModal';
 import style from './CardModal.module.scss'
 
 
@@ -9,12 +9,14 @@ type PropsType = {
     sentChanges: (question: string, answer: string) => void
     open: boolean
     closeModal: () => void
+    cardQuestion?: string
+    cardAnswer?: string
 }
 
-export const CardModal = ({title, sentChanges, open, closeModal}: PropsType) => {
+export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, cardAnswer}: PropsType) => {
     const [format, setFormat] = useState('text')
-    const [question, setQuestion] = useState('')
-    const [answer, setAnswer] = useState('')
+    const [question, setQuestion] = useState(cardQuestion ? cardQuestion : '')
+    const [answer, setAnswer] = useState(cardAnswer ? cardAnswer : '')
     const [error, setError] = useState('')
 
     const onFormatChange = (e: SelectChangeEvent) => {
@@ -30,7 +32,7 @@ export const CardModal = ({title, sentChanges, open, closeModal}: PropsType) => 
     }
 
     const onClickHandler = () => {
-        if(question && answer){
+        if (question && answer) {
             const newQuestion = question.trim()
             const newAnswer = answer.trim()
             sentChanges(newQuestion, newAnswer)
@@ -56,13 +58,15 @@ export const CardModal = ({title, sentChanges, open, closeModal}: PropsType) => 
                 Question:
                 {error && <span className={style.errorText}> {error}</span>}
             </div>
-            <TextField variant={'standard'} value={question} onChange={onQuestionChange} error={!!error} style={{width: '100%', marginBottom: '10px'}}/>
+            <TextField variant={'standard'} value={question} onChange={onQuestionChange} error={!!error}
+                       style={{width: '100%', marginBottom: '10px'}}/>
 
             <div className={style.infoText}>
                 Answer:
                 {error && <span className={style.errorText}> {error}</span>}
             </div>
-            <TextField variant={'standard'} className={style.input} value={answer} onChange={onAnswerChange} error={!!error} style={{width: '100%', marginBottom: '30px'}}/>
+            <TextField variant={'standard'} className={style.input} value={answer} onChange={onAnswerChange}
+                       error={!!error} style={{width: '100%', marginBottom: '30px'}}/>
 
             <div className={style.btnGroup}>
                 <Button onClick={closeModal} variant={'contained'} color={'error'}>

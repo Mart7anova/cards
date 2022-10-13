@@ -29,13 +29,13 @@ export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
     const updatePackHandle = async (packName: string, isPrivate: boolean) => {
         await dispatch(updatePack({id: packId, name: packName, isPrivate}))
         await dispatch(fetchPacks())
-        closeModal()
+        closeEditModal()
     }
 
     const deletePackHandle = async () => {
         await dispatch(deletePack({id: packId}))
         await dispatch(fetchPacks())
-        closeEditModal()
+        closeModal()
     }
 
     return (
@@ -48,10 +48,10 @@ export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
                 packUserId === _id
                     ? <>
                         <Tooltip title="edit">
-                            <IconButton onClick={openModal}><BorderColorIcon/></IconButton>
+                            <IconButton onClick={openEditModal}><BorderColorIcon/></IconButton>
                         </Tooltip>
                         <Tooltip title="delete">
-                            <IconButton onClick={openEditModal}><DeleteForeverIcon/></IconButton>
+                            <IconButton onClick={openModal}><DeleteForeverIcon/></IconButton>
                         </Tooltip>
                     </>
                     : <>
@@ -64,17 +64,17 @@ export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
                     </>
             }
             <PackModal title={'Edit pack'}
-                       open={open}
-                       closeModal={closeModal}
+                       open={openEdit}
+                       closeModal={closeEditModal}
                        packName={packName}
                        sentChanges={updatePackHandle}
             />
-            <DeleteModal title={'Delete card'}
+            <DeleteModal title={'Delete pack'}
                          isPack
                          deleteItem={deletePackHandle}
                          itemName={packName}
-                         open={openEdit}
-                         closeModal={closeEditModal}
+                         open={open}
+                         closeModal={closeModal}
             />
         </>
     );
