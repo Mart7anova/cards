@@ -9,6 +9,7 @@ import {CheckEmail} from '../auth/checkEmail/CheckEmail';
 import {CreateNewPassword} from '../auth/createNewPassword/CreateNewPassword';
 import {Profile} from '../profile/Profile';
 import {Packs} from '../packs/Packs';
+import {Cards} from '../cards/Cards';
 
 export const AppRoute = () => {
 
@@ -24,7 +25,7 @@ export const AppRoute = () => {
             <Route element={<ProtectedRoutes />}>
                 <Route path={PATH.PACKS} element={<Packs/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
-                {/*<Route path={PATH.CARD} element={<CardsPage/>}/>*/}
+                <Route path={PATH.CARD} element={<Cards/>}/>
                 {/*<Route path={PATH.LEARN_CARD} element={<LearnPage/>}/>*/}
             </Route>
         </Routes>
