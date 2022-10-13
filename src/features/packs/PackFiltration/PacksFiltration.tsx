@@ -2,11 +2,11 @@ import React from 'react';
 import {Button, Tooltip} from '@mui/material';
 import {packActions} from '../index';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {FilterByMyCards} from './FilterByMyCards/FilterByMyCards';
+import {FilterByMyPacks} from './FilterByMyPacks/FilterByMyPacks';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import {DoubleRangeFilter} from './DoubleRangeFilter/DoubleRangeFilter';
 import s from './PacksFiltration.module.scss'
-import {SearchByName} from './SearchByName/SearchByName';
+import {SearchByPackName} from './SearchByPackName/SearchByPackName';
 
 const {clearSearchParams} = packActions
 
@@ -21,11 +21,11 @@ export const PacksFiltration = () => {
         <div className={s.filterContainer}>
             <div>
                 <h3>Search by name</h3>
-                <SearchByName/>
+                <SearchByPackName/>
             </div>
             <div>
                 <h3 className={s.showTitle}>Show pack cards</h3>
-                <FilterByMyCards/>
+                <FilterByMyPacks/>
             </div>
             <div>
                 <h3 className={s.numberTitle}>Number of cards</h3>

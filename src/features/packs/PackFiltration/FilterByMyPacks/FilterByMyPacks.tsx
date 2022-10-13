@@ -8,7 +8,7 @@ import {getPacksStatus, getSearchParams} from '../../selectors';
 
 const {setIsMyPacksFilter} = packActions
 
-export const FilterByMyCards = () => {
+export const FilterByMyPacks = () => {
     const dispatch = useAppDispatch()
 
     const {_id} = useAppSelector(getProfile)

@@ -6,7 +6,7 @@ import {packActions} from '../../index';
 
 const {setSearchParams} = packActions
 
-export const SearchByName = () => {
+export const SearchByPackName = () => {
     const dispatch = useAppDispatch()
 
     const [searchValue, setSearchValue] = useState('')
