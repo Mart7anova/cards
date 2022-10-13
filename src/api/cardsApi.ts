@@ -3,8 +3,8 @@ import {AxiosResponse} from 'axios';
 
 
 export const cardsApi = {
-    getCards(packId: string, params: RequestCardSearchParamsType) {
-        return instance.get<RequestCardSearchParamsType, AxiosResponse<CardsResponseType>>(`/cards/card?cardsPack_id=${packId}`, {params})
+    getCards(packId: string, params: CardSearchParamsType) {
+        return instance.get<CardSearchParamsType, AxiosResponse<CardsResponseType>>(`/cards/card?cardsPack_id=${packId}`, {params})
     },
     createCard(packId: string, question: string, answer: string) {
         return instance.post(`/cards/card`, {
@@ -59,7 +59,7 @@ export type CardsResponseType = {
     packName: string
 }
 
-export type RequestCardSearchParamsType = {
+export type CardSearchParamsType = {
     cardQuestion?: string
     cardsPack_id?: number
     min?: number

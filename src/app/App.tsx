@@ -9,6 +9,7 @@ import {CircularProgress, LinearProgress} from '@mui/material';
 import {getAuthStatus} from '../features/auth/selectors';
 import {getProfileStatus} from '../features/profile/selectors';
 import {getPacksStatus} from '../features/packs/selectors';
+import {getCardsStatus} from '../features/cards/selectors';
 
 const {initializeApp} = appActions
 
@@ -18,6 +19,7 @@ export const App = () => {
     const authStatus = useAppSelector(getAuthStatus)
     const profileStatus = useAppSelector(getProfileStatus)
     const packsStatus = useAppSelector(getPacksStatus)
+    const cardsStatus = useAppSelector(getCardsStatus)
 
 
     useEffect(() => {
@@ -32,7 +34,7 @@ export const App = () => {
         <div>
             <Bar/>
             {
-                (authStatus || profileStatus || packsStatus) === 'loading' && <LinearProgress />
+                (authStatus || profileStatus || packsStatus || cardsStatus) === 'loading' && <LinearProgress />
             }
             <AppRoute/>
         </div>
