@@ -1,0 +1,15 @@
+
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 0 20px 0;
+
+  .showTitle {
+    margin-left: 5px;
+  }
+
+  .numberTitle {
+    margin-left: 100px;
+  }
+}
