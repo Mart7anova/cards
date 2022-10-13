@@ -13,14 +13,14 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {packActions} from '../index';
 import dayjs from 'dayjs';
 import {PackType} from '../../../api/packApi';
 import {PackIconsGroup} from './packIconsGroup/packIconsGroup';
 import {PATH} from '../../../common/enums/path';
 import {Link} from 'react-router-dom';
+import {cardActions} from '../../cards';
 
-const {setSearchParams} = packActions
+const {setSearchParams} = cardActions
 
 type PropsType = {
     rowsPerPage: number
@@ -48,7 +48,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
         } else {
             sortValue = '0' + sortName
         }
-        dispatch(setSearchParams({sortPacks: sortValue}))
+        dispatch(setSearchParams({sortCards: sortValue}))
     }
 
     const handleChangePage = (event: unknown, page: number) => {
