@@ -17,9 +17,10 @@ type PropsType = {
     packUserId: string
     packId: string
     packName: string
+    cardsCount: number
 }
 
-export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
+export const PackIconsGroup = ({packUserId, packId, packName, cardsCount}: PropsType) => {
     const dispatch = useAppDispatch()
     const {_id} = useAppSelector(getProfile)
 
@@ -40,9 +41,14 @@ export const PackIconsGroup = ({packUserId, packId, packName}: PropsType) => {
 
     return (
         <>
-            <Tooltip title="learn">
-                <IconButton><SchoolIcon/></IconButton>
-            </Tooltip>
+            {
+                cardsCount > 0
+                    ? <Tooltip title="learn">
+                        <IconButton><SchoolIcon/></IconButton>
+                    </Tooltip>
+                    : <IconButton disabled><SchoolIcon/></IconButton>
+            }
+
 
             {
                 packUserId === _id

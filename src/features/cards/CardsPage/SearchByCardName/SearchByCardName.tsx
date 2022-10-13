@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {TextField} from '@mui/material';
-import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {useDebounce} from '../../../common/hooks/useDebounce';
-import {cardActions} from '../index';
+import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
+import {useDebounce} from '../../../../common/hooks/useDebounce';
+import {cardActions} from '../../index';
 
 const {setSearchParams} = cardActions
 

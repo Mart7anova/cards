@@ -95,7 +95,11 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                                 <TableCell sx={{width: '20%'}}>{dayjs(pack.updated).format(`DD.MM.YYYY`)}</TableCell>
                                 <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>{pack.user_name}</TableCell>
                                 <TableCell sx={{width: '16%'}}>
-                                    <PackIconsGroup packUserId={pack.user_id} packId={pack._id} packName={pack.name}/>
+                                    <PackIconsGroup packUserId={pack.user_id}
+                                                    packId={pack._id}
+                                                    packName={pack.name}
+                                                    cardsCount={pack.cardsCount}
+                                    />
                                 </TableCell>
                             </TableRow>
                         ))

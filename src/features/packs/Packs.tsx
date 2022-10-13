@@ -5,11 +5,19 @@ import {PacksTable} from './PacksTable/PacksTable';
 import {packActions} from './index';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {getCardPacks, getCardPacksTotalCount, getPageCountPacks, getPagePacks, getSearchParams} from './selectors';
+import {
+    getCardPacks,
+    getCardPacksTotalCount,
+    getPacksStatus,
+    getPageCountPacks,
+    getPagePacks,
+    getSearchParams
+} from './selectors';
 import {SkeletonTable} from '../../common/components/SkeletonTable/SkeletonTable';
 import {useModal} from '../../common/hooks/useModal';
 import {PackModal} from './PackModal/PackModal';
 import {PacksFiltration} from './PackFiltration/PacksFiltration';
+import {NoResult} from '../../common/components/NoResult/NoResult';
 
 const {fetchPacks, createNewPack} = packActions
 
@@ -20,6 +28,7 @@ export const Packs = () => {
     const pagePacks = useAppSelector(getPagePacks)
     const pageCountPacks = useAppSelector(getPageCountPacks)
     const cardPacksTotalCount = useAppSelector(getCardPacksTotalCount)
+    const packStatus = useAppSelector(getPacksStatus)
 
     const {page, pageCount, sortPacks, packName, max, min, user_id, } = useAppSelector(getSearchParams)
 
@@ -50,7 +59,7 @@ export const Packs = () => {
                                                rowsPerPage={pageCountPacks}
                                                count={cardPacksTotalCount}
                                                packs={cardPacks}/>
-                    : <SkeletonTable/>
+                    : packStatus ==='loading' ? <SkeletonTable/> : <NoResult/>
             }
 
         </Container>
