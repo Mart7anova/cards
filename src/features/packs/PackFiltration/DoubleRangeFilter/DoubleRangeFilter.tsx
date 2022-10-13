@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import Slider from '@mui/material/Slider';
-import style from './DoubleRangeFilter.module.scss'
+import s from './DoubleRangeFilter.module.scss'
 import {InputForRangeFilter} from './InputForRangeFilter';
 import {getMaxCardsCount, getMinCardsCount, getSearchParams} from '../../selectors';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
@@ -41,18 +41,13 @@ export function DoubleRangeFilter() {
     useEffect(() => {
         if (min && max) {
             setValue([min, max])
-        }
-    }, [min, max])
-
-    useEffect(()=>{
-        if (maxCardsCount) {
+        } else if (maxCardsCount){
             setValue([minCardsCount, maxCardsCount])
         }
-    },[minCardsCount, maxCardsCount])
-
+    }, [min, max, minCardsCount, maxCardsCount])
 
     return (
-        <div className={style.mainContainer}>
+        <div className={s.mainContainer}>
             <InputForRangeFilter currentValue={value[0]} setCurrentValue={onChangeFirstRange}/>
             <Slider
                 value={value}

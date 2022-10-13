@@ -9,7 +9,7 @@ import {getCardPacks, getCardPacksTotalCount, getPageCountPacks, getPagePacks, g
 import {SkeletonTable} from '../../common/components/SkeletonTable/SkeletonTable';
 import {useModal} from '../../common/hooks/useModal';
 import {PackModal} from './PackModal/PackModal';
-import {PackFiltration} from './PackFiltration/PackFiltration';
+import {PacksFiltration} from './PackFiltration/PacksFiltration';
 
 const {fetchPacks, createNewPack} = packActions
 
@@ -47,7 +47,7 @@ export const Packs = () => {
                 <Button variant={'contained'} onClick={openModal}>Add new pack</Button>
                 <PackModal title={'Add new pack'} open={open} closeModal={closeModal} sentChanges={addNewPackHandler}/>
             </div>
-            <PackFiltration/>
+            <PacksFiltration/>
             {
                 cardPacks.length ? <PacksTable page={pagePacks}
                                                rowsPerPage={pageCountPacks}
