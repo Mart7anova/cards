@@ -48,7 +48,9 @@ export const Packs = () => {
         <Container fixed>
             <div className={s.title}>
                 <h1>Packs list</h1>
-                <Button variant={'contained'} onClick={openModal}>Add new pack</Button>
+                <Button variant={'contained'} onClick={openModal}>
+                    <h4>Add new pack</h4>
+                </Button>
                 <PackModal title={'Add new pack'} open={open} closeModal={closeModal} sentChanges={addNewPackHandler}/>
             </div>
 

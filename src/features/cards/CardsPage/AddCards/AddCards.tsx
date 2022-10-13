@@ -23,7 +23,7 @@ export const AddCards = ({packId}:PropsType) => {
     return (
         <>
             <Button variant={'contained'} onClick={openModal}>
-                Add new card
+                <h4>Add new card</h4>
             </Button>
             <CardModal title={'Add new card'}
                        sentChanges={addNewCard}

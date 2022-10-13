@@ -51,7 +51,10 @@ export const CardsPage = () => {
                     <Button variant={'contained'}
                             color={'success'}
                             onClick={()=>{alert('do it')}}
-                            className={s.btn}>Learn cards</Button>
+                            className={s.btn}
+                    >
+                        <h4>Learn cards</h4>
+                    </Button>
 
                     {
                         isOwner && <AddCards packId={packId}/>
