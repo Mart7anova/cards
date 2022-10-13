@@ -7,7 +7,8 @@ import {
     getCardsTotalCount,
     getPackName,
     getPackUserId,
-    getPageCards, getPageCountCards,
+    getPageCards,
+    getPageCountCards,
     getSearchParamsCards
 } from './selectors';
 import {getProfile} from '../profile/selectors';
@@ -18,6 +19,8 @@ import {useParams} from 'react-router-dom';
 import s from './Cards.module.scss'
 import {CardMenu} from './CardMenu/CardMenu';
 import {CardsTable} from './CardsTable/CardsTable';
+import {SkeletonTable} from '../../common/components/SkeletonTable/SkeletonTable';
+import {SearchByCardName} from './SearchByCardName/SearchByCardName';
 
 const {fetchCards, createCard} = cardActions
 
@@ -76,12 +79,16 @@ export const Cards = () => {
                 </div>
             </div>
 
-            <CardsTable cards={cards}
-                        isOwner={isOwner}
-                        page={pageCards}
-                        count={cardsTotalCount}
-                        rowsPerPage={pageCountCards}
-            />
+            <SearchByCardName/>
+
+            {
+                cards.length ? <CardsTable cards={cards}
+                                           isOwner={isOwner}
+                                           page={pageCards}
+                                           count={cardsTotalCount}
+                                           rowsPerPage={pageCountCards}/>
+                    : <SkeletonTable/>
+            }
 
         </Container>
     );
