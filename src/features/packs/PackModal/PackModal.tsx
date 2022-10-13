@@ -38,7 +38,7 @@ export const PackModal = ({title, packName, open, closeModal, sentChanges}: Prop
     return (
         <BasicModal open={open} closeModal={closeModal} title={title}>
             <div className={s.infoText}>
-                Question:
+                Name:
                 {error && <span className={s.errorText}> {error}</span>}
             </div>
             <TextField variant={'standard'}

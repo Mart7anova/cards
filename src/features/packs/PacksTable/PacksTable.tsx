@@ -16,8 +16,9 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {packActions} from '../index';
 import dayjs from 'dayjs';
 import {PackType} from '../../../api/packApi';
-import {HeadersType} from '../Packs';
 import {PackIconsGroup} from './packIconsGroup/packIconsGroup';
+import {PATH} from '../../../common/enums/path';
+import {Link} from 'react-router-dom';
 
 const {setSearchParams} = packActions
 
@@ -33,7 +34,7 @@ const headers = [
     {name: 'Cards', sortName: 'cardsCount'},
     {name: 'Last update', sortName: 'updated'},
     {name: 'Create by', sortName: 'user_name'}
-] as HeadersType[]
+]
 
 export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
     const dispatch = useAppDispatch()
@@ -66,8 +67,8 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                             headers.map(header => (
                                 <TableCell key={header.name}>
                                     {header.name}
-                                    <Checkbox icon={<ExpandLessIcon/>}
-                                              checkedIcon={<ExpandMoreIcon/>}
+                                    <Checkbox icon={<ExpandMoreIcon/>}
+                                              checkedIcon={<ExpandLessIcon/>}
                                               color={'default'}
                                               onClick={() => setIsSortHeader(!isSortHeader)}
                                               onChange={() => onChangeSortPacks(isSortHeader, header.sortName)}
@@ -83,7 +84,13 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                     {
                         packs.map(pack => (
                             <TableRow key={pack._id}>
-                                <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>{pack.name}</TableCell>
+                                <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>
+                                    <Link to={PATH.PACK + pack._id} style={{textDecoration: 'none'}}>
+                                        <p style={{padding: '5px 0', color:'#196cbe'}}>
+                                            {pack.name}
+                                        </p>
+                                    </Link>
+                                </TableCell>
                                 <TableCell sx={{width: '14%'}}>{pack.cardsCount}</TableCell>
                                 <TableCell sx={{width: '20%'}}>{dayjs(pack.updated).format(`DD.MM.YYYY`)}</TableCell>
                                 <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>{pack.user_name}</TableCell>

@@ -13,11 +13,6 @@ import {PacksFiltration} from './PackFiltration/PacksFiltration';
 
 const {fetchPacks, createNewPack} = packActions
 
-export type HeadersType = {
-    name: string
-    sortName: string
-}
-
 export const Packs = () => {
     const dispatch = useAppDispatch()
 
@@ -47,7 +42,9 @@ export const Packs = () => {
                 <Button variant={'contained'} onClick={openModal}>Add new pack</Button>
                 <PackModal title={'Add new pack'} open={open} closeModal={closeModal} sentChanges={addNewPackHandler}/>
             </div>
+
             <PacksFiltration/>
+
             {
                 cardPacks.length ? <PacksTable page={pagePacks}
                                                rowsPerPage={pageCountPacks}
