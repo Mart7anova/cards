@@ -38,7 +38,6 @@ export const CardsPage = () => {
 
     const isOwner = packUserId === _id
 
-
     return (
         <Container fixed>
             <div className={s.titleContainer}>

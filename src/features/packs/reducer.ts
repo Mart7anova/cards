@@ -8,7 +8,7 @@ const fetchPacks = createAsyncThunk('packs/fetchPacks',
     async (param, {dispatch, getState, rejectWithValue}) => {
         try {
             const state = getState() as AppRootStateType
-            const searchParams = state.pack.searchParams
+            const searchParams = state.pack.packsSearchParams
 
             const {data} = await packApi.getPacks(searchParams)
             return data
@@ -60,25 +60,25 @@ export const slice = createSlice({
         packs: {
             cardPacks: [] as PackType[]
         } as ResponseCardPacksType,
-        searchParams: {
+        packsSearchParams: {
             page: 1,
-            pageCount: 10,
+            pageCount: 5,
             packName: '',
         } as PackSearchParamsType,
         isFirstLoading: true,
         status: 'idle' as StatusType
     },
     reducers: {
-        setSearchParams: (state, action: PayloadAction<PackSearchParamsType>) => {
-            state.searchParams = {...state.searchParams, ...action.payload}
+        setPacksSearchParams: (state, action: PayloadAction<PackSearchParamsType>) => {
+            state.packsSearchParams = {...state.packsSearchParams, ...action.payload}
         },
         clearSearchParams: (state) => {
             const initialState = slice.getInitialState()
-            state.searchParams = initialState.searchParams
+            state.packsSearchParams = initialState.packsSearchParams
         },
         setIsMyPacksFilter: (state, action: PayloadAction<string>) => {
-            state.searchParams.user_id = action.payload
-            state.searchParams.page = 1
+            state.packsSearchParams.user_id = action.payload
+            state.packsSearchParams.page = 1
         },
     },
     extraReducers: (builder) => {
@@ -89,8 +89,8 @@ export const slice = createSlice({
             .addCase(fetchPacks.fulfilled, (state, action) => {
                 state.packs = action.payload
                 if (state.isFirstLoading) {
-                    state.searchParams.min = action.payload.minCardsCount
-                    state.searchParams.max = action.payload.maxCardsCount
+                    state.packsSearchParams.min = action.payload.minCardsCount
+                    state.packsSearchParams.max = action.payload.maxCardsCount
                     state.isFirstLoading = false
                 }
                 state.status = 'idle'

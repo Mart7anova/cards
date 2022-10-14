@@ -9,6 +9,6 @@ export const getMinCardsCount = (state: AppRootStateType) => state.pack.packs.mi
 export const getMaxCardsCount = (state: AppRootStateType) => state.pack.packs.maxCardsCount
 
 
-export const getSearchParams= (state: AppRootStateType) => state.pack.searchParams
+export const getSearchParams= (state: AppRootStateType) => state.pack.packsSearchParams
 export const getIsFirstLoading= (state: AppRootStateType) => state.pack.isFirstLoading
 export const getPacksStatus= (state: AppRootStateType) => state.pack.status

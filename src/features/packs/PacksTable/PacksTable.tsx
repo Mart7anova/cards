@@ -19,8 +19,10 @@ import {PackIconsGroup} from './packIconsGroup/packIconsGroup';
 import {PATH} from '../../../common/enums/path';
 import {Link} from 'react-router-dom';
 import {cardActions} from '../../cards';
+import {packActions} from '../index';
 
-const {setSearchParams} = cardActions
+const {setCardsSearchParams} = cardActions
+const {setPacksSearchParams} = packActions
 
 type PropsType = {
     rowsPerPage: number
@@ -48,14 +50,14 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
         } else {
             sortValue = '0' + sortName
         }
-        dispatch(setSearchParams({sortCards: sortValue}))
+        dispatch(setCardsSearchParams({sortCards: sortValue}))
     }
 
     const handleChangePage = (event: unknown, page: number) => {
-        dispatch(setSearchParams({page: page + 1}))
+        dispatch(setPacksSearchParams({page: page + 1}))
     }
     const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setSearchParams({pageCount: Number(e.target.value)}))
+        dispatch(setPacksSearchParams({pageCount: Number(e.target.value)}))
     }
 
     return (
@@ -87,6 +89,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                                 <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>
                                     <Link to={PATH.PACK + pack._id} style={{textDecoration: 'none'}}>
                                         <p style={{padding: '5px 0', color:'#196cbe'}}>
+
                                             {pack.name}
                                         </p>
                                     </Link>
@@ -108,7 +111,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
             </Table>
 
             <TablePagination
-                rowsPerPageOptions={[10, 25, 50, 100]}
+                rowsPerPageOptions={[5, 10, 25, 50, 100]}
                 rowsPerPage={rowsPerPage}
                 component="div"
                 count={count}

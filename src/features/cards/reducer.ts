@@ -8,7 +8,7 @@ const fetchCards = createAsyncThunk('cards/fetchCards',
     async (param: { packId: string }, {dispatch, getState, rejectWithValue}) => {
         try {
             const state = getState() as AppRootStateType
-            const searchParams = state.card.searchParams
+            const searchParams = state.card.cardsSearchParams
 
             const {data} = await cardsApi.getCards(param.packId, searchParams)
             return data
@@ -73,9 +73,9 @@ export const slice = createSlice({
         cardsState: {
             cards: [] as CardType[]
         } as CardsResponseType,
-        searchParams: {
+        cardsSearchParams: {
             page: 1,
-            pageCount: 10,
+            pageCount: 5,
             cardQuestion: '',
         } as CardSearchParamsType,
         status: 'idle' as StatusType
@@ -83,11 +83,11 @@ export const slice = createSlice({
     reducers: {
         resetCardsState: (state) => {
             const initialState = slice.getInitialState()
-            state.searchParams = initialState.searchParams
+            state.cardsSearchParams = initialState.cardsSearchParams
             state.cardsState = initialState.cardsState
         },
-        setSearchParams: (state, action:PayloadAction<CardSearchParamsType>) => {
-            state.searchParams = {...state.searchParams, ...action.payload}
+        setCardsSearchParams: (state, action:PayloadAction<CardSearchParamsType>) => {
+            state.cardsSearchParams = {...state.cardsSearchParams, ...action.payload}
         }
     },
     extraReducers: (builder) => {

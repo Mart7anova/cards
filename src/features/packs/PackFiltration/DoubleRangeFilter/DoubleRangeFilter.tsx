@@ -9,7 +9,7 @@ import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {packActions} from '../../index';
 
-const {setSearchParams} = packActions
+const {setPacksSearchParams} = packActions
 
 export function DoubleRangeFilter() {
     const dispatch = useAppDispatch()
@@ -35,7 +35,7 @@ export function DoubleRangeFilter() {
     }
 
     useEffect(() => {
-        dispatch(setSearchParams({min: value[0], max: value[1]}))
+        dispatch(setPacksSearchParams({min: value[0], max: value[1]}))
     }, [debouncedValue])
 
     useEffect(() => {

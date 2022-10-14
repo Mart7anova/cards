@@ -19,7 +19,7 @@ import { CardType } from '../../../../api/cardsApi';
 import dayjs from 'dayjs';
 import { CardIconsGroup } from './CardIconsGroup/CardIconsGroup';
 
-const {setSearchParams} = cardActions
+const {setCardsSearchParams} = cardActions
 
 const headers = [
     {name: 'Question', sortName: 'question'},
@@ -50,14 +50,14 @@ export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) 
         } else {
             sortValue = '0' + sortName
         }
-        dispatch(setSearchParams({sortCards: sortValue}))
+        dispatch(setCardsSearchParams({sortCards: sortValue}))
     }
 
     const handleChangePage = (event: unknown, page: number) => {
-        dispatch(setSearchParams({page: page + 1}))
+        dispatch(setCardsSearchParams({page: page + 1}))
     }
     const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setSearchParams({pageCount: Number(e.target.value)}))
+        dispatch(setCardsSearchParams({pageCount: Number(e.target.value)}))
     }
 
     return (
@@ -119,7 +119,7 @@ export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) 
                 </TableBody>
             </Table>
             <TablePagination
-                rowsPerPageOptions={[10, 25, 50, 100]}
+                rowsPerPageOptions={[5, 10, 25, 50, 100]}
                 rowsPerPage={rowsPerPage}
                 component="div"
                 count={count}

@@ -10,7 +10,7 @@ export const getPageCountCards = (state: AppRootStateType) => state.card.cardsSt
 export const getMaxGradeCards = (state: AppRootStateType) => state.card.cardsState.maxGrade
 export const getMinGradeCards = (state: AppRootStateType) => state.card.cardsState.minGrade
 
-export const getSearchParamsCards = (state: AppRootStateType) => state.card.searchParams
+export const getSearchParamsCards = (state: AppRootStateType) => state.card.cardsSearchParams
 
 export const getCardsStatus = (state: AppRootStateType) => state.card.status
 

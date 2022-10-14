@@ -10,6 +10,8 @@ import {DeleteModal} from '../../../../common/components/DeleteModel/DeleteModal
 import {PackModal} from '../../PackModal/PackModal';
 import {packActions} from '../../index';
 import {IconButton, Tooltip} from '@mui/material';
+import {useNavigate} from 'react-router-dom';
+import {PATH} from '../../../../common/enums/path';
 
 const {fetchPacks, deletePack, updatePack} = packActions
 
@@ -23,6 +25,7 @@ type PropsType = {
 export const PackIconsGroup = ({packUserId, packId, packName, cardsCount}: PropsType) => {
     const dispatch = useAppDispatch()
     const {_id} = useAppSelector(getProfile)
+    const navigate = useNavigate()
 
     const {open, openModal, closeModal} = useModal();
     const {openEdit, openEditModal, closeEditModal} = useModal();
@@ -44,7 +47,7 @@ export const PackIconsGroup = ({packUserId, packId, packName, cardsCount}: Props
             {
                 cardsCount > 0
                     ? <Tooltip title="learn">
-                        <IconButton><SchoolIcon/></IconButton>
+                        <IconButton onClick={()=>navigate(PATH.LEARN + packId)}><SchoolIcon/></IconButton>
                     </Tooltip>
                     : <IconButton disabled><SchoolIcon/></IconButton>
             }

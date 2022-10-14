@@ -4,7 +4,7 @@ import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {packActions} from '../../index';
 
-const {setSearchParams} = packActions
+const {setPacksSearchParams} = packActions
 
 export const SearchByPackName = () => {
     const dispatch = useAppDispatch()
@@ -17,7 +17,7 @@ export const SearchByPackName = () => {
     }
 
     useEffect(() => {
-        dispatch(setSearchParams({packName: searchValue}))
+        dispatch(setPacksSearchParams({packName: searchValue}))
     }, [debouncedValue])
 
     return (

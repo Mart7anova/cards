@@ -4,7 +4,7 @@ import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {cardActions} from '../../index';
 
-const {setSearchParams} = cardActions
+const {setCardsSearchParams} = cardActions
 
 export const SearchByCardName = () => {
     const dispatch = useAppDispatch()
@@ -17,7 +17,7 @@ export const SearchByCardName = () => {
     }
 
     useEffect(() => {
-        dispatch(setSearchParams({cardQuestion: searchValue}))
+        dispatch(setCardsSearchParams({cardQuestion: searchValue}))
     }, [debouncedValue])
     return (
         <>
