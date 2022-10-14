@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
     Checkbox,
     Paper,
+    Rating,
     Table,
     TableBody,
     TableCell,
@@ -99,7 +100,7 @@ export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) 
                                     {card.shots}
                                 </TableCell>
                                 <TableCell sx={{ width: '10%'}}>
-                                    {card.grade}
+                                    <Rating value={card.grade} readOnly/>
                                 </TableCell>
                                 {
                                     isOwner && <TableCell sx={{ width: '10%'}}>
