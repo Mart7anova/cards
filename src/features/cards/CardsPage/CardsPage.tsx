@@ -6,7 +6,7 @@ import {SearchByCardName} from './SearchByCardName/SearchByCardName';
 import {CardsTable} from './CardsTable/CardsTable';
 import {SkeletonTable} from '../../../common/components/SkeletonTable/SkeletonTable';
 import {NoResult} from '../../../common/components/NoResult/NoResult';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {
     getCards,
@@ -19,10 +19,12 @@ import {
 } from '../selectors';
 import {getProfile} from '../../profile/selectors';
 import {AddCards} from './AddCards/AddCards';
+import {PATH} from '../../../common/enums/path';
 
 
 export const CardsPage = () => {
     const {packId} = useParams() as { packId: string }
+    const navigate = useNavigate()
 
     const cards = useAppSelector(getCards)
     const pageCards = useAppSelector(getPageCards)
@@ -50,7 +52,7 @@ export const CardsPage = () => {
                 <div className={s.btnContainer}>
                     <Button variant={'contained'}
                             color={'success'}
-                            onClick={()=>{alert('do it')}}
+                            onClick={()=>navigate(PATH.LEARN + packId)}
                             className={s.btn}
                     >
                         <h4>Learn cards</h4>
