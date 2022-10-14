@@ -15,9 +15,9 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {cardActions} from '../../index';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import { CardType } from '../../../../api/cardsApi';
+import {CardType} from '../../../../api/cardsApi';
 import dayjs from 'dayjs';
-import { CardIconsGroup } from './CardIconsGroup/CardIconsGroup';
+import {CardIconsGroup} from './CardIconsGroup/CardIconsGroup';
 
 const {setCardsSearchParams} = cardActions
 
@@ -37,7 +37,7 @@ type PropsType = {
     count: number
 }
 
-export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) => {
+export const CardsTable = ({cards, isOwner, rowsPerPage, page, count}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const [isSortHeader, setIsSortHeader] = useState(true)
@@ -85,31 +85,40 @@ export const CardsTable = ({cards,isOwner, rowsPerPage, page, count}:PropsType) 
                 </TableHead>
                 <TableBody>
                     {
-                        cards.map(card=>(
+                        cards.map(card => (
                             <TableRow key={card._id}>
-                                <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>
-                                    {card.question}
+                                <TableCell sx={{overflowWrap: 'anywhere', width: '30%'}}>
+                                    <div style={{display: 'flex',  alignItems: 'center', flexWrap: 'wrap'}}>
+                                        {
+                                            card.questionImg && <img src={card.questionImg}
+                                                                     alt={'pack name'}
+                                                                     style={{height: '50px'}}/>
+                                        }
+                                        {
+                                            card.question !== 'no question' && <p>{card.question}</p>
+                                        }
+                                    </div>
                                 </TableCell>
-                                <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>
+                                <TableCell sx={{overflowWrap: 'anywhere', width: '20%'}}>
                                     {card.answer}
                                 </TableCell>
                                 <TableCell sx={{width: '20%'}}>
                                     {dayjs(card.updated).format(`DD.MM.YYYY`)}
                                 </TableCell>
-                                <TableCell sx={{ width: '10%'}}>
+                                <TableCell sx={{width: '10%'}}>
                                     {card.shots}
                                 </TableCell>
-                                <TableCell sx={{ width: '10%'}}>
+                                <TableCell sx={{width: '10%'}}>
                                     <Rating value={card.grade} readOnly/>
                                 </TableCell>
                                 {
-                                    isOwner && <TableCell sx={{ width: '10%'}}>
-                                    <CardIconsGroup packId={card.cardsPack_id}
-                                                    cardId={card._id}
-                                                    cardName={card.question}
-                                                    question={card.question}
-                                                    answer={card.answer}
-                                    />
+                                    isOwner && <TableCell sx={{width: '10%'}}>
+                                        <CardIconsGroup packId={card.cardsPack_id}
+                                                        cardId={card._id}
+                                                        cardName={card.question}
+                                                        question={card.question}
+                                                        answer={card.answer}
+                                        />
                                     </TableCell>
                                 }
                             </TableRow>

@@ -32,6 +32,7 @@ export const packApi = {
 export type PackType = {
     cardsCount: number
     created: Date
+    deckCover: string
     grade: number
     more_id: string
     name: string

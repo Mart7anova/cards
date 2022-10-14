@@ -87,9 +87,13 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                         packs.map(pack => (
                             <TableRow key={pack._id}>
                                 <TableCell sx={{overflowWrap: 'anywhere', width: '25%'}}>
-                                    <Link to={PATH.PACK + pack._id} style={{textDecoration: 'none'}}>
-                                        <p style={{padding: '5px 0', color:'#196cbe'}}>
-
+                                    <Link to={PATH.PACK + pack._id} style={{textDecoration: 'none', display: 'flex',  alignItems: 'center', flexWrap: 'wrap'}}>
+                                        {
+                                            pack.deckCover && <img src={pack.deckCover}
+                                                                   alt={'pack name'}
+                                                                   style={{height: '50px', paddingRight: '15px'}}/>
+                                        }
+                                        <p style={{color:'#196cbe'}}>
                                             {pack.name}
                                         </p>
                                     </Link>

@@ -1,0 +1,25 @@
+@import '../../assets/styles/sass/mixins';
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+
+  .paper {
+    width: 450px;
+    padding: 30px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+      .img {
+        @include minImgIcon();
+      }
+
+      .email {
+        @include infoText();
+      }
+  }
+}
+

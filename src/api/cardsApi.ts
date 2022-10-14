@@ -40,6 +40,7 @@ export const cardsApi = {
 export type CardType = {
     answer: string
     question: string
+    questionImg: string
     cardsPack_id: string
     grade: number
     shots: number
@@ -53,10 +54,11 @@ export type CardsResponseType = {
     cardsTotalCount: number
     maxGrade: number
     minGrade: number
+    packDeckCover: string
+    packName: string
+    packUserId: string
     page: number
     pageCount: number
-    packUserId: string
-    packName: string
 }
 
 export type CardSearchParamsType = {

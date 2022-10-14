@@ -1,34 +1,45 @@
-@import '../styles/sass/mixins';
+@import '../../../assets/styles/sass/mixins';
 
 .mainContainer {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 
   .paper {
-    min-width: 400px;
-    margin: 50px;
+    min-width: 450px;
     padding: 30px;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    .flexContainer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .title{
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-      .img {
-        @include minImgIcon();
-      }
+    .img{
+      max-height: 300px;
+      max-width: 1200px;
+      display: block;
+    }
+
+    .text{
+      font-size: 18px;
     }
 
     .infoText {
       @include infoText();
+      margin-bottom: 30px;
+      text-align: start;
 
       .infoNumber {
         color: #a1a1a1;
       }
     }
+
+    }
+
+
 
     .text{
       font-weight: normal;
@@ -42,5 +53,5 @@
 
     }
   }
-}
+
 

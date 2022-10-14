@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Button, Container, FormControlLabel, Paper, Radio, RadioGroup} from '@mui/material';
+import {Button, FormControlLabel, Paper, Radio, RadioGroup} from '@mui/material';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getCards, getCardsStatus, getPackName} from '../selectors';
 import {useParams} from 'react-router-dom';
@@ -7,7 +7,7 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {cardActions} from '../index';
 import {CardType} from '../../../api/cardsApi';
 import {getRandomCard} from '../../../common/utils/getCardRamdom';
-import s from '../../../assets/styles/PaperBlock.module.scss'
+import s from './Learn.module.scss'
 
 const {fetchCards, updateCardGrade} = cardActions
 
@@ -51,7 +51,7 @@ export const Learn = () => {
     }
 
     useEffect(() => {
-        if(first){
+        if (first) {
             dispatch(fetchCards({packId}))
             setFirst(false)
         }
@@ -61,30 +61,36 @@ export const Learn = () => {
     }, [packId, cards, first])
 
     return (
-        <Container fixed className={s.mainContainer}>
+        <div className={s.mainContainer}>
             <Paper className={s.paper}>
-                <h1>{packName}</h1>
-                <br/>
-                <br/>
+                <h1 className={s.title}>{packName}</h1>
                 <h2>
-                    Question: <span className={s.text}>{card.question}?</span>
+                    Question:
+                    {
+                        card.question !== 'no question' && <span className={s.text}> {card.question}?</span>
+                    }
                 </h2>
+                {
+                    card.questionImg && <img src={card.questionImg}
+                                             alt={'pack name'}
+                                             className={s.img}/>
+                }
                 <p className={s.infoText}>
-                        Number of attempts to answer the question: <span className={s.infoNumber}>{card.shots}</span>
+                    Number of attempts to answer the question: <span className={s.infoNumber}>{card.shots}</span>
                 </p>
                 {
                     !showAnswer && <Button onClick={onShowAnswerClick}
-                                          disabled={cardsStatus==='loading'}
-                                          variant={'contained'}
-                                          sx={{m:2}}
+                                           disabled={cardsStatus === 'loading'}
+                                           variant={'contained'}
+                                           sx={{m: 2}}
                     >Show answer</Button>
                 }
                 {
                     showAnswer && (
                         <>
-                                <h2>
-                                    Answer: <span className={s.text}>{card.answer}</span>
-                                </h2>
+                            <h2>
+                                Answer: <span className={s.text}>{card.answer}</span>
+                            </h2>
 
                             {
                                 grades.map((g, i) => (
@@ -95,13 +101,13 @@ export const Learn = () => {
                             }
                             <Button onClick={onNextClick}
                                     disabled={grade === 0}
-                                    sx={{m:2}}
+                                    sx={{mt: 2}}
                                     variant={'contained'}
                             >Next</Button>
                         </>
                     )
                 }
             </Paper>
-        </Container>
+        </div>
     );
 };

@@ -11,7 +11,7 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {
     getCards,
     getCardsStatus,
-    getCardsTotalCount,
+    getCardsTotalCount, getPackDeckCover,
     getPackName,
     getPackUserId,
     getPageCards,
@@ -34,6 +34,7 @@ export const CardsPage = () => {
 
     const packName = useAppSelector(getPackName)
     const packUserId = useAppSelector(getPackUserId)
+    const packDeckCover = useAppSelector(getPackDeckCover)
     const {_id} = useAppSelector(getProfile)
 
     const isOwner = packUserId === _id
@@ -43,6 +44,9 @@ export const CardsPage = () => {
             <div className={s.titleContainer}>
                 <h1 className={s.titleName}>
                     {packName}
+                    {
+                        packDeckCover && <img src={packDeckCover} className={s.img} alt={'pack name'}/>
+                    }
                     {
                         isOwner && <CardMenu packId={packId} packName={packName}/>
                     }
