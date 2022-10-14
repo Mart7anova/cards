@@ -10,6 +10,7 @@ import {CreateNewPassword} from '../auth/createNewPassword/CreateNewPassword';
 import {Profile} from '../profile/Profile';
 import {Packs} from '../packs/Packs';
 import {Cards} from '../cards/Cards';
+import {Learn} from '../cards/Learn/Learn';
 
 export const AppRoute = () => {
 
@@ -26,7 +27,7 @@ export const AppRoute = () => {
                 <Route path={PATH.PACKS} element={<Packs/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
                 <Route path={PATH.CARD} element={<Cards/>}/>
-                {/*<Route path={PATH.LEARN_CARD} element={<LearnPage/>}/>*/}
+                <Route path={PATH.LEARN_CARD} element={<Learn/>}/>
             </Route>
         </Routes>
     );
