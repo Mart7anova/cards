@@ -72,7 +72,7 @@ export type CardSearchParamsType = {
 export type ResponseCardGrade = {
     token: string
     tokenDeathTime: number
-    updateGrade: {
+    updatedGrade: {
         card_id: string
         cardsPack_id: string
         created: string
