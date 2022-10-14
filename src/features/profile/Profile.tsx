@@ -10,7 +10,7 @@ import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan';
 import {profileActions} from './index';
 
 const {signOut} = authActions
-const {updateProfile}=profileActions
+const {updateProfile} = profileActions
 
 export const Profile = () => {
     const dispatch = useAppDispatch()
