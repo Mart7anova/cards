@@ -125,9 +125,9 @@ export const slice = createSlice({
                 state.status = 'loading'
             })
             .addCase(updateCardGrade.fulfilled, (state, action) => {
-                const index = state.cardsState.cards.findIndex(s => s._id === action.payload.updateGrade._id)
-                state.cardsState.cards[index].grade = action.payload.updateGrade.grade
-                state.cardsState.cards[index].shots = action.payload.updateGrade.shots
+                const index = state.cardsState.cards.findIndex(s => s._id === action.payload.updatedGrade.card_id)
+                state.cardsState.cards[index].grade = action.payload.updatedGrade.grade
+                state.cardsState.cards[index].shots = action.payload.updatedGrade.shots
                 state.status = 'idle'
             })
     }
