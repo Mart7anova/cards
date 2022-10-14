@@ -1,3 +1,5 @@
+@import '../styles/sass/mixins';
+
 .formContainer {
   display: flex;
   justify-content: center;
@@ -17,10 +19,7 @@
       }
 
       .infoText {
-        margin-top: 10px;
-        font-weight: bold;
-        text-align: center;
-        opacity: 0.5;
+        @include infoText();
       }
 
       .helpText{
@@ -34,9 +33,7 @@
         align-items: center;
 
         .img {
-          width: 100px;
-          height: 100px;
-          margin: 20px;
+          @include minImgIcon();
         }
       }
       .link {
