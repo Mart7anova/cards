@@ -20,7 +20,8 @@ export const Cards = () => {
         dispatch(fetchCards({packId}))
     }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId])
 
-    return (<>
-        {cardsTotalCount > 0 ? <CardsPage/> : <EmptyCardsPage/>}
-    </>);
+    return (
+        <>
+            {cardsTotalCount > 0 ? <CardsPage/> : <EmptyCardsPage/>}
+        </>);
 };
