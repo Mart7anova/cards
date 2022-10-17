@@ -92,7 +92,7 @@ export const CardsTable = ({cards, isOwner, rowsPerPage, page, count}: PropsType
                                         {
                                             card.questionImg && <img src={card.questionImg}
                                                                      alt={'pack name'}
-                                                                     style={{height: '50px'}}/>
+                                                                     style={{height: '50px', marginRight: '10px'}}/>
                                         }
                                         {
                                             card.question !== 'no question' && <p>{card.question}</p>

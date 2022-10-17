@@ -25,7 +25,7 @@ export const PacksFiltration = () => {
             </div>
             <div>
                 <h3 className={s.showTitle}>Show pack cards</h3>
-                <FilterByMyPacks/>
+                <FilterByMyPacks clearFilterHandler={clearFiltersHandle}/>
             </div>
             <div>
                 <h3 className={s.numberTitle}>Number of cards</h3>

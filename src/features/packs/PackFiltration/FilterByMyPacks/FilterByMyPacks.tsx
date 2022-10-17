@@ -8,7 +8,11 @@ import {getPacksStatus, getSearchParams} from '../../selectors';
 
 const {setIsMyPacksFilter} = packActions
 
-export const FilterByMyPacks = () => {
+type PropsType = {
+    clearFilterHandler: () => void
+}
+
+export const FilterByMyPacks = ({clearFilterHandler}:PropsType) => {
     const dispatch = useAppDispatch()
 
     const {_id} = useAppSelector(getProfile)
@@ -22,13 +26,13 @@ export const FilterByMyPacks = () => {
     }
 
     return (
-        <ButtonGroup color="primary" size={'medium'} disabled={packsStatus==='loading'}>
+        <ButtonGroup color="primary" size={'medium'} disabled={packsStatus === 'loading'}>
             <Button variant={user_id ? 'contained' : 'outlined'}
-                    onClick={()=>onIsMyPacksFilterChange(profileId)}>
+                    onClick={() => onIsMyPacksFilterChange(profileId)}>
                 <h4 style={{margin: '0 10px'}}>My</h4>
             </Button>
             <Button variant={!user_id ? 'contained' : 'outlined'}
-                    onClick={()=>onIsMyPacksFilterChange('')}>
+                    onClick={clearFilterHandler}>
                 <h4 style={{margin: '0 10px'}}>All</h4>
             </Button>
         </ButtonGroup>
