@@ -10,6 +10,7 @@ import {getAuthStatus} from '../features/auth/selectors';
 import {getProfileStatus} from '../features/profile/selectors';
 import {getPacksStatus} from '../features/packs/selectors';
 import {getCardsStatus} from '../features/cards/selectors';
+import {ErrorSnackbar} from '../common/components/ErrorSnackbar/ErrorSnackbar';
 
 const {initializeApp} = appActions
 
@@ -37,6 +38,7 @@ export const App = () => {
                 (authStatus || profileStatus || packsStatus || cardsStatus) === 'loading' && <LinearProgress />
             }
             <AppRoute/>
+            <ErrorSnackbar/>
         </div>
     );
 }

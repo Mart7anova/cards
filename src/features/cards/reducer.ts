@@ -99,11 +99,17 @@ export const slice = createSlice({
                 state.cardsState = action.payload
                 state.status = 'idle'
             })
+            .addCase(fetchCards.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(createCard.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(createCard.fulfilled, (state) => {
+                state.status = 'idle'
+            })
+            .addCase(createCard.rejected, (state) => {
                 state.status = 'idle'
             })
 
@@ -113,11 +119,17 @@ export const slice = createSlice({
             .addCase(deleteCard.fulfilled, (state) => {
                 state.status = 'idle'
             })
+            .addCase(deleteCard.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(updateCard.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(updateCard.fulfilled, (state) => {
+                state.status = 'idle'
+            })
+            .addCase(updateCard.rejected, (state) => {
                 state.status = 'idle'
             })
 
@@ -128,6 +140,9 @@ export const slice = createSlice({
                 const index = state.cardsState.cards.findIndex(s => s._id === action.payload.updatedGrade.card_id)
                 state.cardsState.cards[index].grade = action.payload.updatedGrade.grade
                 state.cardsState.cards[index].shots = action.payload.updatedGrade.shots
+                state.status = 'idle'
+            })
+            .addCase(updateCardGrade.rejected, (state) => {
                 state.status = 'idle'
             })
     }

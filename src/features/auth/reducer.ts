@@ -94,6 +94,9 @@ export const slice = createSlice({
                 state.isSignedUp = true
                 state.status = 'idle'
             })
+            .addCase(signUp.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(signIn.pending, (state) => {
                 state.status = 'loading'
@@ -103,12 +106,18 @@ export const slice = createSlice({
                 state.isSignedUp = true
                 state.status = 'idle'
             })
+            .addCase(signIn.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(signOut.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(signOut.fulfilled, (state) => {
                 state.isLoggedIn = false
+                state.status = 'idle'
+            })
+            .addCase(signOut.rejected, (state) => {
                 state.status = 'idle'
             })
 
@@ -120,6 +129,9 @@ export const slice = createSlice({
                 state.email = action.payload
                 state.status = 'idle'
             })
+            .addCase(forgotPassword.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(updatePassword.pending, (state)=>{
                 state.status = 'loading'
@@ -128,6 +140,9 @@ export const slice = createSlice({
                 state.passwordIsChanging = false
                 state.isSignedUp = true
                 state.email = ''
+                state.status = 'idle'
+            })
+            .addCase(updatePassword.rejected, (state) => {
                 state.status = 'idle'
             })
     }

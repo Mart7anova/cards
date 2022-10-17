@@ -95,11 +95,17 @@ export const slice = createSlice({
                 }
                 state.status = 'idle'
             })
+            .addCase(fetchPacks.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(createNewPack.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(createNewPack.fulfilled, (state) => {
+                state.status = 'idle'
+            })
+            .addCase(createNewPack.rejected, (state) => {
                 state.status = 'idle'
             })
 
@@ -109,11 +115,17 @@ export const slice = createSlice({
             .addCase(deletePack.fulfilled, (state) => {
                 state.status = 'idle'
             })
+            .addCase(deletePack.rejected, (state) => {
+                state.status = 'idle'
+            })
 
             .addCase(updatePack.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(updatePack.fulfilled, (state) => {
+                state.status = 'idle'
+            })
+            .addCase(updatePack.rejected, (state) => {
                 state.status = 'idle'
             })
     }

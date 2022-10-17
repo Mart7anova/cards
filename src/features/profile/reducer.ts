@@ -50,9 +50,19 @@ export const slice = createSlice({
                 state.profile = actions.payload
                 state.status = 'idle'
             })
+            .addCase(getProfile.rejected, (state) => {
+                state.status = 'idle'
+            })
 
+            .addCase(updateProfile.pending, (state) => {
+                state.status = 'loading'
+            })
             .addCase(updateProfile.fulfilled, (state, action) => {
                 state.profile = action.payload
+                state.status = 'idle'
+            })
+            .addCase(updateProfile.rejected, (state) => {
+                state.status = 'idle'
             })
     }
 })
