@@ -6,9 +6,9 @@ import {useAppSelector} from '../../hooks/useAppSelector';
 import {getIsLoggedIn} from '../../../features/auth/selectors';
 import {ProfileLink} from '../ProfileLink/ProfileLink';
 import s from '../ProfileLink/ProfileLink.module.scss';
-import c from './AppBar.module.scss';
+import c from './NavBar.module.scss';
 
-export const Bar = () => {
+export const NavBar = () => {
     const navigate = useNavigate()
     const isLoggedIn = useAppSelector(getIsLoggedIn)
 
