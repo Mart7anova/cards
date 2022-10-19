@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './UploadFile.module.scss';
 import {Button} from '@mui/material';
 import {convertFileToBase64} from '../../utils/convertFileToBase64';
@@ -8,20 +8,21 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 const {setAppError} = appActions
 
-export const UploadFile = () => {
-    const dispatch = useAppDispatch()
+type PropsType={
+    file: string
+    setFile: (file: string) => void
+}
 
-    const [file, setFile] = useState('')
+export const UploadFile = ({file, setFile}:PropsType) => {
+    const dispatch = useAppDispatch()
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             const file = e.target.files[0]
-            console.log('file: ', file)
 
             if (file.size < 4000000) {
                 convertFileToBase64(file, (file64: string) => {
-                    console.log('file64: ', file64)
-                    setFile(file64 as string)
+                    setFile(file64)
                 })
             } else {
                 dispatch(setAppError('The file is too large'))
@@ -41,7 +42,6 @@ export const UploadFile = () => {
                        onChange={uploadHandler}
                        accept={'.png, .jpg, .jpeg'}
                 />
-
                 <Button variant="contained" component="span" className={s.btn}>Add a cover</Button>
             </label>
         </>

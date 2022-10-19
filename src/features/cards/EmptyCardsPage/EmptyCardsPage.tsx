@@ -23,10 +23,10 @@ export const EmptyCardsPage = () => {
             <h1 className={s.titleName}>
                 {packName}
                 {
-                    packDeckCover && <img src={packDeckCover} className={s.img} alt={''}/>
+                    isOwner && <CardMenu packId={packId} packName={packName}/>
                 }
                 {
-                    isOwner && <CardMenu packId={packId} packName={packName}/>
+                    packDeckCover && <img src={packDeckCover} className={s.img} alt={''}/>
                 }
             </h1>
             {
