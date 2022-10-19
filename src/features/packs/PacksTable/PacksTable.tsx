@@ -90,7 +90,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                                     <Link to={PATH.PACK + pack._id} style={{textDecoration: 'none', display: 'flex',  alignItems: 'center', flexWrap: 'wrap'}}>
                                         {
                                             pack.deckCover && <img src={pack.deckCover}
-                                                                   alt={'pack name'}
+                                                                   alt={' '}
                                                                    style={{height: '50px', paddingRight: '15px'}}/>
                                         }
                                         <p style={{color:'#196cbe'}}>

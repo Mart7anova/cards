@@ -1,7 +1,7 @@
 import {Container} from '@mui/material';
 import React from 'react';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {getPackName, getPackUserId} from '../selectors';
+import {getPackDeckCover, getPackName, getPackUserId} from '../selectors';
 import {CardMenu} from '../CardMenu/CardMenu';
 import {useParams} from 'react-router-dom';
 import {getProfile} from '../../profile/selectors';
@@ -13,14 +13,18 @@ export const EmptyCardsPage = () => {
 
     const packName = useAppSelector(getPackName)
     const packUserId = useAppSelector(getPackUserId)
+    const packDeckCover = useAppSelector(getPackDeckCover)
     const {_id} = useAppSelector(getProfile)
 
     const isOwner = packUserId === _id
 
     return (
         <Container fixed sx={{mt: 5}}>
-            <h1>
+            <h1 className={s.titleName}>
                 {packName}
+                {
+                    packDeckCover && <img src={packDeckCover} className={s.img} alt={''}/>
+                }
                 {
                     isOwner && <CardMenu packId={packId} packName={packName}/>
                 }

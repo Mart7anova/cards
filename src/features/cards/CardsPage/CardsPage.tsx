@@ -45,7 +45,7 @@ export const CardsPage = () => {
                 <h1 className={s.titleName}>
                     {packName}
                     {
-                        packDeckCover && <img src={packDeckCover} className={s.img} alt={'pack name'}/>
+                        packDeckCover && <img src={packDeckCover} className={s.img} alt={' '}/>
                     }
                     {
                         isOwner && <CardMenu packId={packId} packName={packName}/>
