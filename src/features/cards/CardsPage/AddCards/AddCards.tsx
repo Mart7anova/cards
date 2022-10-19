@@ -15,8 +15,8 @@ export const AddCards = ({packId}:PropsType) => {
     const dispatch = useAppDispatch()
     const {open, openModal, closeModal} = useModal();
 
-    const addNewCard = async (question: string, answer: string) => {
-        await dispatch(createCard({packId, question, answer}))
+    const addNewCard = async (question: string, answer: string, questionImg: string) => {
+        await dispatch(createCard({packId, question, answer, questionImg}))
         await dispatch(fetchCards({packId}))
         closeModal()
     }

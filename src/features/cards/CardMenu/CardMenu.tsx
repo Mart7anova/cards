@@ -33,9 +33,9 @@ export const CardMenu = ({packId,packName}:PropsType) => {
         setOpenMenu(!openMenu)
     }
 
-    const updatePackHandle = async (packName: string, isPrivate: boolean) => {
+    const updatePackHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
         setOpenMenu(false)
-        await dispatch(updatePack({id: packId, name: packName, isPrivate}))
+        await dispatch(updatePack({id: packId, name: packName, isPrivate, deckCover}))
         await dispatch(fetchCards({packId}))
         closeEditModal()
     }

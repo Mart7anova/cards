@@ -8,12 +8,13 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 const {setAppError} = appActions
 
-type PropsType={
+type PropsType = {
     file: string
     setFile: (file: string) => void
+    titleForBtn: string
 }
 
-export const UploadFile = ({file, setFile}:PropsType) => {
+export const UploadFile = ({file, setFile, titleForBtn}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,16 +35,20 @@ export const UploadFile = ({file, setFile}:PropsType) => {
         <>
             {file && <div className={s.imgContainer}>
                 <img src={file} className={s.img} alt={'images are broken'}/>
-                <ClearRoundedIcon className={s.iconClose} onClick={()=>setFile('')}/>
+                <ClearRoundedIcon className={s.iconClose} onClick={() => setFile('')}/>
             </div>}
 
-            <label className={s.uploadItem}>
-                <input type="file"
-                       onChange={uploadHandler}
-                       accept={'.png, .jpg, .jpeg'}
-                />
-                <Button variant="contained" component="span" className={s.btn}>Add a cover</Button>
-            </label>
+            <div>
+                <label className={s.uploadItem}>
+                    <input type="file"
+                           onChange={uploadHandler}
+                           accept={'.png, .jpg, .jpeg'}
+                    />
+                    <Button variant="contained" component="span" className={s.btn}>
+                        {file ? 'edit ' : 'add '}{titleForBtn}
+                    </Button>
+                </label>
+            </div>
         </>
     );
 };

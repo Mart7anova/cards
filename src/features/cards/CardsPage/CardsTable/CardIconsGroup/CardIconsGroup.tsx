@@ -24,8 +24,8 @@ export const CardIconsGroup = ({packId, cardId, cardName, question, answer}:Prop
     const {open, openModal, closeModal} = useModal();
     const {openEdit, openEditModal, closeEditModal} = useModal();
 
-    const updateCardHandel = async (question: string, answer: string) => {
-        await dispatch(updateCard({cardId, question, answer}))
+    const updateCardHandel = async (question: string, answer: string, questionImg: string) => {
+        await dispatch(updateCard({cardId, question, answer, questionImg}))
         await dispatch(fetchCards({packId}))
         closeEditModal()
     }

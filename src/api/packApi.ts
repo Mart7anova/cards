@@ -6,27 +6,28 @@ export const packApi = {
     getPacks(params: PackSearchParamsType) {
         return instance.get<PackSearchParamsType, AxiosResponse<ResponseCardPacksType>>(`/cards/pack`, {params})
     },
-    createPack(cardsPack: CreatePackType) {
-        return instance.post(`cards/pack`, {cardsPack})
+    createPack(name: string, isPrivate: boolean, deckCover: string ) {
+        return instance.post(`cards/pack`, {
+            cardsPack: {
+                name,
+                private: isPrivate,
+                deckCover
+            }
+        })
     },
     deletePack(packId: string) {
         return instance.delete(`/cards/pack/?id=${packId}`)
     },
-    updatePack(_id: string, name: string, isPrivate: boolean) {
+    updatePack(_id: string, name: string, isPrivate: boolean, deckCover: string) {
         return instance.put(`/cards/pack`, {
             cardsPack: {
                 _id,
                 name,
-                private: isPrivate
+                private: isPrivate,
+                deckCover
             }
         })
     },
-}
-
-type CreatePackType={
-    name: string,
-    isPrivate: boolean,
-    deckCover?: string
 }
 
 export type PackType = {

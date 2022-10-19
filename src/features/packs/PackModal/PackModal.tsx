@@ -8,16 +8,17 @@ import {UploadFile} from '../../../common/components/UploadFile/UploadFile';
 type PropsType = {
     title: string
     packName?: string
+    deckCover?: string
     open: boolean
     closeModal: () => void
     sentChanges: (packName: string, isPrivate: boolean, file: string) => void
 }
 
-export const PackModal = ({title, packName, open, closeModal, sentChanges}: PropsType) => {
+export const PackModal = ({title, deckCover, packName, open, closeModal, sentChanges}: PropsType) => {
 
     const [name, setName] = useState(packName ? packName : '')
     const [isPrivate, setIsPrivate] = useState(false)
-    const [file, setFile] = useState('')
+    const [file, setFile] = useState(deckCover ? deckCover : '')
     const [error, setError] = useState('')
 
     const onNameChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,6 +32,7 @@ export const PackModal = ({title, packName, open, closeModal, sentChanges}: Prop
         if (name) {
             const newName = name.trim()
             sentChanges(newName, isPrivate, file)
+
             setName('')
             setError('')
             setFile('')
@@ -52,7 +54,7 @@ export const PackModal = ({title, packName, open, closeModal, sentChanges}: Prop
                        style={{width: '100%', marginBottom: '10px'}}
             />
 
-            <UploadFile file={file} setFile={setFile}/>
+            <UploadFile file={file} setFile={setFile} titleForBtn={'a cover'}/>
 
             <FormControlLabel control={<Checkbox checked={isPrivate} onChange={onPrivateChange}/>}
                               label={'Private pack'}

@@ -19,9 +19,9 @@ const fetchCards = createAsyncThunk('cards/fetchCards',
     })
 
 const createCard = createAsyncThunk('cards/createCard',
-    async (param: { packId: string, question: string, answer: string }, {dispatch, rejectWithValue}) => {
+    async (param: { packId: string, question: string, answer: string, questionImg: string }, {dispatch, rejectWithValue}) => {
         try {
-            await cardsApi.createCard(param.packId, param.question, param.answer)
+            await cardsApi.createCard(param.packId, param.question, param.answer, param.questionImg)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
@@ -39,9 +39,9 @@ const deleteCard = createAsyncThunk('cards/deleteCard',
     })
 
 const updateCard = createAsyncThunk('cards/updateCard',
-    async (param: { cardId: string, question: string, answer: string }, {dispatch, rejectWithValue}) => {
+    async (param: { cardId: string, question: string, answer: string, questionImg: string }, {dispatch, rejectWithValue}) => {
         try {
-            await cardsApi.updateCard(param.cardId, param.question, param.answer)
+            await cardsApi.updateCard(param.cardId, param.question, param.answer, param.questionImg)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)

@@ -20,9 +20,10 @@ type PropsType = {
     packId: string
     packName: string
     cardsCount: number
+    deckCover: string
 }
 
-export const PackIconsGroup = ({packUserId, packId, packName, cardsCount}: PropsType) => {
+export const PackIconsGroup = ({packUserId, packId, packName, cardsCount, deckCover}: PropsType) => {
     const dispatch = useAppDispatch()
     const {_id} = useAppSelector(getProfile)
     const navigate = useNavigate()
@@ -30,8 +31,8 @@ export const PackIconsGroup = ({packUserId, packId, packName, cardsCount}: Props
     const {open, openModal, closeModal} = useModal();
     const {openEdit, openEditModal, closeEditModal} = useModal();
 
-    const updatePackHandle = async (packName: string, isPrivate: boolean) => {
-        await dispatch(updatePack({id: packId, name: packName, isPrivate}))
+    const updatePackHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
+        await dispatch(updatePack({id: packId, name: packName, isPrivate, deckCover}))
         await dispatch(fetchPacks())
         closeEditModal()
     }
@@ -73,9 +74,10 @@ export const PackIconsGroup = ({packUserId, packId, packName, cardsCount}: Props
                     </>
             }
             <PackModal title={'Edit pack'}
+                       packName={packName}
+                       deckCover={deckCover}
                        open={openEdit}
                        closeModal={closeEditModal}
-                       packName={packName}
                        sentChanges={updatePackHandle}
             />
             <DeleteModal title={'Delete pack'}

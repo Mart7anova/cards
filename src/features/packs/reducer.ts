@@ -21,7 +21,7 @@ const fetchPacks = createAsyncThunk('packs/fetchPacks',
 const createNewPack = createAsyncThunk('packs/createNewPack',
     async (param: { name: string, isPrivate: boolean, deckCover: string }, {dispatch, rejectWithValue}) => {
         try {
-            await packApi.createPack(param)
+            await packApi.createPack(param.name, param.isPrivate, param.deckCover)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
@@ -38,9 +38,9 @@ const deletePack = createAsyncThunk('packs/deletePack',
     })
 
 const updatePack = createAsyncThunk('packs/updatePack',
-    async (param: { id: string, name: string, isPrivate: boolean}, {dispatch, rejectWithValue}) => {
+    async (param: { id: string, name: string, isPrivate: boolean, deckCover: string}, {dispatch, rejectWithValue}) => {
         try {
-            await packApi.updatePack(param.id, param.name, param.isPrivate)
+            await packApi.updatePack(param.id, param.name, param.isPrivate, param.deckCover)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)

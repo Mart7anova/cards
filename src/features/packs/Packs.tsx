@@ -34,8 +34,8 @@ export const Packs = () => {
 
     const {open, openModal, closeModal} = useModal();
 
-    const addNewPackHandler = async (name: string, isPrivate: boolean, file: string) => {
-        await dispatch(createNewPack({name, isPrivate, deckCover: file}))
+    const addNewPackHandler = async (name: string, isPrivate: boolean, deckCover: string) => {
+        await dispatch(createNewPack({name, isPrivate, deckCover}))
         await dispatch(fetchPacks())
         closeModal()
     }

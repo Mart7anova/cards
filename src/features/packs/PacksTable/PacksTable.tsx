@@ -106,6 +106,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                                                     packId={pack._id}
                                                     packName={pack.name}
                                                     cardsCount={pack.cardsCount}
+                                                    deckCover={pack.deckCover}
                                     />
                                 </TableCell>
                             </TableRow>
