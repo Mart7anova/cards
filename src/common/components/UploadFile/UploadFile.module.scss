@@ -1,0 +1,25 @@
+.imgContainer{
+  display: flex;
+  justify-content: start;
+  margin-top: 20px;
+
+  .img {
+    max-height: 100px;
+  }
+
+  .iconClose {
+    font-size: 25px;
+    cursor: pointer;
+  }
+}
+
+.uploadItem {
+
+  & input {
+    display: none;
+  }
+
+  .btn {
+    margin-top: 20px;
+  }
+}

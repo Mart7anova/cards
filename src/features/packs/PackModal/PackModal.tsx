@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './PackModal.module.scss'
 import {Button, Checkbox, FormControlLabel, TextField} from '@mui/material';
 import {BasicModal} from '../../../common/components/BasicModal/BasicModal';
+import {UploadFile} from '../../../common/components/UploadFile/UploadFile';
 
 
 type PropsType = {
@@ -13,6 +14,7 @@ type PropsType = {
 }
 
 export const PackModal = ({title, packName, open, closeModal, sentChanges}: PropsType) => {
+
     const [name, setName] = useState(packName ? packName : '')
     const [isPrivate, setIsPrivate] = useState(false)
     const [error, setError] = useState('')
@@ -47,10 +49,14 @@ export const PackModal = ({title, packName, open, closeModal, sentChanges}: Prop
                        error={!!error}
                        style={{width: '100%', marginBottom: '10px'}}
             />
+
+            <UploadFile/>
+
             <FormControlLabel control={<Checkbox checked={isPrivate} onChange={onPrivateChange}/>}
                               label={'Private pack'}
-                              style={{marginTop: '20px', marginBottom: '20px'}}
+                              className={s.checkboxItem}
             />
+
             <div className={s.btnGroup}>
                 <Button onClick={closeModal} variant={'contained'} color={'error'}>Cansel</Button>
                 <Button onClick={onClickHandler} variant={'contained'}>{title.split(' ')[0]}</Button>
