@@ -6,7 +6,7 @@ import {StatusType} from '../../common/types/statusType';
 
 const {setProfile} = profileActions
 
-const signUp = createAsyncThunk('auth/signUp',
+const signUp = createAsyncThunk('auth/SignUp',
     async (param: { email: string, password: string }, {dispatch, rejectWithValue}) => {
         try {
             await authApi.signUp(param.email, param.password)
@@ -16,7 +16,7 @@ const signUp = createAsyncThunk('auth/signUp',
         }
     })
 
-const signIn = createAsyncThunk('auth/signIn',
+const signIn = createAsyncThunk('auth/SignIn',
     async (param: { email: string, password: string, rememberMe: boolean },  {dispatch, rejectWithValue}) => {
         try {
             const {data} = await authApi.signIn(param.email, param.password, param.rememberMe)
