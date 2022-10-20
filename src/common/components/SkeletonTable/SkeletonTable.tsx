@@ -3,7 +3,7 @@ import React from 'react';
 
 export const SkeletonTable = () => {
     const fakeArray = []
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 5; i++) {
         fakeArray.push(i)
     }
     return (

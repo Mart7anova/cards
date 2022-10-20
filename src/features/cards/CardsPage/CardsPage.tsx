@@ -11,7 +11,8 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {
     getCards,
     getCardsStatus,
-    getCardsTotalCount, getPackDeckCover,
+    getCardsTotalCount,
+    getPackDeckCover,
     getPackName,
     getPackUserId,
     getPageCards,
@@ -21,8 +22,11 @@ import {getProfile} from '../../profile/selectors';
 import {AddCards} from './AddCards/AddCards';
 import {PATH} from '../../../common/enums/path';
 
+type PropsType = {
+    setIsSearching: (isSearching: boolean) => void
+}
 
-export const CardsPage = () => {
+export const CardsPage = ({setIsSearching}: PropsType) => {
     const {packId} = useParams() as { packId: string }
     const navigate = useNavigate()
 
@@ -55,7 +59,7 @@ export const CardsPage = () => {
                 <div className={s.btnContainer}>
                     <Button variant={'contained'}
                             color={'success'}
-                            onClick={()=>navigate(PATH.LEARN + packId)}
+                            onClick={() => navigate(PATH.LEARN + packId)}
                             className={s.btn}
                     >
                         <h4>Learn cards</h4>
@@ -67,20 +71,19 @@ export const CardsPage = () => {
                 </div>
             </div>
 
-            <SearchByCardName/>
+            <SearchByCardName setIsSearching={setIsSearching}/>
 
             {
-                cards.length
-                    ? <CardsTable cards={cards}
-                                  isOwner={isOwner}
-                                  page={pageCards}
-                                  count={cardsTotalCount}
-                                  rowsPerPage={pageCountCards}/>
-                    : cardsStatus === 'loading'
-                        ? <SkeletonTable/>
+                cardsStatus === 'loading'
+                    ? <SkeletonTable/>
+                    : cards.length
+                        ? <CardsTable cards={cards}
+                                      isOwner={isOwner}
+                                      page={pageCards}
+                                      count={cardsTotalCount}
+                                      rowsPerPage={pageCountCards}/>
                         : <NoResult/>
             }
-
         </Container>
     );
 };

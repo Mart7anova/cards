@@ -18,6 +18,7 @@ import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {CardType} from '../../../../api/cardsApi';
 import dayjs from 'dayjs';
 import {CardIconsGroup} from './CardIconsGroup/CardIconsGroup';
+import {NoResult} from '../../../../common/components/NoResult/NoResult';
 
 const {setCardsSearchParams} = cardActions
 
@@ -136,6 +137,8 @@ export const CardsTable = ({cards, isOwner, rowsPerPage, page, count}: PropsType
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
+            {cards.length === 0 && <NoResult/>}
+                {/*//? <SkeletonTable/>*/}
         </TableContainer>
     );
 };

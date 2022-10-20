@@ -6,13 +6,18 @@ import {cardActions} from '../../index';
 
 const {setCardsSearchParams} = cardActions
 
-export const SearchByCardName = () => {
+type PropsType={
+    setIsSearching: (isSearching: boolean)=>void
+}
+
+export const SearchByCardName = ({setIsSearching}:PropsType) => {
     const dispatch = useAppDispatch()
 
     const [searchValue, setSearchValue] = useState('')
     const debouncedValue = useDebounce<string>(searchValue, 500)
 
-    const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onSearchChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        setIsSearching(true)
         setSearchValue(e.currentTarget.value)
     }
 

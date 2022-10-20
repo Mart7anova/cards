@@ -42,6 +42,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const [isSortHeader, setIsSortHeader] = useState(true)
+
     const onChangeSortPacks = (sortHeader: boolean, sortName: string) => {
         let sortValue
 
