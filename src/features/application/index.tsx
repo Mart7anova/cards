@@ -1,16 +1,18 @@
 import {asyncActions, slice} from './reducer';
 import * as appSelectors from './selectors'
 import {createAction} from '@reduxjs/toolkit';
-import {ErrorType} from '../../common/types/errorType';
+import {infoType} from '../../common/types/infoType';
 
 const appReducer = slice.reducer
 
-const setAppError = createAction<ErrorType>('appActions/setAppError')
+const setAppError = createAction<infoType>('appActions/setAppError')
+const setAppSuccess = createAction<infoType>('appActions/setAppSuccess')
 
 const appActions = {
     ...asyncActions,
     ...slice.actions,
     setAppError,
+    setAppSuccess,
 }
 
 export {

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {profileApi} from '../../api/profileApi';
-import {ErrorType} from '../../common/types/errorType';
+import {infoType} from '../../common/types/infoType';
 import {appActions} from './index';
 import {profileActions} from '../profile';
 import {authActions} from '../auth';
@@ -26,7 +26,8 @@ export const slice = createSlice({
     name: 'app',
     initialState: {
         isInitialized: false,
-        error: null as ErrorType,
+        error: null as infoType,
+        success: null as infoType,
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -39,6 +40,9 @@ export const slice = createSlice({
             })
             .addCase(appActions.setAppError, (state, action) => {
                 state.error = action.payload
+            })
+            .addCase(appActions.setAppSuccess, (state, action) => {
+                state.success = action.payload
             })
     }
 })

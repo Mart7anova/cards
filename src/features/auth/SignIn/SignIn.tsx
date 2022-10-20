@@ -30,8 +30,9 @@ export const SignIn = () => {
         validate: values => {
             return validateValuesForForm(values)
         },
-        onSubmit: values => {
+        onSubmit: (values, {resetForm} )=> {
             dispatch(signIn(values))
+            resetForm({values: { ...values, password: ''}})
         },
     });
 

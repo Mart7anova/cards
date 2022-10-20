@@ -8,6 +8,7 @@ import {NavBar} from '../common/components/NavBar/NavBar';
 import {CircularProgress} from '@mui/material';
 import {ErrorSnackbar} from '../common/components/ErrorSnackbar/ErrorSnackbar';
 import {ProgressBar} from '../common/components/ProgressBar/ProgressBar';
+import {SuccessSnackbar} from '../common/components/SuccessSnackbar/SuccessSnackbar';
 
 const {initializeApp} = appActions
 
@@ -29,6 +30,7 @@ export const App = () => {
             <ProgressBar/>
             <AppRoute/>
             <ErrorSnackbar/>
+            <SuccessSnackbar/>
         </div>
     );
 }

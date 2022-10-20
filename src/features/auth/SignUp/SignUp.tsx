@@ -10,7 +10,7 @@ import {Password} from '../../../common/components/Password/Password';
 import {Link, useNavigate} from 'react-router-dom';
 import {PATH} from '../../../common/enums/path';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {getIsLoggedIn} from '../selectors';
+import {getIsLoggedIn, getIsSignedUp} from '../selectors';
 
 const {signUp} = authActions
 
@@ -18,6 +18,7 @@ export const SignUp = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const isLoggedIn = useAppSelector(getIsLoggedIn)
+    const isSignedUp = useAppSelector(getIsSignedUp)
 
     const formik = useFormik({
         initialValues: {
@@ -29,8 +30,16 @@ export const SignUp = () => {
         validate: values => {
             return validateValuesForForm(values)
         },
-        onSubmit: values => {
+        onSubmit: (values, {resetForm}) => {
             dispatch(signUp(values))
+            resetForm({
+                values: {
+                    email: '',
+                    password: '',
+                    rememberMe: false,
+                    confirmPassword: ''
+                }
+            })
         },
     });
 
@@ -40,7 +49,8 @@ export const SignUp = () => {
 
     useEffect(() => {
         if (isLoggedIn) navigate(PATH.PACKS)
-    }, [isLoggedIn])
+        if (isSignedUp) navigate(PATH.SIGN_IN)
+    }, [isLoggedIn, isSignedUp])
 
     return (
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
