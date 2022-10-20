@@ -1,16 +1,18 @@
 import React from 'react';
-import {PATH} from '../../enums/path';
-import {Link} from 'react-router-dom';
 import s from './PageNotFound.module.scss';
+import {Button, Container} from '@mui/material';
+import notFound from '../../../assets/images/404.gif'
+import {useNavigate} from 'react-router-dom';
+import {PATH} from '../../enums/path';
 
 export const PageNotFound = () => {
+    const navigate = useNavigate()
     return (
-        <div>
-            <div className={s.pageContainer}>
-                <h1>Error 404</h1>
-                <h2>Page not found</h2>
-                <span>Go <Link to={PATH.PACKS}>home</Link></span>
-            </div>
-        </div>
+        <Container className={s.pageContainer}>
+            <h1>Error 404</h1>
+            <h2>Page not found</h2>
+            <Button variant={'contained'} size={'large'} className={s.btn} onClick={()=>navigate(PATH.PACKS)}>go back home</Button>
+            <img src={notFound} alt=" "/>
+        </Container>
     );
 };
