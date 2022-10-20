@@ -6,7 +6,7 @@ import {EmptyCardsPage} from './EmptyCardsPage/EmptyCardsPage';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {cardActions} from './index';
 import {useParams} from 'react-router-dom';
-import {CircularProgress} from '@mui/material';
+import {Progress} from '../../common/components/Progress/ProgressBar';
 
 const {fetchCards} = cardActions
 
@@ -24,7 +24,7 @@ export const Cards = () => {
     }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId])
 
     if(!isSearching && cardsStatus==='loading'){
-        return <CircularProgress />
+        return <Progress />
     }
 
     return (

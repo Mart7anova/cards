@@ -5,10 +5,10 @@ import {useAppSelector} from '../common/hooks/useAppSelector';
 import {getIsInitialized} from '../features/application/selectors';
 import {AppRoute} from '../features/route/AppRoute';
 import {NavBar} from '../common/components/NavBar/NavBar';
-import {CircularProgress} from '@mui/material';
 import {ErrorSnackbar} from '../common/components/ErrorSnackbar/ErrorSnackbar';
 import {ProgressBar} from '../common/components/ProgressBar/ProgressBar';
 import {SuccessSnackbar} from '../common/components/SuccessSnackbar/SuccessSnackbar';
+import {Progress} from '../common/components/Progress/ProgressBar';
 
 const {initializeApp} = appActions
 
@@ -21,7 +21,7 @@ export const App = () => {
     }, [])
 
     if (!isInitialized) {
-        return <CircularProgress />
+        return <Progress />
     }
 
     return (

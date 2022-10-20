@@ -138,7 +138,6 @@ export const CardsTable = ({cards, isOwner, rowsPerPage, page, count}: PropsType
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
             {cards.length === 0 && <NoResult/>}
-                {/*//? <SkeletonTable/>*/}
         </TableContainer>
     );
 };
