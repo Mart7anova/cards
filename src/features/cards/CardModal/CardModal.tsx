@@ -18,7 +18,7 @@ type PropsType = {
 type FormatType = 'text' | 'img'
 
 export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, cardAnswer, questionImg}: PropsType) => {
-    const [format, setFormat] = useState<FormatType>('text')
+    const [format, setFormat] = useState<FormatType>(questionImg ? 'img' : 'text')
     const [question, setQuestion] = useState(cardQuestion ? cardQuestion : '')
     const [answer, setAnswer] = useState(cardAnswer ? cardAnswer : '')
     const [file, setFile] = useState(questionImg ? questionImg : '')
@@ -38,7 +38,7 @@ export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, c
 
     const onSendTextForm = () => {
         if ((question && answer) || (file && answer)) {
-            const newQuestion = question.trim()
+            const newQuestion = question.trim() === '' ? 'no question' : question.trim()
             const newAnswer = answer.trim()
             sentChanges(newQuestion, newAnswer, file)
 
@@ -71,7 +71,9 @@ export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, c
                 {error && <span className={style.errorText}> {error}</span>}
             </div>
 
-            <TextField variant={'standard'} value={question} onChange={onQuestionChange} error={!!error}
+            <TextField variant={'standard'}
+                       value={question === 'no question' ? '' : question}
+                       onChange={onQuestionChange} error={!!error}
                        style={{width: '100%', marginBottom: '10px'}}/>
 
             <div className={style.infoText}>

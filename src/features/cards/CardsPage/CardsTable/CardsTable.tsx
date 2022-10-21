@@ -119,6 +119,7 @@ export const CardsTable = ({cards, isOwner, rowsPerPage, page, count, setIsSearc
                                                         cardId={card._id}
                                                         cardName={card.question}
                                                         question={card.question}
+                                                        questionImg={card.questionImg}
                                                         answer={card.answer}
                                                         setIsSearching={setIsSearching}
                                         />

@@ -15,11 +15,12 @@ type PropsType={
     cardId: string
     cardName: string
     question: string
+    questionImg: string
     answer:string
     setIsSearching: (isSearching: boolean) => void
 }
 
-export const CardIconsGroup = ({packId, cardId, cardName, question, answer, setIsSearching}:PropsType) => {
+export const CardIconsGroup = ({packId, cardId, cardName, question, questionImg, answer, setIsSearching}:PropsType) => {
     const dispatch = useAppDispatch()
 
     const {open, openModal, closeModal} = useModal();
@@ -48,6 +49,7 @@ export const CardIconsGroup = ({packId, cardId, cardName, question, answer, setI
             <CardModal title={'Edit card'}
                        cardQuestion={question}
                        cardAnswer={answer}
+                       questionImg={questionImg}
                        sentChanges={updateCardHandel}
                        open={openEdit}
                        closeModal={closeEditModal}
