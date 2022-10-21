@@ -1,5 +1,6 @@
 import {Button, Container} from '@mui/material';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
+import qs from 'qs';
 import s from './Packs.module.scss'
 import {PacksTable} from './PacksTable/PacksTable';
 import {packActions} from './index';
@@ -18,11 +19,17 @@ import {useModal} from '../../common/hooks/useModal';
 import {PackModal} from './PackModal/PackModal';
 import {PacksFiltration} from './PackFiltration/PacksFiltration';
 import {NoResult} from '../../common/components/NoResult/NoResult';
+import {useNavigate} from 'react-router-dom';
 
-const {fetchPacks, createNewPack} = packActions
+const {fetchPacks, createNewPack, changeStatusFirstLoading, setIsMyPacksFilter} = packActions
 
 export const Packs = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+
+    const isSearch = useRef(false)
+    const isMounted = useRef(false)
 
     const cardPacks = useAppSelector(getCardPacks)
     const pagePacks = useAppSelector(getPagePacks)
@@ -41,8 +48,36 @@ export const Packs = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchPacks())
+        if (!isSearch.current) {
+            dispatch(fetchPacks())
+        }
+        isSearch.current = false
     }, [page, pageCount, sortPacks, packName, max, min, user_id])
+
+    //saving the url parameter when the page is reloaded
+    useEffect(() => {
+        if (isMounted.current) {
+            const queryString = qs.stringify({
+                user_id
+            })
+            navigate(`?${queryString}`)
+        }
+        isMounted.current = true
+    }, [user_id])
+
+    useEffect(() => {
+        dispatch(changeStatusFirstLoading())
+
+        if (window.location.hash) {
+            const params = qs.parse(window.location.hash.substring(3))
+            const packsForUserId = params.user_id
+
+            if (packsForUserId) {
+                dispatch(setIsMyPacksFilter(packsForUserId as string))
+                isSearch.current = true
+            }
+        }
+    }, [])
 
     return (
         <Container fixed>

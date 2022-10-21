@@ -80,6 +80,9 @@ export const slice = createSlice({
             state.packsSearchParams.user_id = action.payload
             state.packsSearchParams.page = 1
         },
+        changeStatusFirstLoading: (state)=>{
+            state.isFirstLoading = true
+        }
     },
     extraReducers: (builder) => {
         builder
