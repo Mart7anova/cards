@@ -23,15 +23,20 @@
       display: block;
     }
 
-    .text {
-      font-size: 18px;
-      font-weight: normal;
+    .textContainer {
+      margin-bottom: 20px;
+
+      .text {
+        font-size: 18px;
+        font-weight: normal;
+      }
     }
+
 
     .infoText {
       @include infoText();
       margin-bottom: 30px;
-      text-align: start;
+      text-align: center;
 
       .infoNumber {
         color: #a1a1a1;

@@ -64,7 +64,10 @@ export const Learn = () => {
         <Container className={s.mainContainer}>
             <Paper className={s.paper}>
                 <h1 className={s.title}>{packName}</h1>
-                <h2>
+                <p className={s.infoText}>
+                    Number of attempts to answer the question: <span className={s.infoNumber}>{card.shots}</span>
+                </p>
+                <h2 className={s.textContainer}>
                     Question:
                     {
                         card.question !== 'no question' && <span className={s.text}> {card.question}?</span>
@@ -75,9 +78,6 @@ export const Learn = () => {
                                              alt={'pack name'}
                                              className={s.img}/>
                 }
-                <p className={s.infoText}>
-                    Number of attempts to answer the question: <span className={s.infoNumber}>{card.shots}</span>
-                </p>
                 {
                     !showAnswer && <Button onClick={onShowAnswerClick}
                                            disabled={cardsStatus === 'loading'}
@@ -88,7 +88,7 @@ export const Learn = () => {
                 {
                     showAnswer && (
                         <>
-                            <h2>
+                            <h2 className={s.textContainer}>
                                 Answer: <span className={s.text}>{card.answer}</span>
                             </h2>
 
