@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Button, Container, FormControlLabel, Paper, Radio, RadioGroup} from '@mui/material';
+import {Button, FormControlLabel, Paper, Radio, RadioGroup} from '@mui/material';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getCards, getCardsStatus, getPackName} from '../selectors';
 import {useParams} from 'react-router-dom';
@@ -9,6 +9,7 @@ import {CardType} from '../../../api/cardsApi';
 import {getRandomCard} from '../../../common/utils/getCardRamdom';
 import s from './Learn.module.scss'
 import {Progress} from '../../../common/components/Progress/ProgressBar';
+import {addAlternateSrc} from '../../../common/utils/addAlternateSrc';
 
 const {fetchCards, updateCardGrade} = cardActions
 
@@ -66,7 +67,7 @@ export const Learn = () => {
     }
 
     return (
-        <Container className={s.mainContainer}>
+        <div className={s.mainContainer}>
             <Paper className={s.paper}>
                 <h1 className={s.title}>{packName}</h1>
                 <p className={s.infoText}>
@@ -80,6 +81,7 @@ export const Learn = () => {
                 </h2>
                 {
                     card.questionImg && <img src={card.questionImg}
+                                             onError={addAlternateSrc}
                                              alt={'pack name'}
                                              className={s.img}/>
                 }
@@ -112,6 +114,6 @@ export const Learn = () => {
                     )
                 }
             </Paper>
-        </Container>
+        </div>
     );
 };

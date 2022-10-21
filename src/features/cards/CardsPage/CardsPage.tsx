@@ -21,6 +21,7 @@ import {
 import {getUserProfile} from '../../profile/selectors';
 import {AddCards} from './AddCards/AddCards';
 import {PATH} from '../../../common/enums/path';
+import {addAlternateSrc} from '../../../common/utils/addAlternateSrc';
 
 type PropsType = {
     setIsSearching: (isSearching: boolean) => void
@@ -52,7 +53,7 @@ export const CardsPage = ({setIsSearching}: PropsType) => {
                         isOwner && <CardMenu packId={packId} packName={packName} deckCover={packDeckCover}/>
                     }
                     {
-                        packDeckCover && <img src={packDeckCover} className={s.img} alt={' '}/>
+                        packDeckCover && <img src={packDeckCover} className={s.img} onError={addAlternateSrc} alt={' '}/>
                     }
                 </h1>
 

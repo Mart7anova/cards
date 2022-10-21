@@ -20,6 +20,7 @@ import {PATH} from '../../../common/enums/path';
 import {Link} from 'react-router-dom';
 import {cardActions} from '../../cards';
 import {packActions} from '../index';
+import {addAlternateSrc} from '../../../common/utils/addAlternateSrc';
 
 const {setCardsSearchParams} = cardActions
 const {setPacksSearchParams} = packActions
@@ -91,6 +92,7 @@ export const PacksTable = ({page, rowsPerPage, packs, count}: PropsType) => {
                                     <Link to={PATH.PACK + pack._id} style={{textDecoration: 'none', display: 'flex',  alignItems: 'center', flexWrap: 'wrap'}}>
                                         {
                                             pack.deckCover && <img src={pack.deckCover}
+                                                                   onError={addAlternateSrc}
                                                                    alt={' '}
                                                                    style={{height: '50px', paddingRight: '15px'}}/>
                                         }

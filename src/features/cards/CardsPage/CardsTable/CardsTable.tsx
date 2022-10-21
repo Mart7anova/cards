@@ -19,6 +19,7 @@ import {CardType} from '../../../../api/cardsApi';
 import dayjs from 'dayjs';
 import {CardIconsGroup} from './CardIconsGroup/CardIconsGroup';
 import {NoResult} from '../../../../common/components/NoResult/NoResult';
+import {addAlternateSrc} from '../../../../common/utils/addAlternateSrc';
 
 const {setCardsSearchParams} = cardActions
 
@@ -93,6 +94,7 @@ export const CardsTable = ({cards, isOwner, rowsPerPage, page, count, setIsSearc
                                     <div style={{display: 'flex',  alignItems: 'center', flexWrap: 'wrap'}}>
                                         {
                                             card.questionImg && <img src={card.questionImg}
+                                                                     onError={addAlternateSrc}
                                                                      alt={'pack name'}
                                                                      style={{height: '50px', marginRight: '10px'}}/>
                                         }
