@@ -11,17 +11,18 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {packActions} from '../../packs';
 import {cardActions} from '../index';
 import {PATH} from '../../../common/enums/path';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const {deletePack, updatePack} = packActions
-const {fetchCards}=cardActions
+const {fetchCards} = cardActions
 
 type PropsType = {
     packId: string
     packName: string
+    deckCover: string
 }
 
-export const CardMenu = ({packId,packName}:PropsType) => {
+export const CardMenu = ({packId, packName, deckCover}: PropsType) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
@@ -68,6 +69,7 @@ export const CardMenu = ({packId,packName}:PropsType) => {
                 </Paper>
             }
             <PackModal title={'Edit pack'}
+                       deckCover={deckCover}
                        open={openEdit}
                        closeModal={closeEditModal}
                        packName={packName}
