@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Button, FormControlLabel, Paper, Radio, RadioGroup} from '@mui/material';
+import {Button, Container, FormControlLabel, Paper, Radio, RadioGroup} from '@mui/material';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getCards, getCardsStatus, getPackName} from '../selectors';
 import {useParams} from 'react-router-dom';
@@ -61,7 +61,7 @@ export const Learn = () => {
     }, [packId, cards, first])
 
     return (
-        <div className={s.mainContainer}>
+        <Container className={s.mainContainer}>
             <Paper className={s.paper}>
                 <h1 className={s.title}>{packName}</h1>
                 <h2>
@@ -108,6 +108,6 @@ export const Learn = () => {
                     )
                 }
             </Paper>
-        </div>
+        </Container>
     );
 };
