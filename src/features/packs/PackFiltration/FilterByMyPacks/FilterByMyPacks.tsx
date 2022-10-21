@@ -3,7 +3,7 @@ import {Button, ButtonGroup} from '@mui/material';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {packActions} from '../../index';
-import {getProfile} from '../../../profile/selectors';
+import {getUserProfile} from '../../../profile/selectors';
 import {getPacksStatus, getSearchParams} from '../../selectors';
 
 const {setIsMyPacksFilter} = packActions
@@ -15,7 +15,7 @@ type PropsType = {
 export const FilterByMyPacks = ({clearFilterHandler}:PropsType) => {
     const dispatch = useAppDispatch()
 
-    const {_id} = useAppSelector(getProfile)
+    const {_id} = useAppSelector(getUserProfile)
     const {user_id} = useAppSelector(getSearchParams)
     const packsStatus = useAppSelector(getPacksStatus)
 

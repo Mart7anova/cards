@@ -3,7 +3,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
-import {getProfile} from '../../../profile/selectors';
+import {getUserProfile} from '../../../profile/selectors';
 import {useModal} from '../../../../common/hooks/useModal';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {DeleteModal} from '../../../../common/components/DeleteModel/DeleteModal';
@@ -25,7 +25,7 @@ type PropsType = {
 
 export const PackIconsGroup = ({packUserId, packId, packName, cardsCount, deckCover}: PropsType) => {
     const dispatch = useAppDispatch()
-    const {_id} = useAppSelector(getProfile)
+    const {_id} = useAppSelector(getUserProfile)
     const navigate = useNavigate()
 
     const {open, openModal, closeModal} = useModal();

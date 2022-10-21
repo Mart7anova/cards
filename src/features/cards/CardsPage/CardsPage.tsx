@@ -18,7 +18,7 @@ import {
     getPageCards,
     getPageCountCards
 } from '../selectors';
-import {getProfile} from '../../profile/selectors';
+import {getUserProfile} from '../../profile/selectors';
 import {AddCards} from './AddCards/AddCards';
 import {PATH} from '../../../common/enums/path';
 
@@ -39,7 +39,7 @@ export const CardsPage = ({setIsSearching}: PropsType) => {
     const packName = useAppSelector(getPackName)
     const packUserId = useAppSelector(getPackUserId)
     const packDeckCover = useAppSelector(getPackDeckCover)
-    const {_id} = useAppSelector(getProfile)
+    const {_id} = useAppSelector(getUserProfile)
 
     const isOwner = packUserId === _id
 

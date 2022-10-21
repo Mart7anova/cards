@@ -4,7 +4,7 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getPackDeckCover, getPackName, getPackUserId} from '../selectors';
 import {CardMenu} from '../CardMenu/CardMenu';
 import {useParams} from 'react-router-dom';
-import {getProfile} from '../../profile/selectors';
+import {getUserProfile} from '../../profile/selectors';
 import {AddCards} from '../CardsPage/AddCards/AddCards';
 import s from './EmptyCardsPage.module.scss'
 
@@ -14,7 +14,7 @@ export const EmptyCardsPage = () => {
     const packName = useAppSelector(getPackName)
     const packUserId = useAppSelector(getPackUserId)
     const packDeckCover = useAppSelector(getPackDeckCover)
-    const {_id} = useAppSelector(getProfile)
+    const {_id} = useAppSelector(getUserProfile)
 
     const isOwner = packUserId === _id
 
