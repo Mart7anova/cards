@@ -88,7 +88,7 @@ export const Learn = () => {
                 {
                     !showAnswer && <Button onClick={onShowAnswerClick}
                                            variant={'contained'}
-                                           sx={{m: 2}}
+                                           sx={{mt: 2}}
                     >Show answer</Button>
                 }
                 {
