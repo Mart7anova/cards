@@ -16,9 +16,10 @@ type PropsType={
     cardName: string
     question: string
     answer:string
+    setIsSearching: (isSearching: boolean) => void
 }
 
-export const CardIconsGroup = ({packId, cardId, cardName, question, answer}:PropsType) => {
+export const CardIconsGroup = ({packId, cardId, cardName, question, answer, setIsSearching}:PropsType) => {
     const dispatch = useAppDispatch()
 
     const {open, openModal, closeModal} = useModal();
@@ -30,6 +31,7 @@ export const CardIconsGroup = ({packId, cardId, cardName, question, answer}:Prop
         closeEditModal()
     }
     const deleteCardHandle = async () => {
+        setIsSearching(false)
         await dispatch(deleteCard({cardId}))
         await dispatch(fetchCards({packId}))
         closeModal()

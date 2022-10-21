@@ -81,7 +81,8 @@ export const CardsPage = ({setIsSearching}: PropsType) => {
                                       isOwner={isOwner}
                                       page={pageCards}
                                       count={cardsTotalCount}
-                                      rowsPerPage={pageCountCards}/>
+                                      rowsPerPage={pageCountCards}
+                                      setIsSearching={setIsSearching}/>
                         : <NoResult/>
             }
         </Container>

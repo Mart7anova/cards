@@ -23,6 +23,8 @@ export const Cards = () => {
         dispatch(fetchCards({packId}))
     }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId])
 
+    console.log(isSearching)
+
     if(!isSearching && cardsStatus==='loading'){
         return <Progress />
     }

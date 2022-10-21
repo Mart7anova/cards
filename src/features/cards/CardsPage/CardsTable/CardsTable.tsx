@@ -36,9 +36,10 @@ type PropsType = {
     rowsPerPage: number
     page: number
     count: number
+    setIsSearching: (isSearching: boolean) => void
 }
 
-export const CardsTable = ({cards, isOwner, rowsPerPage, page, count}: PropsType) => {
+export const CardsTable = ({cards, isOwner, rowsPerPage, page, count, setIsSearching}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const [isSortHeader, setIsSortHeader] = useState(true)
@@ -119,6 +120,7 @@ export const CardsTable = ({cards, isOwner, rowsPerPage, page, count}: PropsType
                                                         cardName={card.question}
                                                         question={card.question}
                                                         answer={card.answer}
+                                                        setIsSearching={setIsSearching}
                                         />
                                     </TableCell>
                                 }

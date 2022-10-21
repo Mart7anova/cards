@@ -24,6 +24,7 @@ export const SearchByCardName = ({setIsSearching}:PropsType) => {
     useEffect(() => {
         dispatch(setCardsSearchParams({cardQuestion: searchValue}))
     }, [debouncedValue])
+
     return (
         <>
             <h3>Search by question name</h3>
