@@ -8,6 +8,7 @@ import {cardActions} from '../index';
 import {CardType} from '../../../api/cardsApi';
 import {getRandomCard} from '../../../common/utils/getCardRamdom';
 import s from './Learn.module.scss'
+import {Progress} from '../../../common/components/Progress/ProgressBar';
 
 const {fetchCards, updateCardGrade} = cardActions
 
@@ -60,6 +61,10 @@ export const Learn = () => {
         }
     }, [packId, cards, first])
 
+    if (cardsStatus === 'loading') {
+        return <Progress />
+    }
+
     return (
         <Container className={s.mainContainer}>
             <Paper className={s.paper}>
@@ -80,7 +85,6 @@ export const Learn = () => {
                 }
                 {
                     !showAnswer && <Button onClick={onShowAnswerClick}
-                                           disabled={cardsStatus === 'loading'}
                                            variant={'contained'}
                                            sx={{m: 2}}
                     >Show answer</Button>
