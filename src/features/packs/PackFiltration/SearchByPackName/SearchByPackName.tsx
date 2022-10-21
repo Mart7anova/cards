@@ -6,7 +6,11 @@ import {packActions} from '../../index';
 
 const {setPacksSearchParams} = packActions
 
-export const SearchByPackName = () => {
+type PropsType={
+    disabled: boolean
+}
+
+export const SearchByPackName = ({disabled}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const [searchValue, setSearchValue] = useState('')
@@ -26,6 +30,7 @@ export const SearchByPackName = () => {
                    value={searchValue}
                    onChange={onSearchChange}
                    style={{margin: '0'}}
+                   disabled={disabled}
         />
     );
 };

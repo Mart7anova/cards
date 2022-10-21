@@ -10,7 +10,11 @@ import {SearchByPackName} from './SearchByPackName/SearchByPackName';
 
 const {clearSearchParams} = packActions
 
-export const PacksFiltration = () => {
+type PropsType={
+    disabled: boolean
+}
+
+export const PacksFiltration = ({disabled}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const clearFiltersHandle = () => {
@@ -21,19 +25,19 @@ export const PacksFiltration = () => {
         <div className={s.filterContainer}>
             <div>
                 <h3>Search by name</h3>
-                <SearchByPackName/>
+                <SearchByPackName disabled={disabled}/>
             </div>
             <div>
                 <h3 className={s.showTitle}>Show pack cards</h3>
-                <FilterByMyPacks clearFilterHandler={clearFiltersHandle}/>
+                <FilterByMyPacks clearFilterHandler={clearFiltersHandle} disabled={disabled}/>
             </div>
             <div>
                 <h3 className={s.numberTitle}>Number of cards</h3>
-                <DoubleRangeFilter/>
+                <DoubleRangeFilter disabled={disabled}/>
             </div>
             <div>
                 <Tooltip title="clean filter">
-                    <Button variant={'contained'} onClick={clearFiltersHandle}>
+                    <Button variant={'contained'} onClick={clearFiltersHandle} disabled={disabled}>
                         <FilterAltOffIcon/>
                     </Button>
                 </Tooltip>

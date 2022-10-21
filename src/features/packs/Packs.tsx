@@ -35,7 +35,9 @@ export const Packs = () => {
     const pagePacks = useAppSelector(getPagePacks)
     const pageCountPacks = useAppSelector(getPageCountPacks)
     const cardPacksTotalCount = useAppSelector(getCardPacksTotalCount)
-    const packStatus = useAppSelector(getPacksStatus)
+    const packsStatus = useAppSelector(getPacksStatus)
+
+    const disabled = packsStatus === 'loading'
 
     const {page, pageCount, sortPacks, packName, max, min, user_id, } = useAppSelector(getSearchParams)
 
@@ -83,20 +85,20 @@ export const Packs = () => {
         <Container fixed>
             <div className={s.title}>
                 <h1>Packs list</h1>
-                <Button variant={'contained'} onClick={openModal}>
+                <Button variant={'contained'} onClick={openModal} disabled={disabled}>
                     <h4>Add new pack</h4>
                 </Button>
                 <PackModal title={'Add new pack'} open={open} closeModal={closeModal} sentChanges={addNewPackHandler}/>
             </div>
 
-            <PacksFiltration/>
+            <PacksFiltration disabled={disabled}/>
 
             {
                 cardPacks.length ? <PacksTable page={pagePacks}
                                                rowsPerPage={pageCountPacks}
                                                count={cardPacksTotalCount}
                                                packs={cardPacks}/>
-                    : packStatus ==='loading' ? <SkeletonTable/> : <NoResult/>
+                    : packsStatus ==='loading' ? <SkeletonTable/> : <NoResult/>
             }
 
         </Container>

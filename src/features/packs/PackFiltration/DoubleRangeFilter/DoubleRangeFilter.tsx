@@ -11,7 +11,11 @@ import {packActions} from '../../index';
 
 const {setPacksSearchParams} = packActions
 
-export function DoubleRangeFilter() {
+type PropsType={
+    disabled: boolean
+}
+
+export function DoubleRangeFilter({disabled}:PropsType) {
     const dispatch = useAppDispatch()
 
     const minCardsCount = useAppSelector(getMinCardsCount)
@@ -48,15 +52,16 @@ export function DoubleRangeFilter() {
 
     return (
         <div className={s.mainContainer}>
-            <InputForRangeFilter currentValue={value[0]} setCurrentValue={onChangeFirstRange}/>
+            <InputForRangeFilter currentValue={value[0]} setCurrentValue={onChangeFirstRange} disabled={disabled}/>
             <Slider
                 value={value}
                 onChange={onChangeDoubleRange}
                 valueLabelDisplay="auto"
                 min={minCardsCount}
                 max={maxCardsCount}
+                disabled={disabled}
             />
-            <InputForRangeFilter currentValue={value[1]} setCurrentValue={onChangeSecondRange}/>
+            <InputForRangeFilter currentValue={value[1]} setCurrentValue={onChangeSecondRange} disabled={disabled}/>
         </div>
     );
 }

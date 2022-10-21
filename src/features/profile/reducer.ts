@@ -19,7 +19,6 @@ const updateProfile = createAsyncThunk('profile/updateProfile',
     async (param: { name?: string, avatar?: string }, thunkAPI) => {
     try {
         const {data} = await profileApi.updateUser(param.name, param.avatar)
-        console.log(data)
         return data.updatedUser
     } catch (e) {
         return thunkAPI.rejectWithValue(e)

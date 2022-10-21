@@ -6,9 +6,10 @@ import style from './DoubleRangeFilter.module.scss'
 type PropsType = {
     currentValue: number
     setCurrentValue: (currentValue: number) => void
+    disabled: boolean
 }
 
-export function InputForRangeFilter({currentValue, setCurrentValue}: PropsType) {
+export function InputForRangeFilter({currentValue, setCurrentValue, disabled}: PropsType) {
     const [value, setValue] = useState(currentValue)
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -29,6 +30,7 @@ export function InputForRangeFilter({currentValue, setCurrentValue}: PropsType) 
                    type={'tel'}
                    value={value || 0}
                    onChange={onChangeHandler}
+                   disabled={disabled}
         />
     );
 }
