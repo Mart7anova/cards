@@ -1,3 +1,4 @@
+import { Profile } from './Profile';
 import {asyncActions, slice} from './reducer';
 import * as profileSelectors from './selectors'
 
@@ -12,4 +13,5 @@ export {
     profileReducer,
     profileSelectors,
     profileActions,
+    Profile,
 }

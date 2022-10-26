@@ -2,15 +2,11 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import {PATH} from '../../common/enums/path';
 import {ProtectedRoutes} from './ProtectedRoutes';
 import {PageNotFound} from '../../common/components/PageNotFound/PageNotFound';
-import {SignUp} from '../auth/SignUp/SignUp';
-import {SignIn} from '../auth/SignIn/SignIn';
-import { ForgotPassword } from '../auth/ForgotPassword/ForgotPassword';
-import {CheckEmail} from '../auth/CheckEmail/CheckEmail';
-import {CreateNewPassword} from '../auth/CreateNewPassword/CreateNewPassword';
-import {Profile} from '../profile/Profile';
-import {Packs} from '../packs/Packs';
-import {Cards} from '../cards/Cards';
 import {Learn} from '../cards/Learn/Learn';
+import {CheckEmail, CreateNewPassword, ForgotPassword, SignIn, SignUp } from '../auth';
+import { Profile } from '../profile';
+import { Packs } from '../packs';
+import { Cards } from '../cards';
 
 export const AppRoute = () => {
 
