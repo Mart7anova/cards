@@ -30,7 +30,7 @@ export const asyncActions = {
     updateProfile
 }
 
-export const slice = createSlice({
+export const profileSlice = createSlice({
     name: 'app',
     initialState: {
         profile: {} as ProfileResponseType,

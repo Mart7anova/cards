@@ -3,7 +3,7 @@ import s from './UploadFile.module.scss';
 import {Button} from '@mui/material';
 import {convertFileToBase64} from '../../utils/convertFileToBase64';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {appActions} from '../../../features/application';
+import {appActions} from '../../../features/app';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 const {setAppError} = appActions

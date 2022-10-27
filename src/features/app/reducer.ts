@@ -8,7 +8,7 @@ import {authActions} from '../auth';
 const {setProfile} = profileActions
 const {setIsLoggedIn} = authActions
 
-const initializeApp = createAsyncThunk('application/initializeApp', async (param, {dispatch,rejectWithValue}) => {
+const initializeApp = createAsyncThunk('app/initializeApp', async (param, {dispatch,rejectWithValue}) => {
     try {
         const {data} = await profileApi.me()
         dispatch(setProfile(data))
@@ -22,7 +22,7 @@ export const asyncActions = {
     initializeApp
 }
 
-export const slice = createSlice({
+export const appSlice = createSlice({
     name: 'app',
     initialState: {
         isInitialized: false,

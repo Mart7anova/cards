@@ -10,7 +10,7 @@ import {profileActions} from './index';
 import s from './Profile.module.scss';
 import {PhotoCamera} from '@mui/icons-material';
 import {convertFileToBase64} from '../../common/utils/convertFileToBase64';
-import {appActions} from '../application';
+import {appActions} from '../app';
 
 const {setAppError} = appActions
 const {signOut} = authActions

@@ -1,12 +1,12 @@
-import {slice} from './reducer';
+import {authSlice} from './reducer';
 import * as authSelectors from './selectors'
 import {asyncActions} from './reducer';
 
-const authReducer = slice.reducer
+const authReducer = authSlice.reducer
 
 const authActions = {
     ...asyncActions,
-    ...slice.actions,
+    ...authSlice.actions,
 }
 
 export {

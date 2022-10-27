@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
-import {appActions} from '../features/application';
+import {appActions} from '../features/app';
 import {useAppSelector} from '../common/hooks/useAppSelector';
-import {getIsInitialized} from '../features/application/selectors';
+import {getIsInitialized} from '../features/app/selectors';
 import {AppRoute} from '../features/route/AppRoute';
 import {NavBar} from '../common/components/NavBar/NavBar';
 import {ErrorSnackbar} from '../common/components/ErrorSnackbar/ErrorSnackbar';

@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {appActions} from '../../features/application';
+import {appActions} from '../../features/app';
 import axios, {AxiosError} from 'axios';
 
 

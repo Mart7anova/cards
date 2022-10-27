@@ -1,11 +1,11 @@
-import {asyncActions, slice} from './reducer';
+import {asyncActions, profileSlice} from './reducer';
 import * as profileSelectors from './selectors'
 
-const profileReducer = slice.reducer
+const profileReducer = profileSlice.reducer
 
 const profileActions = {
     ...asyncActions,
-    ...slice.actions,
+    ...profileSlice.actions,
 }
 
 export {

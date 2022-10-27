@@ -67,7 +67,7 @@ export const asyncActions = {
     updateCardGrade,
 }
 
-export const slice = createSlice({
+export const cardsSlice = createSlice({
     name: 'cards',
     initialState: {
         cardsState: {
@@ -82,7 +82,7 @@ export const slice = createSlice({
     },
     reducers: {
         resetCardsState: (state) => {
-            const initialState = slice.getInitialState()
+            const initialState = cardsSlice.getInitialState()
             state.cardsSearchParams = initialState.cardsSearchParams
             state.cardsState = initialState.cardsState
         },

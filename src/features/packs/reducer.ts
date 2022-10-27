@@ -54,7 +54,7 @@ export const asyncActions = {
     updatePack
 }
 
-export const slice = createSlice({
+export const packsSlice = createSlice({
     name: 'packs',
     initialState: {
         packs: {
@@ -73,7 +73,7 @@ export const slice = createSlice({
             state.packsSearchParams = {...state.packsSearchParams, ...action.payload}
         },
         clearSearchParams: (state) => {
-            const initialState = slice.getInitialState()
+            const initialState = packsSlice.getInitialState()
             state.packsSearchParams = initialState.packsSearchParams
         },
         setIsMyPacksFilter: (state, action: PayloadAction<string>) => {

@@ -1,12 +1,12 @@
-import {slice} from './reducer';
+import {cardsSlice} from './reducer';
 import {asyncActions} from './reducer';
 import * as cardSelectors from './selectors'
 
-const cardReducer = slice.reducer
+const cardReducer = cardsSlice.reducer
 
 const cardActions = {
     ...asyncActions,
-    ...slice.actions,
+    ...cardsSlice.actions,
 }
 
 export {

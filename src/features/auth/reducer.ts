@@ -3,7 +3,7 @@ import {profileActions} from '../profile';
 import {authApi} from '../../api/authApi';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {StatusType} from '../../common/types/statusType';
-import {appActions} from '../application';
+import {appActions} from '../app';
 
 const {setProfile} = profileActions
 
@@ -76,7 +76,7 @@ export const asyncActions = {
     updatePassword,
 }
 
-export const slice = createSlice({
+export const authSlice = createSlice({
     name: 'auth',
     initialState: {
         isLoggedIn: false,

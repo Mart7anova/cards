@@ -1,9 +1,9 @@
 import React from 'react';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {getAppError} from '../../../features/application/selectors';
+import {getAppError} from '../../../features/app/selectors';
 import {Alert, Snackbar} from '@mui/material';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import { appActions } from '../../../features/application';
+import { appActions } from '../../../features/app';
 
 const {setAppError} = appActions
 
