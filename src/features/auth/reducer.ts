@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {profileActions} from '../profile';
-import {authApi} from '../../api/authApi';
+import {authApi} from './authApi';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {StatusType} from '../../common/types/statusType';
 import {appActions} from '../app';

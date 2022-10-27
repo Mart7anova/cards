@@ -15,7 +15,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {cardActions} from '../../index';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {CardType} from '../../../../api/cardsApi';
+import {CardType} from '../../cardsApi';
 import dayjs from 'dayjs';
 import {CardIconsGroup} from './CardIconsGroup/CardIconsGroup';
 import {NoResult} from '../../../../common/components/NoResult/NoResult';

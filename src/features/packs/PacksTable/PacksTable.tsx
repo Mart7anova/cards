@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import dayjs from 'dayjs';
-import {PackType} from '../../../api/packApi';
+import {PackType} from '../packApi';
 import {PackIconsGroup} from './packIconsGroup/packIconsGroup';
 import {PATH} from '../../../common/enums/path';
 import {Link} from 'react-router-dom';

@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {profileApi} from '../../api/profileApi';
+import {profileApi} from '../profile/profileApi';
 import {infoType} from '../../common/types/infoType';
 import {appActions} from './index';
 import {profileActions} from '../profile';

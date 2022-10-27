@@ -1,5 +1,5 @@
-import {instance, instanceForHeroku} from './instance';
-import {ProfileResponseType} from '../common/types/profileType';
+import {instance, instanceForHeroku} from '../../api/instance';
+import {ProfileResponseType} from '../../common/types/profileType';
 
 
 export const authApi = {

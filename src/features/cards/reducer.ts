@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {cardsApi, CardSearchParamsType, CardsResponseType, CardType} from '../../api/cardsApi';
+import {cardsApi, CardSearchParamsType, CardsResponseType, CardType} from './cardsApi';
 import {AppRootStateType} from '../../app/store';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {StatusType} from '../../common/types/statusType';

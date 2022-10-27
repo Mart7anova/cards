@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {ProfileResponseType} from '../../common/types/profileType';
-import {profileApi} from '../../api/profileApi';
+import {profileApi} from './profileApi';
 import {StatusType} from '../../common/types/statusType';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 

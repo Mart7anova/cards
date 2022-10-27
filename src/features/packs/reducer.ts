@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {packApi, PackSearchParamsType, PackType, ResponseCardPacksType} from '../../api/packApi';
+import {packApi, PackSearchParamsType, PackType, ResponseCardPacksType} from './packApi';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {AppRootStateType} from '../../app/store';
 import {StatusType} from '../../common/types/statusType';

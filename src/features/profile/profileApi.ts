@@ -1,5 +1,5 @@
-import {ProfileResponseType} from '../common/types/profileType';
-import {instance} from './instance';
+import {ProfileResponseType} from '../../common/types/profileType';
+import {instance} from '../../api/instance';
 
 
 export const profileApi = {
