@@ -6,22 +6,28 @@ import {handleNetworkError} from '../../common/utils/handleNetworkError';
 
 const getProfile = createAsyncThunk('profile/setProfile',
     async (param, {rejectWithValue, dispatch}) => {
+    dispatch(setProfileStatus('loading'))
     try {
         const {data} = await profileApi.me()
         return data
     } catch (e) {
         handleNetworkError(e, dispatch)
         return rejectWithValue(null)
+    } finally {
+        dispatch(setProfileStatus('idle'))
     }
 })
 
 const updateProfile = createAsyncThunk('profile/updateProfile',
-    async (param: { name?: string, avatar?: string }, thunkAPI) => {
+    async (param: { name?: string, avatar?: string }, {dispatch, rejectWithValue}) => {
+        dispatch(setProfileStatus('loading'))
     try {
         const {data} = await profileApi.updateUser(param.name, param.avatar)
         return data.updatedUser
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return rejectWithValue(e)
+    } finally {
+        dispatch(setProfileStatus('idle'))
     }
 })
 
@@ -39,31 +45,20 @@ export const profileSlice = createSlice({
     reducers: {
         setProfile (state, action: PayloadAction<ProfileResponseType>){
             state.profile = action.payload
-        }
+        },
+        setProfileStatus: (state, action: PayloadAction<StatusType>) => {
+            state.status = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getProfile.pending, (state) => {
-                state.status = 'loading'
-            })
             .addCase(getProfile.fulfilled, (state, actions) => {
                 state.profile = actions.payload
-                state.status = 'idle'
-            })
-            .addCase(getProfile.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(updateProfile.pending, (state) => {
-                state.status = 'loading'
             })
             .addCase(updateProfile.fulfilled, (state, action) => {
                 state.profile = action.payload
-                state.status = 'idle'
-            })
-            .addCase(updateProfile.rejected, (state) => {
-                state.status = 'idle'
             })
     }
 })
 
+const {setProfileStatus} = profileSlice.actions

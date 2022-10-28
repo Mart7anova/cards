@@ -6,6 +6,7 @@ import {StatusType} from '../../common/types/statusType';
 
 const fetchPacks = createAsyncThunk('packs/fetchPacks',
     async (param, {dispatch, getState, rejectWithValue}) => {
+        dispatch(setPacksStatus('loading'))
         try {
             const state = getState() as AppRootStateType
             const searchParams = state.pack.packsSearchParams
@@ -15,11 +16,14 @@ const fetchPacks = createAsyncThunk('packs/fetchPacks',
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setPacksStatus('idle'))
         }
     })
 
 const createNewPack = createAsyncThunk('packs/createNewPack',
     async (param: { name: string, isPrivate: boolean, deckCover: string }, {dispatch, rejectWithValue}) => {
+        dispatch(setPacksStatus('loading'))
         try {
             await packApi.createPack(param.name, param.isPrivate, param.deckCover)
         } catch (e) {
@@ -29,21 +33,27 @@ const createNewPack = createAsyncThunk('packs/createNewPack',
     })
 const deletePack = createAsyncThunk('packs/deletePack',
     async (param: { id: string }, {dispatch, rejectWithValue}) => {
+        dispatch(setPacksStatus('loading'))
         try {
             await packApi.deletePack(param.id)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setPacksStatus('idle'))
         }
     })
 
 const updatePack = createAsyncThunk('packs/updatePack',
-    async (param: { id: string, name: string, isPrivate: boolean, deckCover: string}, {dispatch, rejectWithValue}) => {
+    async (param: { id: string, name: string, isPrivate: boolean, deckCover: string }, {dispatch, rejectWithValue}) => {
+        dispatch(setPacksStatus('loading'))
         try {
             await packApi.updatePack(param.id, param.name, param.isPrivate, param.deckCover)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setPacksStatus('idle'))
         }
     })
 
@@ -80,15 +90,15 @@ export const packsSlice = createSlice({
             state.packsSearchParams.user_id = action.payload
             state.packsSearchParams.page = 1
         },
-        changeStatusFirstLoading: (state)=>{
+        changeStatusFirstLoading: (state) => {
             state.isFirstLoading = true
-        }
+        },
+        setPacksStatus: (state, action: PayloadAction<StatusType>) => {
+            state.status = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchPacks.pending, (state) => {
-                state.status = 'loading'
-            })
             .addCase(fetchPacks.fulfilled, (state, action) => {
                 state.packs = action.payload
                 if (state.isFirstLoading) {
@@ -96,40 +106,8 @@ export const packsSlice = createSlice({
                     state.packsSearchParams.max = action.payload.maxCardsCount
                     state.isFirstLoading = false
                 }
-                state.status = 'idle'
-            })
-            .addCase(fetchPacks.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(createNewPack.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(createNewPack.fulfilled, (state) => {
-                state.status = 'idle'
-            })
-            .addCase(createNewPack.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(deletePack.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(deletePack.fulfilled, (state) => {
-                state.status = 'idle'
-            })
-            .addCase(deletePack.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(updatePack.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(updatePack.fulfilled, (state) => {
-                state.status = 'idle'
-            })
-            .addCase(updatePack.rejected, (state) => {
-                state.status = 'idle'
             })
     }
 })
+
+const {setPacksStatus} = packsSlice.actions

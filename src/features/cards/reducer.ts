@@ -6,6 +6,7 @@ import {StatusType} from '../../common/types/statusType';
 
 const fetchCards = createAsyncThunk('cards/fetchCards',
     async (param: { packId: string }, {dispatch, getState, rejectWithValue}) => {
+        dispatch(setCardsStatus('loading'))
         try {
             const state = getState() as AppRootStateType
             const searchParams = state.card.cardsSearchParams
@@ -15,47 +16,63 @@ const fetchCards = createAsyncThunk('cards/fetchCards',
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setCardsStatus('idle'))
         }
     })
 
 const createCard = createAsyncThunk('cards/createCard',
-    async (param: { packId: string, question: string, answer: string, questionImg: string }, {dispatch, rejectWithValue}) => {
+    async (param: { packId: string, question: string, answer: string, questionImg: string },
+           {dispatch, rejectWithValue}) => {
+        dispatch(setCardsStatus('loading'))
         try {
             await cardsApi.createCard(param.packId, param.question, param.answer, param.questionImg)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setCardsStatus('idle'))
         }
     })
 
 const deleteCard = createAsyncThunk('cards/deleteCard',
     async (param: { cardId: string }, {dispatch, rejectWithValue}) => {
+        dispatch(setCardsStatus('loading'))
         try {
             await cardsApi.deleteCard(param.cardId)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setCardsStatus('idle'))
         }
     })
 
 const updateCard = createAsyncThunk('cards/updateCard',
-    async (param: { cardId: string, question: string, answer: string, questionImg: string }, {dispatch, rejectWithValue}) => {
+    async (param: { cardId: string, question: string, answer: string, questionImg: string },
+           {dispatch, rejectWithValue}) => {
+        dispatch(setCardsStatus('loading'))
         try {
             await cardsApi.updateCard(param.cardId, param.question, param.answer, param.questionImg)
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setCardsStatus('idle'))
         }
     })
 
 const updateCardGrade = createAsyncThunk('cards/updateCardGrade',
     async (param: { card_id: string, grade: number }, {dispatch, rejectWithValue}) => {
+        dispatch(setCardsStatus('loading'))
         try {
             const {data} = await cardsApi.updateCardsGrade(param.card_id, param.grade)
             return data
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
+        } finally {
+            dispatch(setCardsStatus('idle'))
         }
     })
 
@@ -86,64 +103,24 @@ export const cardsSlice = createSlice({
             state.cardsSearchParams = initialState.cardsSearchParams
             state.cardsState = initialState.cardsState
         },
-        setCardsSearchParams: (state, action:PayloadAction<CardSearchParamsType>) => {
+        setCardsSearchParams: (state, action: PayloadAction<CardSearchParamsType>) => {
             state.cardsSearchParams = {...state.cardsSearchParams, ...action.payload}
-        }
+        },
+        setCardsStatus: (state, action: PayloadAction<StatusType>) => {
+            state.status = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchCards.pending, (state) => {
-                state.status = 'loading'
-            })
             .addCase(fetchCards.fulfilled, (state, action) => {
                 state.cardsState = action.payload
-                state.status = 'idle'
-            })
-            .addCase(fetchCards.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(createCard.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(createCard.fulfilled, (state) => {
-                state.status = 'idle'
-            })
-            .addCase(createCard.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(deleteCard.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(deleteCard.fulfilled, (state) => {
-                state.status = 'idle'
-            })
-            .addCase(deleteCard.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(updateCard.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(updateCard.fulfilled, (state) => {
-                state.status = 'idle'
-            })
-            .addCase(updateCard.rejected, (state) => {
-                state.status = 'idle'
-            })
-
-            .addCase(updateCardGrade.pending, (state) => {
-                state.status = 'loading'
             })
             .addCase(updateCardGrade.fulfilled, (state, action) => {
                 const index = state.cardsState.cards.findIndex(s => s._id === action.payload.updatedGrade.card_id)
                 state.cardsState.cards[index].grade = action.payload.updatedGrade.grade
                 state.cardsState.cards[index].shots = action.payload.updatedGrade.shots
-                state.status = 'idle'
-            })
-            .addCase(updateCardGrade.rejected, (state) => {
-                state.status = 'idle'
             })
     }
 })
+
+const {setCardsStatus} = cardsSlice.actions
