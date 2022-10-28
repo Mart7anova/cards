@@ -15,12 +15,11 @@ type PropsType = {
 }
 
 export const PackModal = ({title, deckCover, packName, open, closeModal, sentChanges}: PropsType) => {
-    console.log(deckCover)
     const [name, setName] = useState(packName ? packName : '')
     const [isPrivate, setIsPrivate] = useState(false)
     const [file, setFile] = useState(deckCover ? deckCover : '')
     const [error, setError] = useState('')
-    console.log(file)
+
     const onNameChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setName(e.currentTarget.value)
     }
