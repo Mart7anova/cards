@@ -1,6 +1,6 @@
 import {Avatar, Badge, Button, IconButton, Paper} from '@mui/material';
 import React, {ChangeEvent} from 'react';
-import noUserPhoto from '../../assets/images/no-user-photo.png';
+import noUserPhoto from '../../common/assets/images/no-user-photo.png';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {getUserProfile} from './selectors';
 import {authActions} from '../auth';
@@ -9,10 +9,8 @@ import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan';
 import {profileActions} from './index';
 import s from './Profile.module.scss';
 import {PhotoCamera} from '@mui/icons-material';
-import {convertFileToBase64} from '../../common/utils/convertFileToBase64';
-import {appActions} from '../app';
+import {uploadFile} from '../../common/utils/uploadFile';
 
-const {setAppError} = appActions
 const {signOut} = authActions
 const {updateProfile} = profileActions
 
@@ -21,17 +19,7 @@ export const Profile = () => {
     const {name, avatar, email} = useAppSelector(getUserProfile)
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length) {
-            const file = e.target.files[0]
-
-            if (file.size < 4000000) {
-                convertFileToBase64(file, (file64: string) => {
-                    dispatch(updateProfile({avatar: file64}))
-                })
-            } else {
-                dispatch(setAppError('The file is too large'))
-            }
-        }
+        uploadFile({files: e.target.files, dispatch, actionForDispatch: updateProfile})
     }
 
     const onNameChange = (name: string) => {

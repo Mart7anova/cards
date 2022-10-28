@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import s from '../../../assets/styles/Form.module.scss';
+import s from '../../../common/assets/styles/Form.module.scss';
 import {Button, FormControl, Paper, TextField} from '@mui/material';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Link, useNavigate} from 'react-router-dom';

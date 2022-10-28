@@ -4,7 +4,7 @@ import {PATH} from '../../enums/path';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import {getUserProfile} from '../../../features/profile/selectors';
 import {Avatar} from '@mui/material';
-import noUserPhoto from '../../../assets/images/no-user-photo.png'
+import noUserPhoto from '../../assets/images/no-user-photo.png'
 import s from './ProfileLink.module.scss'
 
 export const ProfileLink = () => {

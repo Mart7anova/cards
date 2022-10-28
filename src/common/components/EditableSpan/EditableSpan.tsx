@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import pen from '../../../assets/images/pen.png';
+import pen from '../../assets/images/pen.png';
 import style from './EditableSpan.module.scss'
 import {TextField} from '@mui/material';
 

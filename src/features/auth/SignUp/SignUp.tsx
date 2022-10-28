@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
-import s from '../../../assets/styles/Form.module.scss'
+import s from '../../../common/assets/styles/Form.module.scss'
 import {Button, Paper, TextField} from '@mui/material';
 import {authActions} from '../index';
 import {Password} from '../../../common/components/Password/Password';

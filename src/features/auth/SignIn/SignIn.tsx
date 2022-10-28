@@ -5,7 +5,7 @@ import {authActions} from '../index';
 import FormControl from '@mui/material/FormControl';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {Button, Checkbox, FormControlLabel, Paper, TextField} from '@mui/material';
-import s from '../../../assets/styles/Form.module.scss'
+import s from '../../../common/assets/styles/Form.module.scss'
 import {Password} from '../../../common/components/Password/Password';
 import {PATH} from '../../../common/enums/path';
 import {Link, useNavigate} from 'react-router-dom';

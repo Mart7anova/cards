@@ -1,7 +1,7 @@
 import {Avatar, Button, FormControl, Paper} from '@mui/material';
 import React, {useEffect} from 'react';
-import checkEmail from '../../../assets/images/check-email.png'
-import s from '../../../assets/styles/Form.module.scss';
+import checkEmail from '../../../common/assets/images/check-email.png'
+import s from '../../../common/assets/styles/Form.module.scss';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getEmail, getIsLoggedIn} from '../selectors';
 import {useNavigate} from 'react-router-dom';

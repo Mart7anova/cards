@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './PageNotFound.module.scss';
 import {Button, Container} from '@mui/material';
-import notFound from '../../../assets/images/404.gif'
+import notFound from '../../assets/images/404.gif'
 import {useNavigate} from 'react-router-dom';
 import {PATH} from '../../enums/path';
 

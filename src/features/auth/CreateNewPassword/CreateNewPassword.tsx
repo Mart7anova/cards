@@ -7,7 +7,7 @@ import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {authActions} from '../index';
-import s from '../../../assets/styles/Form.module.scss';
+import s from '../../../common/assets/styles/Form.module.scss';
 import {Button, Paper} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {Password} from '../../../common/components/Password/Password';

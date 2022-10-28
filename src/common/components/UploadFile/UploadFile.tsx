@@ -1,12 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import s from './UploadFile.module.scss';
 import {Button} from '@mui/material';
-import {convertFileToBase64} from '../../utils/convertFileToBase64';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {appActions} from '../../../features/app';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-
-const {setAppError} = appActions
+import {uploadFile} from '../../utils/uploadFile';
 
 type PropsType = {
     file: string
@@ -18,17 +15,7 @@ export const UploadFile = ({file, setFile, titleForBtn}: PropsType) => {
     const dispatch = useAppDispatch()
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length) {
-            const file = e.target.files[0]
-
-            if (file.size < 4000000) {
-                convertFileToBase64(file, (file64: string) => {
-                    setFile(file64)
-                })
-            } else {
-                dispatch(setAppError('The file is too large'))
-            }
-        }
+        uploadFile({files: e.target.files, dispatch, setFile})
     }
 
     return (
