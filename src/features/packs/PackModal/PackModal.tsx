@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './PackModal.module.scss'
 import {Button, Checkbox, FormControlLabel, TextField} from '@mui/material';
 import {BasicModal} from '../../../common/components/BasicModal/BasicModal';
@@ -15,12 +15,12 @@ type PropsType = {
 }
 
 export const PackModal = ({title, deckCover, packName, open, closeModal, sentChanges}: PropsType) => {
-
+    console.log(deckCover)
     const [name, setName] = useState(packName ? packName : '')
     const [isPrivate, setIsPrivate] = useState(false)
     const [file, setFile] = useState(deckCover ? deckCover : '')
     const [error, setError] = useState('')
-
+    console.log(file)
     const onNameChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setName(e.currentTarget.value)
     }
@@ -32,7 +32,6 @@ export const PackModal = ({title, deckCover, packName, open, closeModal, sentCha
         if (name) {
             const newName = name.trim()
             sentChanges(newName, isPrivate, file)
-
             setName('')
             setError('')
             setFile('')
@@ -40,6 +39,11 @@ export const PackModal = ({title, deckCover, packName, open, closeModal, sentCha
             setError('required field')
         }
     }
+
+    useEffect(()=>{
+        if(deckCover)setFile(deckCover)
+        if(packName) setName(packName)
+    }, [deckCover, packName])
 
     return (
         <BasicModal open={open} closeModal={closeModal} title={title}>

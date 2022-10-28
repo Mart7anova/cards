@@ -1,5 +1,5 @@
 import {Button, FormControl, MenuItem, Select, SelectChangeEvent, TextField} from '@mui/material';
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {BasicModal} from '../../../common/components/BasicModal/BasicModal';
 import style from './CardModal.module.scss'
 import {UploadFile} from '../../../common/components/UploadFile/UploadFile';
@@ -51,6 +51,12 @@ export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, c
             setError('required field')
         }
     }
+
+    useEffect(() => {
+        if (cardQuestion) setQuestion(cardQuestion)
+        if (cardAnswer) setAnswer(cardAnswer)
+        if (questionImg) setFile(questionImg)
+    }, [cardQuestion, cardAnswer, questionImg])
 
     return (
         <BasicModal open={open} closeModal={closeModal} title={title}>
