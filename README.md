@@ -28,7 +28,7 @@ Have fun learning!
 
 ## Git commits: <тип>: <описание>
 
-**feat**: - adds a new feature to your code
+**feat**: - add a new feature to your code
 
 **fix**: - fixes a bug in
 
