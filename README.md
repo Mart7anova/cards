@@ -11,7 +11,7 @@ The application will show you the cards in random order (well, or almost, the ca
 
 Have fun learning!
 
-![gif-app](https://imgur.com/L8yWrek)
+![gif-app](https://imgur.com/L8yWrek.gif)
 
 ## The following libraries are installed in this project
 
