@@ -1,6 +1,6 @@
 # Cards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://mart7anova.github.io/cards/
 
 This project was developed to teach new skills using a card system. The algorithm is as follows: 
 1. add a new pack,
