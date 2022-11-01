@@ -63,7 +63,7 @@ export const Learn = () => {
     }, [packId, cards, first])
 
     if (cardsStatus === 'loading') {
-        return <Progress />
+        return <Progress/>
     }
 
     return (
@@ -80,10 +80,12 @@ export const Learn = () => {
                     }
                 </h2>
                 {
-                    card.questionImg && <img src={card.questionImg}
-                                             onError={addAlternateSrc}
-                                             alt={'pack name'}
-                                             className={s.img}/>
+                    card.questionImg && <div className={s.wrapperImg}>
+                        <img src={card.questionImg}
+                             onError={addAlternateSrc}
+                             alt={'pack name'}
+                             className={s.img}/>
+                    </div>
                 }
                 {
                     !showAnswer && <Button onClick={onShowAnswerClick}

@@ -18,9 +18,17 @@
       margin-bottom: 20px;
     }
 
-    .img {
-      max-height: 300px;
-      display: block;
+    .wrapperImg{
+      position: relative;
+      padding: 50px;
+
+      .img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: auto;
+        height: 100%;
+      }
     }
 
     .textContainer {
