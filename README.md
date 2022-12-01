@@ -37,12 +37,12 @@ Starts a test run in interactive viewing mode.
 
 ## Git commits: <тип>: <описание>
 
-**feat**: - add a new feature to your code
+**feat**: add a new feature to your code
 
-**fix**: - fixes a bug in
+**fix**: fixes a bug in
 
-**refactor**: - code refactoring
+**refactor**: code refactoring
 
-**style**: - changing styles
+**style**: changing styles
 
-**test**: - adding tests, refactoring tests
+**test**: adding tests, refactoring tests
