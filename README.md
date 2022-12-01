@@ -26,6 +26,15 @@ Have fun learning!
 * Axios
 * Sass
 
+Available Scripts
+In the project directory, you can run:
+
+yarn start
+Launches the application in development mode.
+
+yarn test
+Starts a test run in interactive viewing mode.
+
 ## Git commits: <тип>: <описание>
 
 **feat**: - add a new feature to your code
