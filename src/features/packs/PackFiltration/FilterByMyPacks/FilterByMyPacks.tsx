@@ -2,11 +2,10 @@ import React from 'react';
 import {Button, ButtonGroup} from '@mui/material';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
-import {packActions} from '../../index';
 import {getUserProfile} from '../../../profile/selectors';
 import {getSearchParams} from '../../selectors';
+import {setIsMyPacksFilter} from "../../packsSlice";
 
-const {setIsMyPacksFilter} = packActions
 
 type PropsType = {
     clearFilterHandler: () => void

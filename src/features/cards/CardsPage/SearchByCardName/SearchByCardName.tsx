@@ -2,9 +2,8 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import {TextField} from '@mui/material';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
-import {cardActions} from '../../index';
+import {setCardsSearchParams} from "../../cardsSlice";
 
-const {setCardsSearchParams} = cardActions
 
 type PropsType={
     setIsSearching: (isSearching: boolean)=>void

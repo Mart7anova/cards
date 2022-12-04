@@ -5,14 +5,13 @@ import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import s from '../../../common/assets/styles/Form.module.scss'
 import {Button, Paper, TextField} from '@mui/material';
-import {authActions} from '../index';
 import {Password} from '../../../common/components/Password/Password';
 import {Link, useNavigate} from 'react-router-dom';
 import {PATH} from '../../../common/enums/path';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getIsLoggedIn, getIsSignedUp} from '../selectors';
+import {signUp} from "../authSlice";
 
-const {signUp} = authActions
 
 export const SignUp = () => {
     const dispatch = useAppDispatch()

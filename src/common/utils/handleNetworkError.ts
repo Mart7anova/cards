@@ -1,14 +1,14 @@
 import {Dispatch} from 'redux';
-import {appActions} from '../../features/app';
 import axios, {AxiosError} from 'axios';
+import {setAppError} from "../../features/app/appSlice";
 
 
 export const handleNetworkError =  (e: any, dispatch: Dispatch) => {
     const error = e as Error | AxiosError<{ error: string }>
     if(axios.isAxiosError(error)){
         const newError = error.response?.data ? error.response.data.error : error.message
-        dispatch(appActions.setAppError(newError))
+        dispatch(setAppError(newError))
     }else {
-        dispatch(appActions.setAppError( error.message ? error.message : 'Some error occurred'))
+        dispatch(setAppError( error.message ? error.message : 'Some error occurred'))
     }
 }

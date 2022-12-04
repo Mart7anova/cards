@@ -1,14 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {profileApi} from '../profile/profileApi';
 import {infoType} from '../../common/types/infoType';
-import {appActions} from './index';
-import {profileActions} from '../profile';
-import {authActions} from '../auth';
+import {setProfile} from "../profile/profileSlice";
+import {setIsLoggedIn} from "../auth/authSlice";
 
-const {setProfile} = profileActions
-const {setIsLoggedIn} = authActions
 
-const initializeApp = createAsyncThunk('app/initializeApp', async (param, {dispatch,rejectWithValue}) => {
+export const initializeApp = createAsyncThunk('app/initializeApp', async (param, {dispatch, rejectWithValue}) => {
     try {
         const {data} = await profileApi.me()
         dispatch(setProfile(data))
@@ -18,18 +15,21 @@ const initializeApp = createAsyncThunk('app/initializeApp', async (param, {dispa
     }
 })
 
-export const asyncActions = {
-    initializeApp
-}
-
-export const appSlice = createSlice({
+const appSlice = createSlice({
     name: 'app',
     initialState: {
         isInitialized: false,
         error: null as infoType,
         success: null as infoType,
     },
-    reducers: {},
+    reducers: {
+        setAppError: (state, action) => {
+            state.error = action.payload
+        },
+        setAppSuccess: (state, action) => {
+            state.success = action.payload
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(initializeApp.fulfilled, (state) => {
@@ -38,11 +38,8 @@ export const appSlice = createSlice({
             .addCase(initializeApp.rejected, (state) => {
                 state.isInitialized = true
             })
-            .addCase(appActions.setAppError, (state, action) => {
-                state.error = action.payload
-            })
-            .addCase(appActions.setAppSuccess, (state, action) => {
-                state.success = action.payload
-            })
     }
 })
+
+export const {setAppSuccess, setAppError} = appSlice.actions
+export const appReducer = appSlice.reducer

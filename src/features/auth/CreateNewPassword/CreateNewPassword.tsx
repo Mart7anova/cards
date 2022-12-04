@@ -6,13 +6,12 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {authActions} from '../index';
 import s from '../../../common/assets/styles/Form.module.scss';
 import {Button, Paper} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {Password} from '../../../common/components/Password/Password';
+import {updatePassword} from "../authSlice";
 
-const {updatePassword} = authActions
 
 export const CreateNewPassword = () => {
     const dispatch = useAppDispatch()

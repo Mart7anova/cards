@@ -2,10 +2,9 @@ import React from 'react';
 import {Button} from '@mui/material';
 import {CardModal} from '../../CardModal/CardModal';
 import {useModal} from '../../../../common/hooks/useModal';
-import {cardActions} from '../../index';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
+import {createCard, fetchCards} from "../../cardsSlice";
 
-const {fetchCards, createCard} = cardActions
 
 type PropsType = {
     packId: string

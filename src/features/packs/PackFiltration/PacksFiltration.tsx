@@ -1,14 +1,13 @@
 import React from 'react';
 import {Button, Tooltip} from '@mui/material';
-import {packActions} from '../index';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {FilterByMyPacks} from './FilterByMyPacks/FilterByMyPacks';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import {DoubleRangeFilter} from './DoubleRangeFilter/DoubleRangeFilter';
 import s from './PacksFiltration.module.scss'
 import {SearchByPackName} from './SearchByPackName/SearchByPackName';
+import {clearSearchParams} from "../packsSlice";
 
-const {clearSearchParams} = packActions
 
 type PropsType={
     disabled: boolean

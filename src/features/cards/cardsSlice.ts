@@ -4,7 +4,7 @@ import {AppRootStateType} from '../../app/store';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {StatusType} from '../../common/types/statusType';
 
-const fetchCards = createAsyncThunk('cards/fetchCards',
+export const fetchCards = createAsyncThunk('cards/fetchCards',
     async (param: { packId: string }, {dispatch, getState, rejectWithValue}) => {
         dispatch(setCardsStatus('loading'))
         try {
@@ -21,7 +21,7 @@ const fetchCards = createAsyncThunk('cards/fetchCards',
         }
     })
 
-const createCard = createAsyncThunk('cards/createCard',
+export const createCard = createAsyncThunk('cards/createCard',
     async (param: { packId: string, question: string, answer: string, questionImg: string },
            {dispatch, rejectWithValue}) => {
         dispatch(setCardsStatus('loading'))
@@ -35,7 +35,7 @@ const createCard = createAsyncThunk('cards/createCard',
         }
     })
 
-const deleteCard = createAsyncThunk('cards/deleteCard',
+export const deleteCard = createAsyncThunk('cards/deleteCard',
     async (param: { cardId: string }, {dispatch, rejectWithValue}) => {
         dispatch(setCardsStatus('loading'))
         try {
@@ -48,7 +48,7 @@ const deleteCard = createAsyncThunk('cards/deleteCard',
         }
     })
 
-const updateCard = createAsyncThunk('cards/updateCard',
+export const updateCard = createAsyncThunk('cards/updateCard',
     async (param: { cardId: string, question: string, answer: string, questionImg: string },
            {dispatch, rejectWithValue}) => {
         dispatch(setCardsStatus('loading'))
@@ -62,7 +62,7 @@ const updateCard = createAsyncThunk('cards/updateCard',
         }
     })
 
-const updateCardGrade = createAsyncThunk('cards/updateCardGrade',
+export const updateCardGrade = createAsyncThunk('cards/updateCardGrade',
     async (param: { card_id: string, grade: number }, {dispatch, rejectWithValue}) => {
         dispatch(setCardsStatus('loading'))
         try {
@@ -76,15 +76,8 @@ const updateCardGrade = createAsyncThunk('cards/updateCardGrade',
         }
     })
 
-export const asyncActions = {
-    fetchCards,
-    createCard,
-    deleteCard,
-    updateCard,
-    updateCardGrade,
-}
 
-export const cardsSlice = createSlice({
+const cardsSlice = createSlice({
     name: 'cards',
     initialState: {
         cardsState: {
@@ -123,4 +116,5 @@ export const cardsSlice = createSlice({
     }
 })
 
-const {setCardsStatus} = cardsSlice.actions
+export const {setCardsStatus, setCardsSearchParams, resetCardsState} = cardsSlice.actions
+export const cardReducer = cardsSlice.reducer

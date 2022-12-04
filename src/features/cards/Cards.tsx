@@ -4,11 +4,10 @@ import {getCardsStatus, getCardsTotalCount, getSearchParamsCards} from './select
 import {CardsPage} from './CardsPage/CardsPage';
 import {EmptyCardsPage} from './EmptyCardsPage/EmptyCardsPage';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
-import {cardActions} from './index';
 import {useParams} from 'react-router-dom';
 import {Progress} from '../../common/components/Progress/ProgressBar';
+import {fetchCards} from "./cardsSlice";
 
-const {fetchCards} = cardActions
 
 export const Cards = () => {
     const dispatch = useAppDispatch()

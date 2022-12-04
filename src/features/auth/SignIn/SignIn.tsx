@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {useFormik} from 'formik';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {authActions} from '../index';
 import FormControl from '@mui/material/FormControl';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {Button, Checkbox, FormControlLabel, Paper, TextField} from '@mui/material';
@@ -11,9 +10,8 @@ import {PATH} from '../../../common/enums/path';
 import {Link, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getIsLoggedIn} from '../selectors';
+import {signIn} from "../authSlice";
 
-
-const {signIn} = authActions
 
 export const SignIn = () => {
     const dispatch = useAppDispatch()

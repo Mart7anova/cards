@@ -8,9 +8,8 @@ import {getIsLoggedIn, getPasswordIsChanging} from '../selectors';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {PATH} from '../../../common/enums/path';
-import {authActions} from '../index';
+import {forgotPassword} from "../authSlice";
 
-const {forgotPassword} = authActions
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()

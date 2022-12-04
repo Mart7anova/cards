@@ -4,7 +4,7 @@ import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {AppRootStateType} from '../../app/store';
 import {StatusType} from '../../common/types/statusType';
 
-const fetchPacks = createAsyncThunk('packs/fetchPacks',
+export const fetchPacks = createAsyncThunk('packs/fetchPacks',
     async (param, {dispatch, getState, rejectWithValue}) => {
         dispatch(setPacksStatus('loading'))
         try {
@@ -21,7 +21,7 @@ const fetchPacks = createAsyncThunk('packs/fetchPacks',
         }
     })
 
-const createNewPack = createAsyncThunk('packs/createNewPack',
+export const createNewPack = createAsyncThunk('packs/createNewPack',
     async (param: { name: string, isPrivate: boolean, deckCover: string }, {dispatch, rejectWithValue}) => {
         dispatch(setPacksStatus('loading'))
         try {
@@ -31,7 +31,7 @@ const createNewPack = createAsyncThunk('packs/createNewPack',
             return rejectWithValue(null)
         }
     })
-const deletePack = createAsyncThunk('packs/deletePack',
+export const deletePack = createAsyncThunk('packs/deletePack',
     async (param: { id: string }, {dispatch, rejectWithValue}) => {
         dispatch(setPacksStatus('loading'))
         try {
@@ -43,8 +43,7 @@ const deletePack = createAsyncThunk('packs/deletePack',
             dispatch(setPacksStatus('idle'))
         }
     })
-
-const updatePack = createAsyncThunk('packs/updatePack',
+export const updatePack = createAsyncThunk('packs/updatePack',
     async (param: { id: string, name: string, isPrivate: boolean, deckCover: string }, {dispatch, rejectWithValue}) => {
         dispatch(setPacksStatus('loading'))
         try {
@@ -57,14 +56,8 @@ const updatePack = createAsyncThunk('packs/updatePack',
         }
     })
 
-export const asyncActions = {
-    fetchPacks,
-    createNewPack,
-    deletePack,
-    updatePack
-}
 
-export const packsSlice = createSlice({
+const packsSlice = createSlice({
     name: 'packs',
     initialState: {
         packs: {
@@ -110,4 +103,11 @@ export const packsSlice = createSlice({
     }
 })
 
-const {setPacksStatus} = packsSlice.actions
+export const {
+    setPacksStatus,
+    setIsMyPacksFilter,
+    setPacksSearchParams,
+    clearSearchParams,
+    changeStatusFirstLoading
+} = packsSlice.actions
+export const packReducer = packsSlice.reducer

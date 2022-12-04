@@ -8,12 +8,11 @@ import {useModal} from '../../../../common/hooks/useModal';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {DeleteModal} from '../../../../common/components/DeleteModel/DeleteModal';
 import {PackModal} from '../../PackModal/PackModal';
-import {packActions} from '../../index';
 import {IconButton, Tooltip} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {PATH} from '../../../../common/enums/path';
+import {deletePack, fetchPacks, updatePack} from "../../packsSlice";
 
-const {fetchPacks, deletePack, updatePack} = packActions
 
 type PropsType = {
     packUserId: string

@@ -5,10 +5,9 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {useModal} from '../../../../../common/hooks/useModal';
 import {CardModal} from '../../../CardModal/CardModal';
 import {DeleteModal} from '../../../../../common/components/DeleteModel/DeleteModal';
-import {cardActions} from '../../../index';
 import {useAppDispatch} from '../../../../../common/hooks/useAppDispatch';
+import {deleteCard, fetchCards, updateCard} from "../../../cardsSlice";
 
-const {fetchCards, updateCard, deleteCard}=cardActions
 
 type PropsType={
     packId: string

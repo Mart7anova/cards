@@ -13,15 +13,14 @@ import {
 } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {cardActions} from '../../index';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {CardType} from '../../cardsApi';
 import dayjs from 'dayjs';
 import {CardIconsGroup} from './CardIconsGroup/CardIconsGroup';
 import {NoResult} from '../../../../common/components/NoResult/NoResult';
 import {addAlternateSrc} from '../../../../common/utils/addAlternateSrc';
+import {setCardsSearchParams} from "../../cardsSlice";
 
-const {setCardsSearchParams} = cardActions
 
 const headers = [
     {name: 'Question', sortName: 'question'},

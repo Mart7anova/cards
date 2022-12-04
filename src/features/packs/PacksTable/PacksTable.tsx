@@ -18,12 +18,10 @@ import {PackType} from '../packApi';
 import {PackIconsGroup} from './packIconsGroup/packIconsGroup';
 import {PATH} from '../../../common/enums/path';
 import {Link} from 'react-router-dom';
-import {cardActions} from '../../cards';
-import {packActions} from '../index';
 import {addAlternateSrc} from '../../../common/utils/addAlternateSrc';
+import {setCardsSearchParams} from "../../cards/cardsSlice";
+import {setPacksSearchParams} from "../packsSlice";
 
-const {setCardsSearchParams} = cardActions
-const {setPacksSearchParams} = packActions
 
 type PropsType = {
     rowsPerPage: number

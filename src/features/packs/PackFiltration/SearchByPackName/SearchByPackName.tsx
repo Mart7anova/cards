@@ -2,9 +2,8 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import {TextField} from '@mui/material';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {packActions} from '../../index';
+import {setPacksSearchParams} from "../../packsSlice";
 
-const {setPacksSearchParams} = packActions
 
 type PropsType={
     disabled: boolean

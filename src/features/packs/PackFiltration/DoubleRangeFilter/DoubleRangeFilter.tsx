@@ -7,9 +7,8 @@ import {getMaxCardsCount, getMinCardsCount, getSearchParams} from '../../selecto
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
-import {packActions} from '../../index';
+import {setPacksSearchParams} from "../../packsSlice";
 
-const {setPacksSearchParams} = packActions
 
 type PropsType={
     disabled: boolean

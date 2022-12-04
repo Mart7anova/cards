@@ -1,18 +1,17 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {profileActions} from '../profile';
 import {authApi} from './authApi';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {StatusType} from '../../common/types/statusType';
-import {appActions} from '../app';
+import {setAppError, setAppSuccess} from "../app/appSlice";
+import {setProfile} from "../profile/profileSlice";
 
-const {setProfile} = profileActions
 
-const signUp = createAsyncThunk('auth/SignUp',
+export const signUp = createAsyncThunk('auth/SignUp',
     async (param: { email: string, password: string }, {dispatch, rejectWithValue}) => {
         dispatch(setAuthStatus('loading'))
         try {
             const res = await authApi.signUp(param.email, param.password)
-            dispatch(appActions.setAppSuccess(res.statusText))
+            dispatch(setAppSuccess(res.statusText))
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
@@ -21,26 +20,26 @@ const signUp = createAsyncThunk('auth/SignUp',
         }
     })
 
-const signIn = createAsyncThunk('auth/SignIn',
+export const signIn = createAsyncThunk('auth/SignIn',
     async (param: { email: string, password: string, rememberMe: boolean }, {dispatch, rejectWithValue}) => {
         dispatch(setAuthStatus('loading'))
         try {
             const {data} = await authApi.signIn(param.email, param.password, param.rememberMe)
             dispatch(setProfile(data))
         } catch (e) {
-            dispatch(appActions.setAppError('incorrect email or password'))
+            dispatch(setAppError('incorrect email or password'))
             return rejectWithValue(null)
         } finally {
             dispatch(setAuthStatus('idle'))
         }
     })
 
-const signOut = createAsyncThunk('auth/signOut',
+export const signOut = createAsyncThunk('auth/signOut',
     async (param, {dispatch, rejectWithValue}) => {
         dispatch(setAuthStatus('loading'))
         try {
             const res = await authApi.signOut()
-            dispatch(appActions.setAppSuccess(res.data.info))
+            dispatch(setAppSuccess(res.data.info))
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
@@ -49,7 +48,7 @@ const signOut = createAsyncThunk('auth/signOut',
         }
     })
 
-const forgotPassword = createAsyncThunk('auth/forgotPass',
+export const forgotPassword = createAsyncThunk('auth/forgotPass',
     async (param: { email: string }, {dispatch, rejectWithValue}) => {
         dispatch(setAuthStatus('loading'))
         try {
@@ -68,12 +67,12 @@ const forgotPassword = createAsyncThunk('auth/forgotPass',
         }
     })
 
-const updatePassword = createAsyncThunk('auth/updatePass',
+export const updatePassword = createAsyncThunk('auth/updatePass',
     async (param: { password: string, token: string }, {dispatch, rejectWithValue}) => {
         dispatch(setAuthStatus('loading'))
         try {
             const res = await authApi.setNewPass(param.password, param.token)
-            dispatch(appActions.setAppSuccess(res.data.info))
+            dispatch(setAppSuccess(res.data.info))
         } catch (e) {
             handleNetworkError(e, dispatch)
             return rejectWithValue(null)
@@ -82,15 +81,8 @@ const updatePassword = createAsyncThunk('auth/updatePass',
         }
     })
 
-export const asyncActions = {
-    signUp,
-    signIn,
-    signOut,
-    forgotPassword,
-    updatePassword,
-}
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
     name: 'auth',
     initialState: {
         isLoggedIn: false,
@@ -132,4 +124,5 @@ export const authSlice = createSlice({
     }
 })
 
-const {setIsLoggedIn, setAuthStatus} = authSlice.actions
+export const {setIsLoggedIn, setAuthStatus} = authSlice.actions
+export const authReducer = authSlice.reducer

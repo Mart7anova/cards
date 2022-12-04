@@ -3,16 +3,14 @@ import React, {ChangeEvent} from 'react';
 import noUserPhoto from '../../common/assets/images/no-user-photo.png';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {getUserProfile} from './selectors';
-import {authActions} from '../auth';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan';
-import {profileActions} from './index';
 import s from './Profile.module.scss';
 import {PhotoCamera} from '@mui/icons-material';
 import {uploadFile} from '../../common/utils/uploadFile';
+import {updateProfile} from "./profileSlice";
+import {signOut} from "../auth/authSlice";
 
-const {signOut} = authActions
-const {updateProfile} = profileActions
 
 export const Profile = () => {
     const dispatch = useAppDispatch()

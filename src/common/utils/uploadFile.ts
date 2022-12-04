@@ -1,8 +1,7 @@
 import {AppDispatchType} from '../../app/store';
 import {convertFileToBase64} from './convertFileToBase64';
-import {appActions} from '../../features/app';
+import {setAppError} from "../../features/app/appSlice";
 
-const {setAppError} = appActions
 
 export const uploadFile = (args: {files: FileList | null, dispatch: AppDispatchType, actionForDispatch?: any, setFile?: (file: string) => void}) => {
     const {files, dispatch, actionForDispatch, setFile} = args

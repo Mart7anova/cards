@@ -8,13 +8,11 @@ import {PackModal} from '../../packs/PackModal/PackModal';
 import {DeleteModal} from '../../../common/components/DeleteModel/DeleteModal';
 import {useModal} from '../../../common/hooks/useModal';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {packActions} from '../../packs';
-import {cardActions} from '../index';
 import {PATH} from '../../../common/enums/path';
 import {useNavigate} from 'react-router-dom';
+import {fetchCards} from "../cardsSlice";
+import {deletePack, updatePack} from "../../packs/packsSlice";
 
-const {deletePack, updatePack} = packActions
-const {fetchCards} = cardActions
 
 type PropsType = {
     packId: string

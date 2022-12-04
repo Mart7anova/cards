@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {appReducer} from '../features/app';
-import {profileReducer} from '../features/profile';
-import {authReducer} from '../features/auth';
-import {packReducer} from '../features/packs';
-import { cardReducer } from '../features/cards';
+import {appReducer} from "../features/app/appSlice";
+import {profileReducer} from "../features/profile/profileSlice";
+import {authReducer} from "../features/auth/authSlice";
+import {cardReducer} from "../features/cards/cardsSlice";
+import {packReducer} from "../features/packs/packsSlice";
 
 export const store = configureStore({
     reducer: {

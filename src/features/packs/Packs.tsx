@@ -3,7 +3,6 @@ import React, {useEffect, useRef} from 'react';
 import qs from 'qs';
 import s from './Packs.module.scss'
 import {PacksTable} from './PacksTable/PacksTable';
-import {packActions} from './index';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {
@@ -20,8 +19,8 @@ import {PackModal} from './PackModal/PackModal';
 import {PacksFiltration} from './PackFiltration/PacksFiltration';
 import {NoResult} from '../../common/components/NoResult/NoResult';
 import {useNavigate} from 'react-router-dom';
+import {changeStatusFirstLoading, createNewPack, fetchPacks, setIsMyPacksFilter} from "./packsSlice";
 
-const {fetchPacks, createNewPack, changeStatusFirstLoading, setIsMyPacksFilter} = packActions
 
 export const Packs = () => {
     const dispatch = useAppDispatch()

@@ -4,7 +4,7 @@ import {profileApi} from './profileApi';
 import {StatusType} from '../../common/types/statusType';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 
-const getProfile = createAsyncThunk('profile/setProfile',
+export const getProfile = createAsyncThunk('profile/setProfile',
     async (param, {rejectWithValue, dispatch}) => {
     dispatch(setProfileStatus('loading'))
     try {
@@ -18,7 +18,7 @@ const getProfile = createAsyncThunk('profile/setProfile',
     }
 })
 
-const updateProfile = createAsyncThunk('profile/updateProfile',
+export const updateProfile = createAsyncThunk('profile/updateProfile',
     async (param: { name?: string, avatar?: string }, {dispatch, rejectWithValue}) => {
         dispatch(setProfileStatus('loading'))
     try {
@@ -31,12 +31,7 @@ const updateProfile = createAsyncThunk('profile/updateProfile',
     }
 })
 
-export const asyncActions = {
-    getProfile,
-    updateProfile
-}
-
-export const profileSlice = createSlice({
+const profileSlice = createSlice({
     name: 'app',
     initialState: {
         profile: {} as ProfileResponseType,
@@ -61,4 +56,5 @@ export const profileSlice = createSlice({
     }
 })
 
-const {setProfileStatus} = profileSlice.actions
+export const {setProfile, setProfileStatus} = profileSlice.actions
+export const profileReducer = profileSlice.reducer
