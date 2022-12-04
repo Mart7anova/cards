@@ -1,6 +1,6 @@
 # Cards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://mart7anova.github.io/cards/
 
 This project was developed to teach new skills using a card system. The algorithm is as follows: 
 1. add a new pack,
@@ -11,7 +11,7 @@ The application will show you the cards in random order (well, or almost, the ca
 
 Have fun learning!
 
-![image](https://user-images.githubusercontent.com/98614384/197185747-4a1f52f1-e1eb-4ecf-b709-4dc6e293a5e0.png)
+![gif-app](https://imgur.com/L8yWrek.gif)
 
 ## The following libraries are installed in this project
 
@@ -26,14 +26,23 @@ Have fun learning!
 * Axios
 * Sass
 
+## Available Scripts
+In the project directory, you can run:
+
+`yarn start`
+Launches the application in development mode.
+
+`yarn test`
+Starts a test run in interactive viewing mode.
+
 ## Git commits: <тип>: <описание>
 
-**feat**: - add a new feature to your code
+**feat**: add a new feature to your code
 
-**fix**: - fixes a bug in
+**fix**: fixes a bug in
 
-**refactor**: - code refactoring
+**refactor**: code refactoring
 
-**style**: - changing styles
+**style**: changing styles
 
-**test**: - adding tests, refactoring tests
+**test**: adding tests, refactoring tests
