@@ -132,4 +132,4 @@ export const authSlice = createSlice({
     }
 })
 
-const {setAuthStatus} = authSlice.actions
+const {setIsLoggedIn, setAuthStatus} = authSlice.actions

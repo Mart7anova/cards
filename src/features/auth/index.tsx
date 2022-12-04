@@ -1,6 +1,6 @@
-import {authSlice} from './reducer';
+import {authSlice} from './authSlice';
 import * as authSelectors from './selectors'
-import {asyncActions} from './reducer';
+import {asyncActions} from './authSlice';
 
 const authReducer = authSlice.reducer
 

@@ -1,4 +1,4 @@
-import {asyncActions, profileSlice} from './reducer';
+import {asyncActions, profileSlice} from './profileSlice';
 import * as profileSelectors from './selectors'
 
 const profileReducer = profileSlice.reducer

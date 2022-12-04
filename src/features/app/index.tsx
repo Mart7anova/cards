@@ -1,4 +1,4 @@
-import {asyncActions, appSlice} from './reducer';
+import {asyncActions, appSlice} from './appSlice';
 import * as appSelectors from './selectors'
 import {createAction} from '@reduxjs/toolkit';
 import {infoType} from '../../common/types/infoType';

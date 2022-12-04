@@ -1,5 +1,5 @@
-import {cardsSlice} from './reducer';
-import {asyncActions} from './reducer';
+import {cardsSlice} from './cardsSlice';
+import {asyncActions} from './cardsSlice';
 import * as cardSelectors from './selectors'
 
 const cardReducer = cardsSlice.reducer

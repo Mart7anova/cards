@@ -1,6 +1,6 @@
-import {packsSlice} from './reducer';
+import {packsSlice} from './packsSlice';
 import * as packSelectors from './selectors'
-import {asyncActions} from './reducer';
+import {asyncActions} from './packsSlice';
 
 const packReducer = packsSlice.reducer
 
