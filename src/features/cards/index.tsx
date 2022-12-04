@@ -6,7 +6,7 @@ import {EmptyCardsPage} from './EmptyCardsPage/EmptyCardsPage';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useParams} from 'react-router-dom';
 import {Progress} from '../../common/components/Progress/ProgressBar';
-import {fetchCards} from "./cardsSlice";
+import {fetchCards} from "./slice";
 
 
 export const Cards = () => {

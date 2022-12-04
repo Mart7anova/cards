@@ -5,11 +5,11 @@ import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {getUserProfile} from './selectors';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan';
-import s from './Profile.module.scss';
+import s from './index.module.scss';
 import {PhotoCamera} from '@mui/icons-material';
 import {uploadFile} from '../../common/utils/uploadFile';
-import {updateProfile} from "./profileSlice";
-import {signOut} from "../auth/authSlice";
+import {updateProfile} from "./slice";
+import {signOut} from "../auth/slice";
 
 
 export const Profile = () => {

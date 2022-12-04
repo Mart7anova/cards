@@ -7,9 +7,9 @@ import {SignIn} from '../auth/SignIn/SignIn';
 import { ForgotPassword } from '../auth/ForgotPassword/ForgotPassword';
 import {CheckEmail} from '../auth/CheckEmail/CheckEmail';
 import {CreateNewPassword} from '../auth/CreateNewPassword/CreateNewPassword';
-import {Profile} from '../profile/Profile';
-import {Packs} from '../packs/Packs';
-import {Cards} from '../cards/Cards';
+import {Profile} from '../profile';
+import {Packs} from '../packs';
+import {Cards} from '../cards';
 import {Learn} from '../cards/Learn/Learn';
 
 export const AppRoute = () => {

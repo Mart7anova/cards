@@ -1,4 +1,4 @@
-import {ProfileResponseType} from '../../common/types/profileType';
+import {ProfileResponseType} from '../../common/types/ProfileType';
 import {instance} from '../../api/instance';
 
 

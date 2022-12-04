@@ -10,7 +10,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {PATH} from '../../../common/enums/path';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getIsLoggedIn, getIsSignedUp} from '../selectors';
-import {signUp} from "../authSlice";
+import {signUp} from "../slice";
 
 
 export const SignUp = () => {

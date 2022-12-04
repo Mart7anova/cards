@@ -14,13 +14,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import dayjs from 'dayjs';
-import {PackType} from '../packApi';
+import {PackType} from '../api';
 import {PackIconsGroup} from './packIconsGroup/packIconsGroup';
 import {PATH} from '../../../common/enums/path';
 import {Link} from 'react-router-dom';
 import {addAlternateSrc} from '../../../common/utils/addAlternateSrc';
-import {setCardsSearchParams} from "../../cards/cardsSlice";
-import {setPacksSearchParams} from "../packsSlice";
+import {setCardsSearchParams} from "../../cards/slice";
+import {setPacksSearchParams} from "../slice";
 
 
 type PropsType = {

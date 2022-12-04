@@ -1,7 +1,7 @@
 import {Button, Container} from '@mui/material';
 import React, {useEffect, useRef} from 'react';
 import qs from 'qs';
-import s from './Packs.module.scss'
+import s from './index.module.scss'
 import {PacksTable} from './PacksTable/PacksTable';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
@@ -19,7 +19,7 @@ import {PackModal} from './PackModal/PackModal';
 import {PacksFiltration} from './PackFiltration/PacksFiltration';
 import {NoResult} from '../../common/components/NoResult/NoResult';
 import {useNavigate} from 'react-router-dom';
-import {changeStatusFirstLoading, createNewPack, fetchPacks, setIsMyPacksFilter} from "./packsSlice";
+import {changeStatusFirstLoading, createNewPack, fetchPacks, setIsMyPacksFilter} from "./slice";
 
 
 export const Packs = () => {

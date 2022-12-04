@@ -3,7 +3,7 @@ import {Button} from '@mui/material';
 import {CardModal} from '../../CardModal/CardModal';
 import {useModal} from '../../../../common/hooks/useModal';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {createCard, fetchCards} from "../../cardsSlice";
+import {createCard, fetchCards} from "../../slice";
 
 
 type PropsType = {

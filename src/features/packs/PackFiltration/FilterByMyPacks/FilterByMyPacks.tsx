@@ -4,7 +4,7 @@ import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {getUserProfile} from '../../../profile/selectors';
 import {getSearchParams} from '../../selectors';
-import {setIsMyPacksFilter} from "../../packsSlice";
+import {setIsMyPacksFilter} from "../../slice";
 
 
 type PropsType = {

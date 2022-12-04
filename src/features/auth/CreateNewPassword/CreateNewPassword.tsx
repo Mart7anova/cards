@@ -10,7 +10,7 @@ import s from '../../../common/assets/styles/Form.module.scss';
 import {Button, Paper} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {Password} from '../../../common/components/Password/Password';
-import {updatePassword} from "../authSlice";
+import {updatePassword} from "../slice";
 
 
 export const CreateNewPassword = () => {

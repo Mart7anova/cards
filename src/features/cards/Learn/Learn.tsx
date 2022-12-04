@@ -4,12 +4,12 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getCards, getCardsStatus, getPackName} from '../selectors';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {CardType} from '../cardsApi';
+import {CardType} from '../api';
 import {getRandomCard} from '../../../common/utils/getCardRamdom';
 import s from './Learn.module.scss'
 import {Progress} from '../../../common/components/Progress/ProgressBar';
 import {addAlternateSrc} from '../../../common/utils/addAlternateSrc';
-import {fetchCards, updateCardGrade} from "../cardsSlice";
+import {fetchCards, updateCardGrade} from "../slice";
 
 
 const grades = [

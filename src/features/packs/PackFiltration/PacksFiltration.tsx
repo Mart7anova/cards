@@ -6,7 +6,7 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import {DoubleRangeFilter} from './DoubleRangeFilter/DoubleRangeFilter';
 import s from './PacksFiltration.module.scss'
 import {SearchByPackName} from './SearchByPackName/SearchByPackName';
-import {clearSearchParams} from "../packsSlice";
+import {clearSearchParams} from "../slice";
 
 
 type PropsType={

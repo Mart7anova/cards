@@ -8,7 +8,7 @@ import {getIsLoggedIn, getPasswordIsChanging} from '../selectors';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {PATH} from '../../../common/enums/path';
-import {forgotPassword} from "../authSlice";
+import {forgotPassword} from "../slice";
 
 
 export const ForgotPassword = () => {

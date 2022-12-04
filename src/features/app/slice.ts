@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {profileApi} from '../profile/profileApi';
-import {infoType} from '../../common/types/infoType';
-import {setProfile} from "../profile/profileSlice";
-import {setIsLoggedIn} from "../auth/authSlice";
+import {profileApi} from '../profile/api';
+import {InfoType} from '../../common/types/InfoType';
+import {setProfile} from "../profile/slice";
+import {setIsLoggedIn} from "../auth/slice";
 
 
 export const initializeApp = createAsyncThunk('app/initializeApp', async (param, {dispatch, rejectWithValue}) => {
@@ -19,8 +19,8 @@ const appSlice = createSlice({
     name: 'app',
     initialState: {
         isInitialized: false,
-        error: null as infoType,
-        success: null as infoType,
+        error: null as InfoType,
+        success: null as InfoType,
     },
     reducers: {
         setAppError: (state, action) => {

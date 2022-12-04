@@ -7,7 +7,7 @@ import {getMaxCardsCount, getMinCardsCount, getSearchParams} from '../../selecto
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
-import {setPacksSearchParams} from "../../packsSlice";
+import {setPacksSearchParams} from "../../slice";
 
 
 type PropsType={

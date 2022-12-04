@@ -2,7 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import {TextField} from '@mui/material';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {setPacksSearchParams} from "../../packsSlice";
+import {setPacksSearchParams} from "../../slice";
 
 
 type PropsType={

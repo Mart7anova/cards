@@ -1,14 +1,14 @@
 import React from 'react';
 import {Alert, Snackbar} from '@mui/material';
-import {infoType} from '../../types/infoType';
+import {InfoType} from '../../types/InfoType';
 import {PayloadAction} from '@reduxjs/toolkit';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 
 
 type PropsType = {
-    message: infoType
+    message: InfoType
     type: 'error' | 'success'
-    action: (payload: infoType) => PayloadAction<string | null, string>
+    action: (payload: InfoType) => PayloadAction<string | null, string>
 }
 
 export const InfoMessage = ({message, action, type}: PropsType) => {

@@ -11,7 +11,7 @@ import {PackModal} from '../../PackModal/PackModal';
 import {IconButton, Tooltip} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {PATH} from '../../../../common/enums/path';
-import {deletePack, fetchPacks, updatePack} from "../../packsSlice";
+import {deletePack, fetchPacks, updatePack} from "../../slice";
 
 
 type PropsType = {

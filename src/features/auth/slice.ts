@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {authApi} from './authApi';
+import {authApi} from './api';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
-import {StatusType} from '../../common/types/statusType';
-import {setAppError, setAppSuccess} from "../app/appSlice";
-import {setProfile} from "../profile/profileSlice";
+import {StatusType} from '../../common/types/StatusType';
+import {setAppError, setAppSuccess} from "../app/slice";
+import {setProfile} from "../profile/slice";
 
 
 export const signUp = createAsyncThunk('auth/SignUp',

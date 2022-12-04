@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 import axios, {AxiosError} from 'axios';
-import {setAppError} from "../../features/app/appSlice";
+import {setAppError} from "../../features/app/slice";
 
 
 export const handleNetworkError =  (e: any, dispatch: Dispatch) => {

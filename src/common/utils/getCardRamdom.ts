@@ -1,4 +1,4 @@
-import { CardType } from "../../features/cards/cardsApi";
+import { CardType } from "../../features/cards/api";
 
 
 export const getRandomCard = (cards: CardType[]) => {

@@ -10,7 +10,7 @@ import {PATH} from '../../../common/enums/path';
 import {Link, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getIsLoggedIn} from '../selectors';
-import {signIn} from "../authSlice";
+import {signIn} from "../slice";
 
 
 export const SignIn = () => {

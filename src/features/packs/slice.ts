@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {packApi, PackSearchParamsType, PackType, ResponseCardPacksType} from './packApi';
+import {packApi, PackSearchParamsType, PackType, ResponseCardPacksType} from './api';
 import {handleNetworkError} from '../../common/utils/handleNetworkError';
 import {AppRootStateType} from '../../app/store';
-import {StatusType} from '../../common/types/statusType';
+import {StatusType} from '../../common/types/StatusType';
 
 export const fetchPacks = createAsyncThunk('packs/fetchPacks',
     async (param, {dispatch, getState, rejectWithValue}) => {

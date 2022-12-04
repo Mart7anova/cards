@@ -10,8 +10,8 @@ import {useModal} from '../../../common/hooks/useModal';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {PATH} from '../../../common/enums/path';
 import {useNavigate} from 'react-router-dom';
-import {fetchCards} from "../cardsSlice";
-import {deletePack, updatePack} from "../../packs/packsSlice";
+import {fetchCards} from "../slice";
+import {deletePack, updatePack} from "../../packs/slice";
 
 
 type PropsType = {
