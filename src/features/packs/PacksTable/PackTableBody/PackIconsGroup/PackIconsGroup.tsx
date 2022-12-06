@@ -2,16 +2,16 @@ import React from 'react';
 import SchoolIcon from '@mui/icons-material/School';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import {useAppSelector} from '../../../../common/hooks/useAppSelector';
-import {getUserProfile} from '../../../profile/selectors';
-import {useModal} from '../../../../common/hooks/useModal';
-import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {DeleteModal} from '../../../../common/components/DeleteModel/DeleteModal';
-import {PackModal} from '../../PackModal/PackModal';
+import {useAppSelector} from '../../../../../common/hooks/useAppSelector';
+import {getUserProfile} from '../../../../profile/selectors';
+import {useModal} from '../../../../../common/hooks/useModal';
+import {useAppDispatch} from '../../../../../common/hooks/useAppDispatch';
+import {DeleteModal} from '../../../../../common/components/DeleteModel/DeleteModal';
+import {PackModal} from '../../../PackModal/PackModal';
 import {IconButton, Tooltip} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
-import {PATH} from '../../../../common/enums/path';
-import {deletePack, fetchPacks, updatePack} from "../../slice";
+import {PATH} from '../../../../../common/enums/path';
+import {deletePack, fetchPacks, updatePack} from "../../../slice";
 
 
 type PropsType = {

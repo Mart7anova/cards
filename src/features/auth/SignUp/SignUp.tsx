@@ -55,7 +55,6 @@ export const SignUp = () => {
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
             <Paper className={s.paper}>
                 <FormControl className={s.formItems}>
-
                     <h1 className={s.title}>Sing Up</h1>
 
                     <TextField variant={'standard'}
@@ -69,11 +68,14 @@ export const SignUp = () => {
                     <Password label={'Password'}
                               passError={passError}
                               formikErrorPass={formik.errors.password}
-                              {...formik.getFieldProps('password')}/>
+                              {...formik.getFieldProps('password')}
+                    />
+
                     <Password label={'Confirm password'}
                               passError={confirmPassError}
                               formikErrorPass={formik.errors.confirmPassword}
-                              {...formik.getFieldProps('confirmPassword')}/>
+                              {...formik.getFieldProps('confirmPassword')}
+                    />
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sing Up</Button>
 

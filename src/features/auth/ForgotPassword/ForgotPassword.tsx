@@ -40,7 +40,6 @@ export const ForgotPassword = () => {
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
             <Paper className={s.paper}>
                 <FormControl className={s.formItems}>
-
                     <h1 className={s.title}>Sing In</h1>
 
                     <TextField variant={'standard'}
@@ -50,6 +49,7 @@ export const ForgotPassword = () => {
                                error={!!emailError}
                                {...formik.getFieldProps('email')}
                     />
+
                     <p className={s.helpText}>Enter your email address and we will send you further instructions </p>
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Send Instructions</Button>

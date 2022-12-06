@@ -18,6 +18,7 @@ export const FilterByMyPacks = ({clearFilterHandler, disabled}:PropsType) => {
     const {_id} = useAppSelector(getUserProfile)
     const {user_id} = useAppSelector(getSearchParams)
     const profileId = _id
+    const textStyle = {margin: '0 10px'}
 
     const onIsMyPacksFilterChange = () => {
         dispatch(setIsMyPacksFilter(profileId))
@@ -27,11 +28,11 @@ export const FilterByMyPacks = ({clearFilterHandler, disabled}:PropsType) => {
         <ButtonGroup color="primary" size={'medium'} disabled={disabled}>
             <Button variant={user_id ? 'contained' : 'outlined'}
                     onClick={onIsMyPacksFilterChange}>
-                <h4 style={{margin: '0 10px'}}>My</h4>
+                <h4 style={textStyle}>My</h4>
             </Button>
             <Button variant={!user_id ? 'contained' : 'outlined'}
                     onClick={clearFilterHandler}>
-                <h4 style={{margin: '0 10px'}}>All</h4>
+                <h4 style={textStyle}>All</h4>
             </Button>
         </ButtonGroup>
     );

@@ -1,7 +1,6 @@
-import {Button, Container} from '@mui/material';
+import {Container} from '@mui/material';
 import React, {useEffect, useRef} from 'react';
 import qs from 'qs';
-import s from './index.module.scss'
 import {PacksTable} from './PacksTable/PacksTable';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
@@ -13,19 +12,16 @@ import {
     getPagePacks,
     getSearchParams
 } from './selectors';
-import {SkeletonTable} from '../../common/components/SkeletonTable/SkeletonTable';
-import {useModal} from '../../common/hooks/useModal';
-import {PackModal} from './PackModal/PackModal';
 import {PacksFiltration} from './PackFiltration/PacksFiltration';
-import {NoResult} from '../../common/components/NoResult/NoResult';
 import {useNavigate} from 'react-router-dom';
-import {changeStatusFirstLoading, createNewPack, fetchPacks, setIsMyPacksFilter} from "./slice";
+import {changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter} from "./slice";
+import {PackTitle} from "./PackTitle/PackTitle";
+import {NoItems} from "../../common/components/NoItems/NoItems";
 
 
 export const Packs = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-
 
     const isSearch = useRef(false)
     const isMounted = useRef(false)
@@ -35,18 +31,10 @@ export const Packs = () => {
     const pageCountPacks = useAppSelector(getPageCountPacks)
     const cardPacksTotalCount = useAppSelector(getCardPacksTotalCount)
     const packsStatus = useAppSelector(getPacksStatus)
+    const {page, pageCount, sortPacks, packName, max, min, user_id,} = useAppSelector(getSearchParams)
 
-    const disabled = packsStatus === 'loading'
-
-    const {page, pageCount, sortPacks, packName, max, min, user_id, } = useAppSelector(getSearchParams)
-
-    const {open, openModal, closeModal} = useModal();
-
-    const addNewPackHandler = async (name: string, isPrivate: boolean, deckCover: string) => {
-        await dispatch(createNewPack({name, isPrivate, deckCover}))
-        await dispatch(fetchPacks())
-        closeModal()
-    }
+    const isLoadingPacks = packsStatus === 'loading'
+    const havePacks = !!cardPacks.length
 
     useEffect(() => {
         if (!isSearch.current) {
@@ -82,24 +70,17 @@ export const Packs = () => {
 
     return (
         <Container fixed>
-            <div className={s.title}>
-                <h1>Packs list</h1>
-                <Button variant={'contained'} onClick={openModal} disabled={disabled}>
-                    <h4>Add new pack</h4>
-                </Button>
-                <PackModal title={'Add new pack'} open={open} closeModal={closeModal} sentChanges={addNewPackHandler}/>
-            </div>
+            <PackTitle disabled={isLoadingPacks}/>
 
-            <PacksFiltration disabled={disabled}/>
+            <PacksFiltration disabled={isLoadingPacks}/>
 
             {
-                cardPacks.length ? <PacksTable page={pagePacks}
-                                               rowsPerPage={pageCountPacks}
-                                               count={cardPacksTotalCount}
-                                               packs={cardPacks}/>
-                    : packsStatus ==='loading' ? <SkeletonTable/> : <NoResult/>
+                havePacks
+                    ? <PacksTable page={pagePacks}
+                                  rowsPerPage={pageCountPacks}
+                                  count={cardPacksTotalCount}/>
+                    : <NoItems isLoading={isLoadingPacks}/>
             }
-
         </Container>
     );
 };

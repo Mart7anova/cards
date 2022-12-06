@@ -11,7 +11,6 @@ import {uploadFile} from '../../common/utils/uploadFile';
 import {updateProfile} from "./slice";
 import {signOut} from "../auth/slice";
 
-
 export const Profile = () => {
     const dispatch = useAppDispatch()
     const {name, avatar, email} = useAppSelector(getUserProfile)
@@ -31,8 +30,8 @@ export const Profile = () => {
     return (
         <div className={s.mainContainer}>
             <Paper className={s.paper}>
-
                 <h1>Personal Information</h1>
+
                 <Badge overlap={'circular'}
                        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
                        badgeContent={
@@ -42,14 +41,17 @@ export const Profile = () => {
                                       onChange={uploadHandler}
                                       style={{display: 'none'}}
                                />
+
                                <IconButton color="primary" component="span">
                                    <PhotoCamera/>
                                </IconButton>
                            </label>
-                       }>
-                    <Avatar alt={name} src={avatar ? avatar : noUserPhoto} className={s.img}/>
+                       }
+                ><Avatar alt={name} src={avatar ? avatar : noUserPhoto} className={s.img}/>
                 </Badge>
+
                 <EditableSpan value={name} onChange={onNameChange}/>
+
                 <p className={s.email}> {email} </p>
 
                 <Button variant={'contained'} sx={{m: 2}} onClick={onClickHandler}>Log out</Button>

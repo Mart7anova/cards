@@ -24,14 +24,15 @@ export const CheckEmail = () => {
         <div className={s.formContainer}>
             <Paper className={s.paper}>
                 <FormControl className={s.formItems}>
-
                     <h1 className={s.title}>Sing In</h1>
 
                     <div className={s.flexContainer}>
                         <Avatar alt="check email" src={checkEmail} className={s.img}/>
                     </div>
 
-                    <p className={s.helpText} style={{textAlign: 'center'}}> We’ve sent an Email with instructions to {email} </p>
+                    <p className={s.helpText} style={{textAlign: 'center'}}>
+                        We’ve sent an Email with instructions to {email}
+                    </p>
 
                     <Button variant={'contained'} sx={{m: 2}} onClick={onClickHandler}>Back to login</Button>
                 </FormControl>

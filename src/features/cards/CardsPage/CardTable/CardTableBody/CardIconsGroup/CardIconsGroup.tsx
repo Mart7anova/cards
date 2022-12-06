@@ -2,11 +2,11 @@ import React from 'react';
 import {IconButton, Tooltip} from '@mui/material';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import {useModal} from '../../../../../common/hooks/useModal';
-import {CardModal} from '../../../CardModal/CardModal';
-import {DeleteModal} from '../../../../../common/components/DeleteModel/DeleteModal';
-import {useAppDispatch} from '../../../../../common/hooks/useAppDispatch';
-import {deleteCard, fetchCards, updateCard} from "../../../slice";
+import {useModal} from '../../../../../../common/hooks/useModal';
+import {CardModal} from '../../../../CardModal/CardModal';
+import {DeleteModal} from '../../../../../../common/components/DeleteModel/DeleteModal';
+import {useAppDispatch} from '../../../../../../common/hooks/useAppDispatch';
+import {deleteCard, fetchCards, updateCard} from "../../../../slice";
 
 
 type PropsType={

@@ -16,7 +16,6 @@ import {signIn} from "../slice";
 export const SignIn = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-
     const isLoggedIn = useAppSelector(getIsLoggedIn)
 
     const formik = useFormik({
@@ -28,9 +27,9 @@ export const SignIn = () => {
         validate: values => {
             return validateValuesForForm(values)
         },
-        onSubmit: (values, {resetForm} )=> {
+        onSubmit: (values, {resetForm}) => {
             dispatch(signIn(values))
-            resetForm({values: { ...values, password: ''}})
+            resetForm({values: {...values, password: ''}})
         },
     });
 
@@ -45,7 +44,6 @@ export const SignIn = () => {
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
             <Paper className={s.paper}>
                 <FormControl className={s.formItems}>
-
                     <h1 className={s.title}>Sing In</h1>
 
                     <TextField variant={'standard'}
@@ -58,14 +56,18 @@ export const SignIn = () => {
 
                     <Password label={'Password'}
                               passError={passError}
-                              formikErrorPass={formik.errors.password} {...formik.getFieldProps('password')}/>
+                              formikErrorPass={formik.errors.password}
+                              {...formik.getFieldProps('password')}
+                    />
 
                     <FormControlLabel label={'Remember me'}
                                       sx={{m: 1}}
-                                      control={<Checkbox{...formik.getFieldProps('rememberMe')}/>}
+                                      control={
+                                          <Checkbox {...formik.getFieldProps('rememberMe')}/>
+                                      }
                     />
 
-                    <Link to={PATH.FORGOT_PASSWORD} className={`${s.link} ${s.rightLink}`}>Forgot Password?</Link>
+                    <Link to={PATH.FORGOT_PASSWORD} className={`${s.link} ${s.forgotLink}`}>Forgot Password?</Link>
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sign In</Button>
 

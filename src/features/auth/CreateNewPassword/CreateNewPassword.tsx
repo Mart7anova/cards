@@ -17,7 +17,6 @@ export const CreateNewPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const {token} = useParams()
-
     const isLoggedIn = useAppSelector(getIsLoggedIn)
     const isSignedUp = useAppSelector(getIsSignedUp)
 
@@ -48,21 +47,21 @@ export const CreateNewPassword = () => {
         <form onSubmit={formik.handleSubmit} className={s.formContainer}>
             <Paper className={s.paper}>
                 <FormControl className={s.formItems}>
-
                     <h1 className={s.title}>Create new password</h1>
 
                     <Password label={'Password'}
                               passError={passError}
                               formikErrorPass={formik.errors.password}
-                              {...formik.getFieldProps('password')}/>
+                              {...formik.getFieldProps('password')}
+                    />
+
                     <Password label={'Confirm password'}
                               passError={confirmPassError}
                               formikErrorPass={formik.errors.confirmPassword}
-                              {...formik.getFieldProps('confirmPassword')}/>
-
+                              {...formik.getFieldProps('confirmPassword')}
+                    />
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Create new password</Button>
-
                 </FormControl>
             </Paper>
         </form>

@@ -22,7 +22,6 @@ export function DoubleRangeFilter({disabled}:PropsType) {
     const {min, max} = useAppSelector(getSearchParams)
 
     const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
-
     const debouncedValue = useDebounce<number[]>(value, 1000)
 
     const onChangeFirstRange = (newValue: number) => {
@@ -52,6 +51,7 @@ export function DoubleRangeFilter({disabled}:PropsType) {
     return (
         <div className={s.mainContainer}>
             <InputForRangeFilter currentValue={value[0]} setCurrentValue={onChangeFirstRange} disabled={disabled}/>
+
             <Slider
                 value={value}
                 onChange={onChangeDoubleRange}
@@ -60,6 +60,7 @@ export function DoubleRangeFilter({disabled}:PropsType) {
                 max={maxCardsCount}
                 disabled={disabled}
             />
+
             <InputForRangeFilter currentValue={value[1]} setCurrentValue={onChangeSecondRange} disabled={disabled}/>
         </div>
     );

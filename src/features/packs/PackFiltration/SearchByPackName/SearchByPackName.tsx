@@ -5,7 +5,7 @@ import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {setPacksSearchParams} from "../../slice";
 
 
-type PropsType={
+type PropsType = {
     disabled: boolean
 }
 

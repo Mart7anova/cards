@@ -1,4 +1,4 @@
-import {instance, instanceForHeroku} from '../../api/instance';
+import {instance} from '../../api/instance';
 import {ProfileResponseType} from '../../common/types/ProfileType';
 
 
@@ -17,10 +17,10 @@ export const authApi = {
         return instance.delete<ResponseLogout>('auth/me')
     },
     forgotPass(data: forgotPasswordDataType) {
-        return instanceForHeroku.post<ResponseForgotPassword>('auth/forgot', data)
+        return instance.post<ResponseForgotPassword>('auth/forgot', data)
     },
     setNewPass(password: string, resetPasswordToken: string) {
-        return instanceForHeroku.post<{ info: string }>('auth/set-new-password', {
+        return instance.post<{ info: string }>('auth/set-new-password', {
             password,
             resetPasswordToken
         })

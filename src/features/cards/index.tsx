@@ -5,8 +5,8 @@ import {CardsPage} from './CardsPage/CardsPage';
 import {EmptyCardsPage} from './EmptyCardsPage/EmptyCardsPage';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useParams} from 'react-router-dom';
-import {Progress} from '../../common/components/Progress/ProgressBar';
 import {fetchCards} from "./slice";
+import {SkeletonCardPage} from "./SkeletonCardPage/SkeletonCardPage";
 
 
 export const Cards = () => {
@@ -18,16 +18,24 @@ export const Cards = () => {
     const cardsStatus = useAppSelector(getCardsStatus)
     const {sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max} = useAppSelector(getSearchParamsCards)
 
+    const haveCards = cardsTotalCount > 0 || isSearching
+    const isLoadingCards = !isSearching && cardsStatus==='loading'
+
     useEffect(() => {
         dispatch(fetchCards({packId}))
     }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId])
 
-    if(!isSearching && cardsStatus==='loading'){
-        return <Progress />
+    if(isLoadingCards){
+        return <SkeletonCardPage />
     }
 
     return (
         <>
-            {cardsTotalCount > 0 || isSearching ? <CardsPage setIsSearching={setIsSearching}/> : <EmptyCardsPage/>}
-        </>);
+            {
+                haveCards
+                    ? <CardsPage setIsSearching={setIsSearching}/>
+                    : <EmptyCardsPage/>
+            }
+        </>
+    );
 };

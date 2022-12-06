@@ -9,14 +9,14 @@ import {SearchByPackName} from './SearchByPackName/SearchByPackName';
 import {clearSearchParams} from "../slice";
 
 
-type PropsType={
+type PropsType = {
     disabled: boolean
 }
 
 export const PacksFiltration = ({disabled}: PropsType) => {
     const dispatch = useAppDispatch()
 
-    const clearFiltersHandle = () => {
+    const clearFilters = () => {
         dispatch(clearSearchParams())
     }
 
@@ -28,7 +28,7 @@ export const PacksFiltration = ({disabled}: PropsType) => {
             </div>
             <div>
                 <h3 className={s.showTitle}>Show pack cards</h3>
-                <FilterByMyPacks clearFilterHandler={clearFiltersHandle} disabled={disabled}/>
+                <FilterByMyPacks clearFilterHandler={clearFilters} disabled={disabled}/>
             </div>
             <div>
                 <h3 className={s.numberTitle}>Number of cards</h3>
@@ -36,7 +36,7 @@ export const PacksFiltration = ({disabled}: PropsType) => {
             </div>
             <div>
                 <Tooltip title="clean filter">
-                    <Button variant={'contained'} onClick={clearFiltersHandle} disabled={disabled}>
+                    <Button variant={'contained'} onClick={clearFilters} disabled={disabled}>
                         <FilterAltOffIcon/>
                     </Button>
                 </Tooltip>

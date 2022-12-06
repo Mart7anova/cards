@@ -27,7 +27,6 @@ export const NavBar = () => {
                     {
                         isLoggedIn
                             ? <ProfileLink/>
-
                             : <Button color="inherit" size={'large'} onClick={onClickHandler}>
                                 <h2>Sign in</h2>
                             </Button>

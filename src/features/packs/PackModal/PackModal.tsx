@@ -48,8 +48,9 @@ export const PackModal = ({title, deckCover, packName, open, closeModal, sentCha
         <BasicModal open={open} closeModal={closeModal} title={title}>
             <div className={s.infoText}>
                 Name:
-                {error && <span className={s.errorText}> {error}</span>}
+                {error && <span className={s.errorText}>{error}</span>}
             </div>
+
             <TextField variant={'standard'}
                        value={name}
                        onChange={onNameChange}

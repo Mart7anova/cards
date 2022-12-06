@@ -27,6 +27,7 @@ export const SearchByCardName = ({setIsSearching}:PropsType) => {
     return (
         <>
             <h3>Search by question name</h3>
+
             <TextField placeholder="Provide your text"
                        size={'small'}
                        value={searchValue}
