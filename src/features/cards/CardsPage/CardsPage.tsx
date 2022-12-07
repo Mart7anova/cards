@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from '@mui/material';
-import s from './CardsPage.module.scss'
+import style from './CardsPage.module.scss'
 import {SearchByCardName} from './SearchByCardName/SearchByCardName';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {getCards, getCardsStatus} from '../selectors';
@@ -17,12 +17,12 @@ export const CardsPage = ({setIsSearching}: PropsType) => {
     const cards = useAppSelector(getCards)
     const cardsStatus = useAppSelector(getCardsStatus)
 
-    const isLoadingCards = cardsStatus === 'loading'
+    const isCardsLoading = cardsStatus === 'loading'
     const haveCards = !!cards.length
 
     return (
         <Container fixed>
-            <div className={s.titleContainer}>
+            <div className={style.titleContainer}>
                 <CardTitle/>
                 <CardButton/>
             </div>
@@ -32,7 +32,7 @@ export const CardsPage = ({setIsSearching}: PropsType) => {
             {
                 haveCards
                     ? <CardTable setIsSearching={setIsSearching}/>
-                    : <NoItems isLoading={isLoadingCards}/>
+                    : <NoItems isLoading={isCardsLoading}/>
             }
         </Container>
     );

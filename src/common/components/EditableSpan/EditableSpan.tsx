@@ -14,7 +14,7 @@ export const EditableSpan = (props: PropsType) => {
     const [isEditingMode, setIsEditingMode] = useState(false)
     const [error, setError] = useState('')
 
-    const onValueChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const valueChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setValue(e.currentTarget.value)
     }
 
@@ -45,7 +45,7 @@ export const EditableSpan = (props: PropsType) => {
                                  onBlur={deactivatedEditMode}
                                  onKeyUp={e => e.key === 'Enter' && deactivatedEditMode()}
                                  autoFocus
-                                 onChange={onValueChange}
+                                 onChange={valueChangeHandler}
                                  className={props.className}
                                  error={!!error}
                                  variant={'standard'}

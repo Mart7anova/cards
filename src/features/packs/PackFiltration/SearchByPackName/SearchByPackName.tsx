@@ -15,7 +15,7 @@ export const SearchByPackName = ({disabled}: PropsType) => {
     const [searchValue, setSearchValue] = useState('')
     const debouncedValue = useDebounce<string>(searchValue, 500)
 
-    const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchValueChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.currentTarget.value)
     }
 
@@ -27,7 +27,7 @@ export const SearchByPackName = ({disabled}: PropsType) => {
         <TextField placeholder="Provide your text"
                    size={'small'}
                    value={searchValue}
-                   onChange={onSearchChange}
+                   onChange={searchValueChangeHandler}
                    style={{margin: '0'}}
                    disabled={disabled}
         />

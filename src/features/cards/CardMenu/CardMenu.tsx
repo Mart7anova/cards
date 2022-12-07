@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
 import {IconButton, Tooltip} from '@mui/material';
-import s from './CardMenu.module.scss';
+import style from './CardMenu.module.scss';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {Menu} from "./Menu";
 
 export const CardMenu = () => {
-    const [openMenu, setOpenMenu] = useState(false)
+    const [isMenuOpened, setIsMenuOpened] = useState(false)
 
     const onClickHandler = () => {
-        setOpenMenu(!openMenu)
+        setIsMenuOpened(!isMenuOpened)
     }
 
     return (
         <>
-            <Tooltip title="open menu" className={s.iconMenu} onClick={onClickHandler}>
+            <Tooltip title="open menu" className={style.iconMenu} onClick={onClickHandler}>
                 <IconButton>
                     <MoreVertIcon/>
                 </IconButton>
             </Tooltip>
             {
-                openMenu && <Menu closeMenu={()=>setOpenMenu(false)}/>
+                isMenuOpened && <Menu closeMenu={()=>setIsMenuOpened(false)}/>
             }
         </>
     );

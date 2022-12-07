@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./PackTitle.module.scss";
+import style from "./PackTitle.module.scss";
 import {Button} from "@mui/material";
 import {PackModal} from "../PackModal/PackModal";
 import {useModal} from "../../../common/hooks/useModal";
@@ -22,7 +22,7 @@ export const PackTitle = ({disabled}: PropsType) => {
     }
 
     return (
-        <div className={s.title}>
+        <div className={style.title}>
             <h1>Packs list</h1>
 
             <Button variant={'contained'} onClick={openModal} disabled={disabled}>

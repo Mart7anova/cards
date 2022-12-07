@@ -5,7 +5,6 @@ import {useModal} from '../../../../../common/hooks/useModal';
 import {useAppDispatch} from '../../../../../common/hooks/useAppDispatch';
 import {createCard, fetchCards} from "../../../slice";
 
-
 type PropsType = {
     packId: string
     disabled: boolean

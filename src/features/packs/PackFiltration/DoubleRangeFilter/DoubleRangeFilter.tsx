@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import Slider from '@mui/material/Slider';
-import s from './DoubleRangeFilter.module.scss'
+import style from './DoubleRangeFilter.module.scss'
 import {InputForRangeFilter} from './InputForRangeFilter';
 import {getMaxCardsCount, getMinCardsCount, getSearchParams} from '../../selectors';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
@@ -24,15 +24,15 @@ export function DoubleRangeFilter({disabled}:PropsType) {
     const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
     const debouncedValue = useDebounce<number[]>(value, 1000)
 
-    const onChangeFirstRange = (newValue: number) => {
+    const firstRangeChangeHandler = (newValue: number) => {
         setValue([newValue, value[1]])
     }
 
-    const onChangeDoubleRange = (event: Event, newValue: number | number[]) => {
+    const doubleRangeChangeHandler = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[]);
     };
 
-    const onChangeSecondRange = (newValue: number) => {
+    const secondRangeChangeHandler = (newValue: number) => {
         setValue([value[0], newValue])
     }
 
@@ -49,19 +49,25 @@ export function DoubleRangeFilter({disabled}:PropsType) {
     }, [min, max, minCardsCount, maxCardsCount])
 
     return (
-        <div className={s.mainContainer}>
-            <InputForRangeFilter currentValue={value[0]} setCurrentValue={onChangeFirstRange} disabled={disabled}/>
+        <div className={style.mainContainer}>
+            <InputForRangeFilter currentValue={value[0]}
+                                 setCurrentValue={firstRangeChangeHandler}
+                                 disabled={disabled}
+            />
 
             <Slider
                 value={value}
-                onChange={onChangeDoubleRange}
+                onChange={doubleRangeChangeHandler}
                 valueLabelDisplay="auto"
                 min={minCardsCount}
                 max={maxCardsCount}
                 disabled={disabled}
             />
 
-            <InputForRangeFilter currentValue={value[1]} setCurrentValue={onChangeSecondRange} disabled={disabled}/>
+            <InputForRangeFilter currentValue={value[1]}
+                                 setCurrentValue={secondRangeChangeHandler}
+                                 disabled={disabled}
+            />
         </div>
     );
 }

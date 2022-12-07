@@ -21,13 +21,18 @@ export const Password = ({label, passError,formikErrorPass, ...props}:PropsType)
             <InputLabel color={passError ? 'error' : 'primary'}>
                 {passError ? formikErrorPass : label}
             </InputLabel>
+
             <Input type={showPass ? 'text' : 'password'}
                    error={!!passError}
                    {...props}
                    endAdornment={
                        <InputAdornment position={'end'}>
                            <IconButton onClick={() => setShowPass(!showPass)}>
-                               {showPass ? <VisibilityOff/> : <Visibility/>}
+                               {
+                                   showPass
+                                       ? <VisibilityOff/>
+                                       : <Visibility/>
+                               }
                            </IconButton>
                        </InputAdornment>
                    }

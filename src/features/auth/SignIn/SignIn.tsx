@@ -4,7 +4,7 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import FormControl from '@mui/material/FormControl';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {Button, Checkbox, FormControlLabel, Paper, TextField} from '@mui/material';
-import s from '../../../common/assets/styles/Form.module.scss'
+import style from '../../../common/assets/styles/Form.module.scss'
 import {Password} from '../../../common/components/Password/Password';
 import {PATH} from '../../../common/enums/path';
 import {Link, useNavigate} from 'react-router-dom';
@@ -16,6 +16,7 @@ import {signIn} from "../slice";
 export const SignIn = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+
     const isLoggedIn = useAppSelector(getIsLoggedIn)
 
     const formik = useFormik({
@@ -41,10 +42,10 @@ export const SignIn = () => {
     }, [isLoggedIn])
 
     return (
-        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
-            <Paper className={s.paper}>
-                <FormControl className={s.formItems}>
-                    <h1 className={s.title}>Sing In</h1>
+        <form onSubmit={formik.handleSubmit} className={style.formContainer}>
+            <Paper className={style.paper}>
+                <FormControl className={style.formItems}>
+                    <h1 className={style.title}>Sing In</h1>
 
                     <TextField variant={'standard'}
                                sx={{m: 2}}
@@ -67,13 +68,13 @@ export const SignIn = () => {
                                       }
                     />
 
-                    <Link to={PATH.FORGOT_PASSWORD} className={`${s.link} ${s.forgotLink}`}>Forgot Password?</Link>
+                    <Link to={PATH.FORGOT_PASSWORD} className={`${style.link} ${style.forgotLink}`}>Forgot Password?</Link>
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sign In</Button>
 
-                    <p className={s.infoText}>Do not have account?</p>
+                    <p className={style.infoText}>Do not have account?</p>
 
-                    <Link to={PATH.SIGN_UP} className={s.link}>Sign Up</Link>
+                    <Link to={PATH.SIGN_UP} className={style.link}>Sign Up</Link>
                 </FormControl>
             </Paper>
         </form>

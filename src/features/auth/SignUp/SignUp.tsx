@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
-import s from '../../../common/assets/styles/Form.module.scss'
+import style from '../../../common/assets/styles/Form.module.scss'
 import {Button, Paper, TextField} from '@mui/material';
 import {Password} from '../../../common/components/Password/Password';
 import {Link, useNavigate} from 'react-router-dom';
@@ -16,6 +16,7 @@ import {signUp} from "../slice";
 export const SignUp = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+
     const isLoggedIn = useAppSelector(getIsLoggedIn)
     const isSignedUp = useAppSelector(getIsSignedUp)
 
@@ -52,10 +53,10 @@ export const SignUp = () => {
     }, [isLoggedIn, isSignedUp])
 
     return (
-        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
-            <Paper className={s.paper}>
-                <FormControl className={s.formItems}>
-                    <h1 className={s.title}>Sing Up</h1>
+        <form onSubmit={formik.handleSubmit} className={style.formContainer}>
+            <Paper className={style.paper}>
+                <FormControl className={style.formItems}>
+                    <h1 className={style.title}>Sing Up</h1>
 
                     <TextField variant={'standard'}
                                sx={{m: 2, mt: 5}}
@@ -79,9 +80,9 @@ export const SignUp = () => {
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Sing Up</Button>
 
-                    <p className={s.infoText}>Already have an account?</p>
+                    <p className={style.infoText}>Already have an account?</p>
 
-                    <Link to={PATH.SIGN_IN} className={s.link}>Sign In</Link>
+                    <Link to={PATH.SIGN_IN} className={style.link}>Sign In</Link>
                 </FormControl>
             </Paper>
         </form>

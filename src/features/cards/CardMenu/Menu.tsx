@@ -1,6 +1,6 @@
 import React from 'react';
 import {MenuItem, MenuList, Paper} from '@mui/material';
-import s from './CardMenu.module.scss';
+import style from './CardMenu.module.scss';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {PackModal} from "../../packs/PackModal/PackModal";
@@ -29,14 +29,14 @@ export const Menu = ({closeMenu}: PropsType) => {
     const packName = useAppSelector(getPackName)
     const packDeckCover = useAppSelector(getPackDeckCover)
 
-    const updatePackHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
+    const packUpdateHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
         closeMenu()
         await dispatch(updatePack({id: packId, name: packName, isPrivate, deckCover}))
         await dispatch(fetchCards({packId}))
         closeEditModal()
     }
 
-    const deletePackHandle = async () => {
+    const packDeleteHandle = async () => {
         await dispatch(deletePack({id: packId}))
         closeModal()
         navigate(PATH.PACKS)
@@ -44,15 +44,16 @@ export const Menu = ({closeMenu}: PropsType) => {
 
     return (
         <>
-            <Paper className={s.menu}>
+            <Paper className={style.menu}>
                 <MenuList>
                     <MenuItem onClick={openEditModal}>
                         <BorderColorIcon sx={{height: 20}}/>
-                        <p className={s.menuText}>Edit</p>
+                        <p className={style.menuText}>Edit</p>
                     </MenuItem>
+
                     <MenuItem onClick={openModal}>
                         <DeleteForeverIcon sx={{height: 22}}/>
-                        <p className={s.menuText}>Delete</p>
+                        <p className={style.menuText}>Delete</p>
                     </MenuItem>
                 </MenuList>
             </Paper>
@@ -62,12 +63,12 @@ export const Menu = ({closeMenu}: PropsType) => {
                        open={openEdit}
                        closeModal={closeEditModal}
                        packName={packName}
-                       sentChanges={updatePackHandle}
+                       sentChanges={packUpdateHandle}
             />
 
             <DeleteModal title={'Delete card'}
                          isPack
-                         deleteItem={deletePackHandle}
+                         deleteItem={packDeleteHandle}
                          itemName={packName}
                          open={open}
                          closeModal={closeModal}

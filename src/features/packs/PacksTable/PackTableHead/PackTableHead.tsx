@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Checkbox, TableCell, TableHead, TableRow} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import {setCardsSearchParams} from "../../../cards/slice";
 import {useAppDispatch} from "../../../../common/hooks/useAppDispatch";
+import {setPacksSearchParams} from "../../slice";
+import {useToggle} from "../../../../common/hooks/useToggle";
 
 const headers = [
     {name: 'Name', sortName: 'name'},
@@ -14,17 +15,20 @@ const headers = [
 
 export const PackTableHead = () => {
     const dispatch = useAppDispatch()
-    const [isSortHeader, setIsSortHeader] = useState(true)
 
-    const onChangeSortPacks = (sortHeader: boolean, sortName: string) => {
-        let sortValue
+    const [isHeaderSorted, toggleHeaderSort] = useToggle(true)
 
-        if (sortHeader) {
-            sortValue = '1' + sortName
-        } else {
-            sortValue = '0' + sortName
+    const packsSortChangeHandler = (isHeaderSorted: boolean, sortName: string) => {
+        return () => {
+            let sortValue
+
+            if (isHeaderSorted) {
+                sortValue = '1' + sortName
+            } else {
+                sortValue = '0' + sortName
+            }
+            dispatch(setPacksSearchParams({sortPacks: sortValue}))
         }
-        dispatch(setCardsSearchParams({sortCards: sortValue}))
     }
 
     return (
@@ -38,8 +42,8 @@ export const PackTableHead = () => {
                             <Checkbox icon={<ExpandMoreIcon/>}
                                       checkedIcon={<ExpandLessIcon/>}
                                       color={'default'}
-                                      onClick={() => setIsSortHeader(!isSortHeader)}
-                                      onChange={() => onChangeSortPacks(isSortHeader, header.sortName)}
+                                      onClick={toggleHeaderSort}
+                                      onChange={packsSortChangeHandler(isHeaderSorted, header.sortName)}
                             />
                         </TableCell>
                     ))

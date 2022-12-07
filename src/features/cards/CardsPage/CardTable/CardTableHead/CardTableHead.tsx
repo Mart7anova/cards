@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Checkbox, TableCell, TableHead, TableRow} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -7,6 +7,7 @@ import {useAppDispatch} from "../../../../../common/hooks/useAppDispatch";
 import {useAppSelector} from "../../../../../common/hooks/useAppSelector";
 import {getPackUserId} from "../../../selectors";
 import {getUserProfile} from "../../../../profile/selectors";
+import {useToggle} from "../../../../../common/hooks/useToggle";
 
 const headers = [
     {name: 'Question', sortName: 'question'},
@@ -18,22 +19,24 @@ const headers = [
 
 export const CardTableHead = () => {
     const dispatch = useAppDispatch()
-    const [isSortHeader, setIsSortHeader] = useState(true)
+    const [isHeaderSorted, toggleHeaderSort] = useToggle(true)
 
     const packUserId = useAppSelector(getPackUserId)
     const {_id} = useAppSelector(getUserProfile)
 
     const isOwner = packUserId === _id
 
-    const onChangeSortPacks = (sortHeader: boolean, sortName: string) => {
-        let sortValue
+    const sortPacksChangeHandler = (isHeaderSorted: boolean, sortName: string) => {
+        return () => {
+            let sortValue
 
-        if (sortHeader) {
-            sortValue = '1' + sortName
-        } else {
-            sortValue = '0' + sortName
+            if (isHeaderSorted) {
+                sortValue = '1' + sortName
+            } else {
+                sortValue = '0' + sortName
+            }
+            dispatch(setCardsSearchParams({sortCards: sortValue}))
         }
-        dispatch(setCardsSearchParams({sortCards: sortValue}))
     }
     return (
         <TableHead>
@@ -45,8 +48,8 @@ export const CardTableHead = () => {
                             <Checkbox icon={<ExpandMoreIcon/>}
                                       checkedIcon={<ExpandLessIcon/>}
                                       color={'default'}
-                                      onClick={() => setIsSortHeader(!isSortHeader)}
-                                      onChange={() => onChangeSortPacks(isSortHeader, header.sortName)}
+                                      onClick={toggleHeaderSort}
+                                      onChange={sortPacksChangeHandler(isHeaderSorted, header.sortName)}
                             />
                         </TableCell>
                     ))

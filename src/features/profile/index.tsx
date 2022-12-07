@@ -5,7 +5,7 @@ import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {getUserProfile} from './selectors';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan';
-import s from './index.module.scss';
+import style from './index.module.scss';
 import {PhotoCamera} from '@mui/icons-material';
 import {uploadFile} from '../../common/utils/uploadFile';
 import {updateProfile} from "./slice";
@@ -15,21 +15,21 @@ export const Profile = () => {
     const dispatch = useAppDispatch()
     const {name, avatar, email} = useAppSelector(getUserProfile)
 
-    const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const fileUploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         uploadFile({files: e.target.files, dispatch, actionForDispatch: updateProfile})
     }
 
-    const onNameChange = (name: string) => {
+    const nameChangeHandler = (name: string) => {
         dispatch(updateProfile({name}))
     }
 
-    const onClickHandler = () => {
+    const logOutHandler = () => {
         dispatch(signOut())
     }
 
     return (
-        <div className={s.mainContainer}>
-            <Paper className={s.paper}>
+        <div className={style.mainContainer}>
+            <Paper className={style.paper}>
                 <h1>Personal Information</h1>
 
                 <Badge overlap={'circular'}
@@ -38,7 +38,7 @@ export const Profile = () => {
                            <label>
                                <input accept={'.png, .jpg, .jpeg'}
                                       type="file"
-                                      onChange={uploadHandler}
+                                      onChange={fileUploadHandler}
                                       style={{display: 'none'}}
                                />
 
@@ -47,14 +47,14 @@ export const Profile = () => {
                                </IconButton>
                            </label>
                        }
-                ><Avatar alt={name} src={avatar ? avatar : noUserPhoto} className={s.img}/>
+                ><Avatar alt={name} src={avatar ? avatar : noUserPhoto} className={style.img}/>
                 </Badge>
 
-                <EditableSpan value={name} onChange={onNameChange}/>
+                <EditableSpan value={name} onChange={nameChangeHandler}/>
 
-                <p className={s.email}> {email} </p>
+                <p className={style.email}> {email} </p>
 
-                <Button variant={'contained'} sx={{m: 2}} onClick={onClickHandler}>Log out</Button>
+                <Button variant={'contained'} sx={{m: 2}} onClick={logOutHandler}>Log out</Button>
             </Paper>
         </div>
     );

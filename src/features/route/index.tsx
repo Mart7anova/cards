@@ -23,6 +23,7 @@ export const AppRoute = () => {
             <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
             <Route path={PATH.PAGE_NOT_FOUND} element={<PageNotFound/>}/>
             <Route path={PATH.OTHER_ROUTS} element={<Navigate to={PATH.PAGE_NOT_FOUND}/>}/>
+
             <Route element={<ProtectedRoutes />}>
                 <Route path={PATH.PACKS} element={<Packs/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>

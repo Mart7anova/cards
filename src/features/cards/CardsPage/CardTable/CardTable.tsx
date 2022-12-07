@@ -19,10 +19,10 @@ export const CardTable = ({setIsSearching}: PropsType) => {
     const cardsTotalCount = useAppSelector(getCardsTotalCount)
     const pageCountCards = useAppSelector(getPageCountCards)
 
-    const handleChangePage = (event: unknown, page: number) => {
+    const pageChangeHandler = (event: unknown, page: number) => {
         dispatch(setCardsSearchParams({page: page + 1}))
     }
-    const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rowsPerPageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setCardsSearchParams({pageCount: Number(e.target.value)}))
     }
 
@@ -32,14 +32,15 @@ export const CardTable = ({setIsSearching}: PropsType) => {
                 <CardTableHead/>
                 <CardTableBody setIsSearching={setIsSearching}/>
             </Table>
+
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25, 50, 100]}
                 rowsPerPage={pageCountCards}
                 component="div"
                 count={cardsTotalCount}
                 page={pageCards - 1}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                onPageChange={pageChangeHandler}
+                onRowsPerPageChange={rowsPerPageChangeHandler}
             />
         </TableContainer>
     );

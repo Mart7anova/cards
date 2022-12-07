@@ -15,7 +15,7 @@ export const SearchByCardName = ({setIsSearching}:PropsType) => {
     const [searchValue, setSearchValue] = useState('')
     const debouncedValue = useDebounce<string>(searchValue, 500)
 
-    const onSearchChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const valueSearchChangeHandler = async (e: ChangeEvent<HTMLInputElement>) => {
         setIsSearching(true)
         setSearchValue(e.currentTarget.value)
     }
@@ -31,7 +31,7 @@ export const SearchByCardName = ({setIsSearching}:PropsType) => {
             <TextField placeholder="Provide your text"
                        size={'small'}
                        value={searchValue}
-                       onChange={onSearchChange}
+                       onChange={valueSearchChangeHandler}
                        style={{marginBottom: '20px', width: '100%'}}
             />
         </>

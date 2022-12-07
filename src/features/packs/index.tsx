@@ -31,9 +31,13 @@ export const Packs = () => {
     const pageCountPacks = useAppSelector(getPageCountPacks)
     const cardPacksTotalCount = useAppSelector(getCardPacksTotalCount)
     const packsStatus = useAppSelector(getPacksStatus)
-    const {page, pageCount, sortPacks, packName, max, min, user_id,} = useAppSelector(getSearchParams)
+    const {
+        page, pageCount,
+        sortPacks, packName,
+        max, min, user_id,
+    } = useAppSelector(getSearchParams)
 
-    const isLoadingPacks = packsStatus === 'loading'
+    const isPacksLoading = packsStatus === 'loading'
     const havePacks = !!cardPacks.length
 
     useEffect(() => {
@@ -70,16 +74,16 @@ export const Packs = () => {
 
     return (
         <Container fixed>
-            <PackTitle disabled={isLoadingPacks}/>
+            <PackTitle disabled={isPacksLoading}/>
 
-            <PacksFiltration disabled={isLoadingPacks}/>
+            <PacksFiltration disabled={isPacksLoading}/>
 
             {
                 havePacks
                     ? <PacksTable page={pagePacks}
                                   rowsPerPage={pageCountPacks}
                                   count={cardPacksTotalCount}/>
-                    : <NoItems isLoading={isLoadingPacks}/>
+                    : <NoItems isLoading={isPacksLoading}/>
             }
         </Container>
     );

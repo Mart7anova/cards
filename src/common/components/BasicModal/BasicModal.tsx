@@ -2,10 +2,10 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import s from './BasicModal.module.scss'
+import style from './BasicModal.module.scss'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
-const style = {
+const styleBox = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
@@ -28,12 +28,13 @@ export const BasicModal = (props: PropsType) => {
 
     return (
         <Modal open={open} onClose={closeModal}>
-            <Box sx={style}>
-                <div className={s.headerContainer}>
-                    <h1 className={s.header}>{title}</h1>
-                    <ClearRoundedIcon className={s.iconClose} onClick={closeModal}/>
+            <Box sx={styleBox}>
+                <div className={style.headerContainer}>
+                    <h1 className={style.header}>{title}</h1>
+                    <ClearRoundedIcon className={style.iconClose} onClick={closeModal}/>
                 </div>
-                <div className={s.childrenContainer}>
+
+                <div className={style.childrenContainer}>
                     {children}
                 </div>
             </Box>

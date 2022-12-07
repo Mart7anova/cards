@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import s from "../Learn.module.scss";
+import style from "../Learn.module.scss";
 import {Button, FormControlLabel, Radio, RadioGroup} from "@mui/material";
 import {useAppDispatch} from "../../../../common/hooks/useAppDispatch";
 import {CardType} from "../../api";
@@ -15,14 +15,14 @@ const grades = [
 
 type PropsType = {
     card: CardType
-    hideAnswer: ()=> void
+    hideAnswer: () => void
 }
 
 export const Answer = ({card, hideAnswer}: PropsType) => {
     const dispatch = useAppDispatch()
     const [grade, setGrade] = useState(0)
 
-    const onGradesChange = (e: ChangeEvent<HTMLInputElement>, value: number) => {
+    const gradesChangeHandler = (e: ChangeEvent<HTMLInputElement>, value: number) => {
         if (e.currentTarget.checked) {
             setGrade(value)
         } else {
@@ -30,7 +30,7 @@ export const Answer = ({card, hideAnswer}: PropsType) => {
         }
     }
 
-    const onNextClick = () => {
+    const nextClickHandler = () => {
         hideAnswer()
         dispatch(updateCardGrade({card_id: card._id, grade: grade}))
         setGrade(0)
@@ -38,19 +38,19 @@ export const Answer = ({card, hideAnswer}: PropsType) => {
 
     return (
         <>
-            <h2 className={s.textContainer}>
-                Answer: <span className={s.text}>{card.answer}</span>
+            <h2 className={style.textContainer}>
+                Answer: <span className={style.text}>{card.answer}</span>
             </h2>
 
             {
                 grades.map((g, i) => (
-                    <RadioGroup key={i} value={grade} onChange={(e) => onGradesChange(e, g.value)}>
+                    <RadioGroup key={i} value={grade} onChange={(e) => gradesChangeHandler(e, g.value)}>
                         <FormControlLabel control={<Radio/>} label={g.title} value={g.value}/>
                     </RadioGroup>
                 ))
             }
 
-            <Button onClick={onNextClick}
+            <Button onClick={nextClickHandler}
                     disabled={grade === 0}
                     sx={{mt: 2}}
                     variant={'contained'}

@@ -25,12 +25,12 @@ export const CardIconsGroup = ({packId, cardId, cardName, question, questionImg,
     const {open, openModal, closeModal} = useModal();
     const {openEdit, openEditModal, closeEditModal} = useModal();
 
-    const updateCardHandel = async (question: string, answer: string, questionImg: string) => {
+    const cardUpdateHandel = async (question: string, answer: string, questionImg: string) => {
         await dispatch(updateCard({cardId, question, answer, questionImg}))
         await dispatch(fetchCards({packId}))
         closeEditModal()
     }
-    const deleteCardHandle = async () => {
+    const cardDeleteHandle = async () => {
         setIsSearching(false)
         await dispatch(deleteCard({cardId}))
         await dispatch(fetchCards({packId}))
@@ -42,20 +42,23 @@ export const CardIconsGroup = ({packId, cardId, cardName, question, questionImg,
             <Tooltip title="edit">
                 <IconButton onClick={openEditModal}><BorderColorIcon/></IconButton>
             </Tooltip>
+
             <Tooltip title="delete">
                 <IconButton onClick={openModal}><DeleteForeverIcon/></IconButton>
             </Tooltip>
+
             <CardModal title={'Edit card'}
                        cardQuestion={question}
                        cardAnswer={answer}
                        questionImg={questionImg}
-                       sentChanges={updateCardHandel}
+                       sentChanges={cardUpdateHandel}
                        open={openEdit}
                        closeModal={closeEditModal}
             />
+
             <DeleteModal title={'Delete card'}
                          isPack
-                         deleteItem={deleteCardHandle}
+                         deleteItem={cardDeleteHandle}
                          itemName={cardName}
                          open={open}
                          closeModal={closeModal}

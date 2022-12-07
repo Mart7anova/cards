@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {CardType} from '../api';
 import {getRandomCard} from '../../../common/utils/getCardRamdom';
-import s from './Learn.module.scss'
+import style from './Learn.module.scss'
 import {Progress} from '../../../common/components/Progress/ProgressBar';
 import {fetchCards} from "../slice";
 import {Answer} from "./Answer/Answer";
@@ -25,8 +25,8 @@ export const Learn = () => {
     const [card, setCard] = useState<CardType>({} as CardType)
     const [showAnswer, setShowAnswer] = useState(false)
 
-    const onShowAnswerClick = () => {
-        setShowAnswer(true)
+    const answerShowHandler = (value: boolean) => {
+        return () => setShowAnswer(value)
     }
 
     useEffect(() => {
@@ -44,14 +44,14 @@ export const Learn = () => {
     }
 
     return (
-        <div className={s.mainContainer}>
-            <Paper className={s.paper}>
-                <h1 className={s.title}>{packName}</h1>
+        <div className={style.mainContainer}>
+            <Paper className={style.paper}>
+                <h1 className={style.title}>{packName}</h1>
 
-                <p className={s.infoText}>
+                <p className={style.infoText}>
                     Number of attempts to answer the question:
 
-                    <span className={s.infoNumber}>
+                    <span className={style.infoNumber}>
                         {card.shots}
                     </span>
                 </p>
@@ -59,13 +59,13 @@ export const Learn = () => {
                 <Question card={card}/>
 
                 {
-                    !showAnswer && <Button onClick={onShowAnswerClick}
+                    !showAnswer && <Button onClick={answerShowHandler(true)}
                                            variant={'contained'}
                                            sx={{mt: 2}}
                     >Show answer</Button>
                 }
                 {
-                    showAnswer && <Answer card={card} hideAnswer={() => setShowAnswer(false)}/>
+                    showAnswer && <Answer card={card} hideAnswer={answerShowHandler(false)}/>
                 }
             </Paper>
         </div>

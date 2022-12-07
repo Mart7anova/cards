@@ -8,11 +8,11 @@ import {setIsMyPacksFilter} from "../../slice";
 
 
 type PropsType = {
-    clearFilterHandler: () => void
+    cleanFilters: () => void
     disabled: boolean
 }
 
-export const FilterByMyPacks = ({clearFilterHandler, disabled}:PropsType) => {
+export const FilterByMyPacks = ({cleanFilters, disabled}:PropsType) => {
     const dispatch = useAppDispatch()
 
     const {_id} = useAppSelector(getUserProfile)
@@ -20,18 +20,19 @@ export const FilterByMyPacks = ({clearFilterHandler, disabled}:PropsType) => {
     const profileId = _id
     const textStyle = {margin: '0 10px'}
 
-    const onIsMyPacksFilterChange = () => {
+    const filterChangeHandler = () => {
         dispatch(setIsMyPacksFilter(profileId))
     }
 
     return (
         <ButtonGroup color="primary" size={'medium'} disabled={disabled}>
             <Button variant={user_id ? 'contained' : 'outlined'}
-                    onClick={onIsMyPacksFilterChange}>
+                    onClick={filterChangeHandler}>
                 <h4 style={textStyle}>My</h4>
             </Button>
+
             <Button variant={!user_id ? 'contained' : 'outlined'}
-                    onClick={clearFilterHandler}>
+                    onClick={cleanFilters}>
                 <h4 style={textStyle}>All</h4>
             </Button>
         </ButtonGroup>

@@ -12,7 +12,7 @@ type PropsType = {
 export function InputForRangeFilter({currentValue, setCurrentValue, disabled}: PropsType) {
     const [value, setValue] = useState(currentValue)
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const valueChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const newValue = Number(e.currentTarget.value)
         if (newValue < -1 || Object.is(newValue, NaN)) {
             setValue(newValue)
@@ -29,7 +29,7 @@ export function InputForRangeFilter({currentValue, setCurrentValue, disabled}: P
                    className={style.input}
                    type={'tel'}
                    value={value || 0}
-                   onChange={onChangeHandler}
+                   onChange={valueChangeHandler}
                    disabled={disabled}
         />
     );

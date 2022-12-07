@@ -4,7 +4,7 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {FilterByMyPacks} from './FilterByMyPacks/FilterByMyPacks';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import {DoubleRangeFilter} from './DoubleRangeFilter/DoubleRangeFilter';
-import s from './PacksFiltration.module.scss'
+import style from './PacksFiltration.module.scss'
 import {SearchByPackName} from './SearchByPackName/SearchByPackName';
 import {clearSearchParams} from "../slice";
 
@@ -16,27 +16,30 @@ type PropsType = {
 export const PacksFiltration = ({disabled}: PropsType) => {
     const dispatch = useAppDispatch()
 
-    const clearFilters = () => {
+    const filtersCleanHandler = () => {
         dispatch(clearSearchParams())
     }
 
     return (
-        <div className={s.filterContainer}>
+        <div className={style.filterContainer}>
             <div>
                 <h3>Search by name</h3>
                 <SearchByPackName disabled={disabled}/>
             </div>
+
             <div>
-                <h3 className={s.showTitle}>Show pack cards</h3>
-                <FilterByMyPacks clearFilterHandler={clearFilters} disabled={disabled}/>
+                <h3 className={style.showTitle}>Show pack cards</h3>
+                <FilterByMyPacks cleanFilters={filtersCleanHandler} disabled={disabled}/>
             </div>
+
             <div>
-                <h3 className={s.numberTitle}>Number of cards</h3>
+                <h3 className={style.numberTitle}>Number of cards</h3>
                 <DoubleRangeFilter disabled={disabled}/>
             </div>
+            
             <div>
                 <Tooltip title="clean filter">
-                    <Button variant={'contained'} onClick={clearFilters} disabled={disabled}>
+                    <Button variant={'contained'} onClick={filtersCleanHandler} disabled={disabled}>
                         <FilterAltOffIcon/>
                     </Button>
                 </Tooltip>

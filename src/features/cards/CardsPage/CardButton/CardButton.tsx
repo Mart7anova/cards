@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "../CardsPage.module.scss";
+import style from "../CardsPage.module.scss";
 import {Button} from "@mui/material";
 import {PATH} from "../../../../common/enums/path";
 import {AddCards} from "./AddCards/AddCards";
@@ -17,20 +17,21 @@ export const CardButton = () => {
     const {_id} = useAppSelector(getUserProfile)
 
     const isOwner = packUserId === _id
-    const isLoadingCards = cardsStatus === 'loading'
+    const isCardsLoading = cardsStatus === 'loading'
 
     return (
-        <div className={s.btnContainer}>
+        <div className={style.btnContainer}>
             <Button variant={'contained'}
                     color={'success'}
                     onClick={() => navigate(PATH.LEARN + packId)}
-                    className={s.btn}
-                    disabled={isLoadingCards}
-            ><h4>Learn cards</h4>
+                    className={style.btn}
+                    disabled={isCardsLoading}
+            >
+                <h4>Learn cards</h4>
             </Button>
 
             {
-                isOwner && <AddCards packId={packId} disabled={isLoadingCards}/>
+                isOwner && <AddCards packId={packId} disabled={isCardsLoading}/>
             }
         </div>
     );

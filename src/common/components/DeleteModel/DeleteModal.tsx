@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { BasicModal } from '../BasicModal/BasicModal';
-import s from './DeleteModal.module.scss'
+import style from './DeleteModal.module.scss'
 
 
 type PropsType = {
@@ -16,14 +16,17 @@ type PropsType = {
 export const DeleteModal = ({title, open, closeModal, deleteItem, itemName, isPack}: PropsType) => {
     return (
         <BasicModal open={open} closeModal={closeModal} title={title}>
-            <div className={s.text}>
-                Do you really want to remove
-                <span className={s.itemName}> {itemName}</span>?
+            <div className={style.text}>
+                Do you really want to remove <span className={style.itemName}>
+                    {itemName}
+                </span>?
+
                 {
                     isPack && <div style={{marginTop: '5px'}}>All cards will be deleted.</div>
                 }
             </div>
-            <div className={s.btnGroup}>
+
+            <div className={style.btnGroup}>
                 <Button  onClick={closeModal} variant={'contained'} color={'error'}>Cansel</Button>
                 <Button onClick={deleteItem} variant={'contained'}>Delete</Button>
             </div>

@@ -8,6 +8,7 @@ import {CardPackTitle} from "./CardPackTitle/CardPackTitle";
 
 export const PackTableBody = () => {
     const packs = useAppSelector(getCardPacks)
+
     return (
         <TableBody>
             {

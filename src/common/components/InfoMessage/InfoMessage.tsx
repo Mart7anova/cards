@@ -14,7 +14,7 @@ type PropsType = {
 export const InfoMessage = ({message, action, type}: PropsType) => {
     const dispatch = useAppDispatch()
 
-    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    const snackbarCloseHandler = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
@@ -22,9 +22,9 @@ export const InfoMessage = ({message, action, type}: PropsType) => {
     };
 
     return (
-        <Snackbar open={!!message} autoHideDuration={6000} onClose={handleClose}
+        <Snackbar open={!!message} autoHideDuration={6000} onClose={snackbarCloseHandler}
                   anchorOrigin={{horizontal: 'center', vertical: 'bottom'}}>
-            <Alert severity={type} onClose={handleClose} variant={'filled'}>{message}</Alert>
+            <Alert severity={type} onClose={snackbarCloseHandler} variant={'filled'}>{message}</Alert>
         </Snackbar>
     );
 };

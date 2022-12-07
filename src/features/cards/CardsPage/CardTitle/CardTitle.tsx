@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "../CardsPage.module.scss";
+import style from "../CardsPage.module.scss";
 import {CardMenu} from "../../CardMenu/CardMenu";
 import {addAlternateSrc} from "../../../../common/utils/addAlternateSrc";
 import {useAppSelector} from "../../../../common/hooks/useAppSelector";
@@ -15,14 +15,14 @@ export const CardTitle = () => {
     const isOwner = packUserId === _id
 
     return (
-        <h1 className={s.titleName}>
+        <h1 className={style.titleName}>
             {packName}
             {
                 isOwner && <CardMenu/>
             }
             {
                 packDeckCover && <img src={packDeckCover}
-                                      className={s.img}
+                                      className={style.img}
                                       onError={addAlternateSrc}
                                       alt={' '}/>
             }

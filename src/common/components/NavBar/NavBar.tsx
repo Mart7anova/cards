@@ -5,14 +5,14 @@ import {PATH} from '../../enums/path';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getIsLoggedIn} from '../../../features/auth/selectors';
 import {ProfileLink} from '../ProfileLink/ProfileLink';
-import s from '../ProfileLink/ProfileLink.module.scss';
+import style from '../ProfileLink/ProfileLink.module.scss';
 import c from './NavBar.module.scss';
 
 export const NavBar = () => {
     const navigate = useNavigate()
     const isLoggedIn = useAppSelector(getIsLoggedIn)
 
-    const onClickHandler = () => {
+    const signInHandler = () => {
         navigate(PATH.SIGN_IN)
     }
 
@@ -20,14 +20,14 @@ export const NavBar = () => {
         <Box>
             <AppBar position="static" className={c.bar}>
                 <Container fixed className={c.container}>
-                    <Link to={PATH.PACKS} className={s.userContainer}>
-                        <h1 className={s.name}>Cards App</h1>
+                    <Link to={PATH.PACKS} className={style.userContainer}>
+                        <h1 className={style.name}>Cards App</h1>
                     </Link>
 
                     {
                         isLoggedIn
                             ? <ProfileLink/>
-                            : <Button color="inherit" size={'large'} onClick={onClickHandler}>
+                            : <Button color="inherit" size={'large'} onClick={signInHandler}>
                                 <h2>Sign in</h2>
                             </Button>
                     }

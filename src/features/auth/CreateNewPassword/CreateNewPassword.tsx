@@ -6,7 +6,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {useFormik} from 'formik';
 import {validateValuesForForm} from '../../../common/utils/validateValuesForForm';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import s from '../../../common/assets/styles/Form.module.scss';
+import style from '../../../common/assets/styles/Form.module.scss';
 import {Button, Paper} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {Password} from '../../../common/components/Password/Password';
@@ -17,6 +17,7 @@ export const CreateNewPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const {token} = useParams()
+
     const isLoggedIn = useAppSelector(getIsLoggedIn)
     const isSignedUp = useAppSelector(getIsSignedUp)
 
@@ -44,10 +45,10 @@ export const CreateNewPassword = () => {
     }, [isLoggedIn, isSignedUp])
 
     return (
-        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
-            <Paper className={s.paper}>
-                <FormControl className={s.formItems}>
-                    <h1 className={s.title}>Create new password</h1>
+        <form onSubmit={formik.handleSubmit} className={style.formContainer}>
+            <Paper className={style.paper}>
+                <FormControl className={style.formItems}>
+                    <h1 className={style.title}>Create new password</h1>
 
                     <Password label={'Password'}
                               passError={passError}

@@ -19,13 +19,13 @@ export const Cards = () => {
     const {sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max} = useAppSelector(getSearchParamsCards)
 
     const haveCards = cardsTotalCount > 0 || isSearching
-    const isLoadingCards = !isSearching && cardsStatus==='loading'
+    const isCardsLoading = !isSearching && cardsStatus==='loading'
 
     useEffect(() => {
         dispatch(fetchCards({packId}))
     }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId])
 
-    if(isLoadingCards){
+    if(isCardsLoading){
         return <SkeletonCardPage />
     }
 

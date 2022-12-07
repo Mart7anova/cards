@@ -24,19 +24,20 @@ export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, c
     const [file, setFile] = useState(questionImg ? questionImg : '')
     const [error, setError] = useState('')
 
-    const onFormatChange = (e: SelectChangeEvent) => {
+    const formatChangeHandler = (e: SelectChangeEvent) => {
         setFormat(e.target.value as FormatType)
     }
-    const onQuestionChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+    const questionChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setError('')
         setQuestion(e.currentTarget.value)
     }
-    const onAnswerChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const answerChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setError('')
         setAnswer(e.currentTarget.value)
     }
 
-    const onSendTextForm = () => {
+    const textFormSendHandler = () => {
         if ((question && answer) || (file && answer)) {
             const newQuestion = question.trim() === '' ? 'no question' : question.trim()
             const newAnswer = answer.trim()
@@ -61,8 +62,9 @@ export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, c
     return (
         <BasicModal open={open} closeModal={closeModal} title={title}>
             <div className={style.infoText}>Choose a question format</div>
+
             <FormControl fullWidth size={'small'} className={style.formSelect}>
-                <Select value={format} onChange={onFormatChange}>
+                <Select value={format} onChange={formatChangeHandler}>
                     <MenuItem value={'text'}>text</MenuItem>
                     <MenuItem value={'img'}>img</MenuItem>
                 </Select>
@@ -74,27 +76,37 @@ export const CardModal = ({title, sentChanges, open, closeModal, cardQuestion, c
 
             <div className={style.infoText}>
                 Question:
-                {error && <span className={style.errorText}> {error}</span>}
+                {
+                    error && <span className={style.errorText}>{error}</span>}
             </div>
 
             <TextField variant={'standard'}
                        value={question === 'no question' ? '' : question}
-                       onChange={onQuestionChange} error={!!error}
+                       onChange={questionChangeHandler}
+                       error={!!error}
                        style={{width: '100%', marginBottom: '10px'}}/>
 
             <div className={style.infoText}>
                 Answer:
-                {error && <span className={style.errorText}> {error}</span>}
+                {
+                    error && <span className={style.errorText}> {error}</span>
+                }
             </div>
 
-            <TextField variant={'standard'} className={style.input} value={answer} onChange={onAnswerChange}
-                       error={!!error} style={{width: '100%', marginBottom: '30px'}}/>
+            <TextField variant={'standard'}
+                       className={style.input}
+                       value={answer}
+                       onChange={answerChangeHandler}
+                       error={!!error}
+                       style={{width: '100%', marginBottom: '30px'}}
+            />
 
             <div className={style.btnGroup}>
                 <Button onClick={closeModal} variant={'contained'} color={'error'}>
                     Cansel
                 </Button>
-                <Button onClick={onSendTextForm} variant={'contained'}>
+
+                <Button onClick={textFormSendHandler} variant={'contained'}>
                     {title.split(' ')[0]}
                 </Button>
             </div>

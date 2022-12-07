@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import s from './PackModal.module.scss'
+import style from './PackModal.module.scss'
 import {Button, Checkbox, FormControlLabel, TextField} from '@mui/material';
 import {BasicModal} from '../../../common/components/BasicModal/BasicModal';
 import {UploadFile} from '../../../common/components/UploadFile/UploadFile';
@@ -20,14 +20,14 @@ export const PackModal = ({title, deckCover, packName, open, closeModal, sentCha
     const [file, setFile] = useState(deckCover ? deckCover : '')
     const [error, setError] = useState('')
 
-    const onNameChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const nameChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setName(e.currentTarget.value)
     }
-    const onPrivateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const privateChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setIsPrivate(e.currentTarget.checked)
     }
 
-    const onClickHandler = () => {
+    const packSaveHandler = () => {
         if (name) {
             const newName = name.trim()
             sentChanges(newName, isPrivate, file)
@@ -46,28 +46,28 @@ export const PackModal = ({title, deckCover, packName, open, closeModal, sentCha
 
     return (
         <BasicModal open={open} closeModal={closeModal} title={title}>
-            <div className={s.infoText}>
+            <div className={style.infoText}>
                 Name:
-                {error && <span className={s.errorText}>{error}</span>}
+                {error && <span className={style.errorText}>{error}</span>}
             </div>
 
             <TextField variant={'standard'}
                        value={name}
-                       onChange={onNameChange}
+                       onChange={nameChangeHandler}
                        error={!!error}
                        style={{width: '100%', marginBottom: '10px'}}
             />
 
             <UploadFile file={file} setFile={setFile} titleForBtn={'a cover'}/>
 
-            <FormControlLabel control={<Checkbox checked={isPrivate} onChange={onPrivateChange}/>}
+            <FormControlLabel control={<Checkbox checked={isPrivate} onChange={privateChangeHandler}/>}
                               label={'Private pack'}
-                              className={s.checkboxItem}
+                              className={style.checkboxItem}
             />
 
-            <div className={s.btnGroup}>
+            <div className={style.buttonGroup}>
                 <Button onClick={closeModal} variant={'contained'} color={'error'}>Cansel</Button>
-                <Button onClick={onClickHandler} variant={'contained'}>{title.split(' ')[0]}</Button>
+                <Button onClick={packSaveHandler} variant={'contained'}>{title.split(' ')[0]}</Button>
             </div>
         </BasicModal>
     );

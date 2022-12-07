@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import s from '../../../common/assets/styles/Form.module.scss';
+import style from '../../../common/assets/styles/Form.module.scss';
 import {Button, FormControl, Paper, TextField} from '@mui/material';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Link, useNavigate} from 'react-router-dom';
@@ -14,6 +14,7 @@ import {forgotPassword} from "../slice";
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+
     const isLoggedIn = useAppSelector(getIsLoggedIn)
     const passwordIsChanging = useAppSelector(getPasswordIsChanging)
 
@@ -37,10 +38,10 @@ export const ForgotPassword = () => {
     }, [isLoggedIn, passwordIsChanging])
 
     return (
-        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
-            <Paper className={s.paper}>
-                <FormControl className={s.formItems}>
-                    <h1 className={s.title}>Sing In</h1>
+        <form onSubmit={formik.handleSubmit} className={style.formContainer}>
+            <Paper className={style.paper}>
+                <FormControl className={style.formItems}>
+                    <h1 className={style.title}>Sing In</h1>
 
                     <TextField variant={'standard'}
                                sx={{m: 2}}
@@ -50,13 +51,13 @@ export const ForgotPassword = () => {
                                {...formik.getFieldProps('email')}
                     />
 
-                    <p className={s.helpText}>Enter your email address and we will send you further instructions </p>
+                    <p className={style.helpText}>Enter your email address and we will send you further instructions </p>
 
                     <Button type={'submit'} variant={'contained'} sx={{m: 2}}>Send Instructions</Button>
 
-                    <p className={s.infoText}>Did you remember your password?</p>
+                    <p className={style.infoText}>Did you remember your password?</p>
 
-                    <Link to={PATH.SIGN_IN} className={s.link}>Try logging in</Link>
+                    <Link to={PATH.SIGN_IN} className={style.link}>Try logging in</Link>
                 </FormControl>
             </Paper>
         </form>

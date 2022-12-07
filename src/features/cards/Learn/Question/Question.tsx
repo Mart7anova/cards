@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "../Learn.module.scss";
+import style from "../Learn.module.scss";
 import {addAlternateSrc} from "../../../../common/utils/addAlternateSrc";
 import {CardType} from "../../api";
 
@@ -10,18 +10,18 @@ type PropsType = {
 export const Question = ({card}: PropsType) => {
     return (
         <>
-            <h2 className={s.textContainer}>
+            <h2 className={style.textContainer}>
                 Question:
                 {
-                    card.question !== 'no question' && <span className={s.text}> {card.question}?</span>
+                    card.question !== 'no question' && <span className={style.text}> {card.question}?</span>
                 }
             </h2>
             {
-                card.questionImg && <div className={s.wrapperImg}>
+                card.questionImg && <div className={style.wrapperImg}>
                     <img src={card.questionImg}
                          onError={addAlternateSrc}
                          alt={'pack name'}
-                         className={s.img}/>
+                         className={style.img}/>
                 </div>
             }
         </>

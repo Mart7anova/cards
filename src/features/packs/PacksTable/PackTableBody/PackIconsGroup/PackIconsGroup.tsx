@@ -24,19 +24,22 @@ type PropsType = {
 
 export const PackIconsGroup = ({packUserId, packId, packName, cardsCount, deckCover}: PropsType) => {
     const dispatch = useAppDispatch()
-    const {_id} = useAppSelector(getUserProfile)
     const navigate = useNavigate()
+
+    const {_id} = useAppSelector(getUserProfile)
 
     const {open, openModal, closeModal} = useModal();
     const {openEdit, openEditModal, closeEditModal} = useModal();
 
-    const updatePackHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
+    const isOwner = packUserId === _id
+
+    const packUpdateHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
         await dispatch(updatePack({id: packId, name: packName, isPrivate, deckCover}))
         await dispatch(fetchPacks())
         closeEditModal()
     }
 
-    const deletePackHandle = async () => {
+    const packDeleteHandle = async () => {
         await dispatch(deletePack({id: packId}))
         await dispatch(fetchPacks())
         closeModal()
@@ -47,41 +50,52 @@ export const PackIconsGroup = ({packUserId, packId, packName, cardsCount, deckCo
             {
                 cardsCount > 0
                     ? <Tooltip title="learn">
-                        <IconButton onClick={()=>navigate(PATH.LEARN + packId)}><SchoolIcon/></IconButton>
+                        <IconButton onClick={()=>navigate(PATH.LEARN + packId)}>
+                            <SchoolIcon/>
+                        </IconButton>
                     </Tooltip>
-                    : <IconButton disabled><SchoolIcon/></IconButton>
+                    : <IconButton disabled>
+                        <SchoolIcon/>
+                    </IconButton>
             }
 
-
             {
-                packUserId === _id
+                isOwner
                     ? <>
                         <Tooltip title="edit">
-                            <IconButton onClick={openEditModal}><BorderColorIcon/></IconButton>
+                            <IconButton onClick={openEditModal}>
+                                <BorderColorIcon/>
+                            </IconButton>
                         </Tooltip>
+
                         <Tooltip title="delete">
-                            <IconButton onClick={openModal}><DeleteForeverIcon/></IconButton>
+                            <IconButton onClick={openModal}>
+                                <DeleteForeverIcon/>
+                            </IconButton>
                         </Tooltip>
                     </>
                     : <>
                         <IconButton disabled>
                             <BorderColorIcon color={'disabled'}/>
                         </IconButton>
+
                         <IconButton disabled>
                             <DeleteForeverIcon color={'disabled'}/>
                         </IconButton>
                     </>
             }
+
             <PackModal title={'Edit pack'}
                        packName={packName}
                        deckCover={deckCover}
                        open={openEdit}
                        closeModal={closeEditModal}
-                       sentChanges={updatePackHandle}
+                       sentChanges={packUpdateHandle}
             />
+
             <DeleteModal title={'Delete pack'}
                          isPack
-                         deleteItem={deletePackHandle}
+                         deleteItem={packDeleteHandle}
                          itemName={packName}
                          open={open}
                          closeModal={closeModal}

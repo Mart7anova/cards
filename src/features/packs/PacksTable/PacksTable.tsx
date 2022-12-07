@@ -15,11 +15,11 @@ type PropsType = {
 export const PacksTable = ({page, rowsPerPage, count}: PropsType) => {
     const dispatch = useAppDispatch()
 
-    const handleChangePage = (event: unknown, page: number) => {
+    const pageChangeHandler = (event: unknown, page: number) => {
         dispatch(setPacksSearchParams({page: page + 1}))
     }
 
-    const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rowsPerPageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setPacksSearchParams({pageCount: Number(e.target.value)}))
     }
 
@@ -36,8 +36,8 @@ export const PacksTable = ({page, rowsPerPage, count}: PropsType) => {
                 component="div"
                 count={count}
                 page={page - 1}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                onPageChange={pageChangeHandler}
+                onRowsPerPageChange={rowsPerPageChangeHandler}
             />
         </TableContainer>
 
