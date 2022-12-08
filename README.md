@@ -1,7 +1,5 @@
 # Cards
 
-https://mart7anova.github.io/cards/
-
 This project was developed to teach new skills using a card system. The algorithm is as follows: 
 1. add a new pack,
 2. add cards to it with questions that need to be learned and answers to them,
@@ -12,6 +10,23 @@ The application will show you the cards in random order (well, or almost, the ca
 Have fun learning!
 
 ![gif-app](https://imgur.com/L8yWrek.gif)
+
+You can view the project at the link: https://mart7anova.github.io/cards/
+
+or clone the project and install the package with the command
+
+`yarn install`
+
+file .env.example rename .env
+
+## Available Scripts
+In the project directory, you can run:
+
+`yarn start`
+Launches the application.
+
+`yarn test`
+Starts a test run in interactive viewing mode.
 
 ## The following libraries are installed in this project
 
@@ -26,14 +41,6 @@ Have fun learning!
 * Axios
 * Sass
 
-## Available Scripts
-In the project directory, you can run:
-
-`yarn start`
-Launches the application in development mode.
-
-`yarn test`
-Starts a test run in interactive viewing mode.
 
 ## Git commits: <тип>: <описание>
 
