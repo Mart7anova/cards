@@ -1,91 +1,91 @@
-import {instance} from '../../api/instance';
-import {AxiosResponse} from 'axios';
+import { instance } from 'api/instance';
+import { AxiosResponse } from 'axios';
 
 
 export const cardsApi = {
-    getCards(packId: string, params: CardSearchParamsType) {
-        return instance.get<CardSearchParamsType, AxiosResponse<CardsResponseType>>(`/cards/card?cardsPack_id=${packId}`, {params})
-    },
-    createCard(packId: string, question: string, answer: string, questionImg: string) {
-        return instance.post(`/cards/card`, {
-            card: {
-                cardsPack_id: packId,
-                question,
-                answer,
-                questionImg,
-            }
-        })
-    },
-    deleteCard(cardId: string) {
-        return instance.delete(`/cards/card?id=${cardId}`)
-    },
-    updateCard(cardId: string, question: string, answer: string, questionImg: string) {
-        return instance.put(`/cards/card`, {
-            card: {
-                _id: cardId,
-                question,
-                answer,
-                questionImg
-            }
-        })
-    },
-    updateCardsGrade(card_id: string, grade: number) {
-        return instance.put<ResponseCardGrade>(`/cards/grade`, {
-            card_id,
-            grade,
-        })
-    },
+  getCards(packId: string, params: CardSearchParamsType) {
+    return instance.get<CardSearchParamsType, AxiosResponse<CardsResponseType>>(`/cards/card?cardsPack_id=${packId}`, { params });
+  },
+  createCard(packId: string, question: string, answer: string, questionImg: string) {
+    return instance.post(`/cards/card`, {
+      card: {
+        cardsPack_id: packId,
+        question,
+        answer,
+        questionImg,
+      },
+    });
+  },
+  deleteCard(cardId: string) {
+    return instance.delete(`/cards/card?id=${cardId}`);
+  },
+  updateCard(cardId: string, question: string, answer: string, questionImg: string) {
+    return instance.put(`/cards/card`, {
+      card: {
+        _id: cardId,
+        question,
+        answer,
+        questionImg,
+      },
+    });
+  },
+  updateCardsGrade(card_id: string, grade: number) {
+    return instance.put<ResponseCardGrade>(`/cards/grade`, {
+      card_id,
+      grade,
+    });
+  },
 
-}
+};
 
 
 export type CardType = {
-    answer: string
-    question: string
-    questionImg: string
-    cardsPack_id: string
-    grade: number
-    shots: number
-    user_id: string
-    created: Date
-    updated: Date
-    _id: string
+  answer: string
+  question: string
+  questionImg: string
+  cardsPack_id: string
+  grade: number
+  shots: number
+  user_id: string
+  created: Date
+  updated: Date
+  _id: string
 }
 export type CardsResponseType = {
-    cards: CardType[]
-    cardsTotalCount: number
-    maxGrade: number
-    minGrade: number
-    packDeckCover: string
-    packName: string
-    packUserId: string
-    page: number
-    pageCount: number
+  cards: CardType[]
+  cardsTotalCount: number
+  maxGrade: number
+  minGrade: number
+  packDeckCover: string
+  packName: string
+  packUserId: string
+  page: number
+  pageCount: number
 }
 
 export type CardSearchParamsType = {
-    cardQuestion?: string
-    cardsPack_id?: number
-    min?: number
-    max?: number
-    sortCards?: string
-    page?: number
-    pageCount?: number
+  cardQuestion?: string
+  cardsPack_id?: number
+  min?: number
+  max?: number
+  sortCards?: string
+  page?: number
+  pageCount?: number
 }
 
 export type ResponseCardGrade = {
-    token: string
-    tokenDeathTime: number
-    updatedGrade: {
-        card_id: string
-        cardsPack_id: string
-        created: string
-        grade: number
-        more_id: string
-        shots: number
-        updated: string
-        user_id: string
-        __v: number
-        _id: string
-    }
+  token: string
+  tokenDeathTime: number
+  updatedGrade: {
+    card_id: string
+    cardsPack_id: string
+    created: string
+    grade: number
+    more_id: string
+    shots: number
+    updated: string
+    user_id: string
+    __v: number
+    _id: string
+  }
 }

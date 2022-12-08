@@ -1,6 +1,6 @@
 import {Paper, Table, TableContainer, TablePagination} from '@mui/material';
 import React from 'react';
-import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppDispatch} from 'common/hooks/useAppDispatch';
 import {setPacksSearchParams} from "../slice";
 import {PackTableHead} from "./PackTableHead/PackTableHead";
 import {PackTableBody} from "./PackTableBody/PackTableBody";

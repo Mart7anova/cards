@@ -1,39 +1,39 @@
 import React from 'react';
-import {Container} from '@mui/material';
-import style from './CardsPage.module.scss'
-import {SearchByCardName} from './SearchByCardName/SearchByCardName';
-import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {getCards, getCardsStatus} from '../selectors';
-import {CardTable} from "./CardTable/CardTable";
-import {NoItems} from "../../../common/components/NoItems/NoItems";
-import {CardButton} from "./CardButton/CardButton";
-import {CardTitle} from "./CardTitle/CardTitle";
+import { Container } from '@mui/material';
+import style from './CardsPage.module.scss';
+import { SearchByCardName } from './SearchByCardName/SearchByCardName';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { getCards, getCardsStatus } from '../selectors';
+import { CardTable } from './CardTable/CardTable';
+import { NoItems } from 'common/components/NoItems/NoItems';
+import { CardButton } from './CardButton/CardButton';
+import { CardTitle } from './CardTitle/CardTitle';
 
 type PropsType = {
-    setIsSearching: (isSearching: boolean) => void
+  setIsSearching: (isSearching: boolean) => void
 }
 
-export const CardsPage = ({setIsSearching}: PropsType) => {
-    const cards = useAppSelector(getCards)
-    const cardsStatus = useAppSelector(getCardsStatus)
+export const CardsPage = ({ setIsSearching }: PropsType) => {
+  const cards = useAppSelector(getCards);
+  const cardsStatus = useAppSelector(getCardsStatus);
 
-    const isCardsLoading = cardsStatus === 'loading'
-    const haveCards = !!cards.length
+  const isCardsLoading = cardsStatus === 'loading';
+  const haveCards = !!cards.length;
 
-    return (
-        <Container fixed>
-            <div className={style.titleContainer}>
-                <CardTitle/>
-                <CardButton/>
-            </div>
+  return (
+    <Container fixed>
+      <div className={style.titleContainer}>
+        <CardTitle />
+        <CardButton />
+      </div>
 
-            <SearchByCardName setIsSearching={setIsSearching}/>
+      <SearchByCardName setIsSearching={setIsSearching} />
 
-            {
-                haveCards
-                    ? <CardTable setIsSearching={setIsSearching}/>
-                    : <NoItems isLoading={isCardsLoading}/>
-            }
-        </Container>
-    );
+      {
+        haveCards
+          ? <CardTable setIsSearching={setIsSearching} />
+          : <NoItems isLoading={isCardsLoading} />
+      }
+    </Container>
+  );
 };

@@ -4,14 +4,14 @@
   display: flex;
   justify-content: center;
 
-  .paper{
+  .paper {
     width: 400px;
     margin: 50px;
     padding: 30px;
     display: flex;
     justify-content: center;
 
-    .formItems{
+    .formItems {
       width: 100%;
 
       .title {
@@ -22,11 +22,12 @@
         @include infoText();
       }
 
-      .helpText{
+      .helpText {
         opacity: 0.5;
         text-align: left;
         margin: 10px 0 25px 15px;
       }
+
       .flexContainer {
         display: flex;
         flex-direction: column;
@@ -36,6 +37,7 @@
           @include minImgIcon();
         }
       }
+
       .link {
         margin: 15px 0;
         font-weight: bold;
@@ -45,7 +47,7 @@
         text-decoration-color: #1976d2;
       }
 
-      .forgotLink{
+      .forgotLink {
         text-align: right;
         margin-right: 15px;
         font-size: 18px;

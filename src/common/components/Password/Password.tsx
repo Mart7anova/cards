@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -8,35 +8,35 @@ import Visibility from '@mui/icons-material/Visibility';
 import FormControl from '@mui/material/FormControl';
 
 type PropsType = {
-    label: string
-    passError: boolean | "" | undefined
-    formikErrorPass: string | undefined
+  label: string
+  passError: boolean | '' | undefined
+  formikErrorPass: string | undefined
 }
 
-export const Password = ({label, passError,formikErrorPass, ...props}:PropsType) => {
-    const [showPass, setShowPass] = useState(false)
+export const Password = ({ label, passError, formikErrorPass, ...props }: PropsType) => {
+  const [showPass, setShowPass] = useState(false);
 
-    return (
-        <FormControl variant="standard" sx={{m: 2}}>
-            <InputLabel color={passError ? 'error' : 'primary'}>
-                {passError ? formikErrorPass : label}
-            </InputLabel>
+  return (
+    <FormControl variant='standard' sx={{ m: 2 }}>
+      <InputLabel color={passError ? 'error' : 'primary'}>
+        {passError ? formikErrorPass : label}
+      </InputLabel>
 
-            <Input type={showPass ? 'text' : 'password'}
-                   error={!!passError}
-                   {...props}
-                   endAdornment={
-                       <InputAdornment position={'end'}>
-                           <IconButton onClick={() => setShowPass(!showPass)}>
-                               {
-                                   showPass
-                                       ? <VisibilityOff/>
-                                       : <Visibility/>
-                               }
-                           </IconButton>
-                       </InputAdornment>
+      <Input type={showPass ? 'text' : 'password'}
+             error={!!passError}
+             {...props}
+             endAdornment={
+               <InputAdornment position={'end'}>
+                 <IconButton onClick={() => setShowPass(!showPass)}>
+                   {
+                     showPass
+                       ? <VisibilityOff />
+                       : <Visibility />
                    }
-            />
-        </FormControl>
-    );
+                 </IconButton>
+               </InputAdornment>
+             }
+      />
+    </FormControl>
+  );
 };
