@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Slider from '@mui/material/Slider';
 import style from './DoubleRangeFilter.module.scss';
 import { InputForRangeFilter } from './InputForRangeFilter';
-import { getMaxCardsCount, getMinCardsCount, getSearchParams } from '../../selectors';
+import { selectMaxCardsCount, selectMinCardsCount, selectSearchParams } from '../../selectors';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useDebounce } from 'common/hooks/useDebounce';
 import { useAppSelector } from 'common/hooks/useAppSelector';
@@ -17,9 +17,9 @@ type PropsType = {
 export function DoubleRangeFilter({ disabled }: PropsType) {
   const dispatch = useAppDispatch();
 
-  const minCardsCount = useAppSelector(getMinCardsCount);
-  const maxCardsCount = useAppSelector(getMaxCardsCount);
-  const { min, max } = useAppSelector(getSearchParams);
+  const minCardsCount = useAppSelector(selectMinCardsCount);
+  const maxCardsCount = useAppSelector(selectMaxCardsCount);
+  const { min, max } = useAppSelector(selectSearchParams);
 
   const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount]);
   const debouncedValue = useDebounce<number[]>(value, 1000);

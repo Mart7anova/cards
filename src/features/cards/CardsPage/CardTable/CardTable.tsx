@@ -5,7 +5,7 @@ import { setCardsSearchParams } from '../../slice';
 import { CardTableHead } from './CardTableHead/CardTableHead';
 import { CardTableBody } from './CardTableBody/CardTableBody';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getCardsTotalCount, getPageCards, getPageCountCards } from '../../selectors';
+import { selectCardsTotalCount, selectPageCards, selectPageCountCards } from '../../selectors';
 
 
 type PropsType = {
@@ -15,9 +15,9 @@ type PropsType = {
 export const CardTable = ({ setIsSearching }: PropsType) => {
   const dispatch = useAppDispatch();
 
-  const pageCards = useAppSelector(getPageCards);
-  const cardsTotalCount = useAppSelector(getCardsTotalCount);
-  const pageCountCards = useAppSelector(getPageCountCards);
+  const pageCards = useAppSelector(selectPageCards);
+  const cardsTotalCount = useAppSelector(selectCardsTotalCount);
+  const pageCountCards = useAppSelector(selectPageCountCards);
 
   const pageChangeHandler = (event: unknown, page: number) => {
     dispatch(setCardsSearchParams({ page: page + 1 }));

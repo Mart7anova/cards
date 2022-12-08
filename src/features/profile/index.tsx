@@ -2,7 +2,7 @@ import { Avatar, Badge, Button, IconButton, Paper } from '@mui/material';
 import React, { ChangeEvent } from 'react';
 import noUserPhoto from 'common/assets/images/no-user-photo.png';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getUserProfile } from './selectors';
+import { selectUserProfile } from './selectors';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { EditableSpan } from 'common/components/EditableSpan/EditableSpan';
 import style from './index.module.scss';
@@ -13,7 +13,7 @@ import { signOut } from '../auth/slice';
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
-  const { name, avatar, email } = useAppSelector(getUserProfile);
+  const { name, avatar, email } = useAppSelector(selectUserProfile);
 
   const fileUploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     uploadFile({ files: e.target.files, dispatch, actionForDispatch: updateProfile });

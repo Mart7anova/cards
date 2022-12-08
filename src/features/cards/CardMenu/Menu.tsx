@@ -12,7 +12,7 @@ import { useModal } from 'common/hooks/useModal';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getPackDeckCover, getPackName } from '../selectors';
+import { selectPackDeckCover, selectPackName } from '../selectors';
 
 type PropsType = {
   closeMenu: () => void
@@ -26,8 +26,8 @@ export const Menu = ({ closeMenu }: PropsType) => {
   const { open, openModal, closeModal } = useModal();
   const { openEdit, openEditModal, closeEditModal } = useModal();
 
-  const packName = useAppSelector(getPackName);
-  const packDeckCover = useAppSelector(getPackDeckCover);
+  const packName = useAppSelector(selectPackName);
+  const packDeckCover = useAppSelector(selectPackDeckCover);
 
   const packUpdateHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
     closeMenu();

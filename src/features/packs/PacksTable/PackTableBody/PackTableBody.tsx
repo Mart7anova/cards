@@ -3,11 +3,11 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import dayjs from 'dayjs';
 import { PackIconsGroup } from './PackIconsGroup/PackIconsGroup';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getCardPacks } from '../../selectors';
+import { selectCardPacks } from '../../selectors';
 import { CardPackTitle } from './CardPackTitle/CardPackTitle';
 
 export const PackTableBody = () => {
-  const packs = useAppSelector(getCardPacks);
+  const packs = useAppSelector(selectCardPacks);
 
   return (
     <TableBody>

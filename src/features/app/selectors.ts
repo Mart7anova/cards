@@ -1,5 +1,5 @@
 import { AppRootStateType } from 'app/store';
 
-export const getIsInitialized = (state: AppRootStateType) => state.app.isInitialized;
-export const getAppError = (state: AppRootStateType) => state.app.error;
-export const getAppSuccess = (state: AppRootStateType) => state.app.success;
+export const selectIsInitialized = (state: AppRootStateType) => state.app.isInitialized;
+export const selectAppError = (state: AppRootStateType) => state.app.error;
+export const selectAppSuccess = (state: AppRootStateType) => state.app.success;

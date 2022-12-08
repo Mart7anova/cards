@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, ButtonGroup } from '@mui/material';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getUserProfile } from '../../../profile/selectors';
-import { getSearchParams } from '../../selectors';
+import { selectUserProfile } from '../../../profile/selectors';
+import { selectSearchParams } from '../../selectors';
 import { setIsMyPacksFilter } from '../../slice';
 
 
@@ -15,8 +15,8 @@ type PropsType = {
 export const FilterByMyPacks = ({ cleanFilters, disabled }: PropsType) => {
   const dispatch = useAppDispatch();
 
-  const { _id } = useAppSelector(getUserProfile);
-  const { user_id } = useAppSelector(getSearchParams);
+  const { _id } = useAppSelector(selectUserProfile);
+  const { user_id } = useAppSelector(selectSearchParams);
   const profileId = _id;
   const textStyle = { margin: '0 10px' };
 

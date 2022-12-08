@@ -3,14 +3,14 @@ import React, { useEffect } from 'react';
 import checkEmail from 'common/assets/images/check-email.png';
 import style from 'common/assets/styles/Form.module.scss';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getEmail, getIsLoggedIn } from '../selectors';
+import { selectEmail, selectIsLoggedIn } from '../selectors';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from 'common/enums/path';
 
 export const CheckEmail = () => {
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const navigate = useNavigate();
-  const email = useAppSelector(getEmail);
+  const email = useAppSelector(selectEmail);
 
   const loginNavigationHandler = () => {
     navigate(PATH.SIGN_IN);

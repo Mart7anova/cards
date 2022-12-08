@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import style from './CardsPage.module.scss';
 import { SearchByCardName } from './SearchByCardName/SearchByCardName';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getCards, getCardsStatus } from '../selectors';
+import { selectCards, selectCardsStatus } from '../selectors';
 import { CardTable } from './CardTable/CardTable';
 import { NoItems } from 'common/components/NoItems/NoItems';
 import { CardButton } from './CardButton/CardButton';
@@ -14,8 +14,8 @@ type PropsType = {
 }
 
 export const CardsPage = ({ setIsSearching }: PropsType) => {
-  const cards = useAppSelector(getCards);
-  const cardsStatus = useAppSelector(getCardsStatus);
+  const cards = useAppSelector(selectCards);
+  const cardsStatus = useAppSelector(selectCardsStatus);
 
   const isCardsLoading = cardsStatus === 'loading';
   const haveCards = !!cards.length;

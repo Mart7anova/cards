@@ -4,7 +4,7 @@ import { Button, FormControl, Paper, TextField } from '@mui/material';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getIsLoggedIn, getPasswordIsChanging } from '../selectors';
+import { selectIsLoggedIn, selectPasswordIsChanging } from '../selectors';
 import { useFormik } from 'formik';
 import { validateValuesForForm } from 'common/utils/validateValuesForForm';
 import { PATH } from 'common/enums/path';
@@ -15,8 +15,8 @@ export const ForgotPassword = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const passwordIsChanging = useAppSelector(getPasswordIsChanging);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const passwordIsChanging = useAppSelector(selectPasswordIsChanging);
 
   const formik = useFormik({
     initialValues: {

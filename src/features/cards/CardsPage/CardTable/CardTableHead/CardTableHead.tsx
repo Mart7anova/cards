@@ -5,8 +5,8 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { setCardsSearchParams } from '../../../slice';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getPackUserId } from '../../../selectors';
-import { getUserProfile } from 'features/profile/selectors';
+import { selectPackUserId } from '../../../selectors';
+import { selectUserProfile } from 'features/profile/selectors';
 import { useToggle } from 'common/hooks/useToggle';
 
 const headers = [
@@ -21,8 +21,8 @@ export const CardTableHead = () => {
   const dispatch = useAppDispatch();
   const [isHeaderSorted, toggleHeaderSort] = useToggle(true);
 
-  const packUserId = useAppSelector(getPackUserId);
-  const { _id } = useAppSelector(getUserProfile);
+  const packUserId = useAppSelector(selectPackUserId);
+  const { _id } = useAppSelector(selectUserProfile);
 
   const isOwner = packUserId === _id;
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { getAuthStatus } from 'features/auth/selectors';
-import { getProfileStatus } from 'features/profile/selectors';
-import { getPacksStatus } from 'features/packs/selectors';
+import { selectAuthStatus } from 'features/auth/selectors';
+import { selectProfileStatus } from 'features/profile/selectors';
+import { selectPacksStatus } from 'features/packs/selectors';
 import { LinearProgress } from '@mui/material';
-import { getCardsStatus } from 'features/cards/selectors';
+import { selectCardsStatus } from 'features/cards/selectors';
 
 export const ProgressBar = () => {
-  const authStatus = useAppSelector(getAuthStatus);
-  const profileStatus = useAppSelector(getProfileStatus);
-  const packsStatus = useAppSelector(getPacksStatus);
-  const cardsStatus = useAppSelector(getCardsStatus);
+  const authStatus = useAppSelector(selectAuthStatus);
+  const profileStatus = useAppSelector(selectProfileStatus);
+  const packsStatus = useAppSelector(selectPacksStatus);
+  const cardsStatus = useAppSelector(selectCardsStatus);
 
   return (
     <>

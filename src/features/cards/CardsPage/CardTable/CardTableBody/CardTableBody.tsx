@@ -4,17 +4,17 @@ import { addAlternateSrc } from 'common/utils/addAlternateSrc';
 import dayjs from 'dayjs';
 import { CardIconsGroup } from './CardIconsGroup/CardIconsGroup';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getCards, getPackUserId } from '../../../selectors';
-import { getUserProfile } from 'features/profile/selectors';
+import { selectCards, selectPackUserId } from '../../../selectors';
+import { selectUserProfile } from 'features/profile/selectors';
 
 type PropsType = {
   setIsSearching: (isSearching: boolean) => void
 }
 
 export const CardTableBody = ({ setIsSearching }: PropsType) => {
-  const cards = useAppSelector(getCards);
-  const packUserId = useAppSelector(getPackUserId);
-  const { _id } = useAppSelector(getUserProfile);
+  const cards = useAppSelector(selectCards);
+  const packUserId = useAppSelector(selectPackUserId);
+  const { _id } = useAppSelector(selectUserProfile);
 
   const isOwner = packUserId === _id;
 

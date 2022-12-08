@@ -3,7 +3,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getUserProfile } from 'features/profile/selectors';
+import { selectUserProfile } from 'features/profile/selectors';
 import { useModal } from 'common/hooks/useModal';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { DeleteModal } from 'common/components/DeleteModel/DeleteModal';
@@ -32,7 +32,7 @@ export const PackIconsGroup = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { _id } = useAppSelector(getUserProfile);
+  const { _id } = useAppSelector(selectUserProfile);
 
   const { open, openModal, closeModal } = useModal();
   const { openEdit, openEditModal, closeEditModal } = useModal();

@@ -9,7 +9,7 @@ import { Password } from 'common/components/Password/Password';
 import { Link, useNavigate } from 'react-router-dom';
 import { PATH } from 'common/enums/path';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getIsLoggedIn, getIsSignedUp } from '../selectors';
+import { selectIsLoggedIn, selectIsSignedUp } from '../selectors';
 import { signUp } from '../slice';
 
 
@@ -17,8 +17,8 @@ export const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const isSignedUp = useAppSelector(getIsSignedUp);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const isSignedUp = useAppSelector(selectIsSignedUp);
 
   const formik = useFormik({
     initialValues: {

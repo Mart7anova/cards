@@ -5,10 +5,10 @@ import { Avatar } from '@mui/material';
 import noUserPhoto from '../../assets/images/no-user-photo.png';
 import style from './ProfileLink.module.scss';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getUserProfile } from 'features/profile/selectors';
+import { selectUserProfile } from 'features/profile/selectors';
 
 export const ProfileLink = () => {
-  const { name, avatar } = useAppSelector(getUserProfile);
+  const { name, avatar } = useAppSelector(selectUserProfile);
 
   return (
     <Link to={PATH.PROFILE} className={style.userContainer}>

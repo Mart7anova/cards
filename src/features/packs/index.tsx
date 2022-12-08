@@ -5,12 +5,12 @@ import { PacksTable } from './PacksTable/PacksTable';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import {
-    getCardPacks,
-    getCardPacksTotalCount,
-    getPacksStatus,
-    getPageCountPacks,
-    getPagePacks,
-    getSearchParams,
+    selectCardPacks,
+    selectCardPacksTotalCount,
+    selectPacksStatus,
+    selectPageCountPacks,
+    selectPagePacks,
+    selectSearchParams,
 } from './selectors';
 import { PacksFiltration } from './PackFiltration/PacksFiltration';
 import { useNavigate } from 'react-router-dom';
@@ -26,16 +26,16 @@ export const Packs = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  const cardPacks = useAppSelector(getCardPacks);
-  const pagePacks = useAppSelector(getPagePacks);
-  const pageCountPacks = useAppSelector(getPageCountPacks);
-  const cardPacksTotalCount = useAppSelector(getCardPacksTotalCount);
-  const packsStatus = useAppSelector(getPacksStatus);
+  const cardPacks = useAppSelector(selectCardPacks);
+  const pagePacks = useAppSelector(selectPagePacks);
+  const pageCountPacks = useAppSelector(selectPageCountPacks);
+  const cardPacksTotalCount = useAppSelector(selectCardPacksTotalCount);
+  const packsStatus = useAppSelector(selectPacksStatus);
   const {
     page, pageCount,
     sortPacks, packName,
     max, min, user_id,
-  } = useAppSelector(getSearchParams);
+  } = useAppSelector(selectSearchParams);
 
   const isPacksLoading = packsStatus === 'loading';
   const havePacks = !!cardPacks.length;

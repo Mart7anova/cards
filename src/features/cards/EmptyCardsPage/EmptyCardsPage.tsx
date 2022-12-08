@@ -2,25 +2,25 @@ import { Container } from '@mui/material';
 import React from 'react';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import {
-  getCardsStatus,
-  getPackDeckCover,
-  getPackName,
-  getPackUserId,
+  selectCardsStatus,
+  selectPackDeckCover,
+  selectPackName,
+  selectPackUserId,
 } from '../selectors';
 import { CardMenu } from '../CardMenu/CardMenu';
 import { useParams } from 'react-router-dom';
-import { getUserProfile } from '../../profile/selectors';
+import { selectUserProfile } from '../../profile/selectors';
 import { AddCards } from '../CardsPage/CardButton/AddCards/AddCards';
 import style from './EmptyCardsPage.module.scss';
 
 export const EmptyCardsPage = () => {
   const { packId } = useParams() as { packId: string };
 
-  const packName = useAppSelector(getPackName);
-  const packUserId = useAppSelector(getPackUserId);
-  const packDeckCover = useAppSelector(getPackDeckCover);
-  const { _id } = useAppSelector(getUserProfile);
-  const cardsStatus = useAppSelector(getCardsStatus);
+  const packName = useAppSelector(selectPackName);
+  const packUserId = useAppSelector(selectPackUserId);
+  const packDeckCover = useAppSelector(selectPackDeckCover);
+  const { _id } = useAppSelector(selectUserProfile);
+  const cardsStatus = useAppSelector(selectCardsStatus);
 
   const isOwner = packUserId === _id;
   const isCardsLoading = cardsStatus === 'loading';

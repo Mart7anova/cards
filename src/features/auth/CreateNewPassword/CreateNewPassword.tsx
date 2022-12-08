@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getIsLoggedIn, getIsSignedUp } from '../selectors';
+import { selectIsLoggedIn, selectIsSignedUp } from '../selectors';
 import { PATH } from 'common/enums/path';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -18,8 +18,8 @@ export const CreateNewPassword = () => {
   const navigate = useNavigate();
   const { token } = useParams();
 
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const isSignedUp = useAppSelector(getIsSignedUp);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const isSignedUp = useAppSelector(selectIsSignedUp);
 
   const formik = useFormik({
     initialValues: {

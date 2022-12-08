@@ -3,14 +3,14 @@ import style from '../CardsPage.module.scss';
 import { CardMenu } from '../../CardMenu/CardMenu';
 import { addAlternateSrc } from 'common/utils/addAlternateSrc';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getPackDeckCover, getPackName, getPackUserId } from '../../selectors';
-import { getUserProfile } from '../../../profile/selectors';
+import { selectPackDeckCover, selectPackName, selectPackUserId } from '../../selectors';
+import { selectUserProfile } from '../../../profile/selectors';
 
 export const CardTitle = () => {
-  const packName = useAppSelector(getPackName);
-  const packUserId = useAppSelector(getPackUserId);
-  const packDeckCover = useAppSelector(getPackDeckCover);
-  const { _id } = useAppSelector(getUserProfile);
+  const packName = useAppSelector(selectPackName);
+  const packUserId = useAppSelector(selectPackUserId);
+  const packDeckCover = useAppSelector(selectPackDeckCover);
+  const { _id } = useAppSelector(selectUserProfile);
 
   const isOwner = packUserId === _id;
 

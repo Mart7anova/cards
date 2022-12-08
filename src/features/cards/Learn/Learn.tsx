@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Paper } from '@mui/material';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getCards, getCardsStatus, getPackName } from '../selectors';
+import { selectCards, selectCardsStatus, selectPackName } from '../selectors';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { CardType } from '../api';
@@ -17,9 +17,9 @@ export const Learn = () => {
   const dispatch = useAppDispatch();
   const { packId } = useParams() as { packId: string };
 
-  const packName = useAppSelector(getPackName);
-  const cards = useAppSelector(getCards);
-  const cardsStatus = useAppSelector(getCardsStatus);
+  const packName = useAppSelector(selectPackName);
+  const cards = useAppSelector(selectCards);
+  const cardsStatus = useAppSelector(selectCardsStatus);
 
   const [first, setFirst] = useState<boolean>(true);
   const [card, setCard] = useState<CardType>({} as CardType);

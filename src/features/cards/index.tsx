@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { getCardsStatus, getCardsTotalCount, getSearchParamsCards } from './selectors';
+import { selectCardsStatus, selectCardsTotalCount, selectSearchParamsCards } from './selectors';
 import { CardsPage } from './CardsPage/CardsPage';
 import { EmptyCardsPage } from './EmptyCardsPage/EmptyCardsPage';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
@@ -14,8 +14,8 @@ export const Cards = () => {
   const { packId } = useParams() as { packId: string };
   const [isSearching, setIsSearching] = useState(false);
 
-  const cardsTotalCount = useAppSelector(getCardsTotalCount);
-  const cardsStatus = useAppSelector(getCardsStatus);
+  const cardsTotalCount = useAppSelector(selectCardsTotalCount);
+  const cardsStatus = useAppSelector(selectCardsStatus);
   const {
     sortCards,
     cardsPack_id,
@@ -24,7 +24,7 @@ export const Cards = () => {
     page,
     pageCount,
     max,
-  } = useAppSelector(getSearchParamsCards);
+  } = useAppSelector(selectSearchParamsCards);
 
   const haveCards = cardsTotalCount > 0 || isSearching;
   const isCardsLoading = !isSearching && cardsStatus === 'loading';
