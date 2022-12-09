@@ -1,3 +1,5 @@
+import React, { ReactElement } from 'react';
+
 import {
   Paper,
   Skeleton,
@@ -8,13 +10,14 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import React from 'react';
 
-export const SkeletonTable = () => {
+const LENGTH_ARRAY = 5;
+
+export const SkeletonTable = (): ReactElement => {
   const fakeArray = [];
 
-  for (let i = 0; i < 5; i++) {
-    fakeArray.push(i);
+  for (let index = 0; index < LENGTH_ARRAY; index += 1) {
+    fakeArray.push(index);
   }
 
   return (
@@ -23,19 +26,19 @@ export const SkeletonTable = () => {
         <TableHead>
           <TableRow>
             <TableCell>
-              <Skeleton animation='pulse' height={42} />
+              <Skeleton animation="pulse" height={42} />
             </TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {fakeArray.map(number =>
+          {fakeArray.map(number => (
             <TableRow key={number}>
               <TableCell>
-                <Skeleton animation='pulse' height={31} />
+                <Skeleton animation="pulse" height={31} />
               </TableCell>
-            </TableRow>,
-          )}
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

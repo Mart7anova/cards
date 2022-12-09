@@ -1,10 +1,18 @@
-import { instance } from 'api/instance';
 import { AxiosResponse } from 'axios';
 
+import { instance } from 'api/instance';
+import {
+  CardSearchParamsType,
+  CardsResponseType,
+  ResponseCardGrade,
+} from 'features/cards/Types';
 
 export const cardsApi = {
   getCards(packId: string, params: CardSearchParamsType) {
-    return instance.get<CardSearchParamsType, AxiosResponse<CardsResponseType>>(`/cards/card?cardsPack_id=${packId}`, { params });
+    return instance.get<CardSearchParamsType, AxiosResponse<CardsResponseType>>(
+      `/cards/card?cardsPack_id=${packId}`,
+      { params },
+    );
   },
   createCard(packId: string, question: string, answer: string, questionImg: string) {
     return instance.post(`/cards/card`, {
@@ -29,63 +37,12 @@ export const cardsApi = {
       },
     });
   },
+  // eslint-disable-next-line camelcase
   updateCardsGrade(card_id: string, grade: number) {
     return instance.put<ResponseCardGrade>(`/cards/grade`, {
+      // eslint-disable-next-line camelcase
       card_id,
       grade,
     });
   },
-
 };
-
-
-export type CardType = {
-  answer: string
-  question: string
-  questionImg: string
-  cardsPack_id: string
-  grade: number
-  shots: number
-  user_id: string
-  created: Date
-  updated: Date
-  _id: string
-}
-export type CardsResponseType = {
-  cards: CardType[]
-  cardsTotalCount: number
-  maxGrade: number
-  minGrade: number
-  packDeckCover: string
-  packName: string
-  packUserId: string
-  page: number
-  pageCount: number
-}
-
-export type CardSearchParamsType = {
-  cardQuestion?: string
-  cardsPack_id?: number
-  min?: number
-  max?: number
-  sortCards?: string
-  page?: number
-  pageCount?: number
-}
-
-export type ResponseCardGrade = {
-  token: string
-  tokenDeathTime: number
-  updatedGrade: {
-    card_id: string
-    cardsPack_id: string
-    created: string
-    grade: number
-    more_id: string
-    shots: number
-    updated: string
-    user_id: string
-    __v: number
-    _id: string
-  }
-}

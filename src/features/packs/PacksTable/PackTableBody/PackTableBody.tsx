@@ -1,47 +1,57 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import dayjs from 'dayjs';
-import { PackIconsGroup } from './PackIconsGroup/PackIconsGroup';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectCardPacks } from '../../selectors';
-import { CardPackTitle } from './CardPackTitle/CardPackTitle';
 
-export const PackTableBody = () => {
+import { selectCardPacks } from '../../selectors';
+
+import { CardPackTitle } from './CardPackTitle/CardPackTitle';
+import { PackIconsGroup } from './PackIconsGroup/PackIconsGroup';
+
+import { useAppSelector } from 'common/hooks/useAppSelector';
+
+export const PackTableBody = (): ReactElement => {
   const packs = useAppSelector(selectCardPacks);
 
   return (
     <TableBody>
-      {
-        packs.map(pack => (
-          <TableRow key={pack._id}>
+      {packs.map(
+        ({
+          _id: packId,
+          name,
+          deckCover,
+          cardsCount,
+          updated,
+          user_name: userName,
+          user_id: userId,
+        }) => (
+          <TableRow key={packId}>
             <TableCell sx={{ overflowWrap: 'anywhere', width: '25%' }}>
-              <CardPackTitle packId={pack._id} name={pack.name}
-                             deckCover={pack.deckCover} />
+              <CardPackTitle packId={packId} name={name} deckCover={deckCover} />
             </TableCell>
 
-            <TableCell sx={{ width: '14%' }}>
-              {pack.cardsCount}
-            </TableCell>
+            <TableCell sx={{ width: '14%' }}>{cardsCount}</TableCell>
 
             <TableCell sx={{ width: '20%' }}>
-              {dayjs(pack.updated).format(`DD.MM.YYYY`)}
+              {dayjs(updated).format(`DD.MM.YYYY`)}
             </TableCell>
 
             <TableCell sx={{ overflowWrap: 'anywhere', width: '25%' }}>
-              {pack.user_name}
+              {userName}
             </TableCell>
 
             <TableCell sx={{ width: '16%' }}>
-              <PackIconsGroup packUserId={pack.user_id}
-                              packId={pack._id}
-                              packName={pack.name}
-                              cardsCount={pack.cardsCount}
-                              deckCover={pack.deckCover}
+              <PackIconsGroup
+                packUserId={userId}
+                packId={packId}
+                packName={name}
+                cardsCount={cardsCount}
+                deckCover={deckCover}
               />
             </TableCell>
           </TableRow>
-        ))
-      }
+        ),
+      )}
     </TableBody>
   );
 };

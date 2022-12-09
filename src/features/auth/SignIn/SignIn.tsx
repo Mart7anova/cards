@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react';
-import { useFormik } from 'formik';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import FormControl from '@mui/material/FormControl';
-import { validateValuesForForm } from 'common/utils/validateValuesForForm';
+import React, { ReactElement, useEffect } from 'react';
+
 import { Button, Checkbox, FormControlLabel, Paper, TextField } from '@mui/material';
-import style from '../../../common/assets/styles/Form.module.scss';
-import { Password } from 'common/components/Password/Password';
-import { PATH } from 'common/enums/path';
+import FormControl from '@mui/material/FormControl';
+import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'common/hooks/useAppSelector';
+
+import style from '../../../common/assets/styles/Form.module.scss';
 import { selectIsLoggedIn } from '../selectors';
 import { signIn } from '../slice';
 
+import { Password } from 'common/components/Password/Password';
+import { Path } from 'common/enums/Path';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { validateValuesForForm } from 'common/utils/validateValuesForForm';
 
-export const SignIn = () => {
+export const SignIn = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -34,11 +37,11 @@ export const SignIn = () => {
     },
   });
 
-  const emailError = formik.errors.email && formik.touched.email;
-  const passError = formik.errors.password && formik.touched.password;
+  const ERROR_EMAIL = formik.errors.email && formik.touched.email;
+  const ERROR_PASSWORD = formik.errors.password && formik.touched.password;
 
   useEffect(() => {
-    if (isLoggedIn) navigate(PATH.PACKS);
+    if (isLoggedIn) navigate(Path.PACKS);
   }, [isLoggedIn]);
 
   return (
@@ -47,35 +50,41 @@ export const SignIn = () => {
         <FormControl className={style.formItems}>
           <h1 className={style.title}>Sing In</h1>
 
-          <TextField variant={'standard'}
-                     sx={{ m: 2 }}
-                     color={emailError ? 'error' : 'primary'}
-                     label={emailError ? formik.errors.email : 'Email'}
-                     error={!!emailError}
-                     {...formik.getFieldProps('email')}
+          <TextField
+            variant="standard"
+            sx={{ m: 2 }}
+            color={ERROR_EMAIL ? 'error' : 'primary'}
+            label={ERROR_EMAIL ? formik.errors.email : 'Email'}
+            error={!!ERROR_EMAIL}
+            {...formik.getFieldProps('email')}
           />
 
-          <Password label={'Password'}
-                    passError={passError}
-                    formikErrorPass={formik.errors.password}
-                    {...formik.getFieldProps('password')}
+          <Password
+            label="Password"
+            passError={ERROR_PASSWORD}
+            formikErrorPass={formik.errors.password}
+            {...formik.getFieldProps('password')}
           />
 
-          <FormControlLabel label={'Remember me'}
-                            sx={{ m: 1 }}
-                            control={
-                              <Checkbox {...formik.getFieldProps('rememberMe')} />
-                            }
+          <FormControlLabel
+            label="Remember me"
+            sx={{ m: 1 }}
+            control={<Checkbox {...formik.getFieldProps('rememberMe')} />}
           />
 
-          <Link to={PATH.FORGOT_PASSWORD} className={`${style.link} ${style.forgotLink}`}>Forgot
-            Password?</Link>
+          <Link to={Path.FORGOT_PASSWORD} className={`${style.link} ${style.forgotLink}`}>
+            Forgot Password?
+          </Link>
 
-          <Button type={'submit'} variant={'contained'} sx={{ m: 2 }}>Sign In</Button>
+          <Button type="submit" variant="contained" sx={{ m: 2 }}>
+            Sign In
+          </Button>
 
           <p className={style.infoText}>Do not have account?</p>
 
-          <Link to={PATH.SIGN_UP} className={style.link}>Sign Up</Link>
+          <Link to={Path.SIGN_UP} className={style.link}>
+            Sign Up
+          </Link>
         </FormControl>
       </Paper>
     </form>

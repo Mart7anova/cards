@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+
 import { Paper } from '@mui/material';
 
-export const NoResult = () => {
+export const NoResult = (): ReactElement => {
   return (
     <Paper style={{ padding: '15px' }}>
       <h2 style={{ color: '#d33131', textAlign: 'center' }}>

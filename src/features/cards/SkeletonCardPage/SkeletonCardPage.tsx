@@ -1,14 +1,18 @@
-import React from 'react';
-import { SkeletonTable } from 'common/components/SkeletonTable/SkeletonTable';
+import React, { ReactElement } from 'react';
+
 import { Container, Skeleton } from '@mui/material';
 
-export const SkeletonCardPage = () => {
+import { SkeletonTable } from 'common/components/SkeletonTable/SkeletonTable';
+
+export const SkeletonCardPage = (): ReactElement => {
   return (
     <Container fixed>
-      <Skeleton animation='pulse'
-                height={40}
-                width={100}
-                style={{ margin: '30px 0 150px 0' }} />
+      <Skeleton
+        animation="pulse"
+        height={40}
+        width={100}
+        style={{ margin: '30px 0 150px 0' }}
+      />
       <SkeletonTable />
     </Container>
   );

@@ -1,40 +1,46 @@
 import * as React from 'react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+
 import { TextField } from '@mui/material';
+
 import style from './DoubleRangeFilter.module.scss';
 
 type PropsType = {
-  currentValue: number
-  setCurrentValue: (currentValue: number) => void
-  disabled: boolean
-}
+  currentValue: number;
+  setCurrentValue: (currentValue: number) => void;
+  disabled: boolean;
+};
 
-export function InputForRangeFilter({
-                                      currentValue,
-                                      setCurrentValue,
-                                      disabled,
-                                    }: PropsType) {
+export const InputForRangeFilter = ({
+  currentValue,
+  setCurrentValue,
+  disabled,
+}: PropsType): ReactElement => {
   const [value, setValue] = useState(currentValue);
 
-  const valueChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  useEffect(() => {
+    setValue(currentValue);
+  }, [currentValue]);
+
+  const valueChangeHandler = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void => {
     const newValue = Number(e.currentTarget.value);
+
     if (newValue < -1 || Object.is(newValue, NaN)) {
       setValue(newValue);
       setCurrentValue(value);
     }
   };
 
-  useEffect(() => {
-    setValue(currentValue);
-  }, [currentValue]);
-
   return (
-    <TextField size={'small'}
-               className={style.input}
-               type={'tel'}
-               value={value || 0}
-               onChange={valueChangeHandler}
-               disabled={disabled}
+    <TextField
+      size="small"
+      className={style.input}
+      type="tel"
+      value={value || 0}
+      onChange={valueChangeHandler}
+      disabled={disabled}
     />
   );
-}
+};

@@ -1,6 +1,11 @@
 import { instance } from 'api/instance';
-import { ProfileResponseType } from 'common/types/ProfileType';
-
+import {
+  forgotPasswordDataType,
+  ResponseForgotPassword,
+  ResponseLogout,
+  ResponseSignUp,
+} from 'features/auth/Types';
+import { ProfileResponseType } from 'features/profile/Types';
 
 export const authApi = {
   signUp(email: string, password: string) {
@@ -26,29 +31,3 @@ export const authApi = {
     });
   },
 };
-
-
-type forgotPasswordDataType = {
-  email: string
-  from: string
-  message: string
-}
-
-type ResponseSignUp = {
-  error: string
-  email: string
-  in: string
-}
-
-type ResponseLogout = {
-  info: string
-}
-
-export type ResponseForgotPassword = {
-  info: string
-  success: boolean
-  answer: boolean
-  html: boolean
-}
-
-

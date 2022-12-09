@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectCardsStatus, selectCardsTotalCount, selectSearchParamsCards } from './selectors';
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import { CardsPage } from './CardsPage/CardsPage';
 import { EmptyCardsPage } from './EmptyCardsPage/EmptyCardsPage';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useParams } from 'react-router-dom';
-import { fetchCards } from './slice';
+import {
+  selectCardsStatus,
+  selectCardsTotalCount,
+  selectSearchParamsCards,
+} from './selectors';
 import { SkeletonCardPage } from './SkeletonCardPage/SkeletonCardPage';
+import { fetchCards } from './slice';
 
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
 
-export const Cards = () => {
+export const Cards = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const { packId } = useParams() as { packId: string };
+
   const [isSearching, setIsSearching] = useState(false);
 
   const cardsTotalCount = useAppSelector(selectCardsTotalCount);
   const cardsStatus = useAppSelector(selectCardsStatus);
   const {
     sortCards,
-    cardsPack_id,
+    cardsPack_id: cardsPackId,
     cardQuestion,
     min,
     page,
@@ -26,24 +34,16 @@ export const Cards = () => {
     max,
   } = useAppSelector(selectSearchParamsCards);
 
-  const haveCards = cardsTotalCount > 0 || isSearching;
-  const isCardsLoading = !isSearching && cardsStatus === 'loading';
+  const HAVE_CARDS = cardsTotalCount > 0 || isSearching;
+  const IS_CARDS_LOADING = !isSearching && cardsStatus === 'loading';
 
   useEffect(() => {
     dispatch(fetchCards({ packId }));
-  }, [sortCards, cardsPack_id, cardQuestion, min, page, pageCount, max, packId]);
+  }, [sortCards, cardsPackId, cardQuestion, min, page, pageCount, max, packId]);
 
-  if (isCardsLoading) {
+  if (IS_CARDS_LOADING) {
     return <SkeletonCardPage />;
   }
 
-  return (
-    <>
-      {
-        haveCards
-          ? <CardsPage setIsSearching={setIsSearching} />
-          : <EmptyCardsPage />
-      }
-    </>
-  );
+  return HAVE_CARDS ? <CardsPage setIsSearching={setIsSearching} /> : <EmptyCardsPage />;
 };

@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react';
-import FormControl from '@mui/material/FormControl';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useFormik } from 'formik';
-import { validateValuesForForm } from 'common/utils/validateValuesForForm';
-import style from 'common/assets/styles/Form.module.scss';
+import React, { ReactElement, useEffect } from 'react';
+
 import { Button, Paper, TextField } from '@mui/material';
-import { Password } from 'common/components/Password/Password';
+import FormControl from '@mui/material/FormControl';
+import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import { PATH } from 'common/enums/path';
-import { useAppSelector } from 'common/hooks/useAppSelector';
+
 import { selectIsLoggedIn, selectIsSignedUp } from '../selectors';
 import { signUp } from '../slice';
 
+import style from 'common/assets/styles/Form.module.scss';
+import { Password } from 'common/components/Password/Password';
+import { Path } from 'common/enums/Path';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { validateValuesForForm } from 'common/utils/validateValuesForForm';
 
-export const SignUp = () => {
+export const SignUp = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -43,13 +46,14 @@ export const SignUp = () => {
     },
   });
 
-  const emailError = formik.errors.email && formik.touched.email;
-  const passError = formik.errors.password && formik.touched.password;
-  const confirmPassError = formik.errors.confirmPassword && formik.touched.confirmPassword;
+  const ERROR_EMAIL = formik.errors.email && formik.touched.email;
+  const ERROR_PASSWORD = formik.errors.password && formik.touched.password;
+  const ERROR_CONFIRM_PASSWORD =
+    formik.errors.confirmPassword && formik.touched.confirmPassword;
 
   useEffect(() => {
-    if (isLoggedIn) navigate(PATH.PACKS);
-    if (isSignedUp) navigate(PATH.SIGN_IN);
+    if (isLoggedIn) navigate(Path.PACKS);
+    if (isSignedUp) navigate(Path.SIGN_IN);
   }, [isLoggedIn, isSignedUp]);
 
   return (
@@ -58,31 +62,38 @@ export const SignUp = () => {
         <FormControl className={style.formItems}>
           <h1 className={style.title}>Sing Up</h1>
 
-          <TextField variant={'standard'}
-                     sx={{ m: 2, mt: 5 }}
-                     color={emailError ? 'error' : 'primary'}
-                     label={emailError ? formik.errors.email : 'Email'}
-                     error={!!emailError}
-                     {...formik.getFieldProps('email')}
+          <TextField
+            variant="standard"
+            sx={{ m: 2, mt: 5 }}
+            color={ERROR_EMAIL ? 'error' : 'primary'}
+            label={ERROR_EMAIL ? formik.errors.email : 'Email'}
+            error={!!ERROR_EMAIL}
+            {...formik.getFieldProps('email')}
           />
 
-          <Password label={'Password'}
-                    passError={passError}
-                    formikErrorPass={formik.errors.password}
-                    {...formik.getFieldProps('password')}
+          <Password
+            label="Password"
+            passError={ERROR_PASSWORD}
+            formikErrorPass={formik.errors.password}
+            {...formik.getFieldProps('password')}
           />
 
-          <Password label={'Confirm password'}
-                    passError={confirmPassError}
-                    formikErrorPass={formik.errors.confirmPassword}
-                    {...formik.getFieldProps('confirmPassword')}
+          <Password
+            label="Confirm password"
+            passError={ERROR_CONFIRM_PASSWORD}
+            formikErrorPass={formik.errors.confirmPassword}
+            {...formik.getFieldProps('confirmPassword')}
           />
 
-          <Button type={'submit'} variant={'contained'} sx={{ m: 2 }}>Sing Up</Button>
+          <Button type="submit" variant="contained" sx={{ m: 2 }}>
+            Sing Up
+          </Button>
 
           <p className={style.infoText}>Already have an account?</p>
 
-          <Link to={PATH.SIGN_IN} className={style.link}>Sign In</Link>
+          <Link to={Path.SIGN_IN} className={style.link}>
+            Sign In
+          </Link>
         </FormControl>
       </Paper>
     </form>

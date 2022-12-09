@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+
 import { Alert, Snackbar } from '@mui/material';
-import { InfoType } from '../../types/InfoType';
 import { PayloadAction } from '@reduxjs/toolkit';
+
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
+import { InfoType } from 'common/types/Types';
 
 type PropsType = {
-  message: InfoType
-  type: 'error' | 'success'
-  action: (payload: InfoType) => PayloadAction<string | null, string>
-}
+  message: InfoType;
+  type: 'error' | 'success';
+  action: (payload: InfoType) => PayloadAction<string | null, string>;
+};
 
-export const InfoMessage = ({ message, action, type }: PropsType) => {
+export const InfoMessage = ({ message, action, type }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const snackbarCloseHandler = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const snackbarCloseHandler = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string,
+  ): void => {
     if (reason === 'clickaway') {
       return;
     }
@@ -22,10 +27,15 @@ export const InfoMessage = ({ message, action, type }: PropsType) => {
   };
 
   return (
-    <Snackbar open={!!message} autoHideDuration={6000} onClose={snackbarCloseHandler}
-              anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}>
-      <Alert severity={type} onClose={snackbarCloseHandler}
-             variant={'filled'}>{message}</Alert>
+    <Snackbar
+      open={!!message}
+      autoHideDuration={6000}
+      onClose={snackbarCloseHandler}
+      anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+    >
+      <Alert severity={type} onClose={snackbarCloseHandler} variant="filled">
+        {message}
+      </Alert>
     </Snackbar>
   );
 };

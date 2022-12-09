@@ -1,22 +1,25 @@
-import React from 'react';
-import { Button, Tooltip } from '@mui/material';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { FilterByMyPacks } from './FilterByMyPacks/FilterByMyPacks';
+import React, { ReactElement } from 'react';
+
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
-import { DoubleRangeFilter } from './DoubleRangeFilter/DoubleRangeFilter';
-import style from './PacksFiltration.module.scss';
-import { SearchByPackName } from './SearchByPackName/SearchByPackName';
+import { Button, Tooltip } from '@mui/material';
+
 import { clearSearchParams } from '../slice';
 
+import { DoubleRangeFilter } from './DoubleRangeFilter/DoubleRangeFilter';
+import { FilterByMyPacks } from './FilterByMyPacks/FilterByMyPacks';
+import style from './PacksFiltration.module.scss';
+import { SearchByPackName } from './SearchByPackName/SearchByPackName';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
 
 type PropsType = {
-  disabled: boolean
-}
+  disabled: boolean;
+};
 
-export const PacksFiltration = ({ disabled }: PropsType) => {
+export const PacksFiltration = ({ disabled }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const filtersCleanHandler = () => {
+  const filtersCleanHandler = (): void => {
     dispatch(clearSearchParams());
   };
 
@@ -38,8 +41,8 @@ export const PacksFiltration = ({ disabled }: PropsType) => {
       </div>
 
       <div>
-        <Tooltip title='clean filter'>
-          <Button variant={'contained'} onClick={filtersCleanHandler} disabled={disabled}>
+        <Tooltip title="clean filter">
+          <Button variant="contained" onClick={filtersCleanHandler} disabled={disabled}>
             <FilterAltOffIcon />
           </Button>
         </Tooltip>

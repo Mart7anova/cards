@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+
 import { Navigate, Outlet } from 'react-router-dom';
-import { PATH } from 'common/enums/path';
-import { useAppSelector } from 'common/hooks/useAppSelector';
+
 import { selectIsLoggedIn } from '../auth/selectors';
 
-const useAuth = () => {
+import { Path } from 'common/enums/Path';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+
+const useAuth = (): boolean => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const user = { loggedIn: isLoggedIn };
+
   return user && user.loggedIn;
 };
 
-export const ProtectedRoutes = () => {
+export const ProtectedRoutes = (): ReactElement => {
   const isAuth = useAuth();
-  return isAuth ? <Outlet /> : <Navigate to={PATH.SIGN_IN} />;
+
+  return isAuth ? <Outlet /> : <Navigate to={Path.SIGN_IN} />;
 };

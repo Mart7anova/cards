@@ -1,17 +1,30 @@
 import { AppRootStateType } from 'app/store';
+import { StatusType } from 'common/types/Types';
+import { CardSearchParamsType, CardType } from 'features/cards/Types';
 
-export const selectPackName = (state: AppRootStateType) => state.card.cardsState.packName;
-export const selectPackUserId = (state: AppRootStateType) => state.card.cardsState.packUserId;
+export const selectPackName = (state: AppRootStateType): string =>
+  state.card.cardsState.packName;
 
-export const selectCards = (state: AppRootStateType) => state.card.cardsState.cards;
-export const selectCardsTotalCount = (state: AppRootStateType) => state.card.cardsState.cardsTotalCount;
-export const selectPageCards = (state: AppRootStateType) => state.card.cardsState.page;
-export const selectPageCountCards = (state: AppRootStateType) => state.card.cardsState.pageCount;
-export const selectMaxGradeCards = (state: AppRootStateType) => state.card.cardsState.maxGrade;
-export const selectMinGradeCards = (state: AppRootStateType) => state.card.cardsState.minGrade;
-export const selectPackDeckCover = (state: AppRootStateType) => state.card.cardsState.packDeckCover;
+export const selectPackUserId = (state: AppRootStateType): string =>
+  state.card.cardsState.packUserId;
 
-export const selectSearchParamsCards = (state: AppRootStateType) => state.card.cardsSearchParams;
+export const selectCards = (state: AppRootStateType): CardType[] =>
+  state.card.cardsState.cards;
 
-export const selectCardsStatus = (state: AppRootStateType) => state.card.status;
+export const selectCardsTotalCount = (state: AppRootStateType): number =>
+  state.card.cardsState.cardsTotalCount;
 
+export const selectPageCards = (state: AppRootStateType): number =>
+  state.card.cardsState.page;
+
+export const selectPageCountCards = (state: AppRootStateType): number =>
+  state.card.cardsState.pageCount;
+
+export const selectPackDeckCover = (state: AppRootStateType): string =>
+  state.card.cardsState.packDeckCover;
+
+export const selectSearchParamsCards = (state: AppRootStateType): CardSearchParamsType =>
+  state.card.cardsSearchParams;
+
+export const selectCardsStatus = (state: AppRootStateType): StatusType =>
+  state.card.status;

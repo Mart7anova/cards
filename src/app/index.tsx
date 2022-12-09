@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+
+import { InfoMessage } from 'common/components/InfoMessage/InfoMessage';
+import { NavBar } from 'common/components/NavBar/NavBar';
+import { Progress } from 'common/components/Progress/ProgressBar';
+import { ProgressBar } from 'common/components/ProgressBar/ProgressBar';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectAppError, selectAppSuccess, selectIsInitialized } from 'features/app/selectors';
-import { AppRoute } from 'features/route';
-import { NavBar } from 'common/components/NavBar/NavBar';
-import { InfoMessage } from 'common/components/InfoMessage/InfoMessage';
-import { ProgressBar } from 'common/components/ProgressBar/ProgressBar';
-import { Progress } from 'common/components/Progress/ProgressBar';
+import {
+  selectAppError,
+  selectAppSuccess,
+  selectIsInitialized,
+} from 'features/app/selectors';
 import { initializeApp, setAppError, setAppSuccess } from 'features/app/slice';
+import { AppRoute } from 'features/route';
 
-
-export const App = () => {
+export const App = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const isInitialized = useAppSelector(selectIsInitialized);
@@ -30,8 +34,8 @@ export const App = () => {
       <NavBar />
       <ProgressBar />
       <AppRoute />
-      <InfoMessage message={appError} type={'error'} action={setAppError} />
-      <InfoMessage message={appSuccess} type={'success'} action={setAppSuccess} />
+      <InfoMessage message={appError} type="error" action={setAppError} />
+      <InfoMessage message={appSuccess} type="success" action={setAppSuccess} />
     </div>
   );
 };

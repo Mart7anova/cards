@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
+
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+
 import style from './BasicModal.module.scss';
-import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 const styleBox = {
   position: 'absolute' as 'absolute',
@@ -17,13 +19,13 @@ const styleBox = {
 };
 
 type PropsType = {
-  children: ReactNode
-  title: string
-  open: boolean
-  closeModal: () => void
-}
+  children: ReactNode;
+  title: string;
+  open: boolean;
+  closeModal: () => void;
+};
 
-export const BasicModal = (props: PropsType) => {
+export const BasicModal = (props: PropsType): ReactElement => {
   const { children, title, open, closeModal } = props;
 
   return (
@@ -34,9 +36,7 @@ export const BasicModal = (props: PropsType) => {
           <ClearRoundedIcon className={style.iconClose} onClick={closeModal} />
         </div>
 
-        <div className={style.childrenContainer}>
-          {children}
-        </div>
+        <div className={style.childrenContainer}>{children}</div>
       </Box>
     </Modal>
   );

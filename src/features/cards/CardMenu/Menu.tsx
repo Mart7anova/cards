@@ -1,45 +1,54 @@
-import React from 'react';
-import { MenuItem, MenuList, Paper } from '@mui/material';
-import style from './CardMenu.module.scss';
+import React, { ReactElement } from 'react';
+
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { PackModal } from '../../packs/PackModal/PackModal';
-import { DeleteModal } from 'common/components/DeleteModel/DeleteModal';
-import { deletePack, updatePack } from '../../packs/slice';
-import { fetchCards } from '../slice';
-import { PATH } from 'common/enums/path';
-import { useModal } from 'common/hooks/useModal';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { MenuItem, MenuList, Paper } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppSelector } from 'common/hooks/useAppSelector';
+
+import { PackModal } from '../../packs/PackModal/PackModal';
+import { deletePack, updatePack } from '../../packs/slice';
 import { selectPackDeckCover, selectPackName } from '../selectors';
+import { fetchCards } from '../slice';
+
+import style from './CardMenu.module.scss';
+
+import { DeleteModal } from 'common/components/DeleteModel/DeleteModal';
+import { Path } from 'common/enums/Path';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { useModal } from 'common/hooks/useModal';
 
 type PropsType = {
-  closeMenu: () => void
-}
+  closeMenu: () => void;
+};
 
-export const Menu = ({ closeMenu }: PropsType) => {
-  const { packId } = useParams() as { packId: string };
-
+export const Menu = ({ closeMenu }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
+
+  const { packId } = useParams() as { packId: string };
   const navigate = useNavigate();
+
   const { open, openModal, closeModal } = useModal();
   const { openEdit, openEditModal, closeEditModal } = useModal();
 
   const packName = useAppSelector(selectPackName);
   const packDeckCover = useAppSelector(selectPackDeckCover);
 
-  const packUpdateHandle = async (packName: string, isPrivate: boolean, deckCover: string) => {
+  const packUpdateHandle = async (
+    packName: string,
+    isPrivate: boolean,
+    deckCover: string,
+  ): Promise<void> => {
     closeMenu();
     await dispatch(updatePack({ id: packId, name: packName, isPrivate, deckCover }));
     await dispatch(fetchCards({ packId }));
     closeEditModal();
   };
 
-  const packDeleteHandle = async () => {
+  const packDeleteHandle = async (): Promise<void> => {
     await dispatch(deletePack({ id: packId }));
     closeModal();
-    navigate(PATH.PACKS);
+    navigate(Path.PACKS);
   };
 
   return (
@@ -58,20 +67,22 @@ export const Menu = ({ closeMenu }: PropsType) => {
         </MenuList>
       </Paper>
 
-      <PackModal title={'Edit pack'}
-                 deckCover={packDeckCover}
-                 open={openEdit}
-                 closeModal={closeEditModal}
-                 packName={packName}
-                 sentChanges={packUpdateHandle}
+      <PackModal
+        title="Edit pack"
+        deckCover={packDeckCover}
+        open={openEdit}
+        closeModal={closeEditModal}
+        packName={packName}
+        sentChanges={packUpdateHandle}
       />
 
-      <DeleteModal title={'Delete card'}
-                   isPack
-                   deleteItem={packDeleteHandle}
-                   itemName={packName}
-                   open={open}
-                   closeModal={closeModal}
+      <DeleteModal
+        title="Delete card"
+        isPack
+        deleteItem={packDeleteHandle}
+        itemName={packName}
+        open={open}
+        closeModal={closeModal}
       />
     </>
   );

@@ -1,11 +1,14 @@
-import React, { ChangeEvent, useState } from 'react';
-import style from '../Learn.module.scss';
-import { Button, FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { CardType } from '../../api';
-import { updateCardGrade } from '../../slice';
+import React, { ChangeEvent, ReactElement, useState } from 'react';
 
-const grades = [
+import { Button, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+
+import { updateCardGrade } from '../../slice';
+import style from '../Learn.module.scss';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { CardType } from 'features/cards/Types';
+
+const GRADES = [
   { title: 'Did not know', value: 1 },
   { title: 'Forgot', value: 2 },
   { title: 'A lot of thought', value: 3 },
@@ -14,15 +17,15 @@ const grades = [
 ];
 
 type PropsType = {
-  card: CardType
-  hideAnswer: () => void
-}
+  card: CardType;
+  hideAnswer: () => void;
+};
 
-export const Answer = ({ card, hideAnswer }: PropsType) => {
+export const Answer = ({ card, hideAnswer }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
   const [grade, setGrade] = useState(0);
 
-  const gradesChangeHandler = (e: ChangeEvent<HTMLInputElement>, value: number) => {
+  const gradesChangeHandler = (e: ChangeEvent<HTMLInputElement>, value: number): void => {
     if (e.currentTarget.checked) {
       setGrade(value);
     } else {
@@ -30,9 +33,10 @@ export const Answer = ({ card, hideAnswer }: PropsType) => {
     }
   };
 
-  const nextClickHandler = () => {
+  const nextClickHandler = (): void => {
     hideAnswer();
-    dispatch(updateCardGrade({ card_id: card._id, grade: grade }));
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(updateCardGrade({ card_id: card._id, grade }));
     setGrade(0);
   };
 
@@ -42,20 +46,24 @@ export const Answer = ({ card, hideAnswer }: PropsType) => {
         Answer: <span className={style.text}>{card.answer}</span>
       </h2>
 
-      {
-        grades.map((g, i) => (
-          <RadioGroup key={i} value={grade}
-                      onChange={(e) => gradesChangeHandler(e, g.value)}>
-            <FormControlLabel control={<Radio />} label={g.title} value={g.value} />
-          </RadioGroup>
-        ))
-      }
+      {GRADES.map(({ title, value }) => (
+        <RadioGroup
+          key={title}
+          value={grade}
+          onChange={e => gradesChangeHandler(e, value)}
+        >
+          <FormControlLabel control={<Radio />} label={title} value={value} />
+        </RadioGroup>
+      ))}
 
-      <Button onClick={nextClickHandler}
-              disabled={grade === 0}
-              sx={{ mt: 2 }}
-              variant={'contained'}
-      >Next</Button>
+      <Button
+        onClick={nextClickHandler}
+        disabled={grade === 0}
+        sx={{ mt: 2 }}
+        variant="contained"
+      >
+        Next
+      </Button>
     </>
   );
 };

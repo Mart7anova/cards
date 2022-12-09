@@ -1,22 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { profileApi } from '../profile/api';
-import { InfoType } from 'common/types/InfoType';
-import { setProfile } from '../profile/slice';
+
 import { setIsLoggedIn } from '../auth/slice';
+import { profileApi } from '../profile/api';
+import { setProfile } from '../profile/slice';
 
+import { InfoType } from 'common/types/Types';
 
-export const initializeApp = createAsyncThunk('app/initializeApp', async (param, {
-  dispatch,
-  rejectWithValue,
-}) => {
-  try {
-    const { data } = await profileApi.me();
-    dispatch(setProfile(data));
-    dispatch(setIsLoggedIn(true));
-  } catch (e) {
-    return rejectWithValue(null);
-  }
-});
+export const initializeApp = createAsyncThunk(
+  'app/initializeApp',
+  async (param, { dispatch, rejectWithValue }) => {
+    try {
+      const { data } = await profileApi.me();
+
+      dispatch(setProfile(data));
+      dispatch(setIsLoggedIn(true));
+    } catch (e) {
+      return rejectWithValue(null);
+    }
+  },
+);
 
 const appSlice = createSlice({
   name: 'app',
@@ -33,12 +35,12 @@ const appSlice = createSlice({
       state.success = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(initializeApp.fulfilled, (state) => {
+      .addCase(initializeApp.fulfilled, state => {
         state.isInitialized = true;
       })
-      .addCase(initializeApp.rejected, (state) => {
+      .addCase(initializeApp.rejected, state => {
         state.isInitialized = true;
       });
   },

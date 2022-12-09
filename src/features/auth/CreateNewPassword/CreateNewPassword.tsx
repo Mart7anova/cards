@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectIsLoggedIn, selectIsSignedUp } from '../selectors';
-import { PATH } from 'common/enums/path';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useFormik } from 'formik';
-import { validateValuesForForm } from 'common/utils/validateValuesForForm';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import style from '../../../common/assets/styles/Form.module.scss';
+import React, { ReactElement, useEffect } from 'react';
+
 import { Button, Paper } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import { Password } from 'common/components/Password/Password';
+import { useFormik } from 'formik';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import style from '../../../common/assets/styles/Form.module.scss';
+import { selectIsLoggedIn, selectIsSignedUp } from '../selectors';
 import { updatePassword } from '../slice';
 
+import { Password } from 'common/components/Password/Password';
+import { Path } from 'common/enums/Path';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { validateValuesForForm } from 'common/utils/validateValuesForForm';
 
-export const CreateNewPassword = () => {
+export const CreateNewPassword = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
   const { token } = useParams();
 
@@ -36,12 +39,13 @@ export const CreateNewPassword = () => {
     },
   });
 
-  const passError = formik.errors.password && formik.touched.password;
-  const confirmPassError = formik.errors.confirmPassword && formik.touched.confirmPassword;
+  const ERROR_PASSWORD = formik.errors.password && formik.touched.password;
+  const ERROR_CONFIRM_PASSWORD =
+    formik.errors.confirmPassword && formik.touched.confirmPassword;
 
   useEffect(() => {
-    if (isLoggedIn) navigate(PATH.PACKS);
-    if (isSignedUp) navigate(PATH.SIGN_IN);
+    if (isLoggedIn) navigate(Path.PACKS);
+    if (isSignedUp) navigate(Path.SIGN_IN);
   }, [isLoggedIn, isSignedUp]);
 
   return (
@@ -50,23 +54,25 @@ export const CreateNewPassword = () => {
         <FormControl className={style.formItems}>
           <h1 className={style.title}>Create new password</h1>
 
-          <Password label={'Password'}
-                    passError={passError}
-                    formikErrorPass={formik.errors.password}
-                    {...formik.getFieldProps('password')}
+          <Password
+            label="Password"
+            passError={ERROR_PASSWORD}
+            formikErrorPass={formik.errors.password}
+            {...formik.getFieldProps('password')}
           />
 
-          <Password label={'Confirm password'}
-                    passError={confirmPassError}
-                    formikErrorPass={formik.errors.confirmPassword}
-                    {...formik.getFieldProps('confirmPassword')}
+          <Password
+            label="Confirm password"
+            passError={ERROR_CONFIRM_PASSWORD}
+            formikErrorPass={formik.errors.confirmPassword}
+            {...formik.getFieldProps('confirmPassword')}
           />
 
-          <Button type={'submit'} variant={'contained'} sx={{ m: 2 }}>Create new
-            password</Button>
+          <Button type="submit" variant="contained" sx={{ m: 2 }}>
+            Create new password
+          </Button>
         </FormControl>
       </Paper>
     </form>
   );
 };
-

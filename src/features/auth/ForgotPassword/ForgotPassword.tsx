@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
-import style from '../../../common/assets/styles/Form.module.scss';
+import React, { ReactElement, useEffect } from 'react';
+
 import { Button, FormControl, Paper, TextField } from '@mui/material';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectIsLoggedIn, selectPasswordIsChanging } from '../selectors';
 import { useFormik } from 'formik';
-import { validateValuesForForm } from 'common/utils/validateValuesForForm';
-import { PATH } from 'common/enums/path';
+import { Link, useNavigate } from 'react-router-dom';
+
+import style from '../../../common/assets/styles/Form.module.scss';
+import { selectIsLoggedIn, selectPasswordIsChanging } from '../selectors';
 import { forgotPassword } from '../slice';
 
+import { Path } from 'common/enums/Path';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { validateValuesForForm } from 'common/utils/validateValuesForForm';
 
-export const ForgotPassword = () => {
+export const ForgotPassword = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -30,11 +33,11 @@ export const ForgotPassword = () => {
     },
   });
 
-  const emailError = formik.errors.email && formik.touched.email;
+  const ERROR_EMAIL = formik.errors.email && formik.touched.email;
 
   useEffect(() => {
-    if (isLoggedIn) navigate(PATH.PACKS);
-    if (passwordIsChanging) navigate(PATH.CHECK_EMAIL);
+    if (isLoggedIn) navigate(Path.PACKS);
+    if (passwordIsChanging) navigate(Path.CHECK_EMAIL);
   }, [isLoggedIn, passwordIsChanging]);
 
   return (
@@ -43,23 +46,28 @@ export const ForgotPassword = () => {
         <FormControl className={style.formItems}>
           <h1 className={style.title}>Sing In</h1>
 
-          <TextField variant={'standard'}
-                     sx={{ m: 2 }}
-                     color={emailError ? 'error' : 'primary'}
-                     label={emailError ? formik.errors.email : 'Email'}
-                     error={!!emailError}
-                     {...formik.getFieldProps('email')}
+          <TextField
+            variant="standard"
+            sx={{ m: 2 }}
+            color={ERROR_EMAIL ? 'error' : 'primary'}
+            label={ERROR_EMAIL ? formik.errors.email : 'Email'}
+            error={!!ERROR_EMAIL}
+            {...formik.getFieldProps('email')}
           />
 
-          <p className={style.helpText}>Enter your email address and we will send you
-            further instructions </p>
+          <p className={style.helpText}>
+            Enter your email address and we will send you further instructions{' '}
+          </p>
 
-          <Button type={'submit'} variant={'contained'} sx={{ m: 2 }}>Send
-            Instructions</Button>
+          <Button type="submit" variant="contained" sx={{ m: 2 }}>
+            Send Instructions
+          </Button>
 
           <p className={style.infoText}>Did you remember your password?</p>
 
-          <Link to={PATH.SIGN_IN} className={style.link}>Try logging in</Link>
+          <Link to={Path.SIGN_IN} className={style.link}>
+            Try logging in
+          </Link>
         </FormControl>
       </Paper>
     </form>

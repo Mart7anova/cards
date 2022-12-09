@@ -1,17 +1,12 @@
-import React from 'react';
-import { SkeletonTable } from '../SkeletonTable/SkeletonTable';
+import React, { ReactElement } from 'react';
+
 import { NoResult } from '../NoResult/NoResult';
+import { SkeletonTable } from '../SkeletonTable/SkeletonTable';
 
 type PropsType = {
-  isLoading: boolean
-}
+  isLoading: boolean;
+};
 
-export const NoItems = ({ isLoading }: PropsType) => {
-  return (
-    <>
-      {
-        isLoading ? <SkeletonTable /> : <NoResult />
-      }
-    </>
-  );
+export const NoItems = ({ isLoading }: PropsType): ReactElement => {
+  return isLoading ? <SkeletonTable /> : <NoResult />;
 };

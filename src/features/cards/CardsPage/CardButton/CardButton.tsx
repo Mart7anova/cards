@@ -1,14 +1,18 @@
-import React from 'react';
-import style from '../CardsPage.module.scss';
-import { Button } from '@mui/material';
-import { PATH } from 'common/enums/path';
-import { AddCards } from './AddCards/AddCards';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectCardsStatus, selectPackUserId } from '../../selectors';
-import { selectUserProfile } from '../../../profile/selectors';
+import React, { ReactElement } from 'react';
 
-export const CardButton = () => {
+import { Button } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { selectUserProfile } from '../../../profile/selectors';
+import { selectCardsStatus, selectPackUserId } from '../../selectors';
+import style from '../CardsPage.module.scss';
+
+import { AddCards } from './AddCards/AddCards';
+
+import { Path } from 'common/enums/Path';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+
+export const CardButton = (): ReactElement => {
   const { packId } = useParams() as { packId: string };
   const navigate = useNavigate();
 
@@ -16,23 +20,22 @@ export const CardButton = () => {
   const packUserId = useAppSelector(selectPackUserId);
   const { _id } = useAppSelector(selectUserProfile);
 
-  const isOwner = packUserId === _id;
-  const isCardsLoading = cardsStatus === 'loading';
+  const IS_OWNER = packUserId === _id;
+  const IS_CARDS_LOADING = cardsStatus === 'loading';
 
   return (
     <div className={style.btnContainer}>
-      <Button variant={'contained'}
-              color={'success'}
-              onClick={() => navigate(PATH.LEARN + packId)}
-              className={style.btn}
-              disabled={isCardsLoading}
+      <Button
+        variant="contained"
+        color="success"
+        onClick={() => navigate(Path.LEARN + packId)}
+        className={style.btn}
+        disabled={IS_CARDS_LOADING}
       >
         <h4>Learn cards</h4>
       </Button>
 
-      {
-        isOwner && <AddCards packId={packId} disabled={isCardsLoading} />
-      }
+      {IS_OWNER && <AddCards packId={packId} disabled={IS_CARDS_LOADING} />}
     </div>
   );
 };

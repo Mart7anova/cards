@@ -1,9 +1,12 @@
-import React from 'react';
-import { Checkbox, TableCell, TableHead, TableRow } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React, { ReactElement } from 'react';
+
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Checkbox, TableCell, TableHead, TableRow } from '@mui/material';
+
 import { setPacksSearchParams } from '../../slice';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useToggle } from 'common/hooks/useToggle';
 
 const headers = [
@@ -13,7 +16,7 @@ const headers = [
   { name: 'Create by', sortName: 'user_name' },
 ];
 
-export const PackTableHead = () => {
+export const PackTableHead = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const [isHeaderSorted, toggleHeaderSort] = useToggle(true);
@@ -23,9 +26,9 @@ export const PackTableHead = () => {
       let sortValue;
 
       if (isHeaderSorted) {
-        sortValue = '1' + sortName;
+        sortValue = `1${sortName}`;
       } else {
-        sortValue = '0' + sortName;
+        sortValue = `0${sortName}`;
       }
       dispatch(setPacksSearchParams({ sortPacks: sortValue }));
     };
@@ -34,20 +37,19 @@ export const PackTableHead = () => {
   return (
     <TableHead>
       <TableRow>
-        {
-          headers.map(header => (
-            <TableCell key={header.name}>
-              {header.name}
+        {headers.map(({ name, sortName }) => (
+          <TableCell key={name}>
+            {name}
 
-              <Checkbox icon={<ExpandMoreIcon />}
-                        checkedIcon={<ExpandLessIcon />}
-                        color={'default'}
-                        onClick={toggleHeaderSort}
-                        onChange={packsSortChangeHandler(isHeaderSorted, header.sortName)}
-              />
-            </TableCell>
-          ))
-        }
+            <Checkbox
+              icon={<ExpandMoreIcon />}
+              checkedIcon={<ExpandLessIcon />}
+              color="default"
+              onClick={toggleHeaderSort}
+              onChange={packsSortChangeHandler(isHeaderSorted, sortName)}
+            />
+          </TableCell>
+        ))}
         <TableCell>Actions</TableCell>
       </TableRow>
     </TableHead>

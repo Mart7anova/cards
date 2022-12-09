@@ -1,20 +1,29 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
+
 import Slider from '@mui/material/Slider';
-import style from './DoubleRangeFilter.module.scss';
-import { InputForRangeFilter } from './InputForRangeFilter';
-import { selectMaxCardsCount, selectMinCardsCount, selectSearchParams } from '../../selectors';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useDebounce } from 'common/hooks/useDebounce';
-import { useAppSelector } from 'common/hooks/useAppSelector';
+
+import {
+  selectMaxCardsCount,
+  selectMinCardsCount,
+  selectSearchParams,
+} from '../../selectors';
 import { setPacksSearchParams } from '../../slice';
 
+import style from './DoubleRangeFilter.module.scss';
+import { InputForRangeFilter } from './InputForRangeFilter';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { useDebounce } from 'common/hooks/useDebounce';
 
 type PropsType = {
-  disabled: boolean
-}
+  disabled: boolean;
+};
 
-export function DoubleRangeFilter({ disabled }: PropsType) {
+const DELAY = 1000;
+
+export const DoubleRangeFilter = ({ disabled }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
 
   const minCardsCount = useAppSelector(selectMinCardsCount);
@@ -22,19 +31,8 @@ export function DoubleRangeFilter({ disabled }: PropsType) {
   const { min, max } = useAppSelector(selectSearchParams);
 
   const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount]);
-  const debouncedValue = useDebounce<number[]>(value, 1000);
 
-  const firstRangeChangeHandler = (newValue: number) => {
-    setValue([newValue, value[1]]);
-  };
-
-  const doubleRangeChangeHandler = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
-  };
-
-  const secondRangeChangeHandler = (newValue: number) => {
-    setValue([value[0], newValue]);
-  };
+  const debouncedValue = useDebounce<number[]>(value, DELAY);
 
   useEffect(() => {
     dispatch(setPacksSearchParams({ min: value[0], max: value[1] }));
@@ -48,26 +46,40 @@ export function DoubleRangeFilter({ disabled }: PropsType) {
     }
   }, [min, max, minCardsCount, maxCardsCount]);
 
+  const firstRangeChangeHandler = (newValue: number): void => {
+    setValue([newValue, value[1]]);
+  };
+
+  const doubleRangeChangeHandler = (event: Event, newValue: number | number[]): void => {
+    setValue(newValue as number[]);
+  };
+
+  const secondRangeChangeHandler = (newValue: number): void => {
+    setValue([value[0], newValue]);
+  };
+
   return (
     <div className={style.mainContainer}>
-      <InputForRangeFilter currentValue={value[0]}
-                           setCurrentValue={firstRangeChangeHandler}
-                           disabled={disabled}
+      <InputForRangeFilter
+        currentValue={value[0]}
+        setCurrentValue={firstRangeChangeHandler}
+        disabled={disabled}
       />
 
       <Slider
         value={value}
         onChange={doubleRangeChangeHandler}
-        valueLabelDisplay='auto'
+        valueLabelDisplay="auto"
         min={minCardsCount}
         max={maxCardsCount}
         disabled={disabled}
       />
 
-      <InputForRangeFilter currentValue={value[1]}
-                           setCurrentValue={secondRangeChangeHandler}
-                           disabled={disabled}
+      <InputForRangeFilter
+        currentValue={value[1]}
+        setCurrentValue={secondRangeChangeHandler}
+        disabled={disabled}
       />
     </div>
   );
-}
+};

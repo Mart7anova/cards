@@ -1,44 +1,49 @@
-import React from 'react';
-import { IconButton, Tooltip } from '@mui/material';
+import React, { ReactElement } from 'react';
+
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useModal } from 'common/hooks/useModal';
+import { IconButton, Tooltip } from '@mui/material';
+
 import { CardModal } from '../../../../CardModal/CardModal';
-import { DeleteModal } from 'common/components/DeleteModel/DeleteModal';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { deleteCard, fetchCards, updateCard } from '../../../../slice';
 
+import { DeleteModal } from 'common/components/DeleteModel/DeleteModal';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useModal } from 'common/hooks/useModal';
 
 type PropsType = {
-  packId: string
-  cardId: string
-  cardName: string
-  question: string
-  questionImg: string
-  answer: string
-  setIsSearching: (isSearching: boolean) => void
-}
+  packId: string;
+  cardId: string;
+  question: string;
+  questionImg: string;
+  answer: string;
+  setIsSearching: (isSearching: boolean) => void;
+};
 
 export const CardIconsGroup = ({
-                                 packId,
-                                 cardId,
-                                 cardName,
-                                 question,
-                                 questionImg,
-                                 answer,
-                                 setIsSearching,
-                               }: PropsType) => {
+  packId,
+  cardId,
+  question,
+  questionImg,
+  answer,
+  setIsSearching,
+}: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
 
   const { open, openModal, closeModal } = useModal();
   const { openEdit, openEditModal, closeEditModal } = useModal();
 
-  const cardUpdateHandel = async (question: string, answer: string, questionImg: string) => {
+  const cardUpdateHandel = async (
+    question: string,
+    answer: string,
+    questionImg: string,
+  ): Promise<void> => {
     await dispatch(updateCard({ cardId, question, answer, questionImg }));
     await dispatch(fetchCards({ packId }));
     closeEditModal();
   };
-  const cardDeleteHandle = async () => {
+
+  const cardDeleteHandle = async (): Promise<void> => {
     setIsSearching(false);
     await dispatch(deleteCard({ cardId }));
     await dispatch(fetchCards({ packId }));
@@ -47,29 +52,35 @@ export const CardIconsGroup = ({
 
   return (
     <>
-      <Tooltip title='edit'>
-        <IconButton onClick={openEditModal}><BorderColorIcon /></IconButton>
+      <Tooltip title="edit">
+        <IconButton onClick={openEditModal}>
+          <BorderColorIcon />
+        </IconButton>
       </Tooltip>
 
-      <Tooltip title='delete'>
-        <IconButton onClick={openModal}><DeleteForeverIcon /></IconButton>
+      <Tooltip title="delete">
+        <IconButton onClick={openModal}>
+          <DeleteForeverIcon />
+        </IconButton>
       </Tooltip>
 
-      <CardModal title={'Edit card'}
-                 cardQuestion={question}
-                 cardAnswer={answer}
-                 questionImg={questionImg}
-                 sentChanges={cardUpdateHandel}
-                 open={openEdit}
-                 closeModal={closeEditModal}
+      <CardModal
+        title="Edit card"
+        cardQuestion={question}
+        cardAnswer={answer}
+        questionImg={questionImg}
+        sentChanges={cardUpdateHandel}
+        open={openEdit}
+        closeModal={closeEditModal}
       />
 
-      <DeleteModal title={'Delete card'}
-                   isPack
-                   deleteItem={cardDeleteHandle}
-                   itemName={cardName}
-                   open={open}
-                   closeModal={closeModal}
+      <DeleteModal
+        title="Delete card"
+        isPack
+        deleteItem={cardDeleteHandle}
+        itemName={question}
+        open={open}
+        closeModal={closeModal}
       />
     </>
   );

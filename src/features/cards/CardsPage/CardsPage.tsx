@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+
 import { Container } from '@mui/material';
-import style from './CardsPage.module.scss';
-import { SearchByCardName } from './SearchByCardName/SearchByCardName';
-import { useAppSelector } from 'common/hooks/useAppSelector';
+
 import { selectCards, selectCardsStatus } from '../selectors';
-import { CardTable } from './CardTable/CardTable';
-import { NoItems } from 'common/components/NoItems/NoItems';
+
 import { CardButton } from './CardButton/CardButton';
+import style from './CardsPage.module.scss';
+import { CardTable } from './CardTable/CardTable';
 import { CardTitle } from './CardTitle/CardTitle';
+import { SearchByCardName } from './SearchByCardName/SearchByCardName';
+
+import { NoItems } from 'common/components/NoItems/NoItems';
+import { useAppSelector } from 'common/hooks/useAppSelector';
 
 type PropsType = {
-  setIsSearching: (isSearching: boolean) => void
-}
+  setIsSearching: (isSearching: boolean) => void;
+};
 
-export const CardsPage = ({ setIsSearching }: PropsType) => {
+export const CardsPage = ({ setIsSearching }: PropsType): ReactElement => {
   const cards = useAppSelector(selectCards);
   const cardsStatus = useAppSelector(selectCardsStatus);
 
-  const isCardsLoading = cardsStatus === 'loading';
-  const haveCards = !!cards.length;
+  const IS_CARDS_LOADING = cardsStatus === 'loading';
+  const HAVE_CARDS = !!cards.length;
 
   return (
     <Container fixed>
@@ -29,11 +33,11 @@ export const CardsPage = ({ setIsSearching }: PropsType) => {
 
       <SearchByCardName setIsSearching={setIsSearching} />
 
-      {
-        haveCards
-          ? <CardTable setIsSearching={setIsSearching} />
-          : <NoItems isLoading={isCardsLoading} />
-      }
+      {HAVE_CARDS ? (
+        <CardTable setIsSearching={setIsSearching} />
+      ) : (
+        <NoItems isLoading={IS_CARDS_LOADING} />
+      )}
     </Container>
   );
 };

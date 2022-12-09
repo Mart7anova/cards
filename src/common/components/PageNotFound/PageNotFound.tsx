@@ -1,11 +1,15 @@
-import React from 'react';
-import style from './PageNotFound.module.scss';
-import { Button, Container } from '@mui/material';
-import notFound from '../../assets/images/404.gif';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '../../enums/path';
+import React, { ReactElement } from 'react';
 
-export const PageNotFound = () => {
+import { Button, Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+import notFound from '../../assets/images/404.gif';
+
+import style from './PageNotFound.module.scss';
+
+import { Path } from 'common/enums/Path';
+
+export const PageNotFound = (): ReactElement => {
   const navigate = useNavigate();
 
   return (
@@ -14,13 +18,16 @@ export const PageNotFound = () => {
 
       <h2>Page not found</h2>
 
-      <Button variant={'contained'}
-              size={'large'}
-              className={style.btn}
-              onClick={() => navigate(PATH.PACKS)}
-      >go back home</Button>
+      <Button
+        variant="contained"
+        size="large"
+        className={style.btn}
+        onClick={() => navigate(Path.PACKS)}
+      >
+        go back home
+      </Button>
 
-      <img src={notFound} alt=' ' />
+      <img src={notFound} alt=" " />
     </Container>
   );
 };

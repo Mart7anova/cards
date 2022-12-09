@@ -1,4 +1,4 @@
-export enum PATH {
+export enum Path {
   OTHER_ROUTS = '*',
   PAGE_NOT_FOUND = '/404',
 

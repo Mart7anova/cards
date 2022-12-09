@@ -1,26 +1,31 @@
+import React, { ReactElement, useEffect, useRef } from 'react';
+
 import { Container } from '@mui/material';
-import React, { useEffect, useRef } from 'react';
 import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+
+import { PacksFiltration } from './PackFiltration/PacksFiltration';
 import { PacksTable } from './PacksTable/PacksTable';
+import { PackTitle } from './PackTitle/PackTitle';
+import {
+  selectCardPacks,
+  selectCardPacksTotalCount,
+  selectPacksStatus,
+  selectPageCountPacks,
+  selectPagePacks,
+  selectSearchParams,
+} from './selectors';
+import { changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter } from './slice';
+
+import { NoItems } from 'common/components/NoItems/NoItems';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import {
-    selectCardPacks,
-    selectCardPacksTotalCount,
-    selectPacksStatus,
-    selectPageCountPacks,
-    selectPagePacks,
-    selectSearchParams,
-} from './selectors';
-import { PacksFiltration } from './PackFiltration/PacksFiltration';
-import { useNavigate } from 'react-router-dom';
-import { changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter } from './slice';
-import { PackTitle } from './PackTitle/PackTitle';
-import { NoItems } from 'common/components/NoItems/NoItems';
 
+const COUNT_SYMBOLS = 3;
 
-export const Packs = () => {
+export const Packs = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const isSearch = useRef(false);
@@ -32,37 +37,41 @@ export const Packs = () => {
   const cardPacksTotalCount = useAppSelector(selectCardPacksTotalCount);
   const packsStatus = useAppSelector(selectPacksStatus);
   const {
-    page, pageCount,
-    sortPacks, packName,
-    max, min, user_id,
+    page,
+    pageCount,
+    sortPacks,
+    packName,
+    max,
+    min,
+    user_id: userId,
   } = useAppSelector(selectSearchParams);
 
-  const isPacksLoading = packsStatus === 'loading';
-  const havePacks = !!cardPacks.length;
+  const IS_PACKS_LOADING = packsStatus === 'loading';
+  const HAVE_PACKS = !!cardPacks.length;
 
   useEffect(() => {
     if (!isSearch.current) {
       dispatch(fetchPacks());
     }
     isSearch.current = false;
-  }, [page, pageCount, sortPacks, packName, max, min, user_id]);
+  }, [page, pageCount, sortPacks, packName, max, min, userId]);
 
-  //saving the url parameter when the page is reloaded
   useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
-        user_id,
+        userId,
       });
+
       navigate(`?${queryString}`);
     }
     isMounted.current = true;
-  }, [user_id]);
+  }, [userId]);
 
   useEffect(() => {
     dispatch(changeStatusFirstLoading());
 
     if (window.location.hash) {
-      const params = qs.parse(window.location.hash.substring(3));
+      const params = qs.parse(window.location.hash.substring(COUNT_SYMBOLS));
       const packsForUserId = params.user_id;
 
       if (packsForUserId) {
@@ -74,17 +83,19 @@ export const Packs = () => {
 
   return (
     <Container fixed>
-      <PackTitle disabled={isPacksLoading} />
+      <PackTitle disabled={IS_PACKS_LOADING} />
 
-      <PacksFiltration disabled={isPacksLoading} />
+      <PacksFiltration disabled={IS_PACKS_LOADING} />
 
-      {
-        havePacks
-          ? <PacksTable page={pagePacks}
-                        rowsPerPage={pageCountPacks}
-                        count={cardPacksTotalCount} />
-          : <NoItems isLoading={isPacksLoading} />
-      }
+      {HAVE_PACKS ? (
+        <PacksTable
+          page={pagePacks}
+          rowsPerPage={pageCountPacks}
+          count={cardPacksTotalCount}
+        />
+      ) : (
+        <NoItems isLoading={IS_PACKS_LOADING} />
+      )}
     </Container>
   );
 };

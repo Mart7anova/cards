@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+
 import { Button, Paper } from '@mui/material';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectCards, selectCardsStatus, selectPackName } from '../selectors';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { CardType } from '../api';
-import { getRandomCard } from 'common/utils/getCardRamdom';
-import style from './Learn.module.scss';
-import { Progress } from 'common/components/Progress/ProgressBar';
+
+import { selectCards, selectCardsStatus, selectPackName } from '../selectors';
 import { fetchCards } from '../slice';
+
 import { Answer } from './Answer/Answer';
+import style from './Learn.module.scss';
 import { Question } from './Question/Question';
 
+import { Progress } from 'common/components/Progress/ProgressBar';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { getRandomCard } from 'common/utils/getCardRamdom';
+import { CardType } from 'features/cards/Types';
 
-export const Learn = () => {
+export const Learn = (): ReactElement => {
   const dispatch = useAppDispatch();
+
   const { packId } = useParams() as { packId: string };
 
   const packName = useAppSelector(selectPackName);
@@ -25,10 +29,6 @@ export const Learn = () => {
   const [card, setCard] = useState<CardType>({} as CardType);
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const answerShowHandler = (value: boolean) => {
-    return () => setShowAnswer(value);
-  };
-
   useEffect(() => {
     if (first) {
       dispatch(fetchCards({ packId }));
@@ -38,6 +38,10 @@ export const Learn = () => {
       setCard(getRandomCard(cards));
     }
   }, [packId, cards, first]);
+
+  const answerShowHandler = (value: boolean) => {
+    return () => setShowAnswer(value);
+  };
 
   if (cardsStatus === 'loading') {
     return <Progress />;
@@ -50,23 +54,17 @@ export const Learn = () => {
 
         <p className={style.infoText}>
           Number of attempts to answer the question:
-
-          <span className={style.infoNumber}>
-                        {card.shots}
-                    </span>
+          <span className={style.infoNumber}>{card.shots}</span>
         </p>
 
         <Question card={card} />
 
-        {
-          !showAnswer && <Button onClick={answerShowHandler(true)}
-                                 variant={'contained'}
-                                 sx={{ mt: 2 }}
-          >Show answer</Button>
-        }
-        {
-          showAnswer && <Answer card={card} hideAnswer={answerShowHandler(false)} />
-        }
+        {!showAnswer && (
+          <Button onClick={answerShowHandler(true)} variant="contained" sx={{ mt: 2 }}>
+            Show answer
+          </Button>
+        )}
+        {showAnswer && <Answer card={card} hideAnswer={answerShowHandler(false)} />}
       </Paper>
     </div>
   );

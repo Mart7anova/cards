@@ -1,6 +1,5 @@
-import { ProfileResponseType } from 'common/types/ProfileType';
 import { instance } from 'api/instance';
-
+import { ProfileResponseType, ResponseUpdateUser } from 'features/profile/Types';
 
 export const profileApi = {
   me() {
@@ -16,10 +15,3 @@ export const profileApi = {
     return instance.post('/auth/block', { id, blockReason });
   },
 };
-
-
-type ResponseUpdateUser = {
-  updatedUser: ProfileResponseType,
-  token: string,
-  tokenDeathTime: number
-}
