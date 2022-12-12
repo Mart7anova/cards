@@ -9,15 +9,19 @@ import { PackTableHead } from './PackTableHead/PackTableHead';
 
 import { COUNT_PAGES } from 'common/constants/CountPages';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import {
+  selectPacksTotalCount,
+  selectPacksPageCount,
+  selectPacksPage,
+} from 'features/packs/selectors';
 
-type PropsType = {
-  rowsPerPage: number;
-  page: number;
-  count: number;
-};
-
-export const PacksTable = ({ page, rowsPerPage, count }: PropsType): ReactElement => {
+export const PacksTable = (): ReactElement => {
   const dispatch = useAppDispatch();
+
+  const pagePacks = useAppSelector(selectPacksPage);
+  const pageCountPacks = useAppSelector(selectPacksPageCount);
+  const cardPacksTotalCount = useAppSelector(selectPacksTotalCount);
 
   const pageChangeHandler = (event: unknown, page: number): void => {
     dispatch(setPacksSearchParams({ page: page + 1 }));
@@ -36,10 +40,10 @@ export const PacksTable = ({ page, rowsPerPage, count }: PropsType): ReactElemen
 
       <TablePagination
         rowsPerPageOptions={COUNT_PAGES}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={pageCountPacks}
         component="div"
-        count={count}
-        page={page - 1}
+        count={cardPacksTotalCount}
+        page={pagePacks - 1}
         onPageChange={pageChangeHandler}
         onRowsPerPageChange={rowsPerPageChangeHandler}
       />

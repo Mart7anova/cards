@@ -7,14 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { PacksFiltration } from './PackFiltration/PacksFiltration';
 import { PacksTable } from './PacksTable/PacksTable';
 import { PackTitle } from './PackTitle/PackTitle';
-import {
-  selectCardPacks,
-  selectCardPacksTotalCount,
-  selectPacksStatus,
-  selectPageCountPacks,
-  selectPagePacks,
-  selectPackSearchParams,
-} from './selectors';
+import { selectCardPacks, selectPackSearchParams, selectPacksStatus } from './selectors';
 import { changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter } from './slice';
 
 import { NoItems } from 'common/components/NoItems/NoItems';
@@ -32,9 +25,6 @@ export const Packs = (): ReactElement => {
   const isMounted = useRef(false);
 
   const cardPacks = useAppSelector(selectCardPacks);
-  const pagePacks = useAppSelector(selectPagePacks);
-  const pageCountPacks = useAppSelector(selectPageCountPacks);
-  const cardPacksTotalCount = useAppSelector(selectCardPacksTotalCount);
   const packsStatus = useAppSelector(selectPacksStatus);
   const {
     page,
@@ -87,15 +77,7 @@ export const Packs = (): ReactElement => {
 
       <PacksFiltration disabled={IS_PACKS_LOADING} />
 
-      {HAVE_PACKS ? (
-        <PacksTable
-          page={pagePacks}
-          rowsPerPage={pageCountPacks}
-          count={cardPacksTotalCount}
-        />
-      ) : (
-        <NoItems isLoading={IS_PACKS_LOADING} />
-      )}
+      {HAVE_PACKS ? <PacksTable /> : <NoItems isLoading={IS_PACKS_LOADING} />}
     </Container>
   );
 };

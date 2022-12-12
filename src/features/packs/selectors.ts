@@ -4,12 +4,12 @@ import { PackSearchParamsType, PackType } from 'features/packs/Types';
 export const selectCardPacks = (state: AppRootStateType): PackType[] =>
   state.pack.packs.cardPacks;
 
-export const selectPagePacks = (state: AppRootStateType): number => state.pack.packs.page;
+export const selectPacksPage = (state: AppRootStateType): number => state.pack.packs.page;
 
-export const selectPageCountPacks = (state: AppRootStateType): number =>
+export const selectPacksPageCount = (state: AppRootStateType): number =>
   state.pack.packs.pageCount;
 
-export const selectCardPacksTotalCount = (state: AppRootStateType): number =>
+export const selectPacksTotalCount = (state: AppRootStateType): number =>
   state.pack.packs.cardPacksTotalCount;
 
 export const selectMinCardsCount = (state: AppRootStateType): number =>
