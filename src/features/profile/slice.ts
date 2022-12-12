@@ -41,7 +41,7 @@ export const updateProfile = createAsyncThunk(
 );
 
 const profileSlice = createSlice({
-  name: 'app',
+  name: 'profile',
   initialState: {
     profile: {} as ProfileResponseType,
     status: 'idle' as StatusType,
