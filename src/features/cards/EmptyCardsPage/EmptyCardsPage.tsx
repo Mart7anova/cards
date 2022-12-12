@@ -4,8 +4,8 @@ import { Container } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 import { selectUserProfile } from '../../profile/selectors';
-import { CardMenu } from '../CardMenu/CardMenu';
 import { AddCards } from '../CardsPage/CardButton/AddCards/AddCards';
+import { CardMenu } from '../CardsPage/CardTitle/CardMenu/CardMenu';
 import {
   selectCardsStatus,
   selectPackDeckCover,

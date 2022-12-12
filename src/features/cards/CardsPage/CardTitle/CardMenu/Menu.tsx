@@ -5,18 +5,16 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { MenuItem, MenuList, Paper } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { PackModal } from '../../packs/PackModal/PackModal';
-import { deletePack, updatePack } from '../../packs/slice';
-import { selectPackDeckCover, selectPackName } from '../selectors';
-import { fetchCards } from '../slice';
-
-import style from './CardMenu.module.scss';
-
 import { DeleteModal } from 'common/components/DeleteModel/DeleteModal';
 import { Path } from 'common/enums/Path';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { useModal } from 'common/hooks/useModal';
+import style from 'features/cards/CardsPage/CardTitle/CardMenu/CardMenu.module.scss';
+import { selectPackDeckCover, selectPackName } from 'features/cards/selectors';
+import { fetchCards } from 'features/cards/slice';
+import { PackModal } from 'features/packs/PackModal/PackModal';
+import { deletePack, updatePack } from 'features/packs/slice';
 
 type PropsType = {
   closeMenu: () => void;

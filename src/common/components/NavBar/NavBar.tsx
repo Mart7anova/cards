@@ -29,6 +29,10 @@ export const NavBar = (): ReactElement => {
             <h1 className={style.name}>Cards App</h1>
           </Link>
 
+          <Link to={Path.USERS} className={style.userContainer}>
+            <h1 className={style.name}>Users</h1>
+          </Link>
+
           {isLoggedIn ? (
             <ProfileLink />
           ) : (

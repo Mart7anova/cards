@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { AppRootStateType } from 'app/store';
+import { AppStatus } from 'common/enums/AppStatus';
 import { StatusType } from 'common/types/Types';
 import { handleNetworkError } from 'common/utils/handleNetworkError';
 import { PackSearchParamsType } from 'features/packs/Types';
@@ -37,7 +38,7 @@ const userSlice = createSlice({
     usersSearchParams: {
       pageCount: 10,
     } as UsersResponseType,
-    status: 'idle' as StatusType,
+    status: AppStatus.idle as StatusType,
   },
   reducers: {
     setUserStatus: (state, action: PayloadAction<StatusType>) => {

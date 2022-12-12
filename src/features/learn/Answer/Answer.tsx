@@ -2,11 +2,10 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 
 import { Button, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
-import { updateCardGrade } from '../../slice';
-import style from '../Learn.module.scss';
-
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { updateCardGrade } from 'features/cards/slice';
 import { CardType } from 'features/cards/Types';
+import style from 'features/learn/Learn.module.scss';
 
 const GRADES = [
   { title: 'Did not know', value: 1 },

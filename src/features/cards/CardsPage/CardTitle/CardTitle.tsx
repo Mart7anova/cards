@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 
 import { selectUserProfile } from '../../../profile/selectors';
-import { CardMenu } from '../../CardMenu/CardMenu';
 import { selectPackDeckCover, selectPackName, selectPackUserId } from '../../selectors';
 import style from '../CardsPage.module.scss';
+
+import { CardMenu } from './CardMenu/CardMenu';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { addAlternateSrc } from 'common/utils/addAlternateSrc';

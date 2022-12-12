@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
 
-import style from '../Learn.module.scss';
-
 import { addAlternateSrc } from 'common/utils/addAlternateSrc';
 import { CardType } from 'features/cards/Types';
+import style from 'features/learn/Learn.module.scss';
 
 type PropsType = {
   card: CardType;

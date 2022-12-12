@@ -8,7 +8,6 @@ import { ForgotPassword } from '../auth/ForgotPassword/ForgotPassword';
 import { SignIn } from '../auth/SignIn/SignIn';
 import { SignUp } from '../auth/SignUp/SignUp';
 import { Cards } from '../cards';
-import { Learn } from '../cards/Learn/Learn';
 import { Packs } from '../packs';
 import { Profile } from '../profile';
 
@@ -16,6 +15,7 @@ import { ProtectedRoutes } from './ProtectedRoutes';
 
 import { PageNotFound } from 'common/components/PageNotFound/PageNotFound';
 import { Path } from 'common/enums/Path';
+import { Learn } from 'features/learn/Learn';
 import { Users } from 'features/users';
 
 export const AppRoute = (): ReactElement => {

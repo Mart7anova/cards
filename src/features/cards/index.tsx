@@ -9,11 +9,11 @@ import {
   selectCardsTotalCount,
   selectSearchParamsCards,
 } from './selectors';
-import { SkeletonCardPage } from './SkeletonCardPage/SkeletonCardPage';
 import { fetchCards } from './slice';
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import { CardsPageSkeleton } from 'features/cards/CardsPageSkeleton/CardsPageSkeleton';
 
 export const Cards = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ export const Cards = (): ReactElement => {
   }, [sortCards, cardsPackId, cardQuestion, min, page, pageCount, max, packId]);
 
   if (IS_CARDS_LOADING) {
-    return <SkeletonCardPage />;
+    return <CardsPageSkeleton />;
   }
 
   return HAVE_CARDS ? <CardsPage setIsSearching={setIsSearching} /> : <EmptyCardsPage />;

@@ -10,9 +10,9 @@ import { PackTitle } from './PackTitle/PackTitle';
 import { selectCardPacks, selectPackSearchParams, selectPacksStatus } from './selectors';
 import { changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter } from './slice';
 
-import { NoItems } from 'common/components/NoItems/NoItems';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import { EmptyTable } from 'features/packs/EmptyTable/EmptyTable';
 
 const COUNT_SYMBOLS = 3;
 
@@ -77,7 +77,7 @@ export const Packs = (): ReactElement => {
 
       <PacksFiltration disabled={IS_PACKS_LOADING} />
 
-      {HAVE_PACKS ? <PacksTable /> : <NoItems isLoading={IS_PACKS_LOADING} />}
+      {HAVE_PACKS ? <PacksTable /> : <EmptyTable isLoading={IS_PACKS_LOADING} />}
     </Container>
   );
 };

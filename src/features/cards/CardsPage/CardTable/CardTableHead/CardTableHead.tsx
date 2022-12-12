@@ -58,6 +58,7 @@ export const CardTableHead = (): ReactElement => {
             />
           </TableCell>
         ))}
+
         {IS_OWNER && <TableCell>Actions</TableCell>}
       </TableRow>
     </TableHead>

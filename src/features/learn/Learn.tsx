@@ -3,18 +3,16 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { Button, Paper } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-import { selectCards, selectCardsStatus, selectPackName } from '../selectors';
-import { fetchCards } from '../slice';
-
-import { Answer } from './Answer/Answer';
-import style from './Learn.module.scss';
-import { Question } from './Question/Question';
-
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { getRandomCard } from 'common/utils/getCardRamdom';
-import { SkeletonLearnPage } from 'features/cards/Learn/SkeletonLearnPage/SkeletonLearnPage';
+import { selectCards, selectCardsStatus, selectPackName } from 'features/cards/selectors';
+import { fetchCards } from 'features/cards/slice';
 import { CardType } from 'features/cards/Types';
+import { Answer } from 'features/learn/Answer/Answer';
+import style from 'features/learn/Learn.module.scss';
+import { LearnPageSkeleton } from 'features/learn/LearnPageSkeleton/LearnPageSkeleton';
+import { Question } from 'features/learn/Question/Question';
 
 export const Learn = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -44,7 +42,7 @@ export const Learn = (): ReactElement => {
   };
 
   if (cardsStatus === 'loading') {
-    return <SkeletonLearnPage />;
+    return <LearnPageSkeleton />;
   }
 
   return (

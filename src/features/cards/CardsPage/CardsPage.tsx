@@ -10,8 +10,8 @@ import { CardTable } from './CardTable/CardTable';
 import { CardTitle } from './CardTitle/CardTitle';
 import { SearchByCardName } from './SearchByCardName/SearchByCardName';
 
-import { NoItems } from 'common/components/NoItems/NoItems';
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import { EmptyTable } from 'features/packs/EmptyTable/EmptyTable';
 
 type PropsType = {
   setIsSearching: (isSearching: boolean) => void;
@@ -36,7 +36,7 @@ export const CardsPage = ({ setIsSearching }: PropsType): ReactElement => {
       {HAVE_CARDS ? (
         <CardTable setIsSearching={setIsSearching} />
       ) : (
-        <NoItems isLoading={IS_CARDS_LOADING} />
+        <EmptyTable isLoading={IS_CARDS_LOADING} />
       )}
     </Container>
   );

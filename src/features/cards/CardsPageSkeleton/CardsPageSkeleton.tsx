@@ -4,7 +4,7 @@ import { Container, Skeleton } from '@mui/material';
 
 import { SkeletonTable } from 'common/components/SkeletonTable/SkeletonTable';
 
-export const SkeletonCardPage = (): ReactElement => {
+export const CardsPageSkeleton = (): ReactElement => {
   return (
     <Container fixed>
       <Skeleton

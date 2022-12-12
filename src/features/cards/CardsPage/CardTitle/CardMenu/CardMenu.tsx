@@ -3,8 +3,8 @@ import React, { ReactElement, useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton, Tooltip } from '@mui/material';
 
-import style from './CardMenu.module.scss';
-import { Menu } from './Menu';
+import style from 'features/cards/CardsPage/CardTitle/CardMenu/CardMenu.module.scss';
+import { Menu } from 'features/cards/CardsPage/CardTitle/CardMenu/Menu';
 
 export const CardMenu = (): ReactElement => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);

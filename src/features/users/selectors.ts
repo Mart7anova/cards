@@ -14,3 +14,5 @@ export const selectUsersPageCount = (state: AppRootStateType): number =>
 
 export const selectUsersTotalCount = (state: AppRootStateType): number =>
   state.user.users.usersTotalCount;
+
+export const selectUsersStatus = (state: AppRootStateType): string => state.user.status;
