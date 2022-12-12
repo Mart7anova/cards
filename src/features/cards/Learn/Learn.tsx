@@ -10,10 +10,10 @@ import { Answer } from './Answer/Answer';
 import style from './Learn.module.scss';
 import { Question } from './Question/Question';
 
-import { Progress } from 'common/components/Progress/ProgressBar';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { getRandomCard } from 'common/utils/getCardRamdom';
+import { SkeletonLearnPage } from 'features/cards/Learn/SkeletonLearnPage/SkeletonLearnPage';
 import { CardType } from 'features/cards/Types';
 
 export const Learn = (): ReactElement => {
@@ -44,7 +44,7 @@ export const Learn = (): ReactElement => {
   };
 
   if (cardsStatus === 'loading') {
-    return <Progress />;
+    return <SkeletonLearnPage />;
   }
 
   return (
