@@ -13,7 +13,7 @@ import {
   selectPacksStatus,
   selectPageCountPacks,
   selectPagePacks,
-  selectSearchParams,
+  selectPackSearchParams,
 } from './selectors';
 import { changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter } from './slice';
 
@@ -44,7 +44,7 @@ export const Packs = (): ReactElement => {
     max,
     min,
     user_id: userId,
-  } = useAppSelector(selectSearchParams);
+  } = useAppSelector(selectPackSearchParams);
 
   const IS_PACKS_LOADING = packsStatus === 'loading';
   const HAVE_PACKS = !!cardPacks.length;

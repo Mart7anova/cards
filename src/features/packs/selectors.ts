@@ -18,7 +18,7 @@ export const selectMinCardsCount = (state: AppRootStateType): number =>
 export const selectMaxCardsCount = (state: AppRootStateType): number =>
   state.pack.packs.maxCardsCount;
 
-export const selectSearchParams = (state: AppRootStateType): PackSearchParamsType =>
+export const selectPackSearchParams = (state: AppRootStateType): PackSearchParamsType =>
   state.pack.packsSearchParams;
 
 export const selectPacksStatus = (state: AppRootStateType): string => state.pack.status;

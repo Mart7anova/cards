@@ -6,7 +6,7 @@ import Slider from '@mui/material/Slider';
 import {
   selectMaxCardsCount,
   selectMinCardsCount,
-  selectSearchParams,
+  selectPackSearchParams,
 } from '../../selectors';
 import { setPacksSearchParams } from '../../slice';
 
@@ -28,7 +28,7 @@ export const DoubleRangeFilter = ({ disabled }: PropsType): ReactElement => {
 
   const minCardsCount = useAppSelector(selectMinCardsCount);
   const maxCardsCount = useAppSelector(selectMaxCardsCount);
-  const { min, max } = useAppSelector(selectSearchParams);
+  const { min, max } = useAppSelector(selectPackSearchParams);
 
   const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount]);
 
