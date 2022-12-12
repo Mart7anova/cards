@@ -16,6 +16,7 @@ import { ProtectedRoutes } from './ProtectedRoutes';
 
 import { PageNotFound } from 'common/components/PageNotFound/PageNotFound';
 import { Path } from 'common/enums/Path';
+import { Users } from 'features/users';
 
 export const AppRoute = (): ReactElement => {
   return (
@@ -33,6 +34,8 @@ export const AppRoute = (): ReactElement => {
         <Route path={Path.PROFILE} element={<Profile />} />
         <Route path={Path.CARD} element={<Cards />} />
         <Route path={Path.LEARN_CARD} element={<Learn />} />
+        <Route path={Path.USERS} element={<Users />} />
+        {/* <Route path={Path.USER} element={<User />} /> */}
       </Route>
     </Routes>
   );

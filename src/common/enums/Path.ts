@@ -15,4 +15,6 @@ export enum Path {
   CHECK_EMAIL = '/check-email',
 
   PROFILE = '/profile',
+  USERS = '/user',
+  USER = '/user/:userID',
 }
