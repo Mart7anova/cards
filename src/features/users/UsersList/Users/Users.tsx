@@ -3,15 +3,12 @@ import React, { ReactElement } from 'react';
 import {
   Avatar,
   Divider,
-  List,
   ListItem,
   ListItemAvatar,
   ListItemText,
   TablePagination,
   Typography,
 } from '@mui/material';
-
-import style from './Users.module.scss';
 
 import noUserPhoto from 'common/assets/images/no-user-photo.png';
 import { COUNT_PAGES } from 'common/constants/CountPages';
@@ -24,6 +21,7 @@ import {
   selectUsersTotalCount,
 } from 'features/users/selectors';
 import { setUsersSearchParams } from 'features/users/slice';
+import style from 'features/users/UsersList/Users/Users.module.scss';
 
 export const Users = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -42,12 +40,7 @@ export const Users = (): ReactElement => {
   };
 
   return (
-    <List className={style.list}>
-      <div className={style.title}>
-        <h1>Users</h1>
-        <p>Packs</p>
-      </div>
-
+    <>
       {users.map(({ _id: userId, name, email, avatar, publicCardPacksCount }) => (
         <div key={userId}>
           <ListItem alignItems="flex-start">
@@ -84,6 +77,6 @@ export const Users = (): ReactElement => {
         onPageChange={pageChangeHandler}
         onRowsPerPageChange={rowsPerPageChangeHandler}
       />
-    </List>
+    </>
   );
 };
