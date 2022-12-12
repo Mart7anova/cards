@@ -1,6 +1,8 @@
 import { SyntheticEvent } from 'react';
+
 import brokenFile from '../assets/images/broken-file.png';
 
-export const addAlternateSrc = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-  e.currentTarget.src = brokenFile;
+export const addAlternateSrc = (event: SyntheticEvent<HTMLImageElement, Event>): void => {
+  // eslint-disable-next-line no-param-reassign
+  event.currentTarget.src = brokenFile;
 };

@@ -1,10 +1,12 @@
-type  FormValuesType = {
-  email?: string
-  password?: string
-  confirmPassword?: string
-}
+type FormValuesType = {
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+};
 
-export const validateValuesForForm = (values: FormValuesType) => {
+const MIN_LENGTH = 8;
+
+export const validateValuesForForm = (values: FormValuesType): FormValuesType => {
   const errors: FormValuesType = {};
 
   if (values.email !== undefined) {
@@ -18,9 +20,7 @@ export const validateValuesForForm = (values: FormValuesType) => {
   if (values.password !== undefined) {
     if (!values.password) {
       errors.password = 'password required';
-    } else if (values.password.length < 3) {
-      errors.password = 'The password is too short';
-    } else if (values.password.length < 8) {
+    } else if (values.password.length < MIN_LENGTH) {
       errors.password = 'Put more then 8 symbols, please.';
     }
   }
@@ -28,9 +28,7 @@ export const validateValuesForForm = (values: FormValuesType) => {
   if (values.confirmPassword !== undefined) {
     if (!values.confirmPassword) {
       errors.confirmPassword = 'password required';
-    } else if (values.confirmPassword.length < 3) {
-      errors.confirmPassword = 'The password is too short';
-    } else if (values.confirmPassword.length < 8) {
+    } else if (values.confirmPassword.length < MIN_LENGTH) {
       errors.confirmPassword = 'Put more then 8 symbols, please.';
     } else if (values.password !== values.confirmPassword) {
       errors.confirmPassword = 'Password not matched';
