@@ -1,16 +1,24 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import { Container } from '@mui/material';
+import { Container, Skeleton } from '@mui/material';
 
+import { NoResult } from 'common/components/NoResult/NoResult';
+import { AppStatus } from 'common/enums/AppStatus';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectUserSearchParam } from 'features/users/selectors';
+import {
+  selectUsers,
+  selectUserSearchParam,
+  selectUsersStatus,
+} from 'features/users/selectors';
 import { fetchUsers } from 'features/users/slice';
 import { UsersPage } from 'features/users/UsersPage/UsersPage';
 
 export const Users = (): ReactElement => {
   const dispatch = useAppDispatch();
 
+  const users = useAppSelector(selectUsers);
+  const usersStatus = useAppSelector(selectUsersStatus);
   const {
     page,
     pageCount,
@@ -19,6 +27,9 @@ export const Users = (): ReactElement => {
     userName,
     sortUsers,
   } = useAppSelector(selectUserSearchParam);
+
+  const HAVE_USERS = !!users.length;
+  const IS_USERS_LOADING = usersStatus === AppStatus.loading;
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -31,9 +42,9 @@ export const Users = (): ReactElement => {
     sortUsers,
   ]);
 
-  return (
-    <Container fixed>
-      <UsersPage />
-    </Container>
-  );
+  if (IS_USERS_LOADING) {
+    return <Skeleton />;
+  }
+
+  return <Container fixed>{HAVE_USERS ? <UsersPage /> : <NoResult />}</Container>;
 };

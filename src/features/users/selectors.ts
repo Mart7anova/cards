@@ -6,3 +6,11 @@ export const selectUsers = (state: AppRootStateType): UserType[] =>
 
 export const selectUserSearchParam = (state: AppRootStateType): UsersSearchParamsType =>
   state.user.usersSearchParams;
+
+export const selectUsersPage = (state: AppRootStateType): number => state.user.users.page;
+
+export const selectUsersPageCount = (state: AppRootStateType): number =>
+  state.user.users.pageCount;
+
+export const selectUsersTotalCount = (state: AppRootStateType): number =>
+  state.user.users.usersTotalCount;

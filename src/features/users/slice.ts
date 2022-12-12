@@ -3,13 +3,14 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppRootStateType } from 'app/store';
 import { StatusType } from 'common/types/Types';
 import { handleNetworkError } from 'common/utils/handleNetworkError';
+import { PackSearchParamsType } from 'features/packs/Types';
 import { userApi } from 'features/users/api';
 import { UsersResponseType, UserType } from 'features/users/Types';
 
 export const fetchUsers = createAsyncThunk(
   'User/getUsers',
   async (param, { rejectWithValue, dispatch, getState }) => {
-    dispatch(setProfileStatus('loading'));
+    dispatch(setUserStatus('loading'));
     try {
       const state = getState() as AppRootStateType;
       const searchParams = state.user.usersSearchParams;
@@ -22,7 +23,7 @@ export const fetchUsers = createAsyncThunk(
 
       return rejectWithValue(null);
     } finally {
-      dispatch(setProfileStatus('idle'));
+      dispatch(setUserStatus('idle'));
     }
   },
 );
@@ -39,8 +40,11 @@ const userSlice = createSlice({
     status: 'idle' as StatusType,
   },
   reducers: {
-    setProfileStatus: (state, action: PayloadAction<StatusType>) => {
+    setUserStatus: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
+    },
+    setUsersSearchParams: (state, action: PayloadAction<PackSearchParamsType>) => {
+      state.usersSearchParams = { ...state.usersSearchParams, ...action.payload };
     },
   },
   extraReducers: builder => {
@@ -50,5 +54,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setProfileStatus } = userSlice.actions;
+export const { setUserStatus, setUsersSearchParams } = userSlice.actions;
 export const userReducer = userSlice.reducer;
