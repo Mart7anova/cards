@@ -8,9 +8,11 @@ import { CardButton } from './CardButton/CardButton';
 import style from './CardsPage.module.scss';
 import { CardTable } from './CardTable/CardTable';
 import { CardTitle } from './CardTitle/CardTitle';
-import { SearchByCardName } from './SearchByCardName/SearchByCardName';
 
+import { SearchByName } from 'common/components/SearchByName/SearchByName';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import { setCardsSearchParams } from 'features/cards/slice';
 import { EmptyTable } from 'features/packs/EmptyTable/EmptyTable';
 
 type PropsType = {
@@ -18,11 +20,21 @@ type PropsType = {
 };
 
 export const CardsPage = ({ setIsSearching }: PropsType): ReactElement => {
+  const dispatch = useAppDispatch();
+
   const cards = useAppSelector(selectCards);
   const cardsStatus = useAppSelector(selectCardsStatus);
 
-  const IS_CARDS_LOADING = cardsStatus === 'loading';
-  const HAVE_CARDS = !!cards.length;
+  const isCardLoading = cardsStatus === 'loading';
+  const haveCards = !!cards.length;
+
+  const setSearchParam = (): ((searchParam: string) => void) => {
+    setIsSearching(true);
+
+    return (searchParam: string) => {
+      dispatch(setCardsSearchParams({ cardQuestion: searchParam }));
+    };
+  };
 
   return (
     <Container fixed>
@@ -31,12 +43,17 @@ export const CardsPage = ({ setIsSearching }: PropsType): ReactElement => {
         <CardButton />
       </div>
 
-      <SearchByCardName setIsSearching={setIsSearching} />
+      <SearchByName
+        title="Search by question name"
+        setSearchParam={setSearchParam()}
+        disabled={isCardLoading}
+        fullWidth
+      />
 
-      {HAVE_CARDS ? (
+      {haveCards ? (
         <CardTable setIsSearching={setIsSearching} />
       ) : (
-        <EmptyTable isLoading={IS_CARDS_LOADING} />
+        <EmptyTable isLoading={isCardLoading} />
       )}
     </Container>
   );

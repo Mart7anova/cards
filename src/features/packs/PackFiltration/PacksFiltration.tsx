@@ -3,13 +3,16 @@ import React, { ReactElement } from 'react';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import { Button, Tooltip } from '@mui/material';
 
-import { clearSearchParams } from '../slice';
+import { clearSearchParams, setPacksSearchParams } from '../slice';
 
-import { DoubleRangeFilter } from './DoubleRangeFilter/DoubleRangeFilter';
 import { FilterByMyPacks } from './FilterByMyPacks/FilterByMyPacks';
 import style from './PacksFiltration.module.scss';
-import { SearchByPackName } from './SearchByPackName/SearchByPackName';
 
+import {
+  DoubleRangeFilter,
+  RangeParamType,
+} from 'common/components/DoubleRangeFilter/DoubleRangeFilter';
+import { SearchByName } from 'common/components/SearchByName/SearchByName';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 
 type PropsType = {
@@ -23,11 +26,26 @@ export const PacksFiltration = ({ disabled }: PropsType): ReactElement => {
     dispatch(clearSearchParams());
   };
 
+  const setSearchByNameParam = (): ((searchParam: string) => void) => {
+    return (searchParam: string) => {
+      dispatch(setPacksSearchParams({ packName: searchParam }));
+    };
+  };
+
+  const setRangeParam = (): (({ min, max }: RangeParamType) => void) => {
+    return ({ min, max }: RangeParamType) => {
+      dispatch(setPacksSearchParams({ min, max }));
+    };
+  };
+
   return (
     <div className={style.filterContainer}>
       <div>
-        <h3>Search by name</h3>
-        <SearchByPackName disabled={disabled} />
+        <SearchByName
+          title="Search by name"
+          setSearchParam={setSearchByNameParam()}
+          disabled={disabled}
+        />
       </div>
 
       <div>
@@ -36,8 +54,11 @@ export const PacksFiltration = ({ disabled }: PropsType): ReactElement => {
       </div>
 
       <div>
-        <h3 className={style.numberTitle}>Number of cards</h3>
-        <DoubleRangeFilter disabled={disabled} />
+        <DoubleRangeFilter
+          title="Number of cards"
+          setSearchParam={setRangeParam()}
+          disabled={disabled}
+        />
       </div>
 
       <div>

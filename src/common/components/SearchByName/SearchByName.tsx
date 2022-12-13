@@ -2,45 +2,47 @@ import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 
 import { TextField } from '@mui/material';
 
-import { setCardsSearchParams } from '../../slice';
-
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useDebounce } from 'common/hooks/useDebounce';
 
 type PropsType = {
-  setIsSearching: (isSearching: boolean) => void;
+  title: string;
+  fullWidth?: boolean;
+  setSearchParam: (searchParam: string) => void;
+  disabled: boolean;
 };
 
 const DELAY = 500;
 
-export const SearchByCardName = ({ setIsSearching }: PropsType): ReactElement => {
-  const dispatch = useAppDispatch();
-
+export const SearchByName = ({
+  title,
+  fullWidth,
+  setSearchParam,
+  disabled,
+}: PropsType): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
 
   const debouncedValue = useDebounce<string>(searchValue, DELAY);
 
   useEffect(() => {
-    dispatch(setCardsSearchParams({ cardQuestion: searchValue }));
+    setSearchParam(searchValue);
   }, [debouncedValue]);
 
   const valueSearchChangeHandler = async (
     e: ChangeEvent<HTMLInputElement>,
   ): Promise<void> => {
-    setIsSearching(true);
     setSearchValue(e.currentTarget.value);
   };
 
   return (
     <>
-      <h3>Search by question name</h3>
-
+      <h3>{title}</h3>
       <TextField
         placeholder="Provide your text"
         size="small"
         value={searchValue}
         onChange={valueSearchChangeHandler}
-        style={{ marginBottom: '20px', width: '100%' }}
+        style={fullWidth ? { marginBottom: '20px', width: '100%' } : {}}
+        disabled={disabled}
       />
     </>
   );

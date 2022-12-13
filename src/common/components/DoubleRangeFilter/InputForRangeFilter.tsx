@@ -3,7 +3,7 @@ import { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 
 import { TextField } from '@mui/material';
 
-import style from './DoubleRangeFilter.module.scss';
+import style from 'common/components/DoubleRangeFilter/DoubleRangeFilter.module.scss';
 
 type PropsType = {
   currentValue: number;
