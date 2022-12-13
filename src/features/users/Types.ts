@@ -27,8 +27,8 @@ export type UserResponseType = {
 
 export type UsersSearchParamsType = {
   userName?: string;
-  minPublicCardPacksCount?: number;
-  maxPublicCardPacksCount?: number;
+  min?: number;
+  max?: number;
   sortUsers?: string;
   page?: number;
   pageCount?: number;
