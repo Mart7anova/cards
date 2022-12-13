@@ -10,8 +10,8 @@ export const CardsPageSkeleton = (): ReactElement => {
       <Skeleton
         animation="pulse"
         height={40}
-        width={100}
-        style={{ margin: '30px 0 150px 0' }}
+        width={150}
+        style={{ margin: '40px 0 100px 0' }}
       />
       <SkeletonTable />
     </Container>
