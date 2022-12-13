@@ -4,9 +4,8 @@ import { AppRootStateType } from 'app/store';
 import { AppStatus } from 'common/enums/AppStatus';
 import { StatusType } from 'common/types/Types';
 import { handleNetworkError } from 'common/utils/handleNetworkError';
-import { PackSearchParamsType } from 'features/packs/Types';
 import { userApi } from 'features/users/api';
-import { UsersResponseType, UserType } from 'features/users/Types';
+import { UsersResponseType, UsersSearchParamsType, UserType } from 'features/users/Types';
 
 export const fetchUsers = createAsyncThunk(
   'User/getUsers',
@@ -37,14 +36,14 @@ const usersSlice = createSlice({
     } as UsersResponseType,
     usersSearchParams: {
       pageCount: 10,
-    } as UsersResponseType,
+    } as UsersSearchParamsType,
     status: AppStatus.idle as StatusType,
   },
   reducers: {
     setUserStatus: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
-    setUsersSearchParams: (state, action: PayloadAction<PackSearchParamsType>) => {
+    setUsersSearchParams: (state, action: PayloadAction<UsersSearchParamsType>) => {
       state.usersSearchParams = { ...state.usersSearchParams, ...action.payload };
     },
   },
