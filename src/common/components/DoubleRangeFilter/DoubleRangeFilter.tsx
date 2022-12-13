@@ -4,20 +4,17 @@ import { ReactElement, useEffect, useState } from 'react';
 import Slider from '@mui/material/Slider';
 
 import style from 'common/components/DoubleRangeFilter/DoubleRangeFilter.module.scss';
-import { InputForRangeFilter } from 'common/components/DoubleRangeFilter/InputForRangeFilter';
-import { useAppSelector } from 'common/hooks/useAppSelector';
 import { useDebounce } from 'common/hooks/useDebounce';
-import {
-  selectMaxCardsCount,
-  selectMinCardsCount,
-  selectPackSearchParams,
-} from 'features/packs/selectors';
 
 export type RangeParamType = { min: number; max: number };
 
 type PropsType = {
   title: string;
   setSearchParam: ({ min, max }: RangeParamType) => void;
+  currentMinCount: number;
+  currentMaxCount: number;
+  minCountParam: number | undefined;
+  maxCountParam: number | undefined;
   disabled: boolean;
 };
 
@@ -27,12 +24,12 @@ export const DoubleRangeFilter = ({
   title,
   disabled,
   setSearchParam,
+  currentMinCount,
+  currentMaxCount,
+  minCountParam,
+  maxCountParam,
 }: PropsType): ReactElement => {
-  const minCardsCount = useAppSelector(selectMinCardsCount);
-  const maxCardsCount = useAppSelector(selectMaxCardsCount);
-  const { min, max } = useAppSelector(selectPackSearchParams);
-
-  const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount]);
+  const [value, setValue] = useState<number[]>([currentMinCount, currentMaxCount]);
 
   const debouncedValue = useDebounce<number[]>(value, DELAY);
 
@@ -41,50 +38,42 @@ export const DoubleRangeFilter = ({
   }, [debouncedValue]);
 
   useEffect(() => {
-    if (min && max) {
-      setValue([min, max]);
-    } else if (maxCardsCount) {
-      setValue([minCardsCount, maxCardsCount]);
+    if (minCountParam && maxCountParam) {
+      setValue([minCountParam, maxCountParam]);
     }
-  }, [min, max, minCardsCount, maxCardsCount]);
+  }, [minCountParam, maxCountParam]);
 
-  const firstRangeChangeHandler = (newValue: number): void => {
-    setValue([newValue, value[1]]);
-  };
+  useEffect(() => {
+    setValue([currentMinCount, currentMaxCount]);
+  }, [currentMinCount, currentMaxCount]);
 
   const doubleRangeChangeHandler = (event: Event, newValue: number | number[]): void => {
     setValue(newValue as number[]);
   };
 
-  const secondRangeChangeHandler = (newValue: number): void => {
-    setValue([value[0], newValue]);
-  };
-
   return (
-    <>
+    <div className={style.mainContainer}>
       <h3 className={style.title}>{title}</h3>
-      <div className={style.mainContainer}>
-        <InputForRangeFilter
-          currentValue={value[0]}
-          setCurrentValue={firstRangeChangeHandler}
-          disabled={disabled}
-        />
+
+      <div className={style.sliderContainer}>
+        <div className={style.valueContainer}>
+          <p className={style.value}>{value[0]}</p>
+        </div>
 
         <Slider
           value={value}
           onChange={doubleRangeChangeHandler}
           valueLabelDisplay="auto"
-          min={minCardsCount}
-          max={maxCardsCount}
+          min={0}
+          max={currentMaxCount}
           disabled={disabled}
+          sx={{ width: '150px' }}
         />
 
-        <InputForRangeFilter
-          currentValue={value[1]}
-          setCurrentValue={secondRangeChangeHandler}
-          disabled={disabled}
-        />
+        <div className={style.valueContainer}>
+          <p className={style.value}>{value[1]}</p>
+        </div>
       </div>
-    </>
+    </div>
   );
 };

@@ -14,6 +14,12 @@ import {
 } from 'common/components/DoubleRangeFilter/DoubleRangeFilter';
 import { SearchByName } from 'common/components/SearchByName/SearchByName';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import {
+  selectMaxCardsCount,
+  selectMinCardsCount,
+  selectPackSearchParams,
+} from 'features/packs/selectors';
 
 type PropsType = {
   disabled: boolean;
@@ -21,6 +27,10 @@ type PropsType = {
 
 export const PacksFiltration = ({ disabled }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
+
+  const minCardsCount = useAppSelector(selectMinCardsCount);
+  const maxCardsCount = useAppSelector(selectMaxCardsCount);
+  const { min, max } = useAppSelector(selectPackSearchParams);
 
   const filtersCleanHandler = (): void => {
     dispatch(clearSearchParams());
@@ -56,6 +66,10 @@ export const PacksFiltration = ({ disabled }: PropsType): ReactElement => {
       <div>
         <DoubleRangeFilter
           title="Number of cards"
+          currentMinCount={minCardsCount}
+          currentMaxCount={maxCardsCount}
+          minCountParam={min}
+          maxCountParam={max}
           setSearchParam={setRangeParam()}
           disabled={disabled}
         />
