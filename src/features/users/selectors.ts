@@ -4,6 +4,12 @@ import { UsersSearchParamsType, UserType } from 'features/users/Types';
 export const selectUsers = (state: AppRootStateType): UserType[] =>
   state.users.users.users;
 
+export const selectMinPacksCount = (state: AppRootStateType): number =>
+  state.users.users.minPublicCardPacksCount;
+
+export const selectMaxPacksCount = (state: AppRootStateType): number =>
+  state.users.users.maxPublicCardPacksCount;
+
 export const selectUserSearchParam = (state: AppRootStateType): UsersSearchParamsType =>
   state.users.usersSearchParams;
 
