@@ -10,7 +10,7 @@ import { setCardsSearchParams } from '../../../slice';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { useToggle } from 'common/hooks/useToggle';
-import { selectUserProfile } from 'features/profile/selectors';
+import { selectProfile } from 'features/profile/selectors';
 
 const HEADERS = [
   { name: 'Question', sortName: 'question' },
@@ -26,7 +26,7 @@ export const CardTableHead = (): ReactElement => {
   const [isHeaderSorted, toggleHeaderSort] = useToggle(true);
 
   const packUserId = useAppSelector(selectPackUserId);
-  const { _id } = useAppSelector(selectUserProfile);
+  const { _id } = useAppSelector(selectProfile);
 
   const IS_OWNER = packUserId === _id;
 

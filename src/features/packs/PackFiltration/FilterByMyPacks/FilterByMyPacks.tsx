@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import { Button, ButtonGroup } from '@mui/material';
 
-import { selectUserProfile } from '../../../profile/selectors';
+import { selectProfile } from '../../../profile/selectors';
 import { selectPackSearchParams } from '../../selectors';
 import { setIsMyPacksFilter } from '../../slice';
 
@@ -17,7 +17,7 @@ type PropsType = {
 export const FilterByMyPacks = ({ cleanFilters, disabled }: PropsType): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const { _id: profileId } = useAppSelector(selectUserProfile);
+  const { _id: profileId } = useAppSelector(selectProfile);
   const { user_id: userId } = useAppSelector(selectPackSearchParams);
 
   const textStyle = { margin: '0 10px' };

@@ -6,7 +6,7 @@ import { Avatar, Badge, Button, IconButton, Paper } from '@mui/material';
 import { signOut } from '../auth/slice';
 
 import style from './index.module.scss';
-import { selectUserProfile } from './selectors';
+import { selectProfile } from './selectors';
 import { updateProfile } from './slice';
 
 import noUserPhoto from 'common/assets/images/no-user-photo.png';
@@ -18,7 +18,7 @@ import { uploadFile } from 'common/utils/uploadFile';
 export const Profile = (): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const { name, avatar, email } = useAppSelector(selectUserProfile);
+  const { name, avatar, email } = useAppSelector(selectProfile);
 
   const fileUploadHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     uploadFile({ files: e.target.files, dispatch, actionForDispatch: updateProfile });

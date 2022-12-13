@@ -9,10 +9,10 @@ import style from './ProfileLink.module.scss';
 
 import { Path } from 'common/enums/Path';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectUserProfile } from 'features/profile/selectors';
+import { selectProfile } from 'features/profile/selectors';
 
 export const ProfileLink = (): ReactElement => {
-  const { name, avatar } = useAppSelector(selectUserProfile);
+  const { name, avatar } = useAppSelector(selectProfile);
 
   return (
     <Link to={Path.PROFILE} className={style.userContainer}>

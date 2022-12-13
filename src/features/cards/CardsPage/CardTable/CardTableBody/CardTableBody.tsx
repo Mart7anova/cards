@@ -9,7 +9,7 @@ import { CardIconsGroup } from './CardIconsGroup/CardIconsGroup';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { addAlternateSrc } from 'common/utils/addAlternateSrc';
-import { selectUserProfile } from 'features/profile/selectors';
+import { selectProfile } from 'features/profile/selectors';
 
 type PropsType = {
   setIsSearching: (isSearching: boolean) => void;
@@ -18,7 +18,7 @@ type PropsType = {
 export const CardTableBody = ({ setIsSearching }: PropsType): ReactElement => {
   const cards = useAppSelector(selectCards);
   const packUserId = useAppSelector(selectPackUserId);
-  const userProfile = useAppSelector(selectUserProfile);
+  const userProfile = useAppSelector(selectProfile);
 
   // eslint-disable-next-line no-underscore-dangle
   const IS_OWNER = packUserId === userProfile._id;

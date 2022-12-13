@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { selectUserProfile } from '../../../profile/selectors';
+import { selectProfile } from '../../../profile/selectors';
 import { selectPackDeckCover, selectPackName, selectPackUserId } from '../../selectors';
 import style from '../CardsPage.module.scss';
 
@@ -13,7 +13,7 @@ export const CardTitle = (): ReactElement => {
   const packName = useAppSelector(selectPackName);
   const packUserId = useAppSelector(selectPackUserId);
   const packDeckCover = useAppSelector(selectPackDeckCover);
-  const { _id } = useAppSelector(selectUserProfile);
+  const { _id } = useAppSelector(selectProfile);
 
   const IS_OWNER = packUserId === _id;
 

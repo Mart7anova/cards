@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { Container } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-import { selectUserProfile } from '../../profile/selectors';
+import { selectProfile } from '../../profile/selectors';
 import { AddCards } from '../CardsPage/CardButton/AddCards/AddCards';
 import { CardMenu } from '../CardsPage/CardTitle/CardMenu/CardMenu';
 import {
@@ -23,7 +23,7 @@ export const EmptyCardsPage = (): ReactElement => {
   const packName = useAppSelector(selectPackName);
   const packUserId = useAppSelector(selectPackUserId);
   const packDeckCover = useAppSelector(selectPackDeckCover);
-  const { _id } = useAppSelector(selectUserProfile);
+  const { _id } = useAppSelector(selectProfile);
   const cardsStatus = useAppSelector(selectCardsStatus);
 
   const IS_OWNER = packUserId === _id;

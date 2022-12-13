@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { selectUserProfile } from '../../../profile/selectors';
+import { selectProfile } from '../../../profile/selectors';
 import { selectCardsStatus, selectPackUserId } from '../../selectors';
 import style from '../CardsPage.module.scss';
 
@@ -18,7 +18,7 @@ export const CardButton = (): ReactElement => {
 
   const cardsStatus = useAppSelector(selectCardsStatus);
   const packUserId = useAppSelector(selectPackUserId);
-  const { _id } = useAppSelector(selectUserProfile);
+  const { _id } = useAppSelector(selectProfile);
 
   const IS_OWNER = packUserId === _id;
   const IS_CARDS_LOADING = cardsStatus === 'loading';

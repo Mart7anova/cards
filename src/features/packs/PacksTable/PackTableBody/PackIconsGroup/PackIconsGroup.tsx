@@ -14,7 +14,7 @@ import { Path } from 'common/enums/Path';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { useModal } from 'common/hooks/useModal';
-import { selectUserProfile } from 'features/profile/selectors';
+import { selectProfile } from 'features/profile/selectors';
 
 type PropsType = {
   packUserId: string;
@@ -35,7 +35,7 @@ export const PackIconsGroup = ({
 
   const navigate = useNavigate();
 
-  const { _id } = useAppSelector(selectUserProfile);
+  const { _id } = useAppSelector(selectProfile);
 
   const { open, openModal, closeModal } = useModal();
   const { openEdit, openEditModal, closeEditModal } = useModal();
