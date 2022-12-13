@@ -2,17 +2,18 @@ import { AppRootStateType } from 'app/store';
 import { UsersSearchParamsType, UserType } from 'features/users/Types';
 
 export const selectUsers = (state: AppRootStateType): UserType[] =>
-  state.user.users.users;
+  state.users.users.users;
 
 export const selectUserSearchParam = (state: AppRootStateType): UsersSearchParamsType =>
-  state.user.usersSearchParams;
+  state.users.usersSearchParams;
 
-export const selectUsersPage = (state: AppRootStateType): number => state.user.users.page;
+export const selectUsersPage = (state: AppRootStateType): number =>
+  state.users.users.page;
 
 export const selectUsersPageCount = (state: AppRootStateType): number =>
-  state.user.users.pageCount;
+  state.users.users.pageCount;
 
 export const selectUsersTotalCount = (state: AppRootStateType): number =>
-  state.user.users.usersTotalCount;
+  state.users.users.usersTotalCount;
 
-export const selectUsersStatus = (state: AppRootStateType): string => state.user.status;
+export const selectUsersStatus = (state: AppRootStateType): string => state.users.status;

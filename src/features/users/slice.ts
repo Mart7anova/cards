@@ -14,7 +14,7 @@ export const fetchUsers = createAsyncThunk(
     dispatch(setUserStatus('loading'));
     try {
       const state = getState() as AppRootStateType;
-      const searchParams = state.user.usersSearchParams;
+      const searchParams = state.users.usersSearchParams;
 
       const { data } = await userApi.getUsers(searchParams);
 
@@ -29,8 +29,8 @@ export const fetchUsers = createAsyncThunk(
   },
 );
 
-const userSlice = createSlice({
-  name: 'user',
+const usersSlice = createSlice({
+  name: 'users',
   initialState: {
     users: {
       users: [] as UserType[],
@@ -55,5 +55,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserStatus, setUsersSearchParams } = userSlice.actions;
-export const userReducer = userSlice.reducer;
+export const { setUserStatus, setUsersSearchParams } = usersSlice.actions;
+export const usersReducer = usersSlice.reducer;

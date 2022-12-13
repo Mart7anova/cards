@@ -19,6 +19,12 @@ export type UsersResponseType = {
   usersTotalCount: number;
 };
 
+export type UserResponseType = {
+  user: UserType;
+  token: string;
+  tokenDeathTime: number;
+};
+
 export type UsersSearchParamsType = {
   userName?: string;
   minPublicCardPacksCount?: number;
