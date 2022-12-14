@@ -2,43 +2,38 @@ import React, { ReactElement, useEffect } from 'react';
 
 import { Container, List } from '@mui/material';
 
+import { ScrollTop } from 'common/components/ScrollTop/ScrollTop';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { selectUserSearchParam } from 'features/users/selectors';
 import { fetchUsers } from 'features/users/slice';
+import { UsersFilter } from 'features/users/UsersFilter/UsersFilter';
 import { UsersList } from 'features/users/UsersList/UsersList';
 import { UsersTitle } from 'features/users/UsersTitle/UsersTitle';
 
 export const Users = (): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const {
-    page,
-    pageCount,
-    minPublicCardPacksCount,
-    maxPublicCardPacksCount,
-    userName,
-    sortUsers,
-  } = useAppSelector(selectUserSearchParam);
+  const { page, pageCount, min, max, userName, sortUsers } =
+    useAppSelector(selectUserSearchParam);
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [
-    page,
-    pageCount,
-    minPublicCardPacksCount,
-    maxPublicCardPacksCount,
-    userName,
-    sortUsers,
-  ]);
+  }, [page, pageCount, min, max, userName, sortUsers]);
 
   return (
-    <Container fixed>
+    <Container fixed style={{ display: 'flex' }}>
       <List sx={{ width: '50%' }}>
         <UsersTitle />
 
         <UsersList />
       </List>
+
+      <List sx={{ width: '50%' }} style={{ margin: '0 0 0 100px' }}>
+        <UsersFilter />
+      </List>
+
+      <ScrollTop />
     </Container>
   );
 };
