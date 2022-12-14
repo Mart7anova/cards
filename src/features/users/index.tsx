@@ -23,13 +23,13 @@ export const Users = (): ReactElement => {
 
   return (
     <Container fixed style={{ display: 'flex' }}>
-      <List sx={{ width: '50%' }}>
+      <List sx={{ width: '45%' }}>
         <UsersTitle />
 
         <UsersList />
       </List>
 
-      <List sx={{ width: '50%' }} style={{ margin: '0 0 0 100px' }}>
+      <List sx={{ width: '45%' }} style={{ margin: '0 0 0 100px' }}>
         <UsersFilter />
       </List>
 

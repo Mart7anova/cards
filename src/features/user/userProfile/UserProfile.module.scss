@@ -1,9 +1,9 @@
-@import '../../common/assets/styles/sass/mixins';
+@import '../../../common/assets/styles/sass/mixins';
 
 .profileContainer {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-bottom: 50px;
 
   .paper {
     width: 450px;

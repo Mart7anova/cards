@@ -5,7 +5,7 @@ import { authReducer } from 'features/auth/slice';
 import { cardReducer } from 'features/cards/slice';
 import { packReducer } from 'features/packs/slice';
 import { profileReducer } from 'features/profile/slice';
-import { userProfileReducer } from 'features/userProfile/slice';
+import { userProfileReducer } from 'features/user/slice';
 import { usersReducer } from 'features/users/slice';
 
 export const store = configureStore({
