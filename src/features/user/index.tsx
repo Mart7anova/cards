@@ -19,11 +19,11 @@ export const User = (): ReactElement => {
 
   const { userId } = useParams() as { userId: string };
 
-  const { email } = useAppSelector(selectUserProfile);
+  const user = useAppSelector(selectUserProfile);
   const userProfileStatus = useAppSelector(selectUserProfileStatus);
   const packsStatus = useAppSelector(selectPacksStatus);
 
-  const haveUserProfile = email !== undefined;
+  const haveUserProfile = user !== undefined;
   const isUserProfileLoading = (userProfileStatus || packsStatus) === AppStatus.loading;
 
   useEffect(() => {

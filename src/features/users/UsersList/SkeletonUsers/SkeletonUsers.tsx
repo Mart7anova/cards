@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import { Skeleton } from '@mui/material';
 
-const LENGTH_ARRAY = 11;
+const LENGTH_ARRAY = 8;
 
 export const SkeletonUsers = (): ReactElement => {
   const FAKE_ARRAY = [];

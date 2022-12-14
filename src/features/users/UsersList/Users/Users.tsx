@@ -9,10 +9,11 @@ import {
   TablePagination,
   Typography,
 } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import noUserPhoto from 'common/assets/images/no-user-photo.png';
 import { COUNT_PAGES } from 'common/constants/CountPages';
+import { AppStatus } from 'common/enums/AppStatus';
 import { Path } from 'common/enums/Path';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
@@ -20,9 +21,11 @@ import {
   selectUsers,
   selectUsersPage,
   selectUsersPageCount,
+  selectUsersStatus,
   selectUsersTotalCount,
 } from 'features/users/selectors';
 import { setUsersSearchParams } from 'features/users/slice';
+import { SkeletonUsers } from 'features/users/UsersList/SkeletonUsers/SkeletonUsers';
 import style from 'features/users/UsersList/Users/Users.module.scss';
 
 export const Users = (): ReactElement => {
@@ -34,9 +37,13 @@ export const Users = (): ReactElement => {
   const usersPage = useAppSelector(selectUsersPage);
   const usersPageCount = useAppSelector(selectUsersPageCount);
   const usersTotalCount = useAppSelector(selectUsersTotalCount);
+  const usersStatus = useAppSelector(selectUsersStatus);
+
+  const IS_USERS_LOADING = usersStatus === AppStatus.loading;
 
   const userNavigateHandler = (userId: string): (() => void) => {
     return () => {
+      dispatch(setUsersSearchParams({ page: 1, pageCount: 10 }));
       navigate(Path.USERS + userId);
     };
   };
@@ -48,6 +55,10 @@ export const Users = (): ReactElement => {
   const rowsPerPageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setUsersSearchParams({ pageCount: Number(e.target.value) }));
   };
+
+  if (IS_USERS_LOADING || !usersPageCount) {
+    return <SkeletonUsers />;
+  }
 
   return (
     <>
@@ -64,9 +75,13 @@ export const Users = (): ReactElement => {
 
             <ListItemText
               primary={
-                <Link to={Path.USERS + userId} className={style.userName}>
+                <button
+                  type="button"
+                  onClick={userNavigateHandler(userId)}
+                  className={style.userName}
+                >
                   <p>{name}</p>
-                </Link>
+                </button>
               }
               secondary={
                 <span className={style.secondaryText}>
