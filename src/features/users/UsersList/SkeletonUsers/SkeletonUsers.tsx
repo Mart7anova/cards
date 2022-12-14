@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import { Skeleton } from '@mui/material';
 
-const LENGTH_ARRAY = 10;
+const LENGTH_ARRAY = 11;
 
 export const SkeletonUsers = (): ReactElement => {
   const FAKE_ARRAY = [];
@@ -20,7 +20,7 @@ export const SkeletonUsers = (): ReactElement => {
           width="100%"
           sx={{ margin: '0 0 2px 0' }}
         >
-          <div style={{ paddingTop: '13%' }} />
+          <div style={{ paddingTop: '17%' }} />
         </Skeleton>
       ))}
     </div>
