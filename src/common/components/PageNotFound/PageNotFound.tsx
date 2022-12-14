@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { Button, Container } from '@mui/material';
+import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import notFound from '../../assets/images/404.gif';
@@ -13,7 +13,7 @@ export const PageNotFound = (): ReactElement => {
   const navigate = useNavigate();
 
   return (
-    <Container className={style.pageContainer}>
+    <div className={style.mainContainer}>
       <h1>Error 404</h1>
 
       <h2>Page not found</h2>
@@ -27,7 +27,7 @@ export const PageNotFound = (): ReactElement => {
         go back home
       </Button>
 
-      <img src={notFound} alt=" " />
-    </Container>
+      <img src={notFound} alt="notFound" />
+    </div>
   );
 };
