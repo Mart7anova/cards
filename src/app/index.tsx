@@ -1,5 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 
+import { Toolbar } from '@mui/material';
+
 import { InfoMessage } from 'common/components/InfoMessage/InfoMessage';
 import { NavBar } from 'common/components/NavBar/NavBar';
 import { Progress } from 'common/components/Progress/ProgressBar';
@@ -33,6 +35,7 @@ export const App = (): ReactElement => {
     <div>
       <NavBar />
       <ProgressBar />
+      <Toolbar id="back-to-top-anchor" />
       <AppRoute />
       <InfoMessage message={appError} type="error" action={setAppError} />
       <InfoMessage message={appSuccess} type="success" action={setAppSuccess} />
