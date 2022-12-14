@@ -9,6 +9,7 @@ type PropsType = {
   fullWidth?: boolean;
   setSearchParam: (searchParam: string) => void;
   disabled: boolean;
+  className?: string | undefined;
 };
 
 const DELAY = 500;
@@ -18,6 +19,7 @@ export const SearchByName = ({
   fullWidth,
   setSearchParam,
   disabled,
+  className,
 }: PropsType): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
 
@@ -34,7 +36,7 @@ export const SearchByName = ({
   };
 
   return (
-    <>
+    <div className={className}>
       <h3>{title}</h3>
       <TextField
         placeholder="Provide your text"
@@ -44,6 +46,6 @@ export const SearchByName = ({
         style={fullWidth ? { marginBottom: '20px', width: '100%' } : {}}
         disabled={disabled}
       />
-    </>
+    </div>
   );
 };

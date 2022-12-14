@@ -16,6 +16,7 @@ type PropsType = {
   minCountParam: number | undefined;
   maxCountParam: number | undefined;
   disabled: boolean;
+  className?: string | undefined;
 };
 
 const DELAY = 1000;
@@ -28,6 +29,7 @@ export const DoubleRangeFilter = ({
   currentMaxCount,
   minCountParam,
   maxCountParam,
+  className,
 }: PropsType): ReactElement => {
   const [value, setValue] = useState<number[]>([currentMinCount, currentMaxCount]);
 
@@ -51,8 +53,10 @@ export const DoubleRangeFilter = ({
     setValue(newValue as number[]);
   };
 
+  const mainClassName = `${style.mainContainer} ${className}`;
+
   return (
-    <div className={style.mainContainer}>
+    <div className={mainClassName}>
       <h3 className={style.title}>{title}</h3>
 
       <div className={style.sliderContainer}>
