@@ -29,7 +29,7 @@ export const UsersFilter = (): ReactElement => {
   const { min, max } = useAppSelector(selectUserSearchParam);
 
   const isUserLoading = userStatus === AppStatus.loading;
-  const haveUsers = users !== undefined;
+  const haveUsers = !!users.length;
 
   const setSearchByNameParam = (): ((searchParam: string) => void) => {
     return (searchParam: string) => {

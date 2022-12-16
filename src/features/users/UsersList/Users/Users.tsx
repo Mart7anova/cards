@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 import noUserPhoto from 'common/assets/images/no-user-photo.png';
 import { COUNT_PAGES } from 'common/constants/CountPages';
-import { AppStatus } from 'common/enums/AppStatus';
 import { Path } from 'common/enums/Path';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
@@ -21,11 +20,9 @@ import {
   selectUsers,
   selectUsersPage,
   selectUsersPageCount,
-  selectUsersStatus,
   selectUsersTotalCount,
 } from 'features/users/selectors';
 import { setUsersSearchParams } from 'features/users/slice';
-import { SkeletonUsers } from 'features/users/UsersList/SkeletonUsers/SkeletonUsers';
 import style from 'features/users/UsersList/Users/Users.module.scss';
 
 export const Users = (): ReactElement => {
@@ -37,9 +34,6 @@ export const Users = (): ReactElement => {
   const usersPage = useAppSelector(selectUsersPage);
   const usersPageCount = useAppSelector(selectUsersPageCount);
   const usersTotalCount = useAppSelector(selectUsersTotalCount);
-  const usersStatus = useAppSelector(selectUsersStatus);
-
-  const isUsersLoading = usersStatus === AppStatus.loading;
 
   const userNavigateHandler = (userId: string): (() => void) => {
     return () => {
@@ -55,10 +49,6 @@ export const Users = (): ReactElement => {
   const rowsPerPageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setUsersSearchParams({ pageCount: Number(e.target.value) }));
   };
-
-  if (isUsersLoading || !usersPageCount) {
-    return <SkeletonUsers />;
-  }
 
   return (
     <>
