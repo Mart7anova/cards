@@ -14,7 +14,7 @@ import {
   selectMaxPacksCount,
   selectMinPacksCount,
   selectUsers,
-  selectUserSearchParam,
+  selectUsersSearchParam,
   selectUsersStatus,
 } from 'features/users/selectors';
 import { setUsersSearchParams } from 'features/users/slice';
@@ -26,7 +26,7 @@ export const UsersFilter = (): ReactElement => {
   const userStatus = useAppSelector(selectUsersStatus);
   const minPacksCount = useAppSelector(selectMinPacksCount);
   const maxPacksCount = useAppSelector(selectMaxPacksCount);
-  const { min, max } = useAppSelector(selectUserSearchParam);
+  const { min, max } = useAppSelector(selectUsersSearchParam);
 
   const isUserLoading = userStatus === AppStatus.loading;
   const haveUsers = !!users.length;

@@ -4,7 +4,7 @@ import { Container, List } from '@mui/material';
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { selectUserSearchParam } from 'features/users/selectors';
+import { selectUsersSearchParam } from 'features/users/selectors';
 import { fetchUsers } from 'features/users/slice';
 import { UsersFilter } from 'features/users/UsersFilter/UsersFilter';
 import { UsersList } from 'features/users/UsersList/UsersList';
@@ -14,7 +14,7 @@ export const Users = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const { page, pageCount, min, max, userName, sortUsers } =
-    useAppSelector(selectUserSearchParam);
+    useAppSelector(selectUsersSearchParam);
 
   useEffect(() => {
     dispatch(fetchUsers());

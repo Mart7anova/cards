@@ -10,7 +10,7 @@ export const selectMinPacksCount = (state: AppRootStateType): number =>
 export const selectMaxPacksCount = (state: AppRootStateType): number =>
   state.users.users.maxPublicCardPacksCount;
 
-export const selectUserSearchParam = (state: AppRootStateType): UsersSearchParamsType =>
+export const selectUsersSearchParam = (state: AppRootStateType): UsersSearchParamsType =>
   state.users.usersSearchParams;
 
 export const selectUsersPage = (state: AppRootStateType): number =>
