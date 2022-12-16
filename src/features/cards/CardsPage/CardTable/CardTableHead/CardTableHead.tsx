@@ -26,9 +26,9 @@ export const CardTableHead = (): ReactElement => {
   const [isHeaderSorted, toggleHeaderSort] = useToggle(true);
 
   const packUserId = useAppSelector(selectPackUserId);
-  const { _id } = useAppSelector(selectProfile);
+  const { _id: profileId } = useAppSelector(selectProfile);
 
-  const isOwner = packUserId === _id;
+  const isOwner = packUserId === profileId;
 
   const sortPacksChangeHandler = (isHeaderSorted: boolean, sortName: string) => {
     return () => {

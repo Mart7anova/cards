@@ -18,10 +18,9 @@ type PropsType = {
 export const CardTableBody = ({ setIsSearching }: PropsType): ReactElement => {
   const cards = useAppSelector(selectCards);
   const packUserId = useAppSelector(selectPackUserId);
-  const userProfile = useAppSelector(selectProfile);
+  const { _id: profileId } = useAppSelector(selectProfile);
 
-  // eslint-disable-next-line no-underscore-dangle
-  const isOwner = packUserId === userProfile._id;
+  const isOwner = packUserId === profileId;
 
   return (
     <TableBody>
@@ -63,10 +62,6 @@ export const CardTableBody = ({ setIsSearching }: PropsType): ReactElement => {
             </TableCell>
 
             <TableCell sx={{ width: '10%' }}>{shots}</TableCell>
-
-            <TableCell sx={{ width: '10%' }}>
-              <Rating value={grade} readOnly />
-            </TableCell>
 
             <TableCell sx={{ width: '10%' }}>
               <Rating value={grade} readOnly />
