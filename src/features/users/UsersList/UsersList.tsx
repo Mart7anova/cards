@@ -8,7 +8,7 @@ import { Users } from 'features/users/UsersList/Users/Users';
 export const UsersList = (): ReactElement => {
   const users = useAppSelector(selectUsers);
 
-  const HAVE_USERS = users !== undefined;
+  const haveUsers = users !== undefined;
 
-  return HAVE_USERS ? <Users /> : <NoResult />;
+  return haveUsers ? <Users /> : <NoResult />;
 };

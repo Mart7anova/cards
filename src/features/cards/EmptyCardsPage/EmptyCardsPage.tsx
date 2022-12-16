@@ -26,24 +26,24 @@ export const EmptyCardsPage = (): ReactElement => {
   const { _id } = useAppSelector(selectProfile);
   const cardsStatus = useAppSelector(selectCardsStatus);
 
-  const IS_OWNER = packUserId === _id;
-  const IS_CARDS_LOADING = cardsStatus === 'loading';
+  const isOwner = packUserId === _id;
+  const isCardLoading = cardsStatus === 'loading';
 
   return (
     <Container fixed sx={{ mt: 5 }}>
       <h1 className={style.titleName}>
         {packName}
-        {IS_OWNER && <CardMenu />}
+        {isOwner && <CardMenu />}
         {packDeckCover && <img src={packDeckCover} className={style.img} alt="" />}
       </h1>
-      {IS_OWNER ? (
+      {isOwner ? (
         <div className={style.infoContainer}>
           <h2 className={style.infoTitle}>
             This pack is empty.
             <br />
             Click <span>add new card</span> to fill this pack.
           </h2>
-          <AddCards packId={packId} disabled={IS_CARDS_LOADING} />
+          <AddCards packId={packId} disabled={isCardLoading} />
         </div>
       ) : (
         <div className={style.infoContainer}>

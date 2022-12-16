@@ -17,6 +17,7 @@ export const Question = ({ card }: PropsType): ReactElement => {
           <span className={style.text}> {card.question}?</span>
         )}
       </h2>
+
       {card.questionImg && (
         <div className={style.wrapperImg}>
           <img

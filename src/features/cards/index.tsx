@@ -34,16 +34,16 @@ export const Cards = (): ReactElement => {
     max,
   } = useAppSelector(selectSearchParamsCards);
 
-  const HAVE_CARDS = cardsTotalCount > 0 || isSearching;
-  const IS_CARDS_LOADING = !isSearching && cardsStatus === 'loading';
+  const haveCards = cardsTotalCount > 0 || isSearching;
+  const isCardsLoading = !isSearching && cardsStatus === 'loading';
 
   useEffect(() => {
     dispatch(fetchCards({ packId }));
   }, [sortCards, cardsPackId, cardQuestion, min, page, pageCount, max, packId]);
 
-  if (IS_CARDS_LOADING) {
+  if (isCardsLoading) {
     return <CardsPageSkeleton />;
   }
 
-  return HAVE_CARDS ? <CardsPage setIsSearching={setIsSearching} /> : <EmptyCardsPage />;
+  return haveCards ? <CardsPage setIsSearching={setIsSearching} /> : <EmptyCardsPage />;
 };

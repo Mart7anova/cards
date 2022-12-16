@@ -33,7 +33,7 @@ export const ForgotPassword = (): ReactElement => {
     },
   });
 
-  const ERROR_EMAIL = formik.errors.email && formik.touched.email;
+  const errorEmail = formik.errors.email && formik.touched.email;
 
   useEffect(() => {
     if (isLoggedIn) navigate(Path.PACKS);
@@ -49,9 +49,9 @@ export const ForgotPassword = (): ReactElement => {
           <TextField
             variant="standard"
             sx={{ m: 2 }}
-            color={ERROR_EMAIL ? 'error' : 'primary'}
-            label={ERROR_EMAIL ? formik.errors.email : 'Email'}
-            error={!!ERROR_EMAIL}
+            color={errorEmail ? 'error' : 'primary'}
+            label={errorEmail ? formik.errors.email : 'Email'}
+            error={!!errorEmail}
             {...formik.getFieldProps('email')}
           />
 

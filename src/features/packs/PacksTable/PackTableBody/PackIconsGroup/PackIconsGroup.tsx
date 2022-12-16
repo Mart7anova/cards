@@ -40,7 +40,7 @@ export const PackIconsGroup = ({
   const { open, openModal, closeModal } = useModal();
   const { openEdit, openEditModal, closeEditModal } = useModal();
 
-  const IS_OWNER = packUserId === _id;
+  const isOwner = packUserId === _id;
 
   const packUpdateHandle = async (
     packName: string,
@@ -72,7 +72,7 @@ export const PackIconsGroup = ({
         </IconButton>
       )}
 
-      {IS_OWNER ? (
+      {isOwner ? (
         <>
           <Tooltip title="edit">
             <IconButton onClick={openEditModal}>

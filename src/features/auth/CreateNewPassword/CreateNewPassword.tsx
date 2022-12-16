@@ -39,8 +39,8 @@ export const CreateNewPassword = (): ReactElement => {
     },
   });
 
-  const ERROR_PASSWORD = formik.errors.password && formik.touched.password;
-  const ERROR_CONFIRM_PASSWORD =
+  const errorPassword = formik.errors.password && formik.touched.password;
+  const errorConfirmPassword =
     formik.errors.confirmPassword && formik.touched.confirmPassword;
 
   useEffect(() => {
@@ -56,14 +56,14 @@ export const CreateNewPassword = (): ReactElement => {
 
           <Password
             label="Password"
-            passError={ERROR_PASSWORD}
+            passError={errorPassword}
             formikErrorPass={formik.errors.password}
             {...formik.getFieldProps('password')}
           />
 
           <Password
             label="Confirm password"
-            passError={ERROR_CONFIRM_PASSWORD}
+            passError={errorConfirmPassword}
             formikErrorPass={formik.errors.confirmPassword}
             {...formik.getFieldProps('confirmPassword')}
           />

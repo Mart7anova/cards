@@ -39,7 +39,7 @@ export const Users = (): ReactElement => {
   const usersTotalCount = useAppSelector(selectUsersTotalCount);
   const usersStatus = useAppSelector(selectUsersStatus);
 
-  const IS_USERS_LOADING = usersStatus === AppStatus.loading;
+  const isUsersLoading = usersStatus === AppStatus.loading;
 
   const userNavigateHandler = (userId: string): (() => void) => {
     return () => {
@@ -56,7 +56,7 @@ export const Users = (): ReactElement => {
     dispatch(setUsersSearchParams({ pageCount: Number(e.target.value) }));
   };
 
-  if (IS_USERS_LOADING || !usersPageCount) {
+  if (isUsersLoading || !usersPageCount) {
     return <SkeletonUsers />;
   }
 

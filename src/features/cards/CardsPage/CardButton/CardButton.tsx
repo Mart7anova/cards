@@ -20,8 +20,8 @@ export const CardButton = (): ReactElement => {
   const packUserId = useAppSelector(selectPackUserId);
   const { _id } = useAppSelector(selectProfile);
 
-  const IS_OWNER = packUserId === _id;
-  const IS_CARDS_LOADING = cardsStatus === 'loading';
+  const isOwner = packUserId === _id;
+  const isCardsLoading = cardsStatus === 'loading';
 
   return (
     <div className={style.btnContainer}>
@@ -30,12 +30,12 @@ export const CardButton = (): ReactElement => {
         color="success"
         onClick={() => navigate(Path.LEARN + packId)}
         className={style.btn}
-        disabled={IS_CARDS_LOADING}
+        disabled={isCardsLoading}
       >
         <h4>Learn cards</h4>
       </Button>
 
-      {IS_OWNER && <AddCards packId={packId} disabled={IS_CARDS_LOADING} />}
+      {isOwner && <AddCards packId={packId} disabled={isCardsLoading} />}
     </div>
   );
 };

@@ -28,7 +28,7 @@ export const CardTableHead = (): ReactElement => {
   const packUserId = useAppSelector(selectPackUserId);
   const { _id } = useAppSelector(selectProfile);
 
-  const IS_OWNER = packUserId === _id;
+  const isOwner = packUserId === _id;
 
   const sortPacksChangeHandler = (isHeaderSorted: boolean, sortName: string) => {
     return () => {
@@ -59,7 +59,7 @@ export const CardTableHead = (): ReactElement => {
           </TableCell>
         ))}
 
-        {IS_OWNER && <TableCell>Actions</TableCell>}
+        {isOwner && <TableCell>Actions</TableCell>}
       </TableRow>
     </TableHead>
   );

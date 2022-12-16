@@ -21,7 +21,7 @@ export const CardTableBody = ({ setIsSearching }: PropsType): ReactElement => {
   const userProfile = useAppSelector(selectProfile);
 
   // eslint-disable-next-line no-underscore-dangle
-  const IS_OWNER = packUserId === userProfile._id;
+  const isOwner = packUserId === userProfile._id;
 
   return (
     <TableBody>
@@ -72,7 +72,7 @@ export const CardTableBody = ({ setIsSearching }: PropsType): ReactElement => {
               <Rating value={grade} readOnly />
             </TableCell>
 
-            {IS_OWNER && (
+            {isOwner && (
               <TableCell sx={{ width: '10%' }}>
                 <CardIconsGroup
                   packId={packId}

@@ -15,13 +15,13 @@ export const CardTitle = (): ReactElement => {
   const packDeckCover = useAppSelector(selectPackDeckCover);
   const { _id } = useAppSelector(selectProfile);
 
-  const IS_OWNER = packUserId === _id;
+  const isOwner = packUserId === _id;
 
   return (
     <h1 className={style.titleName}>
       {packName}
 
-      {IS_OWNER && <CardMenu />}
+      {isOwner && <CardMenu />}
 
       {packDeckCover && (
         <img

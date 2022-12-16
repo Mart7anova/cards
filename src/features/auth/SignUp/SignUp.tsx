@@ -46,9 +46,9 @@ export const SignUp = (): ReactElement => {
     },
   });
 
-  const ERROR_EMAIL = formik.errors.email && formik.touched.email;
-  const ERROR_PASSWORD = formik.errors.password && formik.touched.password;
-  const ERROR_CONFIRM_PASSWORD =
+  const errorEmail = formik.errors.email && formik.touched.email;
+  const errorPassword = formik.errors.password && formik.touched.password;
+  const errorConfirmPassword =
     formik.errors.confirmPassword && formik.touched.confirmPassword;
 
   useEffect(() => {
@@ -65,22 +65,22 @@ export const SignUp = (): ReactElement => {
           <TextField
             variant="standard"
             sx={{ m: 2, mt: 5 }}
-            color={ERROR_EMAIL ? 'error' : 'primary'}
-            label={ERROR_EMAIL ? formik.errors.email : 'Email'}
-            error={!!ERROR_EMAIL}
+            color={errorEmail ? 'error' : 'primary'}
+            label={errorEmail ? formik.errors.email : 'Email'}
+            error={!!errorEmail}
             {...formik.getFieldProps('email')}
           />
 
           <Password
             label="Password"
-            passError={ERROR_PASSWORD}
+            passError={errorPassword}
             formikErrorPass={formik.errors.password}
             {...formik.getFieldProps('password')}
           />
 
           <Password
             label="Confirm password"
-            passError={ERROR_CONFIRM_PASSWORD}
+            passError={errorConfirmPassword}
             formikErrorPass={formik.errors.confirmPassword}
             {...formik.getFieldProps('confirmPassword')}
           />
