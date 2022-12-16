@@ -27,11 +27,11 @@ export const DeleteModal = ({
     <BasicModal open={open} closeModal={closeModal} title={title}>
       <div className={style.text}>
         Do you really want to remove
-        <span className={style.itemName}>{itemName}</span>?
+        <span className={style.itemName}> {itemName}</span>?
         {isPack && <div style={{ marginTop: '5px' }}>All cards will be deleted.</div>}
       </div>
 
-      <div className={style.btnGroup}>
+      <div className={style.buttonGroup}>
         <Button onClick={closeModal} variant="contained" color="error">
           Cansel
         </Button>

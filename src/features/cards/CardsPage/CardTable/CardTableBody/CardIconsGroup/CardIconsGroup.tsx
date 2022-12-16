@@ -76,7 +76,6 @@ export const CardIconsGroup = ({
 
       <DeleteModal
         title="Delete card"
-        isPack
         deleteItem={cardDeleteHandle}
         itemName={question}
         open={open}

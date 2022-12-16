@@ -123,7 +123,7 @@ export const CardModal = ({
         style={{ width: '100%', marginBottom: '30px' }}
       />
 
-      <div className={style.btnGroup}>
+      <div className={style.buttonGroup}>
         <Button onClick={closeModal} variant="contained" color="error">
           Cansel
         </Button>
