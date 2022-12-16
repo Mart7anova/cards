@@ -6,6 +6,7 @@ import { InfoMessage } from 'common/components/InfoMessage/InfoMessage';
 import { NavBar } from 'common/components/NavBar/NavBar';
 import { Progress } from 'common/components/Progress/ProgressBar';
 import { ProgressBar } from 'common/components/ProgressBar/ProgressBar';
+import { ScrollTop } from 'common/components/ScrollTop/ScrollTop';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import {
@@ -39,6 +40,7 @@ export const App = (): ReactElement => {
       <AppRoute />
       <InfoMessage message={appError} type="error" action={setAppError} />
       <InfoMessage message={appSuccess} type="success" action={setAppSuccess} />
+      <ScrollTop />
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect } from 'react';
 
 import { Container, List } from '@mui/material';
 
-import { ScrollTop } from 'common/components/ScrollTop/ScrollTop';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { selectUserSearchParam } from 'features/users/selectors';
@@ -32,8 +31,6 @@ export const Users = (): ReactElement => {
       <List sx={{ width: '45%' }} style={{ margin: '0 0 0 100px' }}>
         <UsersFilter />
       </List>
-
-      <ScrollTop />
     </Container>
   );
 };

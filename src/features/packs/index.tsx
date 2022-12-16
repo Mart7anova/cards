@@ -10,7 +10,6 @@ import { PackTitle } from './PackTitle/PackTitle';
 import { selectCardPacks, selectPackSearchParams, selectPacksStatus } from './selectors';
 import { changeStatusFirstLoading, fetchPacks, setIsMyPacksFilter } from './slice';
 
-import { ScrollTop } from 'common/components/ScrollTop/ScrollTop';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { EmptyTable } from 'features/packs/EmptyTable/EmptyTable';
@@ -79,8 +78,6 @@ export const Packs = (): ReactElement => {
       <PacksFiltration disabled={IS_PACKS_LOADING} />
 
       {HAVE_PACKS ? <PacksTable /> : <EmptyTable isLoading={IS_PACKS_LOADING} />}
-
-      <ScrollTop />
     </Container>
   );
 };
