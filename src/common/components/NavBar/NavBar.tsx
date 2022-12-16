@@ -26,7 +26,7 @@ export const NavBar = (): ReactElement => {
       <AppBar position="static" className={c.bar}>
         <Container fixed className={c.container}>
           <Link to={Path.PACKS} className={style.userContainer}>
-            <h1 className={style.name}>Cards App</h1>
+            <h1 className={style.name}>Packs</h1>
           </Link>
 
           <Link to={Path.USERS} className={style.userContainer}>
