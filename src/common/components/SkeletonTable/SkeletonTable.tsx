@@ -13,13 +13,13 @@ import {
 
 const LENGTH_ARRAY = 5;
 
+const NUMBERS_ARRAY: number[] = [];
+
+for (let index = 0; index < LENGTH_ARRAY; index += 1) {
+  NUMBERS_ARRAY.push(index);
+}
+
 export const SkeletonTable = (): ReactElement => {
-  const fakeArray = [];
-
-  for (let index = 0; index < LENGTH_ARRAY; index += 1) {
-    fakeArray.push(index);
-  }
-
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -32,7 +32,7 @@ export const SkeletonTable = (): ReactElement => {
         </TableHead>
 
         <TableBody>
-          {fakeArray.map(number => (
+          {NUMBERS_ARRAY.map(number => (
             <TableRow key={number}>
               <TableCell>
                 <Skeleton animation="pulse" height={31} />

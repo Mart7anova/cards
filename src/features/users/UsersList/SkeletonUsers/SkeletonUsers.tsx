@@ -4,16 +4,16 @@ import { Skeleton } from '@mui/material';
 
 const LENGTH_ARRAY = 8;
 
+const NUMBERS_ARRAY: number[] = [];
+
+for (let index = 0; index < LENGTH_ARRAY; index += 1) {
+  NUMBERS_ARRAY.push(index);
+}
+
 export const SkeletonUsers = (): ReactElement => {
-  const FAKE_ARRAY = [];
-
-  for (let index = 0; index < LENGTH_ARRAY; index += 1) {
-    FAKE_ARRAY.push(index);
-  }
-
   return (
     <div style={{ marginTop: '20px' }}>
-      {FAKE_ARRAY.map(element => (
+      {NUMBERS_ARRAY.map(element => (
         <Skeleton
           key={element}
           variant="rectangular"
