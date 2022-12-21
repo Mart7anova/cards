@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import { instance } from 'api/instance';
+import { PathApi } from 'common/enums/PathApi';
 import {
   UserResponseType,
   UsersResponseType,
@@ -10,11 +11,11 @@ import {
 export const userApi = {
   getUsers(params?: UsersSearchParamsType) {
     return instance.get<UsersSearchParamsType, AxiosResponse<UsersResponseType>>(
-      `/social/users`,
+      PathApi.USERS,
       { params },
     );
   },
   getUser(userId: string) {
-    return instance.get<UserResponseType>(`/social/user?id=${userId}`);
+    return instance.get<UserResponseType>(`${PathApi.USER}?id=${userId}`);
   },
 };

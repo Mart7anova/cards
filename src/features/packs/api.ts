@@ -1,17 +1,18 @@
 import { AxiosResponse } from 'axios';
 
 import { instance } from 'api/instance';
+import { PathApi } from 'common/enums/PathApi';
 import { PackSearchParamsType, ResponseCardPacksType } from 'features/packs/Types';
 
 export const packApi = {
   getPacks(params: PackSearchParamsType) {
     return instance.get<PackSearchParamsType, AxiosResponse<ResponseCardPacksType>>(
-      `/cards/pack`,
+      PathApi.PACK,
       { params },
     );
   },
   createPack(name: string, isPrivate: boolean, deckCover: string) {
-    return instance.post(`cards/pack`, {
+    return instance.post(PathApi.PACK, {
       cardsPack: {
         name,
         private: isPrivate,
@@ -20,10 +21,10 @@ export const packApi = {
     });
   },
   deletePack(packId: string) {
-    return instance.delete(`/cards/pack/?id=${packId}`);
+    return instance.delete(`${PathApi.PACK}?id=${packId}`);
   },
   updatePack(_id: string, name: string, isPrivate: boolean, deckCover: string) {
-    return instance.put(`/cards/pack`, {
+    return instance.put(PathApi.PACK, {
       cardsPack: {
         _id,
         name,
