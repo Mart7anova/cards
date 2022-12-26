@@ -7,6 +7,8 @@ This project was developed to teach new skills using a card system. The algorith
 
 The application will show you the cards in random order (well, or almost, the cards with the lowest rating will be shown a little more often than those that you have already learned).
 
+The application also implements the viewing of all users and the use of a shared chat on websocket.
+
 Have fun learning!
 
 ![gif-app](https://imgur.com/L8yWrek.gif)
@@ -40,6 +42,7 @@ Starts a test run in interactive viewing mode.
 * Formik
 * Axios
 * Sass
+* Socket.io-client
 
 
 ## Git commits: <тип>: <описание>

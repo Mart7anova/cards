@@ -15,4 +15,6 @@ export enum PathApi {
 
   USERS = `/social/users`,
   USER = '/social/user',
+
+  SOCKET_IO = 'https://neko-back.herokuapp.com/',
 }

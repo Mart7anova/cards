@@ -15,6 +15,7 @@ import { ProtectedRoutes } from './ProtectedRoutes';
 
 import { PageNotFound } from 'common/components/PageNotFound/PageNotFound';
 import { Path } from 'common/enums/Path';
+import { Chat } from 'features/chat';
 import { Learn } from 'features/learn/Learn';
 import { User } from 'features/user';
 import { Users } from 'features/users';
@@ -37,6 +38,7 @@ export const AppRoute = (): ReactElement => {
         <Route path={Path.LEARN_CARD} element={<Learn />} />
         <Route path={Path.USERS} element={<Users />} />
         <Route path={Path.USER} element={<User />} />
+        <Route path={Path.CHAT} element={<Chat />} />
       </Route>
     </Routes>
   );
