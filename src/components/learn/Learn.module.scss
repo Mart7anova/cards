@@ -1,0 +1,56 @@
+@import '../../styles/sass/mixins';
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+
+  .paper {
+    min-width: 450px;
+    max-width: 1200px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .wrapperImg{
+      position: relative;
+      padding: 50px;
+
+      .img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    .textContainer {
+      margin-bottom: 20px;
+
+      .text {
+        font-size: 18px;
+        font-weight: normal;
+      }
+    }
+
+
+    .infoText {
+      @include infoText();
+      margin-bottom: 30px;
+      text-align: center;
+
+      .infoNumber {
+        color: #a1a1a1;
+      }
+    }
+
+  }
+}
+
+

@@ -1,0 +1,13 @@
+.usersContainer{
+  display: flex;
+
+  .users{
+    width: 45%;
+  }
+
+  .filter{
+    width: 45%;
+    margin: 0 0 0 100px;
+  }
+}
+

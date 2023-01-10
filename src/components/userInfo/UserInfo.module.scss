@@ -1,0 +1,21 @@
+@import '../../styles/sass/mixins';
+
+.profileContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  .paper {
+    width: 450px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .email {
+      display: flex;
+      @include infoText();
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import socketIo, { Socket } from 'socket.io-client';
 
-import { MessageType } from 'features/chat/types';
+import { MessageType } from 'api/types';
 
 export const socket = {
   socket: null as null | Socket,
